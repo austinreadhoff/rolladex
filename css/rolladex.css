@@ -16,7 +16,7 @@
     border: 2px solid black;
 }
 
-.ability-score{
+.ability-score-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,4 +29,8 @@
 }
 .ability-mod{
     font-size: 2em;
+}
+.ability-note{
+    color: darkgray;
+    margin-bottom: 0;
 }
