@@ -15,6 +15,25 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
+    //listeners for attacks
+    document.getElementById("btn-remove-attack").addEventListener('click', event =>{
+        event.srcElement.parentElement.remove();
+    });
+    document.getElementById("btn-add-attack").addEventListener('click', event =>{
+        var attackRowHTML = 
+        `<button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+         <input class="form-control col-4 attack-stat-name">
+         <input class="form-control col-2 attack-stat-bonus">
+         <input class="form-control col-4 attack-stat-dmg">`
+
+        var newRow = document.createElement("div");
+        newRow.className = "attack-stat-row row";
+        newRow.innerHTML = attackRowHTML;
+        newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
+            event.srcElement.parentElement.remove();
+        });
+        document.getElementById("attack-stats").appendChild(newRow);
+    });
 });
   
 //#region Ability Score Logic

@@ -312,14 +312,16 @@
                             <label class="col-5">ATK Bonus</label>
                             <label class="col-2">Damage/Type</label>
                         </div>
-                        <div class="attack-stat row">
-                            <span class="col-1">[-]</span>
-                            <input class="form-control col-4 attack-stat-name">
-                            <input class="form-control col-2 attack-stat-bonus">
-                            <input class="form-control col-4 attack-stat-dmg">
+                        <div id="attack-stats">
+                            <div class="attack-stat-row row">
+                                <button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+                                <input class="form-control col-4 attack-stat-name">
+                                <input class="form-control col-2 attack-stat-bonus">
+                                <input class="form-control col-4 attack-stat-dmg">
+                            </div>
                         </div>
                         <div class="row">
-                            <span>[button go here]</span>
+                            <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
                         </div>
                     </div>
                     <div class="row container">
