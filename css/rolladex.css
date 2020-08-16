@@ -7,6 +7,10 @@ input, textarea{
     border-color: #333 !important;
 }
 
+.form-control[readonly]{
+    background-color: #444 !important;
+}
+
 .block{
     margin: 5px;
     padding: 5px 20px;
