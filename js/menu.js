@@ -12,6 +12,7 @@ const template = [
                 label: 'Load Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item, focusedWindow){
+                    if (focusedWindow) focusedWindow.reload();
                     io.loadFromJSON();
                 }
             },

@@ -1,21 +1,5 @@
 const {ipcRenderer} = require('electron')
 
-ipcRenderer.on('request-save-json', (event, arg) => {
-    var json = {}
-
-    document.querySelectorAll(".save-load").forEach(el => {
-        json[el.dataset["fileId"]] = el.value;
-    });
-
-    ipcRenderer.send('send-save-json', json);
-});
-
-ipcRenderer.on('send-loaded-json', (event, json) => {
-    document.querySelectorAll(".save-load").forEach(el => {
-        el.value = json[el.dataset["fileId"]];
-    });
-});
-
 document.addEventListener("DOMContentLoaded", function(){
 
     //listeners for calculating ability score mods
@@ -89,5 +73,43 @@ function getAbililityModString(abilityScore, applyProficiency = false){
 function calculateAbilityMod(abilityScore){
     return Math.floor(abilityScore / 2) - 5;
 }
+
+//#endregion
+
+//#region JSON Saving/Loading
+
+ipcRenderer.on('request-save-json', (event, arg) => {
+    var json = {}
+
+    document.querySelectorAll("input").forEach(el => {
+        if (el.type == "text"){
+            json[el.id] = el.value;
+        }
+        else if(el.type == "checkbox"){
+            json[el.id] = el.checked;
+        }
+    });
+    document.querySelectorAll("textarea").forEach(el => {
+        json[el.id] = el.value;
+    });
+
+    ipcRenderer.send('send-save-json', json);
+});
+
+ipcRenderer.on('send-loaded-json', (event, json) => {
+    document.querySelectorAll("input").forEach(el => {
+        if (el.type == "text"){
+            el.value = json[el.id];
+        }
+        else if (el.type == "checkbox"){
+            el.checked = json[el.id];
+        }
+    });
+    document.querySelectorAll("textarea").forEach(el => {
+        el.value = json[el.id];
+    });
+
+    updateAllAbilityMods();
+});
 
 //#endregion
