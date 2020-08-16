@@ -1,0 +1,23 @@
+{
+  "name": "rolladex",
+  "version": "1.0.0",
+  "description": "Dnd 5e Character Sheet",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinread/rolladex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austinread/rolladex/issues"
+  },
+  "homepage": "https://github.com/austinread/rolladex#readme",
+  "devDependencies": {
+    "electron": "^9.2.0"
+  }
+}

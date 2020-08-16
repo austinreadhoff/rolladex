@@ -1,7 +1,10 @@
 <html>
     <head>
+        <title>RollaDex</title>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
+        <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="css/rolladex.css">
@@ -10,9 +13,6 @@
         <script src="js/rolladex.js"></script>
     </head>
     <body>
-        <h1>RollaDex 🎲</h1>
-        <h2>✨ Bring Your Worst Ideas to Life ✨</h2>
-
         <div id="character-sheet" class="container-fluid">
             <div id="header" class="row block block-bordered">
                 <div class="col-4 form-group">
