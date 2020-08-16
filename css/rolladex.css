@@ -42,3 +42,10 @@ input, textarea{
     color: darkgray;
     margin-bottom: 0;
 }
+
+.attack-stat-row {
+    margin-bottom: 5px;
+}
+.attack-stat-row input {
+    margin-right: 5px;
+}
