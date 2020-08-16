@@ -1,3 +1,21 @@
+const {ipcRenderer} = require('electron')
+
+ipcRenderer.on('request-save-json', (event, arg) => {
+    var json = {}
+
+    document.querySelectorAll(".save-load").forEach(el => {
+        json[el.dataset["fileId"]] = el.value;
+    });
+
+    ipcRenderer.send('send-save-json', json);
+});
+
+ipcRenderer.on('send-loaded-json', (event, json) => {
+    document.querySelectorAll(".save-load").forEach(el => {
+        el.value = json[el.dataset["fileId"]];
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function(){
 
     //listeners for calculating ability score mods
