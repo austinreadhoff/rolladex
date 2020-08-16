@@ -9,6 +9,17 @@ const template = [
         label: 'File',
         submenu: [
             {
+                label: 'New Character',
+                accelerator: 'CmdOrCtrl+N',
+                click(item, focusedWindow) {
+                    io.newCharacter();
+                    if (focusedWindow) focusedWindow.reload()
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
                 label: 'Load Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item, focusedWindow){
@@ -17,10 +28,20 @@ const template = [
                 }
             },
             {
-                label: 'Save Character',
+                type: 'separator'
+            },
+            {
+                label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
                 click(item, focusedWindow){
                     io.saveToJSON();
+                }
+            },
+            {
+                label: 'Save As...',
+                accelerator: 'CmdOrCtrl+Shift+S',
+                click(item, focusedWindow){
+                    io.saveAsToJSON();
                 }
             }
         ]
