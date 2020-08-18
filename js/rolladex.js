@@ -17,24 +17,19 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
-    //listeners for attacks
+    //setup and listeners for attacks
+    document.getElementById("attack-stats").innerHTML = "";
+    for(var i = 0; i < 5; i++){
+        var attackRow = buildAttackRow();
+        document.getElementById("attack-stats").appendChild(attackRow);
+    }
+
     document.getElementById("btn-remove-attack").addEventListener('click', event =>{
         event.srcElement.parentElement.remove();
     });
     document.getElementById("btn-add-attack").addEventListener('click', event =>{
-        var attackRowHTML = 
-        `<button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
-         <input class="form-control col-4 attack-stat-name">
-         <input class="form-control col-2 attack-stat-bonus">
-         <input class="form-control col-4 attack-stat-dmg">`
-
-        var newRow = document.createElement("div");
-        newRow.className = "attack-stat-row row";
-        newRow.innerHTML = attackRowHTML;
-        newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
-            event.srcElement.parentElement.remove();
-        });
-        document.getElementById("attack-stats").appendChild(newRow);
+        var attackRow = buildAttackRow();
+        document.getElementById("attack-stats").appendChild(attackRow);
     });
 });
   
@@ -78,10 +73,16 @@ function calculateAbilityMod(abilityScore){
 
 //#region JSON Saving/Loading
 
+var jsonSchemaVersion = 1.0;
+
 ipcRenderer.on('request-save-json', (event, arg) => {
     var json = {}
+    json["version"] = jsonSchemaVersion;
 
     document.querySelectorAll("input").forEach(el => {
+        if (el.classList.contains("attack-stat")){
+            return;   //Handled below
+        }
         if (el.type == "text"){
             json[el.id] = el.value;
         }
@@ -93,17 +94,43 @@ ipcRenderer.on('request-save-json', (event, arg) => {
         json[el.id] = el.value;
     });
 
+    json["attack-stats"] = [];
+    document.getElementById("attack-stats").querySelectorAll(".attack-stat-row").forEach(row => {
+        if (row.querySelector(".attack-stat-name").value){
+            var attackJSON = {};
+            attackJSON["name"] = row.querySelector(".attack-stat-name").value;
+            attackJSON["bonus"] = row.querySelector(".attack-stat-bonus").value;
+            attackJSON["dmg"] = row.querySelector(".attack-stat-dmg").value;
+            
+            json["attack-stats"].push(attackJSON);
+        }
+    });
+
+
     ipcRenderer.send('send-save-json', json);
 });
 
 ipcRenderer.on('send-loaded-json', (event, json) => {
     document.querySelectorAll("input").forEach(el => {
+        if (el.classList.contains("attack-stat")){
+            return;   //Handled below
+        }
         if (el.type == "text"){
             el.value = json[el.id];
         }
         else if (el.type == "checkbox"){
             el.checked = json[el.id];
         }
+
+        document.getElementById("attack-stats").innerHTML = "";
+        json["attack-stats"].forEach(attack => {
+            var attackRow = buildAttackRow();
+            attackRow.querySelector(".attack-stat-name").value = attack["name"];
+            attackRow.querySelector(".attack-stat-bonus").value = attack["bonus"];
+            attackRow.querySelector(".attack-stat-dmg").value = attack["dmg"];
+
+            document.getElementById("attack-stats").appendChild(attackRow);
+        });
     });
     document.querySelectorAll("textarea").forEach(el => {
         el.value = json[el.id];
@@ -111,5 +138,26 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
 
     updateAllAbilityMods();
 });
+
+//#endregion
+
+//#region Misc Utilities
+
+function buildAttackRow(){
+    var attackRowHTML = 
+        `<button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+         <input class="form-control col-4 attack-stat-name">
+         <input class="form-control col-2 attack-stat-bonus">
+         <input class="form-control col-4 attack-stat-dmg">`
+
+    var newRow = document.createElement("div");
+    newRow.className = "attack-stat-row row";
+    newRow.innerHTML = attackRowHTML;
+    newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
+        event.srcElement.parentElement.remove();
+    });
+
+    return newRow;
+}
 
 //#endregion
