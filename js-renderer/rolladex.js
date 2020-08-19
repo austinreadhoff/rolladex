@@ -1,5 +1,3 @@
-const {ipcRenderer} = require('electron')
-
 document.addEventListener("DOMContentLoaded", function(){
 
     //listeners for calculating ability score mods

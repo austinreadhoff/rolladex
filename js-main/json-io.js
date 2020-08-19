@@ -29,14 +29,6 @@ function saveAsToJSON(){
     });
 }
 
-function launchJSONSaveDialog(json){
-    dialog.showSaveDialog({}).then(result => {
-        fs.writeFile(result.filePath, JSON.stringify(json), (err) => {
-            //lol, who needs error handling
-        });
-    });
-}
-
 function loadFromJSON(){
     dialog.showOpenDialog().then(result => {
         fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {

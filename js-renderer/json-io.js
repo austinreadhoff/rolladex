@@ -1,3 +1,5 @@
+const {ipcRenderer} = require('electron')
+
 var jsonSchemaVersion = 1.0;
 
 ipcRenderer.on('request-save-json', (event, arg) => {
