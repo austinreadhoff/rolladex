@@ -50,6 +50,12 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
         }
 
         document.getElementById("attack-stats").innerHTML = "";
+        if (json["attack-stats"].length == 0){
+            for(var i = 0; i < 5; i++){
+                var attackRow = buildAttackRow();
+                document.getElementById("attack-stats").appendChild(attackRow);
+            }
+        }
         json["attack-stats"].forEach(attack => {
             var attackRow = buildAttackRow();
             attackRow.querySelector(".attack-stat-name").value = attack["name"];
