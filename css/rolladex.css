@@ -49,3 +49,14 @@ input, textarea{
 .attack-stat-row input {
     margin-right: 5px;
 }
+
+#misc-counters-header{
+    margin: 0 5px;
+}
+.counter-name{
+    margin: 5px 0;
+}
+.counter-container *{
+    display: inline-block;
+    width: auto;
+}
