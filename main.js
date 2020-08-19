@@ -9,7 +9,7 @@ function createWindow () {
     }
   })
 
-  require('./js/menu')
+  require('./js-main/menu')
 
   win.loadFile('index.html')
 }

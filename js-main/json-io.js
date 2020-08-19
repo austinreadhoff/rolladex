@@ -7,7 +7,6 @@ ipcMain.on('send-save-json', (event, json) => {
     fs.writeFile(savePath, JSON.stringify(json), (err) => {
         //lol, who needs error handling
     });
-    //launchJSONSaveDialog(json)
 });
 
 function newCharacter(){
@@ -28,7 +27,6 @@ function saveAsToJSON(){
         savePath = result.filePath;
         BrowserWindow.getFocusedWindow().webContents.send('request-save-json');
     });
-    //BrowserWindow.getFocusedWindow().webContents.send('request-save-json');
 }
 
 function launchJSONSaveDialog(json){
