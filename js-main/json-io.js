@@ -23,14 +23,37 @@ function saveToJSON(){
 }
 
 function saveAsToJSON(){
-    dialog.showSaveDialog({}).then(result => {
+    var saveDialogOptions = {
+        title: "Save Character",
+        defaultPath: "Untitled.json",
+        filters: [
+            {
+                name: 'JSON',
+                extensions: ['json']
+            }
+        ],
+        properties: ["createDirectory", "promptToCreate"]
+    }
+
+    dialog.showSaveDialog(saveDialogOptions).then(result => {
         savePath = result.filePath;
         BrowserWindow.getFocusedWindow().webContents.send('request-save-json');
     });
 }
 
 function loadFromJSON(){
-    dialog.showOpenDialog().then(result => {
+    var openDialogOptions = { 
+        title: "Load Character", 
+        filters: [
+            {
+                name: 'JSON',
+                extensions: ['json']
+            }
+        ],
+        properties: ["openFile"] 
+    }
+
+    dialog.showOpenDialog(openDialogOptions).then(result => {
         fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {
             savePath = result.filePaths[0];
             var json = JSON.parse(data);
