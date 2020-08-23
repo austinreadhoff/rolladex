@@ -2,6 +2,7 @@ const { Menu } = require('electron')
 const electron = require('electron')
 const app = electron.app
 
+const menuActions = require('./menu-actions')
 const io = require('./json-io')
 
 const template = [
@@ -92,6 +93,30 @@ const template = [
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
                 click(item, focusedWindow) {
                     if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Stats',
+                accelerator: 'CmdOrCtrl+1',
+                click(item, focusedWindow){
+                    menuActions.switchTab("stats");
+                }
+            },
+            {
+                label: 'Bio',
+                accelerator: 'CmdOrCtrl+2',
+                click(item, focusedWindow){
+                    menuActions.switchTab("bio");
+                }
+            },
+            {
+                label: 'Spellbook',
+                accelerator: 'CmdOrCtrl+3',
+                click(item, focusedWindow){
+                    menuActions.switchTab("spellbook");
                 }
             },
             {

@@ -1,4 +1,17 @@
+const {ipcRenderer} = require('electron')
+
+ipcRenderer.on('send-switch-tab', (event, tabId) => {
+    switchTab(tabId);
+});
+
 document.addEventListener("DOMContentLoaded", function(){
+
+    //tabs
+    document.querySelectorAll('.nav-link').forEach(tab => {
+        tab.addEventListener('click', event => {
+            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+        });
+    });
 
     //listeners for calculating ability score mods
     document.querySelectorAll('.ability-input').forEach(input => {
@@ -35,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("misc-counters").appendChild(counterBlock);
     });
 });
-  
+
 //#region Ability Score Logic
 
 function updateAbilityMods(ability, score){
@@ -75,6 +88,14 @@ function calculateAbilityMod(abilityScore){
 //#endregion
 
 //#region Misc Utilities
+
+function switchTab(tabId){
+    document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
+    document.getElementById(tabId + "-tab").classList.add("active");
+    
+    document.querySelectorAll('.tab-pane').forEach(t => { t.className = "tab-pane"; });
+    document.querySelector("#" + tabId).className = "tab-pane show active";
+}
 
 function buildAttackRow(){
     var attackRowHTML = 
