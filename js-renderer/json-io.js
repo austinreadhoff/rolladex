@@ -43,6 +43,7 @@ ipcRenderer.on('request-save-json', (event, arg) => {
         }
     });
 
+    document.title = json["character-name"] + " - RollaDex";
     ipcRenderer.send('send-save-json', json);
 });
 
