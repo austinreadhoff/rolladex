@@ -54,13 +54,14 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
         if (el.classList.contains("attack-stat") || el.classList.contains("misc-counter")){
             return;   //Handled below
         }
-        if (el.type == "text"){
-            el.value = json[el.id];
+        if (json[el.id]){
+            if (el.type == "text"){
+                el.value = json[el.id];
+            }
+            else if (el.type == "checkbox"){
+                el.checked = json[el.id];
+            }
         }
-        else if (el.type == "checkbox"){
-            el.checked = json[el.id];
-        }
-
     });
 
     document.getElementById("attack-stats").innerHTML = "";
@@ -90,7 +91,9 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     });
 
     document.querySelectorAll("textarea").forEach(el => {
-        el.value = json[el.id];
+        if (json[el.id]){
+            el.value = json[el.id];
+        }
     });
 
     updateAllAbilityMods();
