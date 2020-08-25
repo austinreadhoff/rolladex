@@ -7,7 +7,8 @@ ipcRenderer.on('request-save-json', (event, arg) => {
     document.querySelectorAll("input").forEach(el => {
         if (el.classList.contains("attack-stat") 
         || el.classList.contains("misc-counter")
-        || el.classList.contains("spell-input")){
+        || el.classList.contains("spell-input")
+        || el.classList.contains("ignore")){
             return;   //Handled below
         }
         if (el.type == "text"){
@@ -80,7 +81,10 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     document.title = json["character-name"] + " - RollaDex";
 
     document.querySelectorAll("input").forEach(el => {
-        if (el.classList.contains("attack-stat") || el.classList.contains("misc-counter")){
+        if (el.classList.contains("attack-stat") 
+        || el.classList.contains("misc-counter")
+        || el.classList.contains("spell-input")
+        || el.classList.contains("ignore")){
             return;   //Handled below
         }
         if (json[el.id]){
