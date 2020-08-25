@@ -5,7 +5,9 @@ ipcRenderer.on('request-save-json', (event, arg) => {
     json["version"] = jsonSchemaVersion;
 
     document.querySelectorAll("input").forEach(el => {
-        if (el.classList.contains("attack-stat") || el.classList.contains("misc-counter")){
+        if (el.classList.contains("attack-stat") 
+        || el.classList.contains("misc-counter")
+        || el.classList.contains("spell-input")){
             return;   //Handled below
         }
         if (el.type == "text"){
@@ -41,6 +43,33 @@ ipcRenderer.on('request-save-json', (event, arg) => {
             
             json["misc-counters"].push(attackJSON);
         }
+    });
+
+    json["spells"] = {};
+    document.querySelectorAll(".spell-block").forEach(block => {
+        var spellLevel = block.dataset.level;
+        var spellLevelJSON = {};
+
+        if(spellLevel > 0){
+            spellLevelJSON["spell-slots-remaining"] = block.querySelector(".spell-slots-remaining").value;
+            spellLevelJSON["spell-slots-total"] = block.querySelector(".spell-slots-total").value;
+        }
+
+        spellLevelJSON["spells"] = [];
+        block.querySelectorAll(".spell-row").forEach(row => {
+            if(row.querySelector(".spell-name").value){
+                var spellJSON = {};
+    
+                spellJSON["name"] = row.querySelector(".spell-name").value;
+                if (spellLevel > 0){
+                    spellJSON["prepared"] = row.querySelector(".spell-prepared").checked;
+                }
+    
+                spellLevelJSON["spells"].push(spellJSON);
+            }
+        });
+
+        json["spells"]["level-" + spellLevel] = spellLevelJSON;
     });
 
     document.title = json["character-name"] + " - RollaDex";
@@ -89,6 +118,31 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
 
         document.getElementById("misc-counters").appendChild(counterBlock);
     });
+
+    for (var spellLevelName in json["spells"]){
+        var spellLevel = spellLevelName.slice(-1);
+        var spellLevelJSON = json["spells"][spellLevelName];
+        var spellBlock = document.querySelector("[data-level='" + spellLevel + "']");
+
+        if (spellLevel > 0){
+            spellBlock.querySelector(".spell-slots-remaining").value = spellLevelJSON["spell-slots-remaining"];
+            spellBlock.querySelector(".spell-slots-total").value = spellLevelJSON["spell-slots-total"];
+        }
+
+        spellBlock.querySelector("#spells").innerHTML = "";
+        if (spellLevelJSON["spells"].length == 0){
+            spellBlock.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+        }
+
+        spellLevelJSON["spells"].forEach(spell => {
+            var spellRow = buildSpellRow(spellLevel);
+            spellRow.querySelector(".spell-name").value = spell["name"];
+            if (spellLevel > 0){
+                spellRow.querySelector(".spell-prepared").value = spell["prepared"];
+            }
+            spellBlock.querySelector("#spells").appendChild(spellRow);
+        });
+    }
 
     document.querySelectorAll("textarea").forEach(el => {
         if (json[el.id]){

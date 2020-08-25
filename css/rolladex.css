@@ -10,7 +10,9 @@ input, textarea{
     background-color: #333 !important;
     border-color: #333 !important;
 }
-
+.full-width-label{
+    width: 100%;
+}
 .form-control[readonly]{
     background-color: #444 !important;
 }
@@ -47,10 +49,10 @@ input, textarea{
     margin-bottom: 0;
 }
 
-.attack-stat-row {
-    margin-bottom: 5px;
+.attack-stat-row, .spell-row {
+    margin: 5px 0;
 }
-.attack-stat-row input {
+.attack-stat-row input, .spell-row * {
     margin-right: 5px;
 }
 
@@ -60,7 +62,14 @@ input, textarea{
 .counter-name{
     margin: 5px 0;
 }
-.counter-container *{
+.counter-container *, .spell-slot-container *{
     display: inline-block;
     width: auto;
+}
+.spell-slot-container input{
+    width: 45%;
+}
+
+.spell-block{
+    margin: 20px;
 }

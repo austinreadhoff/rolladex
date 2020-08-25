@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
-    //setup and listeners for attacks and counters
+    //setup and listeners for attacks
     document.getElementById("attack-stats").innerHTML = "";
     for(var i = 0; i < 5; i++){
         var attackRow = buildAttackRow();
@@ -43,9 +43,22 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("attack-stats").appendChild(attackRow);
     });
 
+    //listeners for counters
     document.getElementById("btn-add-counter").addEventListener('click', event =>{
         var counterBlock = buildCounterBlock();
         document.getElementById("misc-counters").appendChild(counterBlock);
+    });
+
+    //setup and listeners for spells
+    document.querySelectorAll(".spell-block").forEach(block => {
+        var spellLevel = block.dataset.level;
+
+        block.querySelector("#spells").innerHTML = "";
+        block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+
+        block.querySelector("#btn-add-spell").addEventListener('click', event =>{
+            block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+        });
     });
 });
 
@@ -132,6 +145,24 @@ function buildCounterBlock(){
     });
 
     return newCounter;
+}
+
+function buildSpellRow(level){
+    var spellHTML = 
+        `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
+         <input class="col form-control spell-input spell-name">`
+    if(level > 0){
+        spellHTML+= `<input class="col-1 spell-input spell-prepared" type="checkbox">`
+    }
+
+    var newRow = document.createElement("div");
+    newRow.className = "spell-row row";
+    newRow.innerHTML = spellHTML;
+    newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
+        event.srcElement.parentElement.remove();
+    });
+
+    return newRow;
 }
 
 //#endregion

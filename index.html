@@ -321,7 +321,7 @@
                             </div>
                         </div>
                         <div class="row container block block-bordered">
-                            <label class="row" style="width:100%;">Attacks</label>
+                            <label class="row full-width-label">Attacks</label>
                             <div class="row">
                                 <label class="col-5">Name</label>
                                 <label class="col-5">ATK Bonus</label>
@@ -466,7 +466,173 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">Spellbook</div>
+
+        <div class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
+            <div id="spellbook-container" class="container-fluid">
+                <div class="header row block block-bordered">
+                    <div class="col-6 form-group">
+                        <label for="spellcasting-class">Spellcasting Class</label>
+                        <input id="spellcasting-class" class="form-control">
+                    </div>
+                    <div class="form-group col-2">
+                        <label for="spellcasting-ability">Spellcasting Ability</label>
+                        <input id="spellcasting-ability" class="form-control">
+                    </div>
+                    <div class="form-group col-2">
+                        <label for="spell-save-dc">Spell Save DC</label>
+                        <input id="spell-save-dc" class="form-control">
+                    </div>
+                    <div class="form-group col-2">
+                        <label for="spell-attack-bonus">Spell Attack Bonus</label>
+                        <input id="spell-attack-bonus" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col container block block-shaded spell-block" data-level="0">
+                        <label class="row full-width-label">Cantrips</label>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col container block block-shaded spell-block" data-level="1">
+                        <label class="row full-width-label">Level 1 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="2">
+                        <label class="row full-width-label">Level 2 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="3">
+                        <label class="row full-width-label">Level 3 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col container block block-shaded spell-block" data-level="4">
+                        <label class="row full-width-label">Level 4 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="5">
+                        <label class="row full-width-label">Level 5 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="6">
+                        <label class="row full-width-label">Level 6 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col container block block-shaded spell-block" data-level="7">
+                        <label class="row full-width-label">Level 7 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="8">
+                        <label class="row full-width-label">Level 8 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div class="col container block block-shaded spell-block" data-level="9">
+                        <label class="row full-width-label">Level 9 Slots</label>
+                        <div class="spell-slot-container">
+                            <input class="form-control spell-input spell-slots-remaining" value="0">
+                            <span>/</span>
+                            <input class="form-control spell-input spell-slots-total" value="0">
+                        </div>
+                        <div id="spells">
+                            <!-- spells are generated here -->
+                        </div>
+                        <div class="row">
+                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
