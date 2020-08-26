@@ -59,6 +59,9 @@ input, textarea{
 #misc-counters-header{
     margin: 0 5px;
 }
+.misc-counter-block{
+    margin: 0 5px;
+}
 .counter-name{
     margin: 5px 0;
 }
@@ -72,4 +75,8 @@ input, textarea{
 
 .spell-block{
     margin: 20px;
+}
+.prepared{
+    border: 3px solid gold !important;
+    border-radius: 4px;
 }

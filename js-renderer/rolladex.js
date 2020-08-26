@@ -60,6 +60,21 @@ document.addEventListener("DOMContentLoaded", function(){
             block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
         });
     });
+
+    document.getElementById("btn-reset-prepared").addEventListener('click', event => {
+        document.querySelectorAll(".spell-prepared").forEach(el => {
+            el.checked = false;
+            togglePreparedSpells();
+        });
+    });
+
+    document.getElementById("btn-recover-slots").addEventListener('click', event => {
+        document.querySelectorAll(".spell-block").forEach(block => {
+            if (block.dataset.level > 0){
+                block.querySelector(".spell-slots-remaining").value = block.querySelector(".spell-slots-total").value;
+            }
+        });
+    });
 });
 
 //#region Ability Score Logic
@@ -96,6 +111,25 @@ function getAbililityModString(abilityScore, applyProficiency = false){
 
 function calculateAbilityMod(abilityScore){
     return Math.floor(abilityScore / 2) - 5;
+}
+
+//#endregion
+
+//#region Spellbook Actions
+
+function togglePrepared(el){
+    if (el.checked){
+        el.previousElementSibling.classList.add("prepared");
+    }
+    else{
+        el.previousElementSibling.classList.remove("prepared");
+    }
+}
+
+function togglePreparedSpells(){
+    document.querySelectorAll(".spell-prepared").forEach(el => {
+        togglePrepared(el);
+    });
 }
 
 //#endregion
@@ -161,6 +195,11 @@ function buildSpellRow(level){
     newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
         event.srcElement.parentElement.remove();
     });
+    if(level > 0){
+        newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
+            togglePrepared(event.srcElement);
+        });
+    }
 
     return newRow;
 }

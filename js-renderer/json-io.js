@@ -142,7 +142,7 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
             var spellRow = buildSpellRow(spellLevel);
             spellRow.querySelector(".spell-name").value = spell["name"];
             if (spellLevel > 0){
-                spellRow.querySelector(".spell-prepared").value = spell["prepared"];
+                spellRow.querySelector(".spell-prepared").checked = spell["prepared"];
             }
             spellBlock.querySelector("#spells").appendChild(spellRow);
         });
@@ -155,4 +155,5 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     });
 
     updateAllAbilityMods();
+    togglePreparedSpells();
 });
