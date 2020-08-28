@@ -24,7 +24,7 @@ const template = [
                 label: 'Load Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item, focusedWindow){
-                    io.loadFromJSON();
+                    io.loadFromJSON(focusedWindow);
                 }
             },
             {
@@ -34,14 +34,14 @@ const template = [
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
                 click(item, focusedWindow){
-                    io.saveToJSON();
+                    io.saveToJSON(focusedWindow);
                 }
             },
             {
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
                 click(item, focusedWindow){
-                    io.saveAsToJSON();
+                    io.saveAsToJSON(focusedWindow);
                 }
             }
         ]
@@ -81,13 +81,6 @@ const template = [
     {
         label: 'View',
         submenu: [
-            {
-                label: 'Reload',
-                accelerator: 'CmdOrCtrl+R',
-                click(item, focusedWindow) {
-                    if (focusedWindow) focusedWindow.reload()
-                }
-            },
             {
                 label: 'Toggle Developer Tools',
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',

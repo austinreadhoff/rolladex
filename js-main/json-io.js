@@ -1,11 +1,12 @@
-const { dialog, BrowserWindow, ipcMain } = require('electron');
+const { dialog, ipcMain } = require('electron');
 const fs = require('fs');
+const saveTracker = require('./save-tracker')
 
 var savePath = null;
 
 ipcMain.on('send-save-json', (event, json) => {
     fs.writeFile(savePath, JSON.stringify(json), (err) => {
-        //lol, who needs error handling
+        saveTracker.resetSafeSave();
     });
 });
 
@@ -13,16 +14,16 @@ function newCharacter(){
     savePath = null;
 }
 
-function saveToJSON(){
+function saveToJSON(window){
     if (savePath) {
-        BrowserWindow.getFocusedWindow().webContents.send('request-save-json');
+        window.webContents.send('request-save-json');
     }
     else{
-        saveAsToJSON();
+        saveAsToJSON(window);
     }
 }
 
-function saveAsToJSON(){
+function saveAsToJSON(window){
     var saveDialogOptions = {
         title: "Save Character",
         defaultPath: "Untitled.json",
@@ -37,11 +38,33 @@ function saveAsToJSON(){
 
     dialog.showSaveDialog(saveDialogOptions).then(result => {
         savePath = result.filePath;
-        BrowserWindow.getFocusedWindow().webContents.send('request-save-json');
+        window.webContents.send('request-save-json');
     });
 }
 
-function loadFromJSON(){
+function loadFromJSON(window){
+    if (!saveTracker.SafeToSave()){
+        var messageBoxOptions = {
+            buttons: ["Load Without Saving", "Save Character", "Cancel"],
+            defaultId: 0,
+            title: "Unsaved Changes",
+            message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
+            cancelId: 2
+        }
+        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+        switch(loadWithoutSavingDialogResponse){
+            case 0:
+                break;
+            case 1:
+                saveToJSON(window);
+                return;
+            case 2:
+                return;
+            default:
+                //shouldn't reach this anyway
+        }
+    }
+
     var openDialogOptions = { 
         title: "Load Character", 
         filters: [
@@ -57,7 +80,8 @@ function loadFromJSON(){
         fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {
             savePath = result.filePaths[0];
             var json = JSON.parse(data);
-            BrowserWindow.getFocusedWindow().webContents.send('send-loaded-json', json);
+            window.webContents.send('send-loaded-json', json);
+            saveTracker.resetSafeSave();
         })
     });
 

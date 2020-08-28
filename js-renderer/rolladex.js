@@ -156,6 +156,12 @@ function buildAttackRow(){
     newRow.innerHTML = attackRowHTML;
     newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
         event.srcElement.parentElement.remove();
+        triggerUnsafeSave();
+    });
+    newRow.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', event => {
+            triggerUnsafeSave();
+        });
     });
 
     return newRow;
@@ -176,6 +182,12 @@ function buildCounterBlock(){
     newCounter.innerHTML = counterHTML;
     newCounter.querySelector("#btn-remove-counter").addEventListener('click', event =>{
         event.srcElement.parentElement.remove();
+        triggerUnsafeSave();
+    });
+    newCounter.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', event => {
+            triggerUnsafeSave();
+        });
     });
 
     return newCounter;
@@ -194,12 +206,20 @@ function buildSpellRow(level){
     newRow.innerHTML = spellHTML;
     newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
         event.srcElement.parentElement.remove();
+        triggerUnsafeSave();
     });
     if(level > 0){
         newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
             togglePrepared(event.srcElement);
+            triggerUnsafeSave();
         });
     }
+
+    newRow.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', event => {
+            triggerUnsafeSave();
+        });
+    });
 
     return newRow;
 }
