@@ -1,5 +1,3 @@
-const {ipcRenderer} = require('electron')
-
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
 });
@@ -61,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
+    setUpSpellTips();
+
     document.getElementById("btn-reset-prepared").addEventListener('click', event => {
         document.querySelectorAll(".spell-prepared").forEach(el => {
             el.checked = false;
@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         });
     });
+
+    setUpSaveTracking();
 });
 
 //#region Ability Score Logic
@@ -214,6 +216,10 @@ function buildSpellRow(level){
             triggerUnsafeSave();
         });
     }
+
+    newRow.querySelector(".spell-name").addEventListener('change', event =>{
+        applySpellTip(event.srcElement);
+    });
 
     newRow.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', event => {

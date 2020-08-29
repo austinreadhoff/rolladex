@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function(){
+function setUpSaveTracking(){
     document.querySelectorAll('input').forEach(input => {
-        if (el.classList.contains("attack-stat") 
-        || el.classList.contains("misc-counter")
-        || el.classList.contains("spell-input")
-        || el.classList.contains("ignore")){
-            return;   //Handled below
+        if (input.classList.contains("attack-stat") 
+        || input.classList.contains("misc-counter")
+        || input.classList.contains("spell-input")
+        || input.classList.contains("ignore")){
+            return;   //Handled elsewhere
         }
         else if (input.type == "text"){
             input.addEventListener('input', event => {
@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", function(){
             triggerUnsafeSave();
         });
     });
-
+    
     document.getElementById("btn-reset-prepared").addEventListener('click', event => {
         triggerUnsafeSave();
     });
-
+    
     document.getElementById("btn-recover-slots").addEventListener('click', event => {
         triggerUnsafeSave();
     });
-});
+}
 
 function triggerUnsafeSave(){
     document.title = "*" + document.getElementById("character-name").value + " - RollaDex";

@@ -1,3 +1,5 @@
+const {ipcRenderer} = require('electron')
+
 var jsonSchemaVersion = 0.1;
 
 ipcRenderer.on('request-save-json', (event, arg) => {
@@ -156,4 +158,5 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
 
     updateAllAbilityMods();
     togglePreparedSpells();
+    setUpSpellTips();
 });
