@@ -10,8 +10,31 @@ ipcMain.on('send-save-json', (event, json) => {
     });
 });
 
-function newCharacter(){
+function newCharacter(window){
+    if (!saveTracker.SafeToSave()){
+        var messageBoxOptions = {
+            buttons: ["Clear Without Saving", "Save Character", "Cancel"],
+            defaultId: 0,
+            title: "Unsaved Changes",
+            message: "There are unsaved changes to this character.  Would you like to create a new one and lose all unsaved data?",
+            cancelId: 2
+        }
+        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+        switch(loadWithoutSavingDialogResponse){
+            case 0:
+                break;
+            case 1:
+                saveToJSON(window);
+                return;
+            case 2:
+                return;
+            default:
+                //shouldn't reach this anyway
+        }
+    }
+
     savePath = null;
+    saveTracker.resetSafeSave();
 }
 
 function saveToJSON(window){

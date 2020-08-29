@@ -13,7 +13,7 @@ const template = [
                 label: 'New Character',
                 accelerator: 'CmdOrCtrl+N',
                 click(item, focusedWindow) {
-                    io.newCharacter();
+                    io.newCharacter(focusedWindow);
                     if (focusedWindow) focusedWindow.reload()
                 }
             },
