@@ -126,7 +126,7 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     });
 
     for (var spellLevelName in json["spells"]){
-        var spellLevel = spellLevelName.slice(-1);
+        var spellLevel = spellLevelName.substr(6);  //level-
         var spellLevelJSON = json["spells"][spellLevelName];
         var spellBlock = document.querySelector("[data-level='" + spellLevel + "']");
 
