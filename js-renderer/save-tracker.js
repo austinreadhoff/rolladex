@@ -1,11 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll('input').forEach(input => {
-        if (input.type == "text"){
+        if (el.classList.contains("attack-stat") 
+        || el.classList.contains("misc-counter")
+        || el.classList.contains("spell-input")
+        || el.classList.contains("ignore")){
+            return;   //Handled below
+        }
+        else if (input.type == "text"){
             input.addEventListener('input', event => {
                 triggerUnsafeSave();
             });
         }
-        if (input.type == "checkbox"){
+        else if (input.type == "checkbox"){
             input.addEventListener('change', event => {
                 triggerUnsafeSave();
             });
