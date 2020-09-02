@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">    <!-- dark theme -->
     <link rel="stylesheet" href="css/rolladex.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
 
     <script src="js-renderer/spells.js"></script>
     <script src="js-renderer/save-tracker.js"></script>
@@ -17,7 +18,7 @@
 </head>
 
 <body>
-    <ul class="nav nav-pills" role="tablist">
+    <ul class="nav nav-pills print-hidden" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="stats-tab" data-toggle="tab" role="tab" aria-controls="stats" aria-selected="true">Stats</a>
         </li>
@@ -379,12 +380,14 @@
                     </div>
                 </div>
 
-                <div id="misc-counters-header">
-                    <label>Custom Counters</label>
-                    <button type="button" id="btn-add-counter" class="btn btn-primary">+</button>
-                </div>
-                <div id="misc-counters" class="row block block-shaded">
-                    <!-- counter elements are generated here -->
+                <div id="misc-counters-container" class="print-hidden">
+                    <div id="misc-counters-header">
+                        <label>Custom Counters</label>
+                        <button type="button" id="btn-add-counter" class="btn btn-primary">+</button>
+                    </div>
+                    <div id="misc-counters" class="row block block-shaded">
+                        <!-- counter elements are generated here -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -500,7 +503,7 @@
                             <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col print-hidden">
                         <button type="button" id="btn-recover-slots" class="btn btn-success">Recover All Spell Slots</button>
                         <button type="button" id="btn-reset-prepared" class="btn btn-success">Reset Prepared Spells</button>
                     </div>

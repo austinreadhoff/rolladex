@@ -200,7 +200,7 @@ function buildSpellRow(level){
         `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
          <input class="col form-control spell-input spell-name">`
     if(level > 0){
-        spellHTML+= `<input class="col-1 spell-input spell-prepared" type="checkbox">`
+        spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
     }
 
     var newRow = document.createElement("div");

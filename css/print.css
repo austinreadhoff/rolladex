@@ -1,0 +1,28 @@
+body{
+    color: black;
+    width: 1240px;
+}
+
+input, textarea{
+    color: black !important;
+}
+
+.print-hidden, .btn{
+    display: none;
+}
+
+.container{
+    min-width: auto !important;
+}
+
+.tab-pane{
+    display: block !important;
+}
+
+.form-control[readonly]{
+    color: black !important;
+}
+
+.block-shaded{
+    border: 2px solid #adb5bd;
+}
