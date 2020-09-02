@@ -43,6 +43,16 @@ const template = [
                 click(item, focusedWindow){
                     io.saveAsToJSON(focusedWindow);
                 }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Export To PDF',
+                accelerator: 'CmdOrCtrl+P',
+                click(item, focusedWindow){
+                    menuActions.printToPDF(focusedWindow);
+                }
             }
         ]
     },
