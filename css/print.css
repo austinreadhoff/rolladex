@@ -7,6 +7,10 @@ input, textarea{
     color: black !important;
 }
 
+.tab-pane{
+    page-break-after: always;
+}
+
 .print-hidden, .btn{
     display: none;
 }
@@ -25,4 +29,28 @@ input, textarea{
 
 .block-shaded{
     border: 2px solid #adb5bd;
+}
+
+.prepared{
+    border: 1px solid #222 !important;
+    border-radius: 0.25rem !important;
+}
+
+#proficiencies-languages{
+    height: 40em;
+}
+#equipment{
+    height: 40em;
+}
+#features{
+    height: 100em;
+}
+#physical-description{
+    height: 15em;
+}
+#traits, #ideals, #bonds, #flaws{
+    height: 10em;
+}
+#backstory, #allies, #additional-features, #treasure{
+    height: 40em;
 }
