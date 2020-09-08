@@ -268,98 +268,105 @@
                         </div>
                     </div>
                     <div id="col-b container" class="col">
-                        <div class="row container block block-shaded">
-                            <div class="row">
-                                <div class="form-group col">
-                                    <label for="armor-class">Armor Class</label>
-                                    <input id="armor-class" class="form-control">
-                                </div>
-                                <div class="form-group col">
-                                    <label for="armor-class">Initiative</label>
-                                    <input id="initiative" class="form-control ignore" value="+0" readonly>
-                                </div>
-                                <div class="form-group col">
-                                    <label for="speed">Speed</label>
-                                    <input id="speed" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col container">
-                                    <label class="row">Hit Points</label>
-                                    <div class="row">
-                                        <input id="current-hp" class="form-control col-5">
-                                        <span class="col-1">/</span>
-                                        <input id="max-hp" class="form-control col-5">
+                        <div class="row">
+                            <div class="container block block-shaded">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label for="armor-class">Armor Class</label>
+                                        <input id="armor-class" class="form-control">
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="armor-class">Initiative</label>
+                                        <input id="initiative" class="form-control ignore" value="+0" readonly>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="speed">Speed</label>
+                                        <input id="speed" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <label class="col">Temporary HP</label>
-                                    <input id="temp-hp" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col container">
-                                    <label class="row">Hit Dice</label>
-                                    <div class="row">
-                                        <input id="current-hit-dice" class="form-control col-5">
-                                        <span class="col-1">/</span>
-                                        <input id="max-hit-dice" class="form-control col-5">
+                                <div class="row">
+                                    <div class="col container">
+                                        <label class="row">Hit Points</label>
+                                        <div class="row">
+                                            <input id="current-hp" class="form-control col-5">
+                                            <span class="col-1">/</span>
+                                            <input id="max-hp" class="form-control col-5">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label class="col">Temporary HP</label>
+                                        <input id="temp-hp" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col container">
-                                    <label class="row">Death Saves</label>
-                                    <div class="row">
-                                        <label class="col-6">Successes</label>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-1"></div>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-2"></div>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-3"></div>
+                                <div class="row">
+                                    <div class="col container">
+                                        <label class="row">Hit Dice</label>
+                                        <div class="row">
+                                            <input id="current-hit-dice" class="form-control col-5">
+                                            <span class="col-1">/</span>
+                                            <input id="max-hit-dice" class="form-control col-5">
+                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-6">Failures</label>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
-                                        <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
+                                    <div class="col container">
+                                        <label class="row">Death Saves</label>
+                                        <div class="row">
+                                            <label class="col-6">Successes</label>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-1"></div>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-2"></div>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-3"></div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-6">Failures</label>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
+                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row container block block-bordered">
-                            <label class="row full-width-label">Attacks</label>
-                            <div class="row">
-                                <label class="col-5">Name</label>
-                                <label class="col-5">ATK Bonus</label>
-                                <label class="col-2">Damage/Type</label>
-                            </div>
-                            <div id="attack-stats">
-                                <!-- attack elements are generated here -->
-                            </div>
-                            <div class="row">
-                                <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
+                        <div class="row">
+                            <div class="container block block-bordered">
+                                <label class="row full-width-label">Attacks</label>
+                                <div class="row">
+                                    <label class="col-1 print-hidden"></label>
+                                    <label class="col-4">Name</label>
+                                    <label class="col-2">Bonus</label>
+                                    <label class="col-4">Damage/Type</label>
+                                </div>
+                                <div id="attack-stats">
+                                    <!-- attack elements are generated here -->
+                                </div>
+                                <div class="row">
+                                    <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="row container">
-                            <div class="row">
-                                <div class="col form-group">
-                                    <label for="copper">CP</label>
-                                    <input id="copper" class="form-control">
+                        <div class="row">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label for="copper">CP</label>
+                                        <input id="copper" class="form-control">
+                                    </div>
+                                    <div class="col form-group">
+                                        <label for="silver">SP</label>
+                                        <input id="silver" class="form-control">
+                                    </div>
+                                    <div class="col form-group">
+                                        <label for="electrum">EP</label>
+                                        <input id="electrum" class="form-control">
+                                    </div>
                                 </div>
-                                <div class="col form-group">
-                                    <label for="silver">SP</label>
-                                    <input id="silver" class="form-control">
-                                </div>
-                                <div class="col form-group">
-                                    <label for="electrum">EP</label>
-                                    <input id="electrum" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col form-group">
-                                    <label for="gold">GP</label>
-                                    <input id="gold" class="form-control">
-                                </div>
-                                <div class="col form-group">
-                                    <label for="platinum">PP</label>
-                                    <input id="platinum" class="form-control">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label for="gold">GP</label>
+                                        <input id="gold" class="form-control">
+                                    </div>
+                                    <div class="col form-group">
+                                        <label for="platinum">PP</label>
+                                        <input id="platinum" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
