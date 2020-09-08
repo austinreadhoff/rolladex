@@ -14,7 +14,6 @@ const template = [
                 accelerator: 'CmdOrCtrl+N',
                 click(item, focusedWindow) {
                     io.newCharacter(focusedWindow);
-                    if (focusedWindow) focusedWindow.reload()
                 }
             },
             {

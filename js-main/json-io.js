@@ -35,6 +35,7 @@ function newCharacter(window){
 
     savePath = null;
     saveTracker.resetSafeSave();
+    window.reload();
 }
 
 function saveToJSON(window){
@@ -60,8 +61,10 @@ function saveAsToJSON(window){
     }
 
     dialog.showSaveDialog(saveDialogOptions).then(result => {
-        savePath = result.filePath;
-        window.webContents.send('request-save-json');
+        if (!result.canceled){
+            savePath = result.filePath;
+            window.webContents.send('request-save-json');
+        }
     });
 }
 
