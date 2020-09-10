@@ -1,6 +1,7 @@
 const { dialog, ipcMain } = require('electron');
 const fs = require('fs');
 const saveTracker = require('./save-tracker')
+const recents = require('./recents')
 
 var savePath = null;
 
@@ -9,6 +10,11 @@ ipcMain.on('send-save-json', (event, json) => {
         saveTracker.resetSafeSave();
     });
 });
+
+function updateSavePath(path){
+    savePath = path;
+    recents.updateLastOpen(path);
+}
 
 function newCharacter(window){
     if (!saveTracker.SafeToSave()){
@@ -33,7 +39,7 @@ function newCharacter(window){
         }
     }
 
-    savePath = null;
+    updateSavePath(null);
     saveTracker.resetSafeSave();
     window.reload();
 }
@@ -62,55 +68,63 @@ function saveAsToJSON(window){
 
     dialog.showSaveDialog(saveDialogOptions).then(result => {
         if (!result.canceled){
-            savePath = result.filePath;
+            updateSavePath(result.filePath);
             window.webContents.send('request-save-json');
         }
     });
 }
 
-function loadFromJSON(window){
-    if (!saveTracker.SafeToSave()){
-        var messageBoxOptions = {
-            buttons: ["Load Without Saving", "Save Character", "Cancel"],
-            defaultId: 0,
-            title: "Unsaved Changes",
-            message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
-            cancelId: 2
-        }
-        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
-        switch(loadWithoutSavingDialogResponse){
-            case 0:
-                break;
-            case 1:
-                saveToJSON(window);
-                return;
-            case 2:
-                return;
-            default:
-                //shouldn't reach this anyway
-        }
-    }
-
-    var openDialogOptions = { 
-        title: "Load Character", 
-        filters: [
-            {
-                name: 'JSON',
-                extensions: ['json']
-            }
-        ],
-        properties: ["openFile"] 
-    }
-
-    dialog.showOpenDialog(openDialogOptions).then(result => {
-        fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {
-            savePath = result.filePaths[0];
+function loadFromJSON(window, path){
+    if(path){
+        //loading on open
+        fs.readFile(path, 'utf-8', (error, data) => {
             var json = JSON.parse(data);
             window.webContents.send('send-loaded-json', json);
-            saveTracker.resetSafeSave();
-        })
-    });
-
+        });
+    }
+    else{
+        if (!saveTracker.SafeToSave()){
+            var messageBoxOptions = {
+                buttons: ["Load Without Saving", "Save Character", "Cancel"],
+                defaultId: 0,
+                title: "Unsaved Changes",
+                message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
+                cancelId: 2
+            }
+            var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+            switch(loadWithoutSavingDialogResponse){
+                case 0:
+                    break;
+                case 1:
+                    saveToJSON(window);
+                    return;
+                case 2:
+                    return;
+                default:
+                    //shouldn't reach this anyway
+            }
+        }
+    
+        var openDialogOptions = { 
+            title: "Load Character", 
+            filters: [
+                {
+                    name: 'JSON',
+                    extensions: ['json']
+                }
+            ],
+            properties: ["openFile"] 
+        }
+    
+        dialog.showOpenDialog(openDialogOptions).then(result => {
+            fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {
+                updateSavePath(result.filePaths[0]);
+                var json = JSON.parse(data);
+                window.webContents.send('send-loaded-json', json);
+                saveTracker.resetSafeSave();
+            })
+        });
+    }
 }
 
 module.exports = {newCharacter, saveToJSON, saveAsToJSON, loadFromJSON};

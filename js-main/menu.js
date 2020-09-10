@@ -23,7 +23,7 @@ const template = [
                 label: 'Load Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item, focusedWindow){
-                    io.loadFromJSON(focusedWindow);
+                    io.loadFromJSON(focusedWindow, null);
                 }
             },
             {

@@ -1,6 +1,7 @@
 const { app, dialog, BrowserWindow } = require('electron')
 const io = require('./js-main/json-io')
 const saveTracker = require('./js-main/save-tracker')
+const recents = require('./js-main/recents')
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -13,7 +14,16 @@ function createWindow() {
 
 	require('./js-main/menu')
 
-	win.loadFile('index.html')
+	win.loadFile('index.html');
+
+	win.webContents.on('dom-ready', function(e){
+		recents.getRecentsJSON()
+			.then((json) => {
+				if (json.lastOpen){
+					io.loadFromJSON(win, json.lastOpen);
+				}
+			});
+	});
 
 	win.on('close', function (e) {
 		if (!saveTracker.SafeToSave()){
