@@ -1,5 +1,6 @@
 const { app, dialog, BrowserWindow } = require('electron')
 const io = require('./js-main/json-io')
+const menu = require('./js-main/menu')
 const saveTracker = require('./js-main/save-tracker')
 const recents = require('./js-main/recents')
 
@@ -12,7 +13,7 @@ function createWindow() {
 		}
 	});
 
-	require('./js-main/menu')
+	menu.initMenu();
 
 	win.loadFile('index.html');
 
@@ -22,6 +23,8 @@ function createWindow() {
 				if (json.lastOpen){
 					io.loadFromJSON(win, json.lastOpen);
 				}
+				
+				io.updateRecentsMenu(json.recents)
 			});
 	});
 

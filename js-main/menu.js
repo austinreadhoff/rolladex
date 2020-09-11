@@ -1,4 +1,4 @@
-const { Menu } = require('electron')
+const { Menu, MenuItem } = require('electron')
 const electron = require('electron')
 const app = electron.app
 
@@ -20,11 +20,16 @@ const template = [
                 type: 'separator'
             },
             {
-                label: 'Load Character',
+                label: 'Open Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item, focusedWindow){
                     io.loadFromJSON(focusedWindow, null);
                 }
+            },
+            {
+                id: 'recents',
+                label: 'Open Recent',
+                submenu: []
             },
             {
                 type: 'separator'
@@ -232,5 +237,8 @@ if (process.platform === 'darwin') {
     ]
 }
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+function initMenu(){
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}
+
+module.exports = {initMenu};

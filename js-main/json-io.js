@@ -1,5 +1,6 @@
-const { dialog, ipcMain } = require('electron');
+const { dialog, ipcMain, Menu, MenuItem } = require('electron');
 const fs = require('fs');
+
 const saveTracker = require('./save-tracker')
 const recents = require('./recents')
 
@@ -13,7 +14,8 @@ ipcMain.on('send-save-json', (event, json) => {
 
 function updateSavePath(path){
     savePath = path;
-    recents.updateLastOpen(path);
+    recents.updateRecents(path)
+        .then(recentsArray => { updateRecentsMenu(recentsArray) });
 }
 
 function newCharacter(window){
@@ -75,36 +77,32 @@ function saveAsToJSON(window){
 }
 
 function loadFromJSON(window, path){
+    if (!saveTracker.SafeToSave()){
+        var messageBoxOptions = {
+            buttons: ["Load Without Saving", "Save Character", "Cancel"],
+            defaultId: 0,
+            title: "Unsaved Changes",
+            message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
+            cancelId: 2
+        }
+        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+        switch(loadWithoutSavingDialogResponse){
+            case 0:
+                break;
+            case 1:
+                saveToJSON(window);
+                return;
+            case 2:
+                return;
+            default:
+                //shouldn't reach this anyway
+        }
+    }
+
     if(path){
-        //loading on open
-        fs.readFile(path, 'utf-8', (error, data) => {
-            var json = JSON.parse(data);
-            window.webContents.send('send-loaded-json', json);
-        });
+        executeLoad(window, path);
     }
     else{
-        if (!saveTracker.SafeToSave()){
-            var messageBoxOptions = {
-                buttons: ["Load Without Saving", "Save Character", "Cancel"],
-                defaultId: 0,
-                title: "Unsaved Changes",
-                message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
-                cancelId: 2
-            }
-            var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
-            switch(loadWithoutSavingDialogResponse){
-                case 0:
-                    break;
-                case 1:
-                    saveToJSON(window);
-                    return;
-                case 2:
-                    return;
-                default:
-                    //shouldn't reach this anyway
-            }
-        }
-    
         var openDialogOptions = { 
             title: "Load Character", 
             filters: [
@@ -117,14 +115,46 @@ function loadFromJSON(window, path){
         }
     
         dialog.showOpenDialog(openDialogOptions).then(result => {
-            fs.readFile(result.filePaths[0], 'utf-8', (error, data) => {
-                updateSavePath(result.filePaths[0]);
-                var json = JSON.parse(data);
-                window.webContents.send('send-loaded-json', json);
-                saveTracker.resetSafeSave();
-            })
+            executeLoad(window, result.filePaths[0]);
         });
     }
 }
 
-module.exports = {newCharacter, saveToJSON, saveAsToJSON, loadFromJSON};
+function executeLoad(window, path){
+    fs.readFile(path, 'utf-8', (error, data) => {
+        updateSavePath(path);
+        var json = JSON.parse(data);
+        window.webContents.send('send-loaded-json', json);
+        saveTracker.resetSafeSave();
+    });
+}
+
+//this is here instead of menu.js or recents.js to avoid dependancy loop fuckery
+//I'm sorry
+function updateRecentsMenu(recentsArray){
+    var menu = Menu.getApplicationMenu();
+
+    var recentMenu = menu.getMenuItemById("recents");
+
+    if (recentsArray.length == 0){
+        recentMenu.submenu.append(new MenuItem({ label: 'No Recent Characters', enabled: false }));
+    }
+    else{
+        //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
+        recentMenu.submenu.clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
+        recentMenu.submenu.items = [];  //empties the js array to solve the above issue
+
+        recentsArray.forEach(character => {
+            recentMenu.submenu.append(new MenuItem(
+                { 
+                    label: character.path,
+                    click(item, focusedWindow){
+                        loadFromJSON(focusedWindow, character.path);
+                    } 
+                })
+            );
+        });
+    }
+}
+
+module.exports = {newCharacter, saveToJSON, saveAsToJSON, loadFromJSON, updateRecentsMenu};
