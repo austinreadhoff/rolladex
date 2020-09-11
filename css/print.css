@@ -11,7 +11,7 @@ input, textarea{
     page-break-after: always;
 }
 
-.print-hidden, .btn{
+.print-hidden, .btn, img{
     display: none;
 }
 
