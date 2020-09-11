@@ -3,7 +3,7 @@
 }
 
 .form-group{
-    width:95%;
+    width:100%;
 }
 input, textarea{
     color: #eee !important;
@@ -18,9 +18,18 @@ input, textarea{
 }
 
 .block{
-    margin: 5px;
     padding: 5px 20px;
     border-radius: 4px;
+}
+#stats .block{
+    margin: 5px;
+}
+#bio .block, #spellbook .block{
+    margin: 5px 0;
+}
+
+.textarea-col{
+    padding: 0 5px;
 }
 
 .block-shaded{
@@ -35,9 +44,7 @@ input, textarea{
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin:5px;
-
+    margin:5px 0;
     background-color:#222;
     border-radius: 4px;
 }
@@ -74,7 +81,7 @@ input, textarea{
 }
 
 .spell-block{
-    margin: 20px;
+    margin: 15px !important;
 }
 .prepared{
     border: 3px solid gold !important;

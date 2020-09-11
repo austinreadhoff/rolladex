@@ -71,317 +71,323 @@
                 </div>
 
                 <div class="row">
-                    <div id="col-a container" class="col">
-                        <div class="row">
-                            <div id="ability-scores" class="block block-shaded col-4">
-                                <div class="ability-score-container form-group">
-                                    <label>Strength</label>
-                                    <span id="str-mod" class="ability-mod">+0</span>
-                                    <input id="str" class="form-control ability-input">
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div id="ability-scores" class="block block-shaded col-4">
+                                    <div class="ability-score-container form-group">
+                                        <label>Strength</label>
+                                        <span id="str-mod" class="ability-mod">+0</span>
+                                        <input id="str" class="form-control ability-input">
+                                    </div>
+                                    <div class="ability-score-container form-group">
+                                        <label>Dexterity</label>
+                                        <span id="dex-mod" class="ability-mod">+0</span>
+                                        <input id="dex" class="form-control ability-input">
+                                    </div>
+                                    <div class="ability-score-container form-group">
+                                        <label>Constitution</label>
+                                        <span id="con-mod" class="ability-mod">+0</span>
+                                        <input id="con" class="form-control ability-input">
+                                    </div>
+                                    <div class="ability-score-container form-group">
+                                        <label>Intelligence</label>
+                                        <span id="int-mod" class="ability-mod">+0</span>
+                                        <input id="int" class="form-control ability-input">
+                                    </div>
+                                    <div class="ability-score-container form-group">
+                                        <label>Wisdom</label>
+                                        <span id="wis-mod" class="ability-mod">+0</span>
+                                        <input id="wis" class="form-control ability-input">
+                                    </div>
+                                    <div class="ability-score-container form-group">
+                                        <label>Charisma</label>
+                                        <span id="char-mod" class="ability-mod">+0</span>
+                                        <input id="char" class="form-control ability-input">
+                                    </div>
                                 </div>
-                                <div class="ability-score-container form-group">
-                                    <label>Dexterity</label>
-                                    <span id="dex-mod" class="ability-mod">+0</span>
-                                    <input id="dex" class="form-control ability-input">
-                                </div>
-                                <div class="ability-score-container form-group">
-                                    <label>Constitution</label>
-                                    <span id="con-mod" class="ability-mod">+0</span>
-                                    <input id="con" class="form-control ability-input">
-                                </div>
-                                <div class="ability-score-container form-group">
-                                    <label>Intelligence</label>
-                                    <span id="int-mod" class="ability-mod">+0</span>
-                                    <input id="int" class="form-control ability-input">
-                                </div>
-                                <div class="ability-score-container form-group">
-                                    <label>Wisdom</label>
-                                    <span id="wis-mod" class="ability-mod">+0</span>
-                                    <input id="wis" class="form-control ability-input">
-                                </div>
-                                <div class="ability-score-container form-group">
-                                    <label>Charisma</label>
-                                    <span id="char-mod" class="ability-mod">+0</span>
-                                    <input id="char" class="form-control ability-input">
+                                <div id="skills-etc" classes="col-8">
+                                    <div class="form-check print-hidden">
+                                        <input class="form-check-input proficiency-check" type="checkbox" id="inspiration">
+                                        <label class="form-check-label" for="inspiration">Inspiration</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="proficiency">Proficiency Bonus</label>
+                                        <input id="proficiency" class="form-control">
+                                    </div>
+                                    <div id="saving-throws" class="block block-bordered">
+                                        <label>Saving Throws</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-str">
+                                            <span id="saving-str-mod" class="str-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-str">Strength</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-dex">
+                                            <span id="saving-dex-mod" class="dex-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-dex">Dexterity</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-con">
+                                            <span id="saving-con-mod" class="con-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-con">Constitution</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-int">
+                                            <span id="saving-int-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-int">Intelligence</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-wis">
+                                            <span id="saving-wis-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-wis">Wisdom</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-char">
+                                            <span id="saving-char-mod" class="char-mod-prof">+0</span>
+                                            <label class="form-check-label" for="saving-char">Charisma</label>
+                                        </div>
+                                    </div>
+                                    <div id="skills" class="block block-bordered">
+                                        <label>Skills</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="acrobatics">
+                                            <span id="acrobatics-mod" class="dex-mod-prof">+0</span>
+                                            <label class="form-check-label" for="acrobatics">Acrobatics</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="animal-handling">
+                                            <span id="animal-handling-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="animal-handling">Animal Handling</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="arcana">
+                                            <span id="arcana-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="arcana">Arcana</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="athletics">
+                                            <span id="athletics-mod" class="str-mod-prof">+0</span>
+                                            <label class="form-check-label" for="athletics">Athletics</label>
+                                            <label class="ability-note">(Str)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="deception">
+                                            <span id="deception-mod" class="char-mod-prof">+0</span>
+                                            <label class="form-check-label" for="deception">Deception</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="history">
+                                            <span id="history-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="history">History</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="insight">
+                                            <span id="insight-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="insight">Insight</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="intimidation">
+                                            <span id="intimidation-mod" class="char-mod-prof">+0</span>
+                                            <label class="form-check-label" for="intimidation">Intimidation</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="investigation">
+                                            <span id="investigation-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="investigation">Investigation</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="medicine">
+                                            <span id="medicine-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="medicine">Medicine</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="nature">
+                                            <span id="nature-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="nature">Nature</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="perception">
+                                            <span id="perception-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="perception">Perception</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="performance">
+                                            <span id="performance-mod" class="char-mod-prof">+0</span>
+                                            <label class="form-check-label" for="performance">Performance</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="persuasion">
+                                            <span id="persuasion-mod" class="char-mod-prof">+0</span>
+                                            <label class="form-check-label" for="persuasion">Persuasion</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="religion">
+                                            <span id="religion-mod" class="int-mod-prof">+0</span>
+                                            <label class="form-check-label" for="religion">Religion</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="slight-of-hand">
+                                            <span id="slight-of-hand-mod" class="dex-mod-prof">+0</span>
+                                            <label class="form-check-label" for="slight-of-hand">Slight of Hand</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="stealth">
+                                            <span id="stealth-mod" class="dex-mod-prof">+0</span>
+                                            <label class="form-check-label" for="stealth">Stealth</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input proficiency-check" type="checkbox" id="survival">
+                                            <span id="survival-mod" class="wis-mod-prof">+0</span>
+                                            <label class="form-check-label" for="survival">Survival</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="skills-etc" classes="col-8">
-                                <div class="form-check">
-                                    <input class="form-check-input proficiency-check" type="checkbox" id="inspiration">
-                                    <label class="form-check-label" for="inspiration">Inspiration</label>
+                            <div class="row">
+                                <div class="form-group col textarea-col">
+                                    <label for="proficiencies-languages">Proficiencies & Languages</label>
+                                    <textarea class="form-control" id="proficiencies-languages" rows="7"></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="proficiency">Proficiency Bonus</label>
-                                    <input id="proficiency" class="form-control">
-                                </div>
-                                <div id="saving-throws" class="block block-bordered">
-                                    <label>Saving Throws</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-str">
-                                        <span id="saving-str-mod" class="str-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-str">Strength</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-dex">
-                                        <span id="saving-dex-mod" class="dex-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-dex">Dexterity</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-con">
-                                        <span id="saving-con-mod" class="con-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-con">Constitution</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-int">
-                                        <span id="saving-int-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-int">Intelligence</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-wis">
-                                        <span id="saving-wis-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-wis">Wisdom</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="saving-char">
-                                        <span id="saving-char-mod" class="char-mod-prof">+0</span>
-                                        <label class="form-check-label" for="saving-char">Charisma</label>
-                                    </div>
-                                </div>
-                                <div id="skills" class="block block-bordered">
-                                    <label>Skills</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="acrobatics">
-                                        <span id="acrobatics-mod" class="dex-mod-prof">+0</span>
-                                        <label class="form-check-label" for="acrobatics">Acrobatics</label>
-                                        <label class="ability-note">(Dex)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="animal-handling">
-                                        <span id="animal-handling-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="animal-handling">Animal Handling</label>
-                                        <label class="ability-note">(Wis)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="arcana">
-                                        <span id="arcana-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="arcana">Arcana</label>
-                                        <label class="ability-note">(Int)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="athletics">
-                                        <span id="athletics-mod" class="str-mod-prof">+0</span>
-                                        <label class="form-check-label" for="athletics">Athletics</label>
-                                        <label class="ability-note">(Str)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="deception">
-                                        <span id="deception-mod" class="char-mod-prof">+0</span>
-                                        <label class="form-check-label" for="deception">Deception</label>
-                                        <label class="ability-note">(Char)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="history">
-                                        <span id="history-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="history">History</label>
-                                        <label class="ability-note">(Int)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="insight">
-                                        <span id="insight-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="insight">Insight</label>
-                                        <label class="ability-note">(Wis)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="intimidation">
-                                        <span id="intimidation-mod" class="char-mod-prof">+0</span>
-                                        <label class="form-check-label" for="intimidation">Intimidation</label>
-                                        <label class="ability-note">(Char)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="investigation">
-                                        <span id="investigation-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="investigation">Investigation</label>
-                                        <label class="ability-note">(Int)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="medicine">
-                                        <span id="medicine-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="medicine">Medicine</label>
-                                        <label class="ability-note">(Wis)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="nature">
-                                        <span id="nature-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="nature">Nature</label>
-                                        <label class="ability-note">(Int)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="perception">
-                                        <span id="perception-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="perception">Perception</label>
-                                        <label class="ability-note">(Wis)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="performance">
-                                        <span id="performance-mod" class="char-mod-prof">+0</span>
-                                        <label class="form-check-label" for="performance">Performance</label>
-                                        <label class="ability-note">(Char)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="persuasion">
-                                        <span id="persuasion-mod" class="char-mod-prof">+0</span>
-                                        <label class="form-check-label" for="persuasion">Persuasion</label>
-                                        <label class="ability-note">(Char)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="religion">
-                                        <span id="religion-mod" class="int-mod-prof">+0</span>
-                                        <label class="form-check-label" for="religion">Religion</label>
-                                        <label class="ability-note">(Int)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="slight-of-hand">
-                                        <span id="slight-of-hand-mod" class="dex-mod-prof">+0</span>
-                                        <label class="form-check-label" for="slight-of-hand">Slight of Hand</label>
-                                        <label class="ability-note">(Dex)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="stealth">
-                                        <span id="stealth-mod" class="dex-mod-prof">+0</span>
-                                        <label class="form-check-label" for="stealth">Stealth</label>
-                                        <label class="ability-note">(Dex)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="survival">
-                                        <span id="survival-mod" class="wis-mod-prof">+0</span>
-                                        <label class="form-check-label" for="survival">Survival</label>
-                                        <label class="ability-note">(Wis)</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="proficiencies-languages">Proficiencies & Languages</label>
-                                <textarea class="form-control" id="proficiencies-languages" rows="7"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div id="col-b container" class="col">
-                        <div class="row">
-                            <div class="container block block-shaded">
-                                <div class="row">
-                                    <div class="form-group col">
-                                        <label for="armor-class">Armor Class</label>
-                                        <input id="armor-class" class="form-control">
-                                    </div>
-                                    <div class="form-group col">
-                                        <label for="armor-class">Initiative</label>
-                                        <input id="initiative" class="form-control ignore" value="+0" readonly>
-                                    </div>
-                                    <div class="form-group col">
-                                        <label for="speed">Speed</label>
-                                        <input id="speed" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col container">
-                                        <label class="row">Hit Points</label>
-                                        <div class="row">
-                                            <input id="current-hp" class="form-control col-5">
-                                            <span class="col-1">/</span>
-                                            <input id="max-hp" class="form-control col-5">
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="container block block-shaded">
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <label for="armor-class">Armor Class</label>
+                                            <input id="armor-class" class="form-control">
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="armor-class">Initiative</label>
+                                            <input id="initiative" class="form-control ignore" value="+0" readonly>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="speed">Speed</label>
+                                            <input id="speed" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <label class="col">Temporary HP</label>
-                                        <input id="temp-hp" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col container">
-                                        <label class="row">Hit Dice</label>
-                                        <div class="row">
-                                            <input id="current-hit-dice" class="form-control col-5">
-                                            <span class="col-1">/</span>
-                                            <input id="max-hit-dice" class="form-control col-5">
+                                    <div class="row">
+                                        <div class="col container">
+                                            <label class="row">Hit Points</label>
+                                            <div class="row">
+                                                <input id="current-hp" class="form-control col-5 print-hidden">
+                                                <span class="col-1 print-hidden">/</span>
+                                                <input id="max-hp" class="form-control col-5">
+                                            </div>
+                                        </div>
+                                        <div class="col print-hidden">
+                                            <label class="col">Temporary HP</label>
+                                            <input id="temp-hp" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col container">
-                                        <label class="row">Death Saves</label>
-                                        <div class="row">
-                                            <label class="col-6">Successes</label>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-1"></div>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-2"></div>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-3"></div>
+                                    <div class="row">
+                                        <div class="col container">
+                                            <label class="row">Hit Dice</label>
+                                            <div class="row">
+                                                <input id="current-hit-dice" class="form-control col-5 print-hidden">
+                                                <span class="col-1 print-hidden">/</span>
+                                                <input id="max-hit-dice" class="form-control col-5">
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <label class="col-6">Failures</label>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
-                                            <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
+                                        <div class="col container print-hidden">
+                                            <label class="row">Death Saves</label>
+                                            <div class="row">
+                                                <label class="col-6">Successes</label>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-1"></div>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-2"></div>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-3"></div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-6">Failures</label>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
+                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="container block block-bordered">
-                                <label class="row full-width-label">Attacks</label>
-                                <div class="row">
-                                    <label class="col-1 print-hidden"></label>
-                                    <label class="col-4">Name</label>
-                                    <label class="col-2">Bonus</label>
-                                    <label class="col-4">Damage/Type</label>
-                                </div>
-                                <div id="attack-stats">
-                                    <!-- attack elements are generated here -->
-                                </div>
-                                <div class="row">
-                                    <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <label for="copper">CP</label>
-                                        <input id="copper" class="form-control">
+                            <div class="row">
+                                <div class="container block block-bordered">
+                                    <label class="row full-width-label">Attacks</label>
+                                    <div class="row">
+                                        <label class="col-1 print-hidden"></label>
+                                        <label class="col-4">Name</label>
+                                        <label class="col-2">Bonus</label>
+                                        <label class="col-4">Damage/Type</label>
                                     </div>
-                                    <div class="col form-group">
-                                        <label for="silver">SP</label>
-                                        <input id="silver" class="form-control">
+                                    <div id="attack-stats">
+                                        <!-- attack elements are generated here -->
                                     </div>
-                                    <div class="col form-group">
-                                        <label for="electrum">EP</label>
-                                        <input id="electrum" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <label for="gold">GP</label>
-                                        <input id="gold" class="form-control">
-                                    </div>
-                                    <div class="col form-group">
-                                        <label for="platinum">PP</label>
-                                        <input id="platinum" class="form-control">
+                                    <div class="row">
+                                        <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="equipment">Equipment</label>
-                                <textarea class="form-control" id="equipment" rows="10"></textarea>
+                            <div class="row">
+                                <div class="container block block-shaded">
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            <label for="copper">CP</label>
+                                            <input id="copper" class="form-control">
+                                        </div>
+                                        <div class="col form-group">
+                                            <label for="silver">SP</label>
+                                            <input id="silver" class="form-control">
+                                        </div>
+                                        <div class="col form-group">
+                                            <label for="electrum">EP</label>
+                                            <input id="electrum" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            <label for="gold">GP</label>
+                                            <input id="gold" class="form-control">
+                                        </div>
+                                        <div class="col form-group">
+                                            <label for="platinum">PP</label>
+                                            <input id="platinum" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col textarea-col">
+                                    <label for="equipment">Equipment</label>
+                                    <textarea class="form-control" id="equipment" rows="10"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="col-c" class="col container">
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="features">Features & Traits</label>
-                                <textarea class="form-control" id="features" rows="40"></textarea>
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col textarea-col">
+                                    <label for="features">Features & Traits</label>
+                                    <textarea class="form-control" id="features" rows="40"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -500,6 +506,10 @@
                     </div>
                 </div>
 
+                <div>
+                    <button type="button" id="btn-recover-slots" class="btn btn-success">Recover All Spell Slots</button>
+                    <button type="button" id="btn-reset-prepared" class="btn btn-success">Reset Prepared Spells</button>
+                </div>
                 <div class="row">
                     <div class="col container block block-shaded spell-block" data-level="0">
                         <label class="row full-width-label">Cantrips</label>
@@ -509,10 +519,6 @@
                         <div class="row">
                             <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
                         </div>
-                    </div>
-                    <div class="col print-hidden">
-                        <button type="button" id="btn-recover-slots" class="btn btn-success">Recover All Spell Slots</button>
-                        <button type="button" id="btn-reset-prepared" class="btn btn-success">Reset Prepared Spells</button>
                     </div>
                     <div class="col container block block-shaded spell-block" data-level="other">
                         <label class="row full-width-label">Other</label>
