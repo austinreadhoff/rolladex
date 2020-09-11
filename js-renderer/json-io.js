@@ -89,7 +89,7 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
         || el.classList.contains("ignore")){
             return;   //Handled below
         }
-        if (json[el.id]){
+        if (json[el.id] != null){
             if (el.type == "text"){
                 el.value = json[el.id];
             }
@@ -151,7 +151,7 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     }
 
     document.querySelectorAll("textarea").forEach(el => {
-        if (json[el.id]){
+        if (json[el.id] != null){
             el.value = json[el.id];
         }
     });
