@@ -2,7 +2,7 @@ function setUpSaveTracking(){
     document.querySelectorAll('input').forEach(input => {
         if (input.classList.contains("attack-stat") 
         || input.classList.contains("misc-counter")
-        || input.classList.contains("spell-input")
+        || input.classList.contains("spell-name")
         || input.classList.contains("ignore")){
             return;   //Handled elsewhere
         }
