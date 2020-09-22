@@ -8,7 +8,7 @@ function setUpSpellTips(){
             applySpellTip(input);
             
             input.addEventListener("change", event => {
-                applySpellTip(event.srcElement);
+                applySpellTip(event.target);
             });
         });
     });

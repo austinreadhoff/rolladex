@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     document.getElementById("btn-remove-attack").addEventListener('click', event =>{
-        event.srcElement.parentElement.remove();
+        event.target.parentElement.remove();
     });
     document.getElementById("btn-add-attack").addEventListener('click', event =>{
         var attackRow = buildAttackRow();
@@ -157,7 +157,7 @@ function buildAttackRow(){
     newRow.className = "attack-stat-row row";
     newRow.innerHTML = attackRowHTML;
     newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
-        event.srcElement.parentElement.remove();
+        event.target.parentElement.remove();
         triggerUnsafeSave();
     });
     newRow.querySelectorAll('input').forEach(input => {
@@ -183,7 +183,7 @@ function buildCounterBlock(){
     newCounter.className = "misc-counter-block";
     newCounter.innerHTML = counterHTML;
     newCounter.querySelector("#btn-remove-counter").addEventListener('click', event =>{
-        event.srcElement.parentElement.remove();
+        event.target.parentElement.remove();
         triggerUnsafeSave();
     });
     newCounter.querySelectorAll('input').forEach(input => {
@@ -207,18 +207,18 @@ function buildSpellRow(level){
     newRow.className = "spell-row row";
     newRow.innerHTML = spellHTML;
     newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
-        event.srcElement.parentElement.remove();
+        event.target.parentElement.remove();
         triggerUnsafeSave();
     });
     if(level > 0){
         newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
-            togglePrepared(event.srcElement);
+            togglePrepared(event.target);
             triggerUnsafeSave();
         });
     }
 
     newRow.querySelector(".spell-name").addEventListener('change', event =>{
-        applySpellTip(event.srcElement);
+        applySpellTip(event.target);
     });
 
     newRow.querySelectorAll('input').forEach(input => {
