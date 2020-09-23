@@ -198,7 +198,7 @@ function buildCounterBlock(){
 function buildSpellRow(level){
     var spellHTML = 
         `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
-         <input class="col form-control spell-input spell-name">`
+         <div class="autocomplete col"><input class="form-control spell-input spell-name"></div>`
     if(level > 0){
         spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
     }
@@ -226,6 +226,8 @@ function buildSpellRow(level){
             triggerUnsafeSave();
         });
     });
+
+    autoComplete(newRow.querySelectorAll('.spell-name'), spellNames);
 
     return newRow;
 }

@@ -1,8 +1,10 @@
 var spellJSON;
+var spellNames;
 
 function setUpSpellTips(){
     getJSON("./spells/srd.json", (json) => {
         spellJSON = json;
+        spellNames = json.map(spell => spell.name)
 
         document.querySelectorAll(".spell-name").forEach(input => {
             applySpellTip(input);
@@ -11,6 +13,8 @@ function setUpSpellTips(){
                 applySpellTip(event.target);
             });
         });
+
+        initializeAutoComplete();
     });
 }
 
@@ -43,4 +47,8 @@ function getJSON(path, callback){
     };
 
     request.send();
+}
+
+function initializeAutoComplete(){
+    autoComplete(document.getElementsByClassName("spell-name"), spellNames);
 }
