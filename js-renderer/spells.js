@@ -1,20 +1,24 @@
 var spellJSON;
 var spellNames;
 
-function setUpSpellTips(){
-    getJSON("./spells/srd.json", (json) => {
-        spellJSON = json;
-        spellNames = json.map(spell => spell.name)
+function loadSpellData(){
+    return new Promise((resolve, reject) => {
+        getJSON("./spells/srd.json", (json) => {
+            spellJSON = json;
+            spellNames = json.map(spell => spell.name)
 
-        document.querySelectorAll(".spell-name").forEach(input => {
-            applySpellTip(input);
-            
-            input.addEventListener("change", event => {
-                applySpellTip(event.target);
-            });
+            resolve();
         });
+    });
+}
 
-        initializeAutoComplete();
+function applyAllSpellTips(){
+    document.querySelectorAll(".spell-name").forEach(input => {
+        applySpellTip(input);
+        
+        input.addEventListener("change", event => {
+            applySpellTip(event.target);
+        });
     });
 }
 

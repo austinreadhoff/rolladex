@@ -158,5 +158,5 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
 
     updateAllAbilityMods();
     togglePreparedSpells();
-    setUpSpellTips();
+    applyAllSpellTips();
 });

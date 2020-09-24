@@ -4,79 +4,81 @@ ipcRenderer.on('send-switch-tab', (event, tabId) => {
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    //tabs
-    document.querySelectorAll('.nav-link').forEach(tab => {
-        tab.addEventListener('click', event => {
-            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+    loadSpellData().then(() => {
+        //tabs
+        document.querySelectorAll('.nav-link').forEach(tab => {
+            tab.addEventListener('click', event => {
+                switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+            });
         });
-    });
 
-    //listeners for calculating ability score mods
-    document.querySelectorAll('.ability-input').forEach(input => {
-        input.addEventListener('input', event => {
-            updateAbilityMods(input.id, input.value);
+        //listeners for calculating ability score mods
+        document.querySelectorAll('.ability-input').forEach(input => {
+            input.addEventListener('input', event => {
+                updateAbilityMods(input.id, input.value);
+            });
         });
-    });
-    document.getElementById("proficiency").addEventListener('input', event =>{
-        updateAllAbilityMods();
-    });
-    document.querySelectorAll('.proficiency-check').forEach(checkbox => {
-        checkbox.addEventListener('change', event => {
+        document.getElementById("proficiency").addEventListener('input', event =>{
             updateAllAbilityMods();
         });
-    });
-
-    //setup and listeners for attacks
-    document.getElementById("attack-stats").innerHTML = "";
-    for(var i = 0; i < 5; i++){
-        var attackRow = buildAttackRow();
-        document.getElementById("attack-stats").appendChild(attackRow);
-    }
-
-    document.getElementById("btn-remove-attack").addEventListener('click', event =>{
-        event.target.parentElement.remove();
-    });
-    document.getElementById("btn-add-attack").addEventListener('click', event =>{
-        var attackRow = buildAttackRow();
-        document.getElementById("attack-stats").appendChild(attackRow);
-    });
-
-    //listeners for counters
-    document.getElementById("btn-add-counter").addEventListener('click', event =>{
-        var counterBlock = buildCounterBlock();
-        document.getElementById("misc-counters").appendChild(counterBlock);
-    });
-
-    //setup and listeners for spells
-    document.querySelectorAll(".spell-block").forEach(block => {
-        var spellLevel = block.dataset.level;
-
-        block.querySelector("#spells").innerHTML = "";
-        block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
-
-        block.querySelector("#btn-add-spell").addEventListener('click', event =>{
-            block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+        document.querySelectorAll('.proficiency-check').forEach(checkbox => {
+            checkbox.addEventListener('change', event => {
+                updateAllAbilityMods();
+            });
         });
-    });
 
-    setUpSpellTips();
+        //setup and listeners for attacks
+        document.getElementById("attack-stats").innerHTML = "";
+        for(var i = 0; i < 5; i++){
+            var attackRow = buildAttackRow();
+            document.getElementById("attack-stats").appendChild(attackRow);
+        }
 
-    document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-        document.querySelectorAll(".spell-prepared").forEach(el => {
-            el.checked = false;
-            togglePreparedSpells();
+        document.getElementById("btn-remove-attack").addEventListener('click', event =>{
+            event.target.parentElement.remove();
         });
-    });
+        document.getElementById("btn-add-attack").addEventListener('click', event =>{
+            var attackRow = buildAttackRow();
+            document.getElementById("attack-stats").appendChild(attackRow);
+        });
 
-    document.getElementById("btn-recover-slots").addEventListener('click', event => {
+        //listeners for counters
+        document.getElementById("btn-add-counter").addEventListener('click', event =>{
+            var counterBlock = buildCounterBlock();
+            document.getElementById("misc-counters").appendChild(counterBlock);
+        });
+        
+        //setup and listeners for spells
         document.querySelectorAll(".spell-block").forEach(block => {
-            if (block.dataset.level > 0){
-                block.querySelector(".spell-slots-remaining").value = block.querySelector(".spell-slots-total").value;
-            }
+            var spellLevel = block.dataset.level;
+    
+            block.querySelector("#spells").innerHTML = "";
+            block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+    
+            block.querySelector("#btn-add-spell").addEventListener('click', event =>{
+                block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
+            });
         });
-    });
 
-    setUpSaveTracking();
+        applyAllSpellTips();
+    
+        document.getElementById("btn-reset-prepared").addEventListener('click', event => {
+            document.querySelectorAll(".spell-prepared").forEach(el => {
+                el.checked = false;
+                togglePreparedSpells();
+            });
+        });
+    
+        document.getElementById("btn-recover-slots").addEventListener('click', event => {
+            document.querySelectorAll(".spell-block").forEach(block => {
+                if (block.dataset.level > 0){
+                    block.querySelector(".spell-slots-remaining").value = block.querySelector(".spell-slots-total").value;
+                }
+            });
+        });
+
+        setUpSaveTracking();
+    });
 });
 
 //#region Ability Score Logic
