@@ -1,11 +1,9 @@
 var spellJSON;
-var spellNames;
 
 function loadSpellData(){
     return new Promise((resolve, reject) => {
         getJSON("./spells/srd.json", (json) => {
             spellJSON = json;
-            spellNames = json.map(spell => spell.name)
 
             resolve();
         });
@@ -51,8 +49,4 @@ function getJSON(path, callback){
     };
 
     request.send();
-}
-
-function initializeAutoComplete(){
-    autoComplete(document.getElementsByClassName("spell-name"), spellNames);
 }

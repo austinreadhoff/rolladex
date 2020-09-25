@@ -123,10 +123,10 @@ function calculateAbilityMod(abilityScore){
 
 function togglePrepared(el){
     if (el.checked){
-        el.previousElementSibling.classList.add("prepared");
+        el.previousElementSibling.firstElementChild.classList.add("prepared");
     }
     else{
-        el.previousElementSibling.classList.remove("prepared");
+        el.previousElementSibling.firstElementChild.classList.remove("prepared");
     }
 }
 
@@ -229,7 +229,7 @@ function buildSpellRow(level){
         });
     });
 
-    autoComplete(newRow.querySelectorAll('.spell-name'), spellNames);
+    spellAutoComplete(newRow.querySelectorAll('.spell-name'), level);
 
     return newRow;
 }

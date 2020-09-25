@@ -1,10 +1,12 @@
 //Adapted and customized from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
-function autoComplete(inputsHTMLCollection, arr) {
-    /*the autocomplete function takes two arguments,
-    a list of text field elements and an array of possible autocompleted values:*/
-
+function spellAutoComplete(inputsHTMLCollection, level) {
     var currentFocus;
+    var levelStr = level == 0 ? "cantrip" : level.toString();
+
+    var spellOptions = spellJSON
+        .filter(spell => spell.level == levelStr)
+        .map(spell => spell.name);
 
     var inputs = Array.from(inputsHTMLCollection);
     for (var q = 0; q < inputs.length; q++) {
@@ -23,18 +25,18 @@ function autoComplete(inputsHTMLCollection, arr) {
             /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a);
             /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
+            for (i = 0; i < spellOptions.length; i++) {
                 /*check if the item contains the same letters as the text field value:*/
-                var matchIndex = arr[i].toUpperCase().indexOf(val.toUpperCase())
+                var matchIndex = spellOptions[i].toUpperCase().indexOf(val.toUpperCase())
                 if (matchIndex != -1) {
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
                     /*make the matching letters bold:*/
-                    b.innerHTML = arr[i].substr(0, matchIndex);
-                    b.innerHTML += "<strong>" + arr[i].substr(matchIndex, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(matchIndex + val.length);
+                    b.innerHTML = spellOptions[i].substr(0, matchIndex);
+                    b.innerHTML += "<strong>" + spellOptions[i].substr(matchIndex, val.length) + "</strong>";
+                    b.innerHTML += spellOptions[i].substr(matchIndex + val.length);
                     /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    b.innerHTML += "<input type='hidden' value='" + spellOptions[i] + "'>";
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     b.addEventListener("click", function (e) {
                         /*insert the value for the autocomplete text field:*/
@@ -44,33 +46,48 @@ function autoComplete(inputsHTMLCollection, arr) {
                         /*close the list of autocompleted values,
                         (or any other open lists of autocompleted values:*/
                         closeAllLists();
+                        applySpellTip(containingInput);
                     });
                     a.appendChild(b);
                 }
             }
+
+            /*select the first item in the list for ease of selection*/
+            if (a.childElementCount){
+                currentFocus++;
+                addActive(a.getElementsByTagName("div"));
+            }
+
+            if ((this.parentElement.getBoundingClientRect().y + this.parentElement.offsetHeight) + a.offsetHeight > window.innerHeight){
+                a.style.top = -a.offsetHeight;
+            }
         });
         /*execute a function presses a key on the keyboard:*/
         input.addEventListener("keydown", function (e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    /*and simulate a click on the "active" item:*/
-                    if (x) x[currentFocus].click();
+            var l = document.getElementById(this.id + "autocomplete-list");
+            if (l) {
+                var x = l.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        x[currentFocus].click();
+                    }
+                } else if (e.keyCode == 27) { //esc
+                    closeAllLists();
                 }
             }
         });
@@ -83,7 +100,17 @@ function autoComplete(inputsHTMLCollection, arr) {
         if (currentFocus >= x.length) currentFocus = 0;
         if (currentFocus < 0) currentFocus = (x.length - 1);
         /*add class "autocomplete-active":*/
-        x[currentFocus].classList.add("autocomplete-active");
+        var focusedDiv = x[currentFocus];
+        focusedDiv.classList.add("autocomplete-active");
+
+        /*center scrollbar on item*/
+        var list = focusedDiv.parentElement;
+        if (focusedDiv.offsetTop >= (list.scrollTop + list.offsetHeight)){
+            list.scrollTop = focusedDiv.offsetTop + focusedDiv.offsetHeight - list.offsetHeight;
+        }
+        if (focusedDiv.offsetTop <= list.scrollTop){
+            list.scrollTop = focusedDiv.offsetTop;
+        }
     }
     function removeActive(x) {
         /*a function to remove the "active" class from all autocomplete items:*/

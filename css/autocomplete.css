@@ -6,8 +6,10 @@
   display: inline-block;
 }
 #autocomplete-list{
+    margin: 0 15px;
+    border-radius: 0.25rem;
     max-height: 20em;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 #autocomplete-list *{
     margin: auto;
