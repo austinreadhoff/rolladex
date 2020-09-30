@@ -12,6 +12,21 @@ ipcMain.on('send-save-json', (event, json) => {
     });
 });
 
+ipcMain.on('check-recent-load', (event, arg) => {
+    //property juggling to match focusedWindowProperties usually expected by executeLoad
+    var win = event;
+    win.webContents = win.sender;
+
+    recents.getRecentsJSON()
+        .then((json) => {
+            if (json.lastOpen){
+                executeLoad(win, json.lastOpen);
+            }
+            
+            updateRecentsMenu(json.recents)
+        });
+});
+
 function updateSavePath(path){
     savePath = path;
     recents.updateRecents(path)

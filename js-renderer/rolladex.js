@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded", function(){
         });
 
         setUpSaveTracking();
+
+        ipcRenderer.send('check-recent-load');
     });
 });
 

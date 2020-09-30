@@ -17,17 +17,6 @@ function createWindow() {
 
 	win.loadFile('index.html');
 
-	win.webContents.on('dom-ready', function(e){
-		recents.getRecentsJSON()
-			.then((json) => {
-				if (json.lastOpen){
-					io.loadFromJSON(win, json.lastOpen);
-				}
-				
-				io.updateRecentsMenu(json.recents)
-			});
-	});
-
 	win.on('close', function (e) {
 		if (!saveTracker.SafeToSave()){
 			var messageBoxOptions = {
