@@ -1,4 +1,5 @@
 var spellJSON;
+var selectedCatalogSpell;
 
 function loadSpellData(){
     return new Promise((resolve, reject) => {
@@ -23,6 +24,31 @@ function loadSpellData(){
             document.getElementById("filter-level").addEventListener('change', event => { filterSpellCatalog(); });
             document.getElementById("filter-school").addEventListener('change', event => { filterSpellCatalog(); });
             document.getElementById("filter-class").addEventListener('change', event => { filterSpellCatalog(); });
+
+            //setup add to spellbook button
+            document.getElementById("btn-learn-spell").addEventListener('click', event => {
+                if (!event.target.classList.contains("disabled")){
+                    var levelStr = selectedCatalogSpell.level == "cantrip" ? "0" : selectedCatalogSpell.level;
+                    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => div.dataset.level == levelStr)
+    
+                    var inputToUpdate;
+                    var firstInput = spellBlock.querySelectorAll(".spell-name")[0];
+                    if (firstInput && !firstInput.value){
+                        inputToUpdate = firstInput;
+                    }
+                    else{
+                        var newRow = buildSpellRow(levelStr)
+                        inputToUpdate = newRow.querySelector(".spell-name")
+                        spellBlock.querySelector("#spells").appendChild(newRow);
+                    }
+                    inputToUpdate.value = selectedCatalogSpell.name;
+                    applySpellTip(inputToUpdate);
+
+                    triggerUnsafeSave();
+    
+                    event.target.classList.add("disabled");
+                }
+            });
 
             resolve();
         });
@@ -55,6 +81,10 @@ function applySpellTip(el){
     else{
         el.title = "No Description Found";
     }
+
+    if (spell == selectedCatalogSpell){
+        document.getElementById("btn-learn-spell").classList.add("disabled");
+    }
 }
 
 function createSpellCatalog(spellList){
@@ -70,6 +100,7 @@ function createSpellCatalog(spellList){
 }
 
 function mapSRDCatalogSpell(spell){
+    selectedCatalogSpell = spell;
     var classes = spell.classes.join(", ")
 
     document.getElementById("srd-catalog-name").innerHTML = spell.name;
@@ -82,6 +113,18 @@ function mapSRDCatalogSpell(spell){
     document.getElementById("srd-catalog-duration").innerHTML = spell.duration;
     document.getElementById("srd-catalog-range").innerHTML = spell.range;
     document.getElementById("srd-catalog-description").value = spell.description;
+
+    //disabled learn button if it's already learned
+    var learnBtn = document.getElementById("btn-learn-spell");
+    learnBtn.classList.remove("disabled");
+
+    var levelStr = spell.level == "cantrip" ? "0" : spell.level;
+    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => div.dataset.level == levelStr)
+    spellBlock.querySelectorAll(".spell-name").forEach(input => {
+        if (input.value.toUpperCase() == spell.name.toUpperCase()){
+            learnBtn.classList.add("disabled");
+        }
+    });
 }
 
 function filterSpellCatalog(){

@@ -228,6 +228,14 @@ function buildSpellRow(level){
     newRow.querySelector(".spell-name").addEventListener('change', event =>{
         applySpellTip(event.target);
     });
+    newRow.querySelector(".spell-name").addEventListener('input', event => {
+        if (event.target.value.toUpperCase() == selectedCatalogSpell.name.toUpperCase()){
+            document.getElementById("btn-learn-spell").classList.add("disabled");
+        }
+        else{
+            document.getElementById("btn-learn-spell").classList.remove("disabled");
+        }
+    });
 
     newRow.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', event => {

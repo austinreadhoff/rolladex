@@ -117,3 +117,9 @@ img.currency{
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
 }
+#btn-learn-spell{
+    margin: 0 15px;
+}
+#btn-learn-spell.disabled{
+    cursor: initial;
+}
