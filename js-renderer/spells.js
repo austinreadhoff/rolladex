@@ -6,14 +6,10 @@ function loadSpellData(){
             spellJSON = json
                 .sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
-            var spellListBox = document.getElementById("spell-listbox");
-            spellJSON.forEach(spell => {
-                var option = document.createElement("option");
-                option.value = spell.name;
-                option.innerHTML = spell.name;
-                spellListBox.appendChild(option);
-            });
+            //setup catalog selection
+            createSpellCatalog(spellJSON);
 
+            var spellListBox = document.getElementById("spell-listbox");
             spellListBox.value = spellJSON[0].name;
             mapSRDCatalogSpell(spellJSON[0]);
 
@@ -21,6 +17,13 @@ function loadSpellData(){
                 var spell = spellJSON.find(spell => spell.name == event.target.value);
                 mapSRDCatalogSpell(spell);
             });
+
+            //setup catalog filters
+            document.getElementById("filter-name").addEventListener('input', event => { filterSpellCatalog(); });
+            document.getElementById("filter-level").addEventListener('change', event => { filterSpellCatalog(); });
+            document.getElementById("filter-school").addEventListener('change', event => { filterSpellCatalog(); });
+            document.getElementById("filter-class").addEventListener('change', event => { filterSpellCatalog(); });
+
             resolve();
         });
     });
@@ -54,6 +57,18 @@ function applySpellTip(el){
     }
 }
 
+function createSpellCatalog(spellList){
+    var spellListBox = document.getElementById("spell-listbox");
+    spellListBox.innerHTML = "";
+
+    spellList.forEach(spell => {
+        var option = document.createElement("option");
+        option.value = spell.name;
+        option.innerHTML = spell.name;
+        spellListBox.appendChild(option);
+    });
+}
+
 function mapSRDCatalogSpell(spell){
     var classes = spell.classes.join(", ")
 
@@ -67,6 +82,21 @@ function mapSRDCatalogSpell(spell){
     document.getElementById("srd-catalog-duration").innerHTML = spell.duration;
     document.getElementById("srd-catalog-range").innerHTML = spell.range;
     document.getElementById("srd-catalog-description").value = spell.description;
+}
+
+function filterSpellCatalog(){
+    var name = document.getElementById("filter-name").value;
+    var level = document.getElementById("filter-level").value;
+    var school = document.getElementById("filter-school").value;
+    var _class = document.getElementById("filter-class").value;
+
+    var filteredCatalog = spellJSON
+        .filter(spell => !name || spell.name.toUpperCase().indexOf(name.toUpperCase()) != -1)
+        .filter(spell => !level || spell.level.toUpperCase() == level.toUpperCase())
+        .filter(spell => !school || spell.school.toUpperCase() == school.toUpperCase())
+        .filter(spell => !_class || spell.classes.indexOf(_class) != -1);
+
+    createSpellCatalog(filteredCatalog);
 }
 
 function getJSON(path, callback){

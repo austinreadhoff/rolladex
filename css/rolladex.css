@@ -99,10 +99,15 @@ img.currency{
 }
 #spell-listbox{
     height: 100%;
+    width: 21em;
+    background-color: gray;
 }
-#spell-listbox option{
+#spellcatalog-container option{
     color: #fff;
     background-color: gray;
+}
+#spellcatalog-filters label{
+    width: 100%;
 }
 .spell-container{
     height: 100%;
