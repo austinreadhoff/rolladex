@@ -5,6 +5,8 @@ ipcRenderer.on('send-switch-tab', (event, tabId) => {
 document.addEventListener("DOMContentLoaded", function(){
 
     loadSpellData().then(() => {
+        document.body.scrollTop = 0;
+        
         //tabs
         document.querySelectorAll('.nav-link').forEach(tab => {
             tab.addEventListener('click', event => {
@@ -148,6 +150,8 @@ function switchTab(tabId){
     
     document.querySelectorAll('.tab-pane').forEach(t => { t.className = "tab-pane"; });
     document.querySelector("#" + tabId).className = "tab-pane show active";
+
+    document.body.scrollTop = 0;
 }
 
 function buildAttackRow(){

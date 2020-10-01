@@ -83,6 +83,8 @@ ipcRenderer.on('request-save-json', (event, arg) => {
 });
 
 ipcRenderer.on('send-loaded-json', (event, json) => {
+    switchTab("stats");
+
     document.title = json["character-name"] + " - RollaDex";
 
     document.querySelectorAll("input").forEach(el => {
