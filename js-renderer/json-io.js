@@ -21,6 +21,9 @@ ipcRenderer.on('request-save-json', (event, arg) => {
         }
     });
     document.querySelectorAll("textarea").forEach(el => {
+        if (el.classList.contains("ignore")){
+            return;
+        }
         json[el.id] = el.value;
     });
 
@@ -151,6 +154,9 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     }
 
     document.querySelectorAll("textarea").forEach(el => {
+        if (el.classList.contains("ignore")){
+            return;
+        }
         if (json[el.id] != null){
             el.value = json[el.id];
         }

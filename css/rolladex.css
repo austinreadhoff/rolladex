@@ -91,3 +91,24 @@ img.currency{
     border: 3px solid gold !important;
     border-radius: 4px;
 }
+
+#spellcatalog-container{
+    display: flex;
+    padding: 20px;
+    height: 95%;
+}
+#spell-listbox{
+    height: 100%;
+}
+#spell-listbox option{
+    color: #fff;
+    background-color: gray;
+}
+.spell-container{
+    height: 100%;
+}
+#srd-spell-container p{
+    border: 1px solid #333;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+}

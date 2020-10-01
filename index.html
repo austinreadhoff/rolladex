@@ -30,6 +30,9 @@
         <li class="nav-item">
             <a class="nav-link" id="spellbook-tab" data-toggle="tab" role="tab" aria-controls="spellbook" aria-selected="false">Spellbook</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link btn-success" id="spellcatalog-tab" data-toggle="tab" role="tab" aria-controls="spellcatalog" aria-selected="false">Spell Catalog</a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
@@ -666,6 +669,64 @@
                         </div>
                         <div class="row">
                             <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
+            <div id="spellcatalog-container" class="print-hidden">
+                <select id="spell-listbox" size="2">
+                    <!--spell listbox here-->
+                </select>
+                <div id="srd-spell-container" class="spell-container block block-shaded container">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="srd-catalog-name">Name</label>
+                            <p id="srd-catalog-name"></p>
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="srd-catalog-level">Level</label>
+                            <p id="srd-catalog-level"></p>
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="srd-catalog-school">School</label>
+                            <p id="srd-catalog-school"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-5">
+                            <label for="srd-catalog-classes">Classes</label>
+                            <p id="srd-catalog-classes"></p>
+                        </div>
+                        <div class="form-group col-5">
+                            <label for="srd-catalog-components">Components</label>
+                            <p id="srd-catalog-components"></p>
+                        </div>
+                        <div class="form-group col-2">
+                            <label for="srd-catalog-ritual">Ritual?</label>
+                            <p id="srd-catalog-ritual"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-4">
+                            <label for="srd-catalog-casting-time">Casting Time</label>
+                            <p id="srd-catalog-casting-time"></p>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="srd-catalog-range">Range</label>
+                            <p id="srd-catalog-range"></p>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="srd-catalog-duration">Duration</label>
+                            <p id="srd-catalog-duration"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="srd-catalog-description">Description</label>
+                            <textarea id="srd-catalog-description" class="form-control ignore" rows="10" readonly></textarea>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ input, textarea{
 }
 
 .print-hidden, .btn, img, #autocomplete-list{
-    display: none;
+    display: none !important;
 }
 
 .container{

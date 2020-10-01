@@ -19,6 +19,9 @@ function setUpSaveTracking(){
     });
     
     document.querySelectorAll('textarea').forEach(input => {
+        if (input.classList.contains("ignore")){
+            return;
+        }
         input.addEventListener('input', event => {
             triggerUnsafeSave();
         });

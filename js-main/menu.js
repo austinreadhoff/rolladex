@@ -127,6 +127,13 @@ const template = [
                 }
             },
             {
+                label: 'Spell Catalog',
+                accelerator: 'CmdOrCtrl+4',
+                click(item, focusedWindow){
+                    menuActions.switchTab("spellcatalog");
+                }
+            },
+            {
                 type: 'separator'
             },
             {
