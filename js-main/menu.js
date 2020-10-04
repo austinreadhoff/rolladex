@@ -96,16 +96,6 @@ const template = [
         label: 'View',
         submenu: [
             {
-                label: 'Toggle Developer Tools',
-                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                click(item, focusedWindow) {
-                    if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-                }
-            },
-            {
-                type: 'separator'
-            },
-            {
                 label: 'Stats',
                 accelerator: 'CmdOrCtrl+1',
                 click(item, focusedWindow){
@@ -171,6 +161,18 @@ const template = [
             },
             {
                 role: 'close'
+            }
+        ]
+    },
+    {
+        role: 'help',
+        submenu: [
+            {
+                label: 'Toggle Developer Tools',
+                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+                click(item, focusedWindow) {
+                    if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+                }
             }
         ]
     }
