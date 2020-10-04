@@ -144,7 +144,7 @@ function filterSpellCatalog(){
         .filter(spell => !name || spell.name.toUpperCase().indexOf(name.toUpperCase()) != -1)
         .filter(spell => !level || spell.level.toUpperCase() == level.toUpperCase())
         .filter(spell => !school || spell.school.toUpperCase() == school.toUpperCase())
-        .filter(spell => !_class || spell.classes.indexOf(_class) != -1);
+        .filter(spell => !_class || spell.classes.find(c => c.toUpperCase() == _class.toUpperCase()) != null);
 
     createSpellCatalog(filteredCatalog);
 }
