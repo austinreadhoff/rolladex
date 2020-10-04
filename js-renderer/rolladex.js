@@ -215,6 +215,9 @@ function buildSpellRow(level){
     newRow.className = "spell-row row";
     newRow.innerHTML = spellHTML;
     newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
+        if (event.target.parentElement.querySelector(".spell-name").value == selectedCatalogSpell.name){
+            document.getElementById("btn-learn-spell").classList.remove("disabled");
+        }
         event.target.parentElement.remove();
         triggerUnsafeSave();
     });
