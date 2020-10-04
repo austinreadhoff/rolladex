@@ -137,6 +137,16 @@ const template = [
                 type: 'separator'
             },
             {
+                label: 'Open Custom Spells',
+                accelerator: 'CmdOrCtrl+Shift+4',
+                click(item, focusedWindow){
+                    menuActions.openCustomSpells();
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
                 role: 'resetzoom'
             },
             {

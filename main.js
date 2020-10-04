@@ -2,7 +2,7 @@ const { app, dialog, BrowserWindow } = require('electron')
 const io = require('./js-main/json-io')
 const menu = require('./js-main/menu')
 const saveTracker = require('./js-main/save-tracker')
-const recents = require('./js-main/recents')
+const spells = require('./js-main/spells')	//not used directly, but gotta load it so it can receive ipc messages
 
 function createWindow() {
 	const win = new BrowserWindow({

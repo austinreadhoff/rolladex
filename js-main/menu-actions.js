@@ -1,5 +1,6 @@
-const { BrowserWindow, dialog } = require('electron');
+const { BrowserWindow, dialog, shell } = require('electron');
 const fs = require('fs');
+const spells = require('./spells');
 
 function switchTab(tabId){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
@@ -27,4 +28,8 @@ function printToPDF(window){
     });
 }
 
-module.exports = {switchTab, printToPDF};
+function openCustomSpells(){
+    shell.openPath(spells.spellsFilePath);
+}
+
+module.exports = {switchTab, printToPDF, openCustomSpells};

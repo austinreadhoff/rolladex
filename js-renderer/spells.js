@@ -1,10 +1,17 @@
-var spellJSON;
+const {ipcRenderer} = require('electron')
+
+var spellJSON = [];
 var selectedCatalogSpell;
 
+ipcRenderer.on('send-custom-spells', (event, json) => {
+    spellJSON = spellJSON.concat(json);
+});
+
 function loadSpellData(){
+    ipcRenderer.send('request-custom-spells');
     return new Promise((resolve, reject) => {
-        getJSON("./spells/srd.json", (json) => {
-            spellJSON = json
+        getJSON("./spells/srd.json").then((json) => {
+            spellJSON = spellJSON.concat(json)
                 .sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
@@ -142,15 +149,17 @@ function filterSpellCatalog(){
     createSpellCatalog(filteredCatalog);
 }
 
-function getJSON(path, callback){
-    var request = new XMLHttpRequest();
-    request.open('GET', path, true);
-
-    request.onload = function() {
-        if (request.status >= 200 && request.status < 400) {
-            callback(JSON.parse(request.responseText));
-        }
-    };
-
-    request.send();
+function getJSON(path){
+    return new Promise((resolve, reject) => {
+        var request = new XMLHttpRequest();
+        request.open('GET', path, true);
+    
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                resolve(JSON.parse(request.responseText));
+            }
+        };
+    
+        request.send();
+    });
 }
