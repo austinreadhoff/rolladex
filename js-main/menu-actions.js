@@ -2,6 +2,8 @@ const { BrowserWindow, dialog, shell } = require('electron');
 const fs = require('fs');
 const spells = require('./spells');
 
+var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
+
 function switchTab(tabId){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
 }
@@ -32,4 +34,8 @@ function openCustomSpells(){
     shell.openPath(spells.spellsFilePath);
 }
 
-module.exports = {switchTab, printToPDF, openCustomSpells};
+function openDocumentation(){
+    shell.openPath(documentationFilePath);
+}
+
+module.exports = {switchTab, printToPDF, openCustomSpells, openDocumentation};
