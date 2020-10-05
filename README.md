@@ -6,7 +6,8 @@ A no-frills desktop application for creation and in-game management of 5e charac
 - Auto-calculation of ability modifiers
 - Custom counters for tracking class resources, item charges, and anything else
 - Track spell slots and known/prepared spells
-- Browse and sort the entire catalog of available spells
+- Browse and sort the entire catalog of available spells (SRD only by default)
+- Add spells to the catalog via a JSON config file
 - Hover over spells in your spellbook to view a full description.  No peeking back and forth between your character sheet and your handbook.
 - Characters are saved as simple .json files for ease of storage and backup
 - Export to a reader-friendly PDF to show your DM your terrible ideas
