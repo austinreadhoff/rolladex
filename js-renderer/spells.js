@@ -76,8 +76,30 @@ function applySpellTip(el){
     spell = spellJSON.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
 
     if (spell){
+        var spellType = spell.school;
+        if (spell.level == "0"){
+            spellType += " Cantrip"
+        }
+        else{
+            var levelFragment;
+    
+            if (spell.level == "1")
+                levelFragment = "1st"
+            else if (spell.level == "2")
+                levelFragment = "2nd"
+            else if (spell.level == "3")
+                levelFragment = "2rd"
+            else
+                levelFragment = spell.level + "th"
+    
+            spellType = levelFragment + "-level " + spellType
+        }
+        if (spell.ritual){
+            spellType += " (ritual)"
+        }
+
         el.title = 
-        `${spell.type}\n`
+        `${spellType}\n`
         +`Casting Time: ${spell.casting_time}\n`
         +`Range: ${spell.range}\n`
         +`Components: ${spell.components.raw}\n`
