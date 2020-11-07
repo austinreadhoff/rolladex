@@ -2,7 +2,7 @@
 
 function spellAutoComplete(inputsHTMLCollection, level) {
     var currentFocus;
-    var levelStr = level == 0 ? "cantrip" : level.toString();
+    var levelStr = level.toString();
 
     var spellOptions = spellJSON
         .filter(spell => spell.level == levelStr)

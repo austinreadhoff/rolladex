@@ -35,7 +35,7 @@ function loadSpellData(){
             //setup add to spellbook button
             document.getElementById("btn-learn-spell").addEventListener('click', event => {
                 if (!event.target.classList.contains("disabled")){
-                    var levelStr = selectedCatalogSpell.level == "cantrip" ? "0" : selectedCatalogSpell.level;
+                    var levelStr = selectedCatalogSpell.level;
                     var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => div.dataset.level == levelStr)
     
                     var inputToUpdate;
@@ -111,7 +111,7 @@ function mapSRDCatalogSpell(spell){
     var classes = spell.classes.join(", ")
 
     document.getElementById("srd-catalog-name").innerHTML = spell.name;
-    document.getElementById("srd-catalog-level").innerHTML = spell.level;
+    document.getElementById("srd-catalog-level").innerHTML = spell.level == "0" ? "Cantrip" : spell.level;
     document.getElementById("srd-catalog-school").innerHTML = spell.school;
     document.getElementById("srd-catalog-classes").innerHTML = classes;
     document.getElementById("srd-catalog-components").innerHTML = spell.components.raw;
@@ -125,7 +125,7 @@ function mapSRDCatalogSpell(spell){
     var learnBtn = document.getElementById("btn-learn-spell");
     learnBtn.classList.remove("disabled");
 
-    var levelStr = spell.level == "cantrip" ? "0" : spell.level;
+    var levelStr = spell.level;
     var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => div.dataset.level == levelStr)
     spellBlock.querySelectorAll(".spell-name").forEach(input => {
         if (input.value.toUpperCase() == spell.name.toUpperCase()){
