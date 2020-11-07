@@ -1,4 +1,4 @@
-const { app, dialog, BrowserWindow } = require('electron')
+const { app, dialog, BrowserWindow, nativeImage } = require('electron')
 const io = require('./js-main/json-io')
 const menu = require('./js-main/menu')
 const saveTracker = require('./js-main/save-tracker')
@@ -10,7 +10,8 @@ function createWindow() {
 		height: 600,
 		webPreferences: {
 			nodeIntegration: true
-		}
+		},
+		icon: nativeImage.createFromPath("./img/icon.png")
 	});
 
 	menu.initMenu();
