@@ -32,6 +32,10 @@ function loadSpellData(){
             document.getElementById("filter-school").addEventListener('change', event => { filterSpellCatalog(); });
             document.getElementById("filter-class").addEventListener('change', event => { filterSpellCatalog(); });
 
+            populateFilterDropDown("filter-level", "level", false);
+            populateFilterDropDown("filter-school", "school", false);
+            populateFilterDropDown("filter-class", "classes", true);
+
             //setup add to spellbook button
             document.getElementById("btn-learn-spell").addEventListener('click', event => {
                 if (!event.target.classList.contains("disabled")){
@@ -195,11 +199,41 @@ function buildRawComponentString(spellComponents){
     }
     if (spellComponents.somatic){
         raw += raw.length > 0 ? ", S" : "S";
-    }
+    } 
     if (spellComponents.material){
         raw += raw.length > 0 ? ", M" : "M";
         raw += " (" + spellComponents.materials + ")"
     }
 
     return raw;
+}
+
+function populateFilterDropDown(filterEl, property, multi){
+    var options = [];
+
+    spellJSON.forEach(spell => {
+        if(multi){
+            spell[property].forEach(x => {
+                if (options.indexOf(x.toUpperCase()) == -1){
+                    options.push(x.toUpperCase());
+                }
+            });
+        }
+        else{
+            if (options.indexOf(spell[property].toUpperCase()) == -1){
+                options.push(spell[property].toUpperCase());
+            }
+        }
+    });
+
+    options.sort(); //handles strings
+    options.sort((a,b) => { return a-b });  //handles numbers without 1, 10, 2...
+
+    options.forEach(option => {
+        var el = document.createElement("option");
+        el.value = option;
+        el.innerHTML = option == "0" ? "Cantrip" : option.charAt(0).toUpperCase() + option.slice(1).toLowerCase();
+
+        document.getElementById(filterEl).appendChild(el);
+    });
 }
