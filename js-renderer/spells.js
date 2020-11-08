@@ -102,7 +102,7 @@ function applySpellTip(el){
         `${spellType}\n`
         +`Casting Time: ${spell.casting_time}\n`
         +`Range: ${spell.range}\n`
-        +`Components: ${spell.components.raw}\n`
+        +`Components: ${buildRawComponentString(spell.components)}\n`
         +`Duration: ${spell.duration}\n\n`
 
         +`${spell.description}`;
@@ -136,7 +136,7 @@ function mapSRDCatalogSpell(spell){
     document.getElementById("srd-catalog-level").innerHTML = spell.level == "0" ? "Cantrip" : spell.level;
     document.getElementById("srd-catalog-school").innerHTML = spell.school;
     document.getElementById("srd-catalog-classes").innerHTML = classes;
-    document.getElementById("srd-catalog-components").innerHTML = spell.components.raw;
+    document.getElementById("srd-catalog-components").innerHTML = buildRawComponentString(spell.components);
     document.getElementById("srd-catalog-ritual").innerHTML = spell.ritual ? "Yes" : "No";
     document.getElementById("srd-catalog-casting-time").innerHTML = spell.casting_time;
     document.getElementById("srd-catalog-duration").innerHTML = spell.duration;
@@ -171,6 +171,8 @@ function filterSpellCatalog(){
     createSpellCatalog(filteredCatalog);
 }
 
+//helpers
+
 function getJSON(path){
     return new Promise((resolve, reject) => {
         var request = new XMLHttpRequest();
@@ -184,4 +186,20 @@ function getJSON(path){
     
         request.send();
     });
+}
+
+function buildRawComponentString(spellComponents){
+    var raw = "";
+    if (spellComponents.verbal){
+        raw += "V"
+    }
+    if (spellComponents.somatic){
+        raw += raw.length > 0 ? ", S" : "S";
+    }
+    if (spellComponents.material){
+        raw += raw.length > 0 ? ", M" : "M";
+        raw += " (" + spellComponents.materials + ")"
+    }
+
+    return raw;
 }
