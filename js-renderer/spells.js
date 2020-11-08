@@ -129,6 +129,10 @@ function createSpellCatalog(spellList){
         option.value = spell.name;
         option.innerHTML = spell.name;
         spellListBox.appendChild(option);
+
+        if (selectedCatalogSpell && selectedCatalogSpell.name == spell.name){
+            spellListBox.value = spell.name;
+        }
     });
 }
 
