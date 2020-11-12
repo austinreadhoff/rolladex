@@ -117,6 +117,9 @@ img.currency{
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
 }
+#srd-catalog-source{
+    color: lightgray;
+}
 #btn-learn-spell{
     margin: 0 15px;
 }

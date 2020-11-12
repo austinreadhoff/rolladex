@@ -16,7 +16,8 @@
         "name": "Acid Splash",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -36,7 +37,8 @@
         "name": "Alarm",
         "range": "30 feet",
         "ritual": true,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -58,7 +60,8 @@
         "name": "Animal Friendship",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -79,7 +82,8 @@
         "name": "Bane",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -100,7 +104,8 @@
         "name": "Blade Ward",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -120,7 +125,8 @@
         "name": "Bless",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -140,7 +146,8 @@
         "name": "Burning Hands",
         "range": "Self (15-foot cone)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -164,7 +171,8 @@
         "name": "Charm Person",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -184,7 +192,8 @@
         "name": "Chill Touch",
         "range": "120 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -205,7 +214,8 @@
         "name": "Chromatic Orb",
         "range": "90 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -226,7 +236,8 @@
         "name": "Color Spray",
         "range": "Self (15-foot cone)",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -246,7 +257,8 @@
         "name": "Command",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -264,7 +276,8 @@
         "name": "Compelled Duel",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -286,7 +299,8 @@
         "name": "Comprehend Languages",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -307,7 +321,8 @@
         "name": "Create or Destroy Water",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -330,7 +345,8 @@
         "name": "Cure Wounds",
         "range": "Touch",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -351,7 +367,8 @@
         "name": "Dancing Lights",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -370,7 +387,8 @@
         "name": "Detect Evil and Good",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -394,7 +412,8 @@
         "name": "Detect Magic",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -416,7 +435,8 @@
         "name": "Detect Poison and Disease",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -437,7 +457,8 @@
         "name": "Disguise Self",
         "range": "Self",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -455,7 +476,8 @@
         "name": "Divine Favor",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -474,7 +496,8 @@
         "name": "Dissonant Whispers",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -492,7 +515,8 @@
         "name": "Druidcraft",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -510,7 +534,8 @@
         "name": "Eldritch Blast",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -529,7 +554,8 @@
         "name": "Ensnaring Strike",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -547,7 +573,8 @@
         "name": "Entangle",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -566,7 +593,8 @@
         "name": "Faerie Fire",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -586,7 +614,8 @@
         "name": "Expeditious Retreat",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -607,7 +636,8 @@
         "name": "False Life",
         "range": "Self",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 reaction, which you take when you or a creature within 60 feet of you falls",
@@ -628,7 +658,8 @@
         "name": "Feather Fall",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -647,7 +678,8 @@
         "name": "Find Familiar",
         "range": "10 feet",
         "ritual": true,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -666,7 +698,8 @@
         "name": "Fire Bolt",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -688,7 +721,8 @@
         "name": "Fog Cloud",
         "range": "120 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -710,7 +744,8 @@
         "name": "Friends",
         "range": "Self",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -730,7 +765,8 @@
         "name": "Goodberry",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -749,7 +785,8 @@
         "name": "Grease",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -768,7 +805,8 @@
         "name": "Guidance",
         "range": "Touch",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -787,7 +825,8 @@
         "name": "Guiding Bolt",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -806,7 +845,8 @@
         "name": "Hail of Thorns",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -827,7 +867,8 @@
         "name": "Healing Word",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see.",
@@ -846,7 +887,8 @@
         "name": "Hellish Rebuke",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -866,7 +908,8 @@
         "name": "Hex",
         "range": "90 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -885,7 +928,8 @@
         "name": "Heroism",
         "range": "Touch",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -904,7 +948,8 @@
         "name": "Hunter's Mark",
         "range": "90 feet",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -924,7 +969,8 @@
         "name": "Identify",
         "range": "Touch",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -945,7 +991,8 @@
         "name": "Illusory Script",
         "range": "Touch",
         "ritual": true,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -964,7 +1011,8 @@
         "name": "Inflict Wounds",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -986,7 +1034,8 @@
         "name": "Jump",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1008,7 +1057,8 @@
         "name": "Light",
         "range": "Touch",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1031,7 +1081,8 @@
         "name": "Longstrider",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1051,7 +1102,8 @@
         "name": "Mage Armor",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1072,7 +1124,8 @@
         "name": "Mage Hand",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1092,7 +1145,8 @@
         "name": "Magic Missile",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -1115,7 +1169,8 @@
         "name": "Mending",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1136,7 +1191,8 @@
         "name": "Message",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1158,7 +1214,8 @@
         "name": "Minor Illusion",
         "range": "30 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1179,7 +1236,8 @@
         "name": "Poison Spray",
         "range": "10 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1200,7 +1258,8 @@
         "name": "Prestidigitation",
         "range": "10 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1218,7 +1277,8 @@
         "name": "Produce Flame",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1240,7 +1300,8 @@
         "name": "Protection from Evil and Good",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1260,7 +1321,8 @@
         "name": "Purify Food and Drink",
         "range": "10 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1279,7 +1341,8 @@
         "name": "Ray of Frost",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1299,7 +1362,8 @@
         "name": "Ray of Sickness",
         "range": "60 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1320,7 +1384,8 @@
         "name": "Remove Curse",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1340,7 +1405,8 @@
         "name": "Resistance",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1358,7 +1424,8 @@
         "name": "Sacred Flame",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1377,7 +1444,8 @@
         "name": "Sanctuary",
         "range": "30 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1397,7 +1465,8 @@
         "name": "Shield of Faith",
         "range": "60 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1416,7 +1485,8 @@
         "name": "Searing Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell",
@@ -1435,7 +1505,8 @@
         "name": "Shield",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1454,7 +1525,8 @@
         "name": "Shillelagh",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1473,7 +1545,8 @@
         "name": "Shocking Grasp",
         "range": "Touch",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1494,7 +1567,8 @@
         "name": "Silent Image",
         "range": "60 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1516,7 +1590,8 @@
         "name": "Sleep",
         "range": "90 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1534,7 +1609,8 @@
         "name": "Spare the Dying",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1554,7 +1630,8 @@
         "name": "Speak with Animals",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1572,7 +1649,8 @@
         "name": "Thaumaturgy",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1591,7 +1669,8 @@
         "name": "Thorn Whip",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1609,7 +1688,8 @@
         "name": "Thunderous Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1631,7 +1711,8 @@
         "name": "Thunderwave",
         "range": "Self (15-foot cube)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1652,7 +1733,8 @@
         "name": "True Strike",
         "range": "30 feet",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1673,7 +1755,8 @@
         "name": "Unseen Servant",
         "range": "60 feet",
         "ritual": true,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1691,7 +1774,8 @@
         "name": "Vicious Mockery",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1713,7 +1797,8 @@
         "name": "Witch Bolt",
         "range": "30 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1731,7 +1816,8 @@
         "name": "Wrathful Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1752,7 +1838,8 @@
         "name": "Aid",
         "range": "30 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1774,7 +1861,8 @@
         "name": "Animal Messenger",
         "range": "30 feet",
         "ritual": true,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1796,7 +1884,8 @@
         "name": "Blindness/Deafness",
         "range": "30 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -1815,7 +1904,8 @@
         "name": "Augury",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1834,7 +1924,8 @@
         "name": "Calm Emotions",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1859,7 +1950,8 @@
         "name": "Hold Person",
         "range": "60 feet",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1881,7 +1973,8 @@
         "name": "Lesser Restoration",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -1900,7 +1993,8 @@
         "name": "Prayer of Healing",
         "range": "30 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1920,7 +2014,8 @@
         "name": "Silence",
         "range": "120 feet",
         "ritual": true,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -1938,7 +2033,8 @@
         "name": "Spiritual Weapon",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1957,7 +2053,8 @@
         "name": "Warding Bond",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -1978,7 +2075,8 @@
         "name": "Animate Dead",
         "range": "10 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -1997,7 +2095,8 @@
         "name": "Arcane Eye",
         "range": "30 feet",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2015,7 +2114,8 @@
         "name": "Aura of Life",
         "range": "Self (30-foot radius)",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2033,7 +2133,8 @@
         "name": "Aura of Purity",
         "range": "Self (30-foot radius)",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2051,7 +2152,8 @@
         "name": "Aura Of Vitality",
         "range": "Self (30-foot radius)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2075,7 +2177,8 @@
         "name": "Banishment",
         "range": "60 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2093,7 +2196,8 @@
         "name": "Beacon of Hope",
         "range": "30 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2115,7 +2219,8 @@
         "name": "Blight",
         "range": "30 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2136,7 +2241,8 @@
         "name": "Bestow Curse",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -2154,7 +2260,8 @@
         "name": "Blinding Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2173,7 +2280,8 @@
         "name": "Blink",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2192,7 +2300,8 @@
         "name": "Call Lightning",
         "range": "120 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -2214,7 +2323,8 @@
         "name": "Clairvoyance",
         "range": "1 mile",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2237,7 +2347,8 @@
         "name": "Cloud of Daggers",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2255,7 +2366,8 @@
         "name": "Compulsion",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2275,7 +2387,8 @@
         "name": "Conjure Animals",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2294,7 +2407,8 @@
         "name": "Conjure Barrage",
         "range": "Self (60-foot cone)",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 reaction, which you take when you see a creature within 60 feet of you casting a spell.",
@@ -2315,7 +2429,8 @@
         "name": "Counterspell",
         "range": "60 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2334,7 +2449,8 @@
         "name": "Create Food and Water",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2352,7 +2468,8 @@
         "name": "Crusader's Mantle",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2373,7 +2490,8 @@
         "name": "Daylight",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2398,7 +2516,8 @@
         "name": "Dispel Magic",
         "range": "120 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2417,7 +2536,8 @@
         "name": "Elemental Weapon",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2439,7 +2559,8 @@
         "name": "Fear",
         "range": "Self (30-foot cone)",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2461,7 +2582,8 @@
         "name": "Feign Death",
         "range": "Touch",
         "ritual": true,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2482,7 +2604,8 @@
         "name": "Fireball",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2504,7 +2627,8 @@
         "name": "Fly",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2524,7 +2648,8 @@
         "name": "Gaseous Form",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2544,7 +2669,8 @@
         "name": "Haste",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2566,7 +2692,8 @@
         "name": "Hypnotic Pattern",
         "range": "120 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -2585,7 +2712,8 @@
         "name": "Lightning Arrow",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -2608,7 +2736,8 @@
         "name": "Magic Circle",
         "range": "10 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2631,7 +2760,8 @@
         "name": "Major Image",
         "range": "120 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -2650,7 +2780,8 @@
         "name": "Mass Healing Word",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2669,7 +2800,8 @@
         "name": "Alter Self",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2688,7 +2820,8 @@
         "name": "Arcane Lock",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2708,7 +2841,8 @@
         "name": "Barkskin",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2729,7 +2863,8 @@
         "name": "Nondetection",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2748,7 +2883,8 @@
         "name": "Meld into Stone",
         "range": "Touch",
         "ritual": true,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -2766,7 +2902,8 @@
         "name": "Phantom Steed",
         "range": "30 feet",
         "ritual": true,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action or 8 hours",
@@ -2786,7 +2923,8 @@
         "name": "Plant Growth",
         "range": "150 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2808,7 +2946,8 @@
         "name": "Protection from Energy",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2828,7 +2967,8 @@
         "name": "Revivify",
         "range": "Touch",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2849,7 +2989,8 @@
         "name": "Sending",
         "range": "Unlimited",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2870,7 +3011,8 @@
         "name": "Sleet Storm",
         "range": "150 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2890,7 +3032,8 @@
         "name": "Slow",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2910,7 +3053,8 @@
         "name": "Speak with Dead",
         "range": "10 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2930,7 +3074,8 @@
         "name": "Speak with Plants",
         "range": "Self (30-foot radius",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2950,7 +3095,8 @@
         "name": "Spirit Guardians",
         "range": "Self (15-foot radius)",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2971,7 +3117,8 @@
         "name": "Stinking Cloud",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -2994,7 +3141,8 @@
         "name": "Confusion",
         "range": "90 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -3014,7 +3162,8 @@
         "name": "Conjure Minor Elementals",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3035,7 +3184,8 @@
         "name": "Control Water",
         "range": "300 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3056,7 +3206,8 @@
         "name": "Conjure Woodland Beings",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3075,7 +3226,8 @@
         "name": "Death Ward",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3098,7 +3250,8 @@
         "name": "Tongues",
         "range": "Touch",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3117,7 +3270,8 @@
         "name": "Beast Sense",
         "range": "Touch",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3136,7 +3290,8 @@
         "name": "Blur",
         "range": "Self",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3155,7 +3310,8 @@
         "name": "Branding Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3175,7 +3331,8 @@
         "name": "Cordon Of Arrows",
         "range": "5 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3196,7 +3353,8 @@
         "name": "Crown of Madness",
         "range": "120 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3217,7 +3375,8 @@
         "name": "Darkness",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3239,7 +3398,8 @@
         "name": "Darkvision",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3260,7 +3420,8 @@
         "name": "Detect Thoughts",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3278,7 +3439,8 @@
         "name": "Animal Shapes",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3298,7 +3460,8 @@
         "name": "Antimagic Field",
         "range": "Self (10-foot-radius sphere)",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -3318,7 +3481,8 @@
         "name": "Antipathy/Sympathy",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -3339,7 +3503,8 @@
         "name": "Astral Projection",
         "range": "10 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -3358,7 +3523,8 @@
         "name": "Clone",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -3379,7 +3545,8 @@
         "name": "Control Weather",
         "range": "Self (5-mile radius)",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3398,7 +3565,8 @@
         "name": "Demiplane",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3420,7 +3588,8 @@
         "name": "Dominate Monster",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3441,7 +3610,8 @@
         "name": "Earthquake",
         "range": "500 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3463,7 +3633,8 @@
         "name": "Feeblemind",
         "range": "150 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -3485,7 +3656,8 @@
         "name": "Foresight",
         "range": "Touch",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3506,7 +3678,8 @@
         "name": "Gate",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3525,7 +3698,8 @@
         "name": "Glibness",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3544,7 +3718,8 @@
         "name": "Holy Aura",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -3564,7 +3739,8 @@
         "name": "Imprisonment",
         "range": "30 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3583,7 +3759,8 @@
         "name": "Incendiary Cloud",
         "range": "150 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3601,7 +3778,8 @@
         "name": "Mass Heal",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3619,7 +3797,8 @@
         "name": "Maze",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3638,7 +3817,8 @@
         "name": "Meteor Swarm",
         "range": "1 mile",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3657,7 +3837,8 @@
         "name": "Mind Blank",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3675,7 +3856,8 @@
         "name": "Power Word Heal",
         "range": "Touch",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3696,7 +3878,8 @@
         "name": "Power Word Kill",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3717,7 +3900,8 @@
         "name": "Power Word Stun",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3735,7 +3919,8 @@
         "name": "Prismatic Wall",
         "range": "60 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3755,7 +3940,8 @@
         "name": "Shapechange",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3773,7 +3959,8 @@
         "name": "Storm of Vengeance",
         "range": "Sight",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3792,7 +3979,8 @@
         "name": "Telepathy",
         "range": "Unlimited",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3813,7 +4001,8 @@
         "name": "Sunburst",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3832,7 +4021,8 @@
         "name": "Time Stop",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3853,7 +4043,8 @@
         "name": "True Polymorph",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -3871,7 +4062,8 @@
         "name": "Tsunami",
         "range": "Sight",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -3891,7 +4083,8 @@
         "name": "True Resurrection",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3909,7 +4102,8 @@
         "name": "Weird",
         "range": "120 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3928,7 +4122,8 @@
         "name": "Wish",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -3947,7 +4142,8 @@
         "name": "Conjure Celestial",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3968,7 +4164,8 @@
         "name": "Delayed Blast Fireball",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -3989,7 +4186,8 @@
         "name": "Dimension Door",
         "range": "500 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -4007,7 +4205,8 @@
         "name": "Divine Word",
         "range": "30 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4030,7 +4229,8 @@
         "name": "Etherealness",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4050,7 +4250,8 @@
         "name": "Finger of Death",
         "range": "60 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4070,7 +4271,8 @@
         "name": "Fire Storm",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4091,7 +4293,8 @@
         "name": "Forcecage",
         "range": "100 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -4111,7 +4314,8 @@
         "name": "Mirage Arcane",
         "range": "Sight",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4130,7 +4334,8 @@
         "name": "Prismatic Spray",
         "range": "Self (60-foot cone)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4150,7 +4355,8 @@
         "name": "Project Image",
         "range": "500 miles",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4173,7 +4379,8 @@
         "name": "Plane Shift",
         "range": "Touch",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4194,7 +4401,8 @@
         "name": "Regenerate",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -4215,7 +4423,8 @@
         "name": "Resurrection",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4236,7 +4445,8 @@
         "name": "Reverse Gravity",
         "range": "100 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4255,7 +4465,8 @@
         "name": "Sequester",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "12 hours",
@@ -4274,7 +4485,8 @@
         "name": "Simulacrum",
         "range": "Touch",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4294,7 +4506,8 @@
         "name": "Symbol",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4314,7 +4527,8 @@
         "name": "Teleport",
         "range": "10 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4336,7 +4550,8 @@
         "name": "Suggestion",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4359,7 +4574,8 @@
         "name": "Invisibility",
         "range": "Touch",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4380,7 +4596,8 @@
         "name": "Animate Objects",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4398,7 +4615,8 @@
         "name": "Antilife Shell",
         "range": "Self (10-foot radius)",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4418,7 +4636,8 @@
         "name": "Arcane Gate",
         "range": "500 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "8 hours",
@@ -4438,7 +4657,8 @@
         "name": "Awaken",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -4456,7 +4676,8 @@
         "name": "Banishing Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4477,7 +4698,8 @@
         "name": "Chain Lightning",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4495,7 +4717,8 @@
         "name": "Blade Barrier",
         "range": "90 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4517,7 +4740,8 @@
         "name": "Circle of Death",
         "range": "150 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4535,7 +4759,8 @@
         "name": "Circle of Power",
         "range": "Self (30-foot radius)",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4555,7 +4780,8 @@
         "name": "Cloudkill",
         "range": "120 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4574,7 +4800,8 @@
         "name": "Commune with Nature",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4593,7 +4820,8 @@
         "name": "Commune",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4614,7 +4842,8 @@
         "name": "Cone of Cold",
         "range": "Self (60-foot cone)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4635,7 +4864,8 @@
         "name": "Conjure Elemental",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4655,7 +4885,8 @@
         "name": "Conjure Fey",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4674,7 +4905,8 @@
         "name": "Conjure Volley",
         "range": "150 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4693,7 +4925,8 @@
         "name": "Contact Other Plane",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4712,7 +4945,8 @@
         "name": "Contagion",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -4731,7 +4965,8 @@
         "name": "Contingency",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4753,7 +4988,8 @@
         "name": "Create Undead",
         "range": "10 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4773,7 +5009,8 @@
         "name": "Continual Flame",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4794,7 +5031,8 @@
         "name": "Creation",
         "range": "30 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4812,7 +5050,8 @@
         "name": "Destructive Wave",
         "range": "Self (30-foot radius)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4833,7 +5072,8 @@
         "name": "Disintegrate",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4852,7 +5092,8 @@
         "name": "Divination",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4872,7 +5113,8 @@
         "name": "Dispel Evil and Good",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4892,7 +5134,8 @@
         "name": "Dominate Beast",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4913,7 +5156,8 @@
         "name": "Dominate Person",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -4934,7 +5178,8 @@
         "name": "Dream",
         "range": "Special",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4957,7 +5202,8 @@
         "name": "Enhance Ability",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4977,7 +5223,8 @@
         "name": "Enlarge/Reduce",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -4996,7 +5243,8 @@
         "name": "Enthrall",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5014,7 +5262,8 @@
         "name": "Fabricate",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5035,7 +5284,8 @@
         "name": "Eyebite",
         "range": "Self",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5053,7 +5303,8 @@
         "name": "Find Steed",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -5074,7 +5325,8 @@
         "name": "Find the Path",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5094,7 +5346,8 @@
         "name": "Find Traps",
         "range": "120 feet",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5113,7 +5366,8 @@
         "name": "Fire Shield",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -5133,7 +5387,8 @@
         "name": "Flame Blade",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5153,7 +5408,8 @@
         "name": "Flame Strike",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5174,7 +5430,8 @@
         "name": "Flaming Sphere",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5194,7 +5451,8 @@
         "name": "Flesh to Stone",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5213,7 +5471,8 @@
         "name": "Forbiddance",
         "range": "Touch",
         "ritual": true,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5235,7 +5494,8 @@
         "name": "Freedom of Movement",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -5258,7 +5518,8 @@
         "name": "Geas",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5278,7 +5539,8 @@
         "name": "Gentle Repose",
         "range": "Touch",
         "ritual": true,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5296,7 +5558,8 @@
         "name": "Giant Insect",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5317,7 +5580,8 @@
         "name": "Globe of Invulnerability",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -5339,7 +5603,8 @@
         "name": "Glyph of Warding",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -5358,7 +5623,8 @@
         "name": "Grasping Vine",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5378,7 +5644,8 @@
         "name": "Greater Invisibility",
         "range": "Touch",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5399,7 +5666,8 @@
         "name": "Greater Restoration",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5417,7 +5685,8 @@
         "name": "Guardian of Faith",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5437,7 +5706,8 @@
         "name": "Guards and Wards",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5458,7 +5728,8 @@
         "name": "Gust of Wind",
         "range": "Self (60-foot line)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5480,7 +5751,8 @@
         "name": "Hallucinatory Terrain",
         "range": "300 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "24 hours",
@@ -5499,7 +5771,8 @@
         "name": "Hallow",
         "range": "Touch",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5517,7 +5790,8 @@
         "name": "Harm",
         "range": "60 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5538,7 +5812,8 @@
         "name": "Heat Metal",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5558,7 +5833,8 @@
         "name": "Heal",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5578,7 +5854,8 @@
         "name": "Heroes' Feast",
         "range": "30 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5601,7 +5878,8 @@
         "name": "Hold Monster",
         "range": "90 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5623,7 +5901,8 @@
         "name": "Ice Storm",
         "range": "300 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5645,7 +5924,8 @@
         "name": "Insect Plague",
         "range": "300 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5665,7 +5945,8 @@
         "name": "Knock",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -5686,7 +5967,8 @@
         "name": "Legend Lore",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5706,7 +5988,8 @@
         "name": "Levitate",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5727,7 +6010,8 @@
         "name": "Locate Animals or Plants",
         "range": "Self",
         "ritual": true,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5748,7 +6032,8 @@
         "name": "Lightning Bolt",
         "range": "Self (100-foot line)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5772,7 +6057,8 @@
         "name": "Locate Creature",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5796,7 +6082,8 @@
         "name": "Locate Object",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -5815,7 +6102,8 @@
         "name": "Magic Jar",
         "range": "Self",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -5835,7 +6123,8 @@
         "name": "Magic Weapon",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -5855,7 +6144,8 @@
         "name": "Magic Mouth",
         "range": "30 feet",
         "ritual": true,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5876,7 +6166,8 @@
         "name": "Mass Cure Wounds",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5899,7 +6190,8 @@
         "name": "Mass Suggestion",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5919,7 +6211,8 @@
         "name": "Mirror Image",
         "range": "Self",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5938,7 +6231,8 @@
         "name": "Mislead",
         "range": "Self",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -5958,7 +6252,8 @@
         "name": "Misty Step",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5978,7 +6273,8 @@
         "name": "Modify Memory",
         "range": "30 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -5998,7 +6294,8 @@
         "name": "Moonbeam",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6019,7 +6316,8 @@
         "name": "Move Earth",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6039,7 +6337,8 @@
         "name": "Pass without Trace",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6058,7 +6357,8 @@
         "name": "Passwall",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6077,7 +6377,8 @@
         "name": "Phantasmal Killer",
         "range": "120 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6098,7 +6399,8 @@
         "name": "Phantasmal Force",
         "range": "60 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -6116,7 +6418,8 @@
         "name": "Planar Ally",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -6139,7 +6442,8 @@
         "name": "Planar Binding",
         "range": "60 feet",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6161,7 +6465,8 @@
         "name": "Polymorph",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6181,7 +6486,8 @@
         "name": "Programmed Illusion",
         "range": "120 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -6202,7 +6508,8 @@
         "name": "Raise Dead",
         "range": "Touch",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6223,7 +6530,8 @@
         "name": "Protection from Poison",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6242,7 +6550,8 @@
         "name": "Ray of Enfeeblement",
         "range": "60 feet",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 hour",
@@ -6261,7 +6570,8 @@
         "name": "Reincarnate",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6280,7 +6590,8 @@
         "name": "Rope Trick",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6300,7 +6611,8 @@
         "name": "Scorching Ray",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "10 minutes",
@@ -6323,7 +6635,8 @@
         "name": "Scrying",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6343,7 +6656,8 @@
         "name": "Seeming",
         "range": "30 feet",
         "ritual": false,
-        "school": "Illusion"
+        "school": "Illusion",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6364,7 +6678,8 @@
         "name": "See Invisibility",
         "range": "Self",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6386,7 +6701,8 @@
         "name": "Shatter",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6407,7 +6723,8 @@
         "name": "Spider Climb",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6427,7 +6744,8 @@
         "name": "Spike Growth",
         "range": "150 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -6445,7 +6763,8 @@
         "name": "Staggering Smite",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6466,7 +6785,8 @@
         "name": "Stone Shape",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6487,7 +6807,8 @@
         "name": "Sunbeam",
         "range": "Self (60-foot line)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6509,7 +6830,8 @@
         "name": "Stoneskin",
         "range": "Touch",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -6528,7 +6850,8 @@
         "name": "Swift Quiver",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6547,7 +6870,8 @@
         "name": "Telekinesis",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -6568,7 +6892,8 @@
         "name": "Teleportation Circle",
         "range": "10 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6586,7 +6911,8 @@
         "name": "Transport via Plants",
         "range": "10 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6605,7 +6931,8 @@
         "name": "Tree Stride",
         "range": "Self",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6628,7 +6955,8 @@
         "name": "True Seeing",
         "range": "Touch",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6648,7 +6976,8 @@
         "name": "Vampiric Touch",
         "range": "Self",
         "ritual": false,
-        "school": "Necromancy"
+        "school": "Necromancy",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6670,7 +6999,8 @@
         "name": "Wall of Fire",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6689,7 +7019,8 @@
         "name": "Wall of Ice",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6708,7 +7039,8 @@
         "name": "Wall of Force",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6729,7 +7061,8 @@
         "name": "Wall of Stone",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6749,7 +7082,8 @@
         "name": "Wall of Thorns",
         "range": "120 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6771,7 +7105,8 @@
         "name": "Water Breathing",
         "range": "30 feet",
         "ritual": true,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6793,7 +7128,8 @@
         "name": "Water Walk",
         "range": "30 feet",
         "ritual": true,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6813,7 +7149,8 @@
         "name": "Web",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 minute",
@@ -6832,7 +7169,8 @@
         "name": "Wind Walk",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6852,7 +7190,8 @@
         "name": "Wind Wall",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6870,7 +7209,8 @@
         "name": "Word of Recall",
         "range": "5 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6890,7 +7230,8 @@
         "name": "Zone of Truth",
         "range": "60 feet",
         "ritual": false,
-        "school": "Enchantment"
+        "school": "Enchantment",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6912,7 +7253,8 @@
         "name": "Earth Tremor",
         "range": "Self (10-foot radius)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6932,7 +7274,8 @@
         "name": "Pyrotechnics",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6952,7 +7295,8 @@
         "name": "Skywrite",
         "range": "Sight",
         "ritual": true,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6974,7 +7318,8 @@
         "name": "Thunderclap",
         "range": "Self (5-foot radius)",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -6994,7 +7339,8 @@
         "name": "Warding Wind",
         "range": "Self",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7014,7 +7360,8 @@
         "name": "Control Flames",
         "range": "60 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7035,7 +7382,8 @@
         "name": "Create Bonfire",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7056,7 +7404,8 @@
         "name": "Frostbite",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7076,7 +7425,8 @@
         "name": "Gust",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 bonus action",
@@ -7095,7 +7445,8 @@
         "name": "Magic Stone",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7115,7 +7466,8 @@
         "name": "Mold Earth",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7135,7 +7487,8 @@
         "name": "Shape Water",
         "range": "30 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 reaction, which you take when you take acid, cold, fire, lightning, or thunder damage",
@@ -7156,7 +7509,8 @@
         "name": "Absorb Elements",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7176,7 +7530,8 @@
         "name": "Beast Bond",
         "range": "Touch",
         "ritual": false,
-        "school": "Divination"
+        "school": "Divination",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7198,7 +7553,8 @@
         "name": "Ice Knife",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7219,7 +7575,8 @@
         "name": "Earthbind",
         "range": "300 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7241,7 +7598,8 @@
         "name": "Dust Devil",
         "range": "60 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7261,7 +7619,8 @@
         "name": "Catapult",
         "range": "150 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7281,7 +7640,8 @@
         "name": "Control Winds",
         "range": "300 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7300,7 +7660,8 @@
         "name": "Bones of the Earth",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7322,7 +7683,8 @@
         "name": "Erupting Earth",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7343,7 +7705,8 @@
         "name": "Elemental Bane",
         "range": "90 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7365,7 +7728,8 @@
         "name": "Flame Arrows",
         "range": "Touch",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7386,7 +7750,8 @@
         "name": "Investiture of Flame",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7407,7 +7772,8 @@
         "name": "Investiture of Ice",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7428,7 +7794,8 @@
         "name": "Investiture of Stone",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7449,7 +7816,8 @@
         "name": "Investiture of Wind",
         "range": "Self",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7468,7 +7836,8 @@
         "name": "Maelstrom",
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7486,7 +7855,8 @@
         "name": "Primordial Ward",
         "range": "Self",
         "ritual": false,
-        "school": "Abjuration"
+        "school": "Abjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7506,7 +7876,8 @@
         "name": "Tidal Wave",
         "range": "120 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7526,7 +7897,8 @@
         "name": "Transmute Rock",
         "range": "120 feet",
         "ritual": false,
-        "school": "Transmutation"
+        "school": "Transmutation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7547,7 +7919,8 @@
         "name": "Wall of Water",
         "range": "60 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7568,7 +7941,8 @@
         "name": "Watery Sphere",
         "range": "90 feet",
         "ritual": false,
-        "school": "Conjuration"
+        "school": "Conjuration",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7588,7 +7962,8 @@
         "name": "Whirlwind",
         "range": "300 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7607,7 +7982,8 @@
         "name": "Immolation",
         "range": "90 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7627,7 +8003,8 @@
         "name": "Storm Sphere",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7648,7 +8025,8 @@
         "name": "Vitriolic Sphere",
         "range": "150 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     },
     {
         "casting_time": "1 action",
@@ -7667,6 +8045,7 @@
         "name": "Wall of Sand",
         "range": "90 feet",
         "ritual": false,
-        "school": "Evocation"
+        "school": "Evocation",
+        "source": "SRD"
     }
 ]

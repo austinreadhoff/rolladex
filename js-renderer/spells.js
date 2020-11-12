@@ -31,10 +31,12 @@ function loadSpellData(){
             document.getElementById("filter-level").addEventListener('change', event => { filterSpellCatalog(); });
             document.getElementById("filter-school").addEventListener('change', event => { filterSpellCatalog(); });
             document.getElementById("filter-class").addEventListener('change', event => { filterSpellCatalog(); });
+            document.getElementById("filter-source").addEventListener('change', event => { filterSpellCatalog(); });
 
             populateFilterDropDown("filter-level", "level", false);
             populateFilterDropDown("filter-school", "school", false);
             populateFilterDropDown("filter-class", "classes", true);
+            populateFilterDropDown("filter-source", "source", false);
 
             //setup add to spellbook button
             document.getElementById("btn-learn-spell").addEventListener('click', event => {
@@ -140,6 +142,7 @@ function mapSRDCatalogSpell(spell){
     selectedCatalogSpell = spell;
     var classes = spell.classes.join(", ")
 
+    document.getElementById("srd-catalog-source").innerHTML = "Source: " + spell.source;
     document.getElementById("srd-catalog-name").innerHTML = spell.name;
     document.getElementById("srd-catalog-level").innerHTML = spell.level == "0" ? "Cantrip" : spell.level;
     document.getElementById("srd-catalog-school").innerHTML = spell.school;
@@ -169,12 +172,14 @@ function filterSpellCatalog(){
     var level = document.getElementById("filter-level").value;
     var school = document.getElementById("filter-school").value;
     var _class = document.getElementById("filter-class").value;
+    var source = document.getElementById("filter-source").value;
 
     var filteredCatalog = spellJSON
         .filter(spell => !name || spell.name.toUpperCase().indexOf(name.toUpperCase()) != -1)
         .filter(spell => !level || spell.level.toUpperCase() == level.toUpperCase())
         .filter(spell => !school || spell.school.toUpperCase() == school.toUpperCase())
-        .filter(spell => !_class || spell.classes.find(c => c.toUpperCase() == _class.toUpperCase()) != null);
+        .filter(spell => !_class || spell.classes.find(c => c.toUpperCase() == _class.toUpperCase()) != null)
+        .filter(spell => !source || spell.source.toUpperCase() == source.toUpperCase());
 
     createSpellCatalog(filteredCatalog);
 }
@@ -236,7 +241,7 @@ function populateFilterDropDown(filterEl, property, multi){
     options.forEach(option => {
         var el = document.createElement("option");
         el.value = option;
-        el.innerHTML = option == "0" ? "Cantrip" : option.charAt(0).toUpperCase() + option.slice(1).toLowerCase();
+        el.innerHTML = option == "0" ? "cantrip" : option.toLowerCase();
 
         document.getElementById(filterEl).appendChild(el);
     });
