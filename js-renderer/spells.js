@@ -175,7 +175,7 @@ function filterSpellCatalog(){
     var source = document.getElementById("filter-source").value;
 
     var filteredCatalog = spellJSON
-        .filter(spell => !name || spell.name.toUpperCase().indexOf(name.toUpperCase()) != -1)
+        .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => !level || spell.level.toUpperCase() == level.toUpperCase())
         .filter(spell => !school || spell.school.toUpperCase() == school.toUpperCase())
         .filter(spell => !_class || spell.classes.find(c => c.toUpperCase() == _class.toUpperCase()) != null)

@@ -27,7 +27,7 @@ function spellAutoComplete(inputsHTMLCollection, level) {
             /*for each item in the array...*/
             for (i = 0; i < spellOptions.length; i++) {
                 /*check if the item contains the same letters as the text field value:*/
-                var matchIndex = spellOptions[i].toUpperCase().indexOf(val.toUpperCase())
+                var matchIndex = spellOptions[i].replace(/\W/g, '').toUpperCase().indexOf(val.replace(/\W/g, '').toUpperCase())
                 if (matchIndex != -1) {
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
