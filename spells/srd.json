@@ -889,27 +889,6 @@
         "source": "SRD"
     },
     {
-        "casting_time": "1 bonus action",
-        "classes": [
-            "Warlock"
-        ],
-        "components": {
-            "material": true,
-            "somatic": true,
-            "verbal": true,
-            "materials": "the petrified eye of a newt"
-        },
-        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 necrotic damage to the target whenever you hit it with an attack. Also choose one ability when you cast the spell. The target has disadvantage on ability checks made with the chosen ability.\n\nIf the target drops to 0 hit points before this spell ends, you can use a bonus action on a subsequent turn of yours to curse a new creature.\n\nA *[remove curse](../remove-curse/)* cast on the target ends this spell early.",
-        "duration": "Concentration, up to 1 hour",
-        "higher_levels": "When you cast this spell using a spell slot of 3rd or 4th level, you can maintain your concentration on the spell for up to 8 hours. When you use a spell slot of 5th level or higher, you can maintain your concentration on the spell for up to 24 hours.",
-        "level": "1",
-        "name": "Hex",
-        "range": "90 feet",
-        "ritual": false,
-        "school": "Enchantment",
-        "source": "SRD"
-    },
-    {
         "casting_time": "1 action",
         "classes": [
             "Bard",
@@ -1200,7 +1179,7 @@
         "description": "You place an Illusion on a creature or an object you touch so that Divination Spells reveal false information about it. The target can be a willing creature or an object that isn't being carried or worn by another creature.\n\nWhen you cast the spell, choose one or both of the following Effects. The Effect lasts for the Duration. If you cast this spell on the same creature or object every day for 30 days, placing the same Effect on it each time, the Illusion lasts until it is dispelled.\n\nFalse Aura: You change the way the target appears to Spells and magical Effects, such as Detect Magic, that detect magical auras. You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object's magical aura so that it appears to belong to a specific school of magic that you choose. When you use this Effect on an object, you can make the false magic apparent to any creature that handles the item.\n\nMask: You change the way the target appears to Spells and magical Effects that detect creature types, such as a paladin's Divine Sense or the trigger of a Symbol spell. You choose a creature type and other Spells and magical Effects treat the target as if it were a creature of that type or of that Alignment.",
         "duration": "24 hours",
         "level": "2",
-        "name": "Magic Aura",
+        "name": "Arcanist's Magic Aura",
         "range": "Touch",
         "ritual": false,
         "school": "Illusion",
@@ -2267,25 +2246,6 @@
         "source": "SRD"
     },
     {
-        "casting_time": "1 bonus action",
-        "classes": [
-            "Paladin"
-        ],
-        "components": {
-            "material": false,
-            "somatic": false,
-            "verbal": true
-        },
-        "description": "The next time you hit a creature with a melee weapon attack during this spell’s duration, your weapon flares with bright light, and the attack deals an extra 3d8 radiant damage to the target. Additionally, the target must succeed on a Constitution saving throw or be blinded until the spell ends.\n\nA creature blinded by this spell makes another Constitution saving throw at the end of each of its turns. On a successful save, it is no longer blinded.",
-        "duration": "Concentration, up to 1 minute",
-        "level": "3",
-        "name": "Blinding Smite",
-        "range": "Self",
-        "ritual": false,
-        "school": "Evocation",
-        "source": "SRD"
-    },
-    {
         "casting_time": "1 action",
         "classes": [
             "Sorcerer",
@@ -2303,6 +2263,26 @@
         "range": "Self",
         "ritual": false,
         "school": "Transmutation",
+        "source": "SRD"
+    },
+    {
+        "casting_time": "1 action",
+        "classes": [
+            "Paladin"
+        ],
+        "components": {
+            "material": false,
+            "somatic": false,
+            "verbal": true
+        },
+        "description": "The next time you hit a creature with a weapon attack before this spell ends, the weapon gleams with astral radiance as you strike. The attack deals an extra 2d6 radiant damage to the target, which becomes visible if it’s invisible, and the target sheds dim light in a 5-foot radius and can’t become invisible until the spell ends.",
+        "duration": "Concentration, up to 1 minute",
+        "higher_levels": "When you cast this spell using a spell slot of 3rd level or higher, the extra damage increases by 1d6 for each slot level above 2nd.",
+        "level": "2",
+        "name": "Branding Smite",
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
         "source": "SRD"
     },
     {
