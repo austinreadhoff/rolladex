@@ -104,6 +104,8 @@ function applySpellTip(el){
             spellType += " (ritual)"
         }
 
+        var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
+
         el.title = 
         `${spellType}\n`
         +`Casting Time: ${spell.casting_time}\n`
@@ -111,7 +113,7 @@ function applySpellTip(el){
         +`Components: ${buildRawComponentString(spell.components)}\n`
         +`Duration: ${spell.duration}\n\n`
 
-        +`${spell.description}`;
+        +`${fullDescription}`;
     }
     else{
         el.title = "No Description Found";
@@ -141,6 +143,7 @@ function createSpellCatalog(spellList){
 function mapSRDCatalogSpell(spell){
     selectedCatalogSpell = spell;
     var classes = spell.classes.join(", ")
+    var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
 
     document.getElementById("srd-catalog-source").innerHTML = "Source: " + spell.source;
     document.getElementById("srd-catalog-name").innerHTML = spell.name;
@@ -152,7 +155,7 @@ function mapSRDCatalogSpell(spell){
     document.getElementById("srd-catalog-casting-time").innerHTML = spell.casting_time;
     document.getElementById("srd-catalog-duration").innerHTML = spell.duration;
     document.getElementById("srd-catalog-range").innerHTML = spell.range;
-    document.getElementById("srd-catalog-description").value = spell.description;
+    document.getElementById("srd-catalog-description").value = fullDescription;
 
     //disabled learn button if it's already learned
     var learnBtn = document.getElementById("btn-learn-spell");
