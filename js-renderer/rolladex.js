@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("proficiency").addEventListener('input', event =>{
             updateAllAbilityMods();
         });
+        document.getElementById("joat").addEventListener('input', event =>{
+            updateAllAbilityMods();
+        });
         document.querySelectorAll('.proficiency-check').forEach(checkbox => {
             checkbox.addEventListener('change', event => {
                 updateAllAbilityMods();
@@ -91,15 +94,22 @@ function updateAbilityMods(ability, score){
     var modStr = getAbililityModString(score);
     var proficientModStr = getAbililityModString(score, true);
 
+    var joat = document.getElementById("joat").checked;
+    var joatModStr = getAbililityModString(score, false, true)
+
     document.getElementById(ability + "-mod").innerHTML = modStr;
     document.querySelectorAll('.' + ability + '-mod-prof').forEach(span =>{
         if(span.previousElementSibling.checked)
             span.innerHTML = proficientModStr;
+        else if(span.classList.contains("mod-saving"))
+            span.innerHTML = modStr;
+        else if (joat)
+            span.innerHTML = joatModStr;
         else
             span.innerHTML = modStr;
     });
     if (ability == "dex"){
-        document.getElementById("initiative").value = modStr;
+        document.getElementById("initiative").value = joat ? joatModStr : modStr;
     }
 }
 
@@ -110,10 +120,12 @@ function updateAllAbilityMods(){
     });
 }
 
-function getAbililityModString(abilityScore, applyProficiency = false){
+function getAbililityModString(abilityScore, applyProficiency = false, applyJoat = false){
     var proficiencyBonus = document.getElementById("proficiency").value.replace(/\D/g,''); //regex for '+' characters
 
-    var mod = calculateAbilityMod(abilityScore) + (applyProficiency ? +proficiencyBonus : 0);
+    var mod = calculateAbilityMod(abilityScore) 
+        + (applyProficiency ? +proficiencyBonus : 0)
+        + (applyJoat ? Math.floor(+proficiencyBonus/2) : 0);
     return mod < 0 ? mod : ("+" + mod);
 }
 
