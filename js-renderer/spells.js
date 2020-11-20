@@ -10,9 +10,15 @@ ipcRenderer.on('send-custom-spells', (event, json) => {
 function loadSpellData(){
     ipcRenderer.send('request-custom-spells');
     return new Promise((resolve, reject) => {
-        getJSON("./spells/srd.json").then((json) => {
-            spellJSON = spellJSON.concat(json)
-                .sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
+        var spellFilePromises = [
+            getJSON("./spells/srd.json"),
+            getJSON("./spells/phb.json"),
+            getJSON("./spells/xanathars.json")
+        ];
+
+        Promise.all(spellFilePromises).then((jsonCollections) => {
+            jsonCollections.forEach(c => spellJSON = spellJSON.concat(c));
+            spellJSON = spellJSON.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
             createSpellCatalog(spellJSON);
