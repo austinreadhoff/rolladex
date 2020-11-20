@@ -13,7 +13,8 @@ function loadSpellData(){
         var spellFilePromises = [
             getJSON("./spells/srd.json"),
             getJSON("./spells/phb.json"),
-            getJSON("./spells/xanathars.json")
+            getJSON("./spells/xanathars.json"),
+            getJSON("./spells/tashas.json")
         ];
 
         Promise.all(spellFilePromises).then((jsonCollections) => {
