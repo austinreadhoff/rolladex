@@ -64,6 +64,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Cleric",
             "Paladin"
         ],
         "components": {
@@ -83,6 +84,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Cleric",
             "Paladin"
         ],
         "components": {
@@ -102,6 +104,8 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Cleric",
+            "Druid",
             "Paladin"
         ],
         "components": {
@@ -426,7 +430,9 @@
     {
         "casting_time": "1 action",
         "classes": [
-            "Paladin"
+            "Druid",
+            "Paladin",
+            "Ranger"
         ],
         "components": {
             "material": false,
@@ -635,7 +641,8 @@
     {
         "casting_time": "1 action",
         "classes": [
-            "Bard"
+            "Bard",
+            "Cleric"
         ],
         "components": {
             "material": false,
@@ -675,7 +682,8 @@
     {
         "casting_time": "1 bonus action",
         "classes": [
-            "Paladin"
+            "Paladin",
+            "Ranger"
         ],
         "components": {
             "material": false,

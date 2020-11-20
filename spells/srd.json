@@ -87,6 +87,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -260,6 +261,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Sorcerer",
             "Wizard"
         ],
@@ -282,6 +284,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Cleric",
             "Paladin"
         ],
@@ -541,7 +544,8 @@
     {
         "casting_time": "1 action",
         "classes": [
-            "Druid"
+            "Druid",
+            "Ranger"
         ],
         "components": {
             "material": false,
@@ -748,6 +752,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -790,6 +795,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -1385,6 +1391,7 @@
         "casting_time": "1 action",
         "classes": [
             "Cleric",
+            "Druid",
             "Paladin",
             "Warlock",
             "Wizard"
@@ -1736,6 +1743,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Wizard"
         ],
         "components": {
@@ -1882,8 +1890,10 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Cleric",
-            "Paladin"
+            "Paladin",
+            "Ranger"
         ],
         "components": {
             "material": true,
@@ -1950,7 +1960,9 @@
     {
         "casting_time": "1 minute",
         "classes": [
-            "Cleric"
+            "Cleric",
+            "Druid",
+            "Wizard"
         ],
         "components": {
             "material": true,
@@ -2039,7 +2051,8 @@
     {
         "casting_time": "10 minutes",
         "classes": [
-            "Cleric"
+            "Cleric",
+            "Paladin"
         ],
         "components": {
             "material": false,
@@ -2100,7 +2113,8 @@
     {
         "casting_time": "1 action",
         "classes": [
-            "Cleric"
+            "Cleric",
+            "Paladin"
         ],
         "components": {
             "material": true,
@@ -2645,6 +2659,7 @@
     {
         "casting_time": "1 bonus action",
         "classes": [
+            "Bard",
             "Cleric"
         ],
         "components": {
@@ -2749,7 +2764,8 @@
         "casting_time": "1 action",
         "classes": [
             "Cleric",
-            "Druid"
+            "Druid",
+            "Ranger"
         ],
         "components": {
             "material": false,
@@ -2832,7 +2848,9 @@
         "casting_time": "1 action",
         "classes": [
             "Cleric",
-            "Paladin"
+            "Druid",
+            "Paladin",
+            "Ranger"
         ],
         "components": {
             "material": true,
@@ -2896,6 +2914,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Sorcerer",
             "Wizard"
         ],
@@ -2918,7 +2937,8 @@
         "casting_time": "1 action",
         "classes": [
             "Bard",
-            "Cleric"
+            "Cleric",
+            "Wizard"
         ],
         "components": {
             "material": true,
@@ -3262,6 +3282,7 @@
     {
         "casting_time": "1 hour",
         "classes": [
+            "Bard",
             "Druid",
             "Wizard"
         ],
@@ -3347,6 +3368,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Sorcerer",
             "Warlock",
             "Wizard"
         ],
@@ -3460,6 +3482,7 @@
         "classes": [
             "Cleric",
             "Sorcerer",
+            "Warlock",
             "Wizard"
         ],
         "components": {
@@ -3541,6 +3564,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Druid",
             "Sorcerer",
             "Wizard"
         ],
@@ -3683,6 +3707,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Wizard"
         ],
         "components": {
@@ -3762,6 +3787,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Cleric",
             "Druid",
             "Sorcerer",
             "Wizard"
@@ -3847,6 +3873,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Warlock",
             "Wizard"
         ],
         "components": {
@@ -4078,6 +4105,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Sorcerer",
             "Wizard"
         ],
@@ -4250,6 +4278,7 @@
         "casting_time": "1 minute",
         "classes": [
             "Bard",
+            "Druid",
             "Wizard"
         ],
         "components": {
@@ -4525,6 +4554,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Druid",
             "Sorcerer",
             "Wizard"
         ],
@@ -4674,6 +4704,7 @@
         "casting_time": "1 action",
         "classes": [
             "Cleric",
+            "Druid",
             "Wizard"
         ],
         "components": {
@@ -4738,7 +4769,9 @@
     {
         "casting_time": "1 action",
         "classes": [
-            "Cleric"
+            "Cleric",
+            "Druid",
+            "Wizard"
         ],
         "components": {
             "material": true,
@@ -4780,6 +4813,7 @@
         "casting_time": "1 action",
         "classes": [
             "Druid",
+            "Ranger",
             "Sorcerer"
         ],
         "components": {
@@ -4847,7 +4881,9 @@
             "Bard",
             "Cleric",
             "Druid",
-            "Sorcerer"
+            "Ranger",
+            "Sorcerer",
+            "Wizard"
         ],
         "components": {
             "material": true,
@@ -4868,6 +4904,8 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
+            "Druid",
             "Sorcerer",
             "Wizard"
         ],
@@ -5012,6 +5050,8 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Druid",
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -5032,7 +5072,8 @@
     {
         "casting_time": "1 bonus action",
         "classes": [
-            "Druid"
+            "Druid",
+            "Sorcerer"
         ],
         "components": {
             "material": true,
@@ -5075,6 +5116,7 @@
         "casting_time": "1 action",
         "classes": [
             "Druid",
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -5096,6 +5138,8 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Druid",
+            "Sorcerer",
             "Warlock",
             "Wizard"
         ],
@@ -5185,6 +5229,7 @@
         "casting_time": "1 action",
         "classes": [
             "Cleric",
+            "Paladin",
             "Wizard"
         ],
         "components": {
@@ -5290,9 +5335,10 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Cleric",
             "Druid",
-            "Bard"
+            "Ranger"
         ],
         "components": {
             "material": true,
@@ -5354,7 +5400,8 @@
         "classes": [
             "Sorcerer",
             "Wizard",
-            "Druid"
+            "Druid",
+            "Ranger"
         ],
         "components": {
             "material": true,
@@ -5479,6 +5526,7 @@
     {
         "casting_time": "10 minutes",
         "classes": [
+            "Bard",
             "Cleric",
             "Druid"
         ],
@@ -5749,6 +5797,8 @@
         "casting_time": "1 bonus action",
         "classes": [
             "Paladin",
+            "Ranger",
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
@@ -5836,6 +5886,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Sorcerer",
             "Warlock",
             "Wizard"
@@ -5858,6 +5909,7 @@
         "casting_time": "1 action",
         "classes": [
             "Bard",
+            "Warlock",
             "Wizard"
         ],
         "components": {
@@ -6003,6 +6055,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Wizard"
         ],
         "components": {
@@ -6045,6 +6098,7 @@
             "Bard",
             "Cleric",
             "Druid",
+            "Warlock",
             "Wizard"
         ],
         "components": {
@@ -6390,6 +6444,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Cleric",
             "Druid",
             "Sorcerer",
             "Wizard"
@@ -6457,6 +6512,7 @@
         "classes": [
             "Bard",
             "Sorcerer",
+            "Warlock",
             "Wizard"
         ],
         "components": {
@@ -6540,6 +6596,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Sorcerer",
             "Warlock",
             "Wizard"
         ],
