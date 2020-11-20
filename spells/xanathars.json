@@ -23,6 +23,7 @@
   {
     "casting_time": "1 reaction, which you take when you take acid, cold, fire, lightning, or thunder damage",
     "classes": [
+      "Artificer",
       "Druid",
       "Ranger",
       "Sorcerer",
@@ -109,6 +110,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Sorcerer",
       "Wizard"
     ],
@@ -130,6 +132,7 @@
   {
     "casting_time": "1 Action",
     "classes": [
+      "Artificer",
       "Bard",
       "Sorcerer",
       "Wizard"
@@ -281,6 +284,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Druid",
       "Sorcerer",
       "Warlock",
@@ -497,6 +501,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Druid",
       "Warlock",
       "Wizard"
@@ -626,6 +631,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Druid",
       "Ranger",
       "Sorcerer",
@@ -649,6 +655,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Druid",
       "Sorcerer",
       "Warlock",
@@ -1030,6 +1037,7 @@
   {
     "casting_time": "1 bonus action",
     "classes": [
+      "Artificer",
       "Druid",
       "Warlock"
     ],
@@ -1300,6 +1308,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Bard",
       "Sorcerer",
       "Wizard"
@@ -1426,6 +1435,7 @@
   {
     "casting_time": "1 Action",
     "classes": [
+      "Artificer",
       "Bard",
       "Sorcerer",
       "Wizard"
@@ -1447,6 +1457,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Bard",
       "Druid",
       "Wizard"
@@ -1468,6 +1479,7 @@
   {
     "casting_time": "1 Minute",
     "classes": [
+      "Artificer",
       "Druid",
       "Ranger",
       "Wizard"
@@ -1703,6 +1715,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Bard",
       "Druid",
       "Sorcerer",
@@ -1748,6 +1761,7 @@
   {
     "casting_time": "1 Minute",
     "classes": [
+      "Artificer",
       "Wizard"
     ],
     "components": {

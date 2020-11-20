@@ -430,6 +430,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Artificer",
             "Druid",
             "Paladin",
             "Ranger"
@@ -742,6 +743,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Artificer",
             "Druid"
         ],
         "components": {
