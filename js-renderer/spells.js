@@ -26,11 +26,11 @@ function loadSpellData(){
 
             var spellListBox = document.getElementById("spell-listbox");
             spellListBox.value = spellJSON[0].name;
-            mapSRDCatalogSpell(spellJSON[0]);
+            mapCatalogSpell(spellJSON[0]);
 
             spellListBox.addEventListener("change", event => {
                 var spell = spellJSON.find(spell => spell.name == event.target.value);
-                mapSRDCatalogSpell(spell);
+                mapCatalogSpell(spell);
             });
 
             //setup catalog filters
@@ -89,38 +89,7 @@ function applySpellTip(el){
     spell = spellJSON.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
 
     if (spell){
-        var spellType = spell.school;
-        if (spell.level == "0"){
-            spellType += " Cantrip"
-        }
-        else{
-            var levelFragment;
-    
-            if (spell.level == "1")
-                levelFragment = "1st"
-            else if (spell.level == "2")
-                levelFragment = "2nd"
-            else if (spell.level == "3")
-                levelFragment = "2rd"
-            else
-                levelFragment = spell.level + "th"
-    
-            spellType = levelFragment + "-level " + spellType
-        }
-        if (spell.ritual){
-            spellType += " (ritual)"
-        }
-
-        var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
-
-        el.title = 
-        `${spellType}\n`
-        +`Casting Time: ${spell.casting_time}\n`
-        +`Range: ${spell.range}\n`
-        +`Components: ${buildRawComponentString(spell.components)}\n`
-        +`Duration: ${spell.duration}\n\n`
-
-        +`${fullDescription}`;
+        el.title = buildFormatedSpellText(spell);
     }
     else{
         el.title = "No Description Found";
@@ -147,22 +116,13 @@ function createSpellCatalog(spellList){
     });
 }
 
-function mapSRDCatalogSpell(spell){
+function mapCatalogSpell(spell){
     selectedCatalogSpell = spell;
     var classes = spell.classes.join(", ")
-    var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
 
-    document.getElementById("srd-catalog-source").innerHTML = "Source: " + spell.source;
-    document.getElementById("srd-catalog-name").innerHTML = spell.name;
-    document.getElementById("srd-catalog-level").innerHTML = spell.level == "0" ? "Cantrip" : spell.level;
-    document.getElementById("srd-catalog-school").innerHTML = spell.school;
-    document.getElementById("srd-catalog-classes").innerHTML = classes;
-    document.getElementById("srd-catalog-components").innerHTML = buildRawComponentString(spell.components);
-    document.getElementById("srd-catalog-ritual").innerHTML = spell.ritual ? "Yes" : "No";
-    document.getElementById("srd-catalog-casting-time").innerHTML = spell.casting_time;
-    document.getElementById("srd-catalog-duration").innerHTML = spell.duration;
-    document.getElementById("srd-catalog-range").innerHTML = spell.range;
-    document.getElementById("srd-catalog-description").value = fullDescription;
+    document.getElementById("catalog-source").innerHTML = "Source: " + spell.source;
+    document.getElementById("catalog-classes").innerHTML = "Classes: " + classes;
+    document.getElementById("catalog-text").innerHTML = buildFormatedSpellText(spell);
 
     //disabled learn button if it's already learned
     var learnBtn = document.getElementById("btn-learn-spell");
@@ -209,6 +169,43 @@ function getJSON(path){
     
         request.send();
     });
+}
+
+function buildFormatedSpellText(spell){
+    var spellType = spell.school;
+    if (spell.level == "0"){
+        spellType += " Cantrip"
+    }
+    else{
+        var levelFragment;
+
+        if (spell.level == "1")
+            levelFragment = "1st"
+        else if (spell.level == "2")
+            levelFragment = "2nd"
+        else if (spell.level == "3")
+            levelFragment = "2rd"
+        else
+            levelFragment = spell.level + "th"
+
+        spellType = levelFragment + "-level " + spellType
+    }
+    if (spell.ritual){
+        spellType += " (ritual)"
+    }
+
+    var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
+
+    var text = 
+    `${spellType}\n`
+    +`Casting Time: ${spell.casting_time}\n`
+    +`Range: ${spell.range}\n`
+    +`Components: ${buildRawComponentString(spell.components)}\n`
+    +`Duration: ${spell.duration}\n\n`
+
+    +`${fullDescription}`;
+
+    return text;
 }
 
 function buildRawComponentString(spellComponents){

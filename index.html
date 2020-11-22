@@ -718,58 +718,24 @@
                         </select>
                     </div>
                 </div>
-                <div id="srd-spell-container" class="spell-container block block-shaded container">
-                    <div class="row"><i id="srd-catalog-source"></i></div>
+                <div id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
                     <div class="row">
-                        <div class="form-group col-6">
-                            <label for="srd-catalog-name">Name</label>
-                            <p id="srd-catalog-name"></p>
+                        <div class="col">
+                            <i id="catalog-source"></i>
                         </div>
-                        <div class="form-group col-3">
-                            <label for="srd-catalog-level">Level</label>
-                            <p id="srd-catalog-level"></p>
+                        <div class="col" id="catalog-classes-col">
+                            <i id="catalog-classes"></i>
                         </div>
-                        <div class="form-group col-3">
-                            <label for="srd-catalog-school">School</label>
-                            <p id="srd-catalog-school"></p>
+                    </div>
+                    <div class="row" id="catalog-text-row">
+                        <div class="col" id="catalog-text-col">
+                            <p id="catalog-text"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-5">
-                            <label for="srd-catalog-classes">Classes</label>
-                            <p id="srd-catalog-classes"></p>
+                        <div class="col">
+                            <button type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
                         </div>
-                        <div class="form-group col-5">
-                            <label for="srd-catalog-components">Components</label>
-                            <p id="srd-catalog-components"></p>
-                        </div>
-                        <div class="form-group col-2">
-                            <label for="srd-catalog-ritual">Ritual?</label>
-                            <p id="srd-catalog-ritual"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-4">
-                            <label for="srd-catalog-casting-time">Casting Time</label>
-                            <p id="srd-catalog-casting-time"></p>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="srd-catalog-range">Range</label>
-                            <p id="srd-catalog-range"></p>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="srd-catalog-duration">Duration</label>
-                            <p id="srd-catalog-duration"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="srd-catalog-description">Description</label>
-                            <textarea id="srd-catalog-description" class="form-control ignore" rows="5" readonly></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <button type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
                     </div>
                 </div>
             </div>
