@@ -65,9 +65,6 @@ ipcRenderer.on('request-save-json', (event, arg) => {
                 var spellJSON = {};
     
                 spellJSON["name"] = row.querySelector(".spell-name").value;
-                if (spellLevel > 0){
-                    spellJSON["prepared"] = row.querySelector(".spell-prepared").checked;
-                }
     
                 spellLevelJSON["spells"].push(spellJSON);
             }
@@ -146,9 +143,6 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
         spellLevelJSON["spells"].forEach(spell => {
             var spellRow = buildSpellRow(spellLevel);
             spellRow.querySelector(".spell-name").value = spell["name"];
-            if (spellLevel > 0){
-                spellRow.querySelector(".spell-prepared").checked = spell["prepared"];
-            }
             spellBlock.querySelector("#spells").appendChild(spellRow);
         });
     }
@@ -163,6 +157,5 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
     });
 
     updateAllAbilityMods();
-    togglePreparedSpells();
     applyAllSpellTips();
 });

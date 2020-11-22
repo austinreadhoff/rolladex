@@ -67,13 +67,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
         applyAllSpellTips();
     
-        document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-            document.querySelectorAll(".spell-prepared").forEach(el => {
-                el.checked = false;
-                togglePreparedSpells();
-            });
-        });
-    
         document.getElementById("btn-recover-slots").addEventListener('click', event => {
             document.querySelectorAll(".spell-block").forEach(block => {
                 if (block.dataset.level > 0){
@@ -131,25 +124,6 @@ function getAbililityModString(abilityScore, applyProficiency = false, applyJoat
 
 function calculateAbilityMod(abilityScore){
     return Math.floor(abilityScore / 2) - 5;
-}
-
-//#endregion
-
-//#region Spellbook Actions
-
-function togglePrepared(el){
-    if (el.checked){
-        el.previousElementSibling.firstElementChild.classList.add("prepared");
-    }
-    else{
-        el.previousElementSibling.firstElementChild.classList.remove("prepared");
-    }
-}
-
-function togglePreparedSpells(){
-    document.querySelectorAll(".spell-prepared").forEach(el => {
-        togglePrepared(el);
-    });
 }
 
 //#endregion
@@ -219,9 +193,6 @@ function buildSpellRow(level){
     var spellHTML = 
         `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
          <div class="autocomplete col"><input class="form-control spell-input spell-name"></div>`
-    if(level > 0){
-        spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
-    }
 
     var newRow = document.createElement("div");
     newRow.className = "spell-row row";
@@ -233,12 +204,6 @@ function buildSpellRow(level){
         event.target.parentElement.remove();
         triggerUnsafeSave();
     });
-    if(level > 0){
-        newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
-            togglePrepared(event.target);
-            triggerUnsafeSave();
-        });
-    }
 
     newRow.querySelector(".spell-name").addEventListener('change', event =>{
         applySpellTip(event.target);

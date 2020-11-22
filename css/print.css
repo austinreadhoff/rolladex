@@ -31,11 +31,6 @@ input, textarea{
     border: 2px solid #adb5bd;
 }
 
-.prepared{
-    border: 1px solid #222 !important;
-    border-radius: 0.25rem !important;
-}
-
 #proficiencies-languages{
     height: 50em;
 }
