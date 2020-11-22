@@ -5,7 +5,7 @@ function spellAutoComplete(inputsHTMLCollection, level) {
     var levelStr = level.toString();
 
     var spellOptions = spellJSON
-        .filter(spell => spell.level == levelStr)
+        .filter(spell => spell.level == levelStr || levelStr == "other")
         .map(spell => spell.name);
 
     var inputs = Array.from(inputsHTMLCollection);
