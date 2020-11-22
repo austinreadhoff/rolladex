@@ -13,6 +13,7 @@ function createWindow() {
 		},
 		icon: nativeImage.createFromPath("./img/icon.png")
 	});
+	win.maximize();
 
 	menu.initMenu();
 
