@@ -685,36 +685,35 @@
                 </select>
                 <div id="spellcatalog-filters" class="block block-bordered">
                     <div class="form-group">
+                        <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                    </div>
+                    <div class="form-group">
                         <label for="filter-name">Name</label>
                         <input id="filter-name" class="form-control ignore">
                     </div>
                     <div class="form-group">
-                        <label for="filter-level">Level</label>
-                        <select id="filter-level">
-                            <option value="">any</option>
+                        <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
+                        <ul id="level-filters" hidden>
                             <!--options autopopulated from spell catalog data-->
-                        </select>
+                        </ul>
                     </div>
                     <div class="form-group">
-                        <label for="filter-class">Class</label>
-                        <select id="filter-class">
-                            <option value="">any</option>
+                        <div class="filter-toggle" id="class-filter-toggle"><label for="class-filters">Class    </label><span class="filter-toggle-icon">‣</span></div>
+                        <ul id="class-filters" hidden>
                             <!--options autopopulated from spell catalog data-->
-                        </select>
+                        </ul>
                     </div>
                     <div class="form-group">
-                        <label for="filter-school">School</label>
-                        <select id="filter-school">
-                            <option value="">any</option>
+                        <div class="filter-toggle" id="school-filter-toggle"><label for="school-filters">School  </label><span class="filter-toggle-icon">‣</span></div>
+                        <ul id="school-filters" hidden>
                             <!--options autopopulated from spell catalog data-->
-                        </select>
+                        </ul>
                     </div>
                     <div class="form-group">
-                        <label for="filter-source">Source</label>
-                        <select id="filter-source">
-                            <option value="">any</option>
+                        <div class="filter-toggle" id="source-filter-toggle"><label for="source-filters">Source  </label><span class="filter-toggle-icon">‣</span></div>
+                        <ul id="source-filters" hidden>
                             <!--options autopopulated from spell catalog data-->
-                        </select>
+                        </ul>
                     </div>
                 </div>
                 <div id="catalog-spell-container" class="spell-container block block-shaded container-fluid">

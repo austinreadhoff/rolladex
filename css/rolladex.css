@@ -102,8 +102,24 @@ img.currency{
     color: #fff;
     background-color: gray;
 }
+#spellcatalog-filters{
+    overflow-y: auto;
+    word-break: break-word;
+}
 #spellcatalog-filters label{
-    width: 100%;
+    white-space: pre;
+    cursor: pointer;
+    user-select: none;
+}
+.filter-toggle{
+    cursor: pointer;
+}
+.filter-toggle-icon{
+    display: inline-block;
+    user-select: none;
+}
+.filter-toggle-icon.down{
+    transform: rotate(90deg);
 }
 .spell-container{
     height: 100%;

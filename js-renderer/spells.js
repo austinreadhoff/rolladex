@@ -35,15 +35,22 @@ function loadSpellData(){
 
             //setup catalog filters
             document.getElementById("filter-name").addEventListener('input', event => { filterSpellCatalog(); });
-            document.getElementById("filter-level").addEventListener('change', event => { filterSpellCatalog(); });
-            document.getElementById("filter-school").addEventListener('change', event => { filterSpellCatalog(); });
-            document.getElementById("filter-class").addEventListener('change', event => { filterSpellCatalog(); });
-            document.getElementById("filter-source").addEventListener('change', event => { filterSpellCatalog(); });
 
-            populateFilterDropDown("filter-level", "level", false);
-            populateFilterDropDown("filter-school", "school", false);
-            populateFilterDropDown("filter-class", "classes", true);
-            populateFilterDropDown("filter-source", "source", false);
+            setupFilterToggle("level-filter-toggle", "level-filters");
+            setupFilterToggle("class-filter-toggle", "class-filters");
+            setupFilterToggle("school-filter-toggle", "school-filters");
+            setupFilterToggle("source-filter-toggle", "source-filters");
+
+            populateFilterDropDown("level-filters", "level");
+            populateFilterDropDown("class-filters", "classes");
+            populateFilterDropDown("school-filters", "school");
+            populateFilterDropDown("source-filters", "source");
+
+            document.getElementById("btn-clear-filters").addEventListener('click', event => {
+                document.getElementById("filter-name").value = "";
+                document.querySelectorAll(".catalog-filter").forEach(el => el.checked = false);
+                filterSpellCatalog();
+            });
 
             //setup add to spellbook button
             document.getElementById("btn-learn-spell").addEventListener('click', event => {
@@ -139,17 +146,17 @@ function mapCatalogSpell(spell){
 
 function filterSpellCatalog(){
     var name = document.getElementById("filter-name").value;
-    var level = document.getElementById("filter-level").value;
-    var school = document.getElementById("filter-school").value;
-    var _class = document.getElementById("filter-class").value;
-    var source = document.getElementById("filter-source").value;
+    var levels = Array.from(document.getElementById("level-filters").querySelectorAll(":checked")).map(el => el.dataset.filterval.replace(/\W/g, '').toUpperCase());
+    var classes = Array.from(document.getElementById("class-filters").querySelectorAll(":checked")).map(el => el.dataset.filterval.replace(/\W/g, '').toUpperCase());
+    var schools = Array.from(document.getElementById("school-filters").querySelectorAll(":checked")).map(el => el.dataset.filterval.replace(/\W/g, '').toUpperCase());
+    var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.dataset.filterval.replace(/\W/g, '').toUpperCase());
 
     var filteredCatalog = spellJSON
         .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
-        .filter(spell => !level || spell.level.toUpperCase() == level.toUpperCase())
-        .filter(spell => !school || spell.school.toUpperCase() == school.toUpperCase())
-        .filter(spell => !_class || spell.classes.find(c => c.toUpperCase() == _class.toUpperCase()) != null)
-        .filter(spell => !source || spell.source.toUpperCase() == source.toUpperCase());
+        .filter(spell => levels.length < 1 || levels.indexOf(spell.level.replace(/\W/g, '').toUpperCase()) != -1)
+        .filter(spell => classes.length < 1 || classes.some(c => spell.classes.map(c2 => c2.replace(/\W/g, '').toUpperCase()).includes(c)))
+        .filter(spell => schools.length < 1 || schools.indexOf(spell.school.replace(/\W/g, '').toUpperCase()) != -1)
+        .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1);
 
     createSpellCatalog(filteredCatalog);
 }
@@ -224,11 +231,26 @@ function buildRawComponentString(spellComponents){
     return raw;
 }
 
-function populateFilterDropDown(filterEl, property, multi){
+function setupFilterToggle(toggleEl, filterUl){
+    toggleEl = document.getElementById(toggleEl);
+    filterUl = document.getElementById(filterUl);
+
+    toggleEl.addEventListener('click', event => {
+        if (filterUl.hidden) {
+            filterUl.hidden = false;
+            toggleEl.querySelector(".filter-toggle-icon").classList.add("down");
+        } else {
+            filterUl.hidden = true;
+            toggleEl.querySelector(".filter-toggle-icon").classList.remove("down");
+        }
+    })
+}
+
+function populateFilterDropDown(filterEl, property){
     var options = [];
 
     spellJSON.forEach(spell => {
-        if(multi){
+        if(Array.isArray(spell[property])){
             spell[property].forEach(x => {
                 if (options.indexOf(x.toUpperCase()) == -1){
                     options.push(x.toUpperCase());
@@ -246,10 +268,16 @@ function populateFilterDropDown(filterEl, property, multi){
     options.sort((a,b) => { return a-b });  //handles numbers without 1, 10, 2...
 
     options.forEach(option => {
-        var el = document.createElement("option");
-        el.value = option;
-        el.innerHTML = option == "0" ? "cantrip" : option.toLowerCase();
+        var el = document.createElement("li");
+        el.classList = "form-check"
+        el.innerHTML = 
+        `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${property}-filter-${option}" data-filterval="${option}">
+        <label class="form-check-label" for="${property}-filter-${option}">${option == "0" ? "cantrip" : option.toLowerCase()}</label>`
 
         document.getElementById(filterEl).appendChild(el);
+        
+        document.getElementById(`${property}-filter-${option}`).addEventListener('input', event =>{
+            filterSpellCatalog();
+        });
     });
 }
