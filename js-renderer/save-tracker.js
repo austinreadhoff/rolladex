@@ -3,8 +3,8 @@ function setUpSaveTracking(){
         if (input.classList.contains("attack-stat") 
         || input.classList.contains("misc-counter")
         || input.classList.contains("spell-name")
-        || input.classList.contains("ignore")
-        || input.classList.contains("catalog-filter")){
+        || input.classList.contains("catalog-filter")
+        || input.classList.contains("ignore")){
             return;   //Handled elsewhere
         }
         else if (input.type == "text"){

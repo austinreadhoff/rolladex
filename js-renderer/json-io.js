@@ -8,6 +8,7 @@ ipcRenderer.on('request-save-json', (event, arg) => {
         if (el.classList.contains("attack-stat") 
         || el.classList.contains("misc-counter")
         || el.classList.contains("spell-input")
+        || el.classList.contains("catalog-filter")
         || el.classList.contains("ignore")){
             return;   //Handled below
         }
@@ -86,6 +87,7 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
         if (el.classList.contains("attack-stat") 
         || el.classList.contains("misc-counter")
         || el.classList.contains("spell-input")
+        || el.classList.contains("catalog-filter")
         || el.classList.contains("ignore")){
             return;   //Handled below
         }
