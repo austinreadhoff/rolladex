@@ -1803,6 +1803,7 @@
   {
     "casting_time": "1 action",
     "classes": [
+      "Artificer",
       "Druid",
       "Wizard"
     ],
