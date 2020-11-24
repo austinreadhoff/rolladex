@@ -27,6 +27,10 @@ function setUpSaveTracking(){
             triggerUnsafeSave();
         });
     });
+
+    document.getElementById("btn-reset-prepared").addEventListener('click', event => {
+        triggerUnsafeSave();
+    });
     
     document.getElementById("btn-recover-slots").addEventListener('click', event => {
         triggerUnsafeSave();

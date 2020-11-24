@@ -88,6 +88,11 @@ img.currency{
     margin: 15px !important;
 }
 
+.prepared{
+    border: 3px solid gold !important;
+    border-radius: 4px;
+}
+
 #spellcatalog-container{
     display: flex;
     padding: 20px;
