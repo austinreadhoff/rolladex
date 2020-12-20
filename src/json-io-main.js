@@ -1,7 +1,7 @@
 const { dialog, ipcMain, Menu, MenuItem } = require('electron');
 const fs = require('fs');
 
-const saveTracker = require('./save-tracker')
+const saveTracker = require('./save-tracker-main')
 const recents = require('./recents')
 
 var savePath = null;

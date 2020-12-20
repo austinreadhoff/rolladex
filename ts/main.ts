@@ -1,8 +1,8 @@
 const { app, dialog, BrowserWindow, nativeImage } = require('electron')
-const io = require('./js-main/json-io')
-const menu = require('./js-main/menu')
-const saveTracker = require('./js-main/save-tracker')
-const spells = require('./js-main/spells')	//not used directly, but gotta load it so it can receive ipc messages
+const io = require('./json-io-main')
+const menu = require('./menu')
+const saveTracker = require('./save-tracker-main')
+const spells = require('./spells-main')	//not used directly, but gotta load it so it can receive ipc messages
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -19,7 +19,7 @@ function createWindow() {
 
 	win.loadFile('index.html');
 
-	win.on('close', function (e) {
+	win.on('close', function (e: any) {
 		if (!saveTracker.SafeToSave()){
 			var messageBoxOptions = {
 				buttons: ["Quit Without Saving", "Save Character", "Cancel"],

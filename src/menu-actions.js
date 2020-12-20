@@ -1,6 +1,6 @@
 const { BrowserWindow, dialog, shell } = require('electron');
 const fs = require('fs');
-const spells = require('./spells');
+const spells = require('./spells-main');
 
 var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
 

@@ -3,7 +3,7 @@ const electron = require('electron')
 const app = electron.app
 
 const menuActions = require('./menu-actions')
-const io = require('./json-io')
+const io = require('./json-io-main')
 
 const template = [
     {
