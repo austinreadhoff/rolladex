@@ -1,4 +1,5 @@
-const { app, dialog, BrowserWindow, nativeImage } = require('electron')
+const { app, dialog, BrowserWindow, shell, nativeImage, ipcMain, Menu, MenuItem } = require('electron')
+const fs = require('fs');
 const io = require('./json-io-main')
 const menu = require('./menu')
 const saveTracker = require('./save-tracker-main')
