@@ -2,7 +2,7 @@ import { PrintToPDFOptions, SaveDialogOptions } from "electron";
 
 var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
 
-function switchTab(tabId: string){
+export function switchTab(tabId: string){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
 }
 
@@ -35,5 +35,3 @@ function openCustomSpells(){
 function openDocumentation(){
     shell.openPath(documentationFilePath);
 }
-
-module.exports = {switchTab, printToPDF, openCustomSpells, openDocumentation};

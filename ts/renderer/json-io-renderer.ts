@@ -1,6 +1,7 @@
 import { ipcRenderer } from "electron";
 import { buildAttackRow, buildCounterBlock, updateAllAbilityMods } from "./rolladex";
 import { applyAllSpellTips, buildSpellRow, togglePreparedSpells } from "./spells-renderer";
+import { switchTab } from "../main/menu-actions"
 
 var jsonSchemaVersion = 0.1;
 
