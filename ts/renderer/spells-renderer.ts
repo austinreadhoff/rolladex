@@ -1,12 +1,13 @@
 const {ipcRenderer} = require('electron')
 import { spellAutoComplete } from "./autocomplete";
 import { triggerUnsafeSave } from "./save-tracker-renderer";
+import { parseSpellJSON, Spell, SpellComponentProperties } from "./spell";
 
-export var spellJSON: Array<any> = [];
-var selectedCatalogSpell: any;
+export var spellJSON: Spell[] = [];
+var selectedCatalogSpell: Spell;
 
 ipcRenderer.on('send-custom-spells', (event, json) => {
-    spellJSON = spellJSON.concat(json);
+    spellJSON = spellJSON.concat(parseSpellJSON(json));
 });
 
 export function loadSpellData(){
@@ -20,7 +21,7 @@ export function loadSpellData(){
         ];
 
         Promise.all(spellFilePromises).then((jsonCollections) => {
-            jsonCollections.forEach(c => spellJSON = spellJSON.concat(c));
+            jsonCollections.forEach((c: any) => spellJSON = spellJSON.concat(parseSpellJSON(c)));
             spellJSON = spellJSON.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
@@ -61,7 +62,7 @@ export function loadSpellData(){
                 let bttnEl: HTMLElement = event.target as HTMLElement
                 if (!bttnEl.classList.contains("disabled")){
                     var levelStr = selectedCatalogSpell.level;
-                    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find((div) => div.getAttribute("data-level") == levelStr)
+                    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find((div) => +div.getAttribute("data-level") == levelStr)
     
                     var inputToUpdate: HTMLInputElement;
                     var firstInput: HTMLInputElement = spellBlock.querySelectorAll(".spell-name")[0] as HTMLInputElement;
@@ -112,11 +113,11 @@ export function applySpellTip(el: HTMLInputElement){
     }
 }
 
-function createSpellCatalog(spellList: any[]){
+function createSpellCatalog(spellList: Spell[]){
     var spellListBox = document.getElementById("spell-listbox") as HTMLInputElement;
     spellListBox.innerHTML = "";
 
-    spellList.forEach(spell => {
+    spellList.forEach((spell: Spell) => {
         var option = document.createElement("option");
         option.value = spell.name;
         option.innerHTML = spell.name;
@@ -128,7 +129,7 @@ function createSpellCatalog(spellList: any[]){
     });
 }
 
-function mapCatalogSpell(spell: any){
+function mapCatalogSpell(spell: Spell){
     selectedCatalogSpell = spell;
     var classes = spell.classes.join(", ")
 
@@ -141,7 +142,7 @@ function mapCatalogSpell(spell: any){
     learnBtn.classList.remove("disabled");
 
     var levelStr = spell.level;
-    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => div.getAttribute("data-level") == levelStr);
+    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => +div.getAttribute("data-level") == levelStr);
     (spellBlock.querySelectorAll(".spell-name") as NodeListOf<HTMLInputElement>).forEach(input => {
         if (input.value.toUpperCase() == spell.name.toUpperCase()){
             learnBtn.classList.add("disabled");
@@ -159,7 +160,7 @@ function filterSpellCatalog(){
 
     var filteredCatalog = spellJSON
         .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
-        .filter(spell => levels.length < 1 || levels.indexOf(spell.level.replace(/\W/g, '').toUpperCase()) != -1)
+        .filter(spell => levels.length < 1 || levels.indexOf(spell.level.toString().replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => classes.length < 1 || classes.some(c => spell.classes.map((c2: string) => c2.replace(/\W/g, '').toUpperCase()).includes(c)))
         .filter(spell => schools.length < 1 || schools.indexOf(spell.school.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1);
@@ -249,22 +250,22 @@ export function togglePreparedSpells(){
     });
 }
 
-function buildFormatedSpellText(spell: any){
+function buildFormatedSpellText(spell: Spell){
     var spellType = spell.school;
-    if (spell.level == "0"){
+    if (spell.level == 0){
         spellType += " Cantrip"
     }
     else{
         var levelFragment;
 
-        if (spell.level == "1")
+        if (spell.level == 1)
             levelFragment = "1st"
-        else if (spell.level == "2")
+        else if (spell.level == 2)
             levelFragment = "2nd"
-        else if (spell.level == "3")
+        else if (spell.level == 3)
             levelFragment = "2rd"
         else
-            levelFragment = spell.level + "th"
+            levelFragment = spell.level.toString() + "th"
 
         spellType = levelFragment + "-level " + spellType
     }
@@ -272,11 +273,11 @@ function buildFormatedSpellText(spell: any){
         spellType += " (ritual)"
     }
 
-    var fullDescription = spell.higher_levels ? (spell.description + "\n\nAt Higher Levels: " + spell.higher_levels) : spell.description
+    var fullDescription = spell.higherLevelDescription ? (spell.description + "\n\nAt Higher Levels: " + spell.higherLevelDescription) : spell.description
 
     var text = 
     `${spellType}\n`
-    +`Casting Time: ${spell.casting_time}\n`
+    +`Casting Time: ${spell.castingTime}\n`
     +`Range: ${spell.range}\n`
     +`Components: ${buildRawComponentString(spell.components)}\n`
     +`Duration: ${spell.duration}\n\n`
@@ -286,7 +287,7 @@ function buildFormatedSpellText(spell: any){
     return text;
 }
 
-function buildRawComponentString(spellComponents: any){
+function buildRawComponentString(spellComponents: SpellComponentProperties){
     var raw = "";
     if (spellComponents.verbal){
         raw += "V"
@@ -321,16 +322,18 @@ function populateFilterDropDown(filterElId: string, property: string){
     var options: any[] = [];
 
     spellJSON.forEach(spell => {
-        if(Array.isArray(spell[property])){
-            spell[property].forEach((x: string) => {
+        if(Array.isArray(spell[property as keyof Spell])){
+            let arr = spell[property as keyof Spell] as any[]
+            arr.forEach((x: string) => {
                 if (options.indexOf(x.toUpperCase()) == -1){
                     options.push(x.toUpperCase());
                 }
             });
         }
         else{
-            if (options.indexOf(spell[property].toUpperCase()) == -1){
-                options.push(spell[property].toUpperCase());
+            let str = spell[property as keyof Spell]
+            if (options.indexOf(str) == -1){
+                options.push(str);
             }
         }
     });
