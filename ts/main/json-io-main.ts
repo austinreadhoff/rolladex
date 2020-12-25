@@ -31,7 +31,7 @@ function updateSavePath(path: string){
         .then((recentsArray: Array<any>) => { updateRecentsMenu(recentsArray) });
 }
 
-function newCharacter(window: any){
+function newCharacter(window: Electron.BrowserWindow){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Clear Without Saving", "Save Character", "Cancel"],
@@ -59,7 +59,7 @@ function newCharacter(window: any){
     window.reload();
 }
 
-function saveToJSON(window: any){
+function saveToJSON(window: Electron.BrowserWindow){
     if (savePath) {
         window.webContents.send('request-save-json');
     }
@@ -68,7 +68,7 @@ function saveToJSON(window: any){
     }
 }
 
-function saveAsToJSON(window: any){
+function saveAsToJSON(window: Electron.BrowserWindow){
     var saveDialogOptions: SaveDialogOptions = {
         title: "Save Character",
         defaultPath: "Untitled.json",
@@ -89,7 +89,7 @@ function saveAsToJSON(window: any){
     });
 }
 
-function loadFromJSON(window: any, path: string){
+function loadFromJSON(window: Electron.BrowserWindow, path: string){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Load Without Saving", "Save Character", "Cancel"],
@@ -133,7 +133,7 @@ function loadFromJSON(window: any, path: string){
     }
 }
 
-function executeLoad(window: any, path: string){
+function executeLoad(window: Electron.BrowserWindow, path: string){
     fs.readFile(path, 'utf-8', (error: any, data: any) => {
         updateSavePath(path);
         var json = JSON.parse(data);
@@ -161,7 +161,7 @@ function updateRecentsMenu(recentsArray: Array<any>){
             recentMenu.submenu.append(new MenuItem(
                 { 
                     label: character.path,
-                    click(item: any, focusedWindow: any){
+                    click(item: any, focusedWindow: Electron.BrowserWindow){
                         loadFromJSON(focusedWindow, character.path);
                     } 
                 })

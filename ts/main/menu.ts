@@ -8,7 +8,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'New Character',
                 accelerator: 'CmdOrCtrl+N',
-                click(item: any, focusedWindow: any) {
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     io.newCharacter(focusedWindow);
                 }
             },
@@ -18,7 +18,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Open Character',
                 accelerator: 'CmdOrCtrl+O',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.loadFromJSON(focusedWindow, null);
                 }
             },
@@ -33,14 +33,14 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.saveToJSON(focusedWindow);
                 }
             },
             {
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.saveAsToJSON(focusedWindow);
                 }
             },
@@ -50,7 +50,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Export To PDF',
                 accelerator: 'CmdOrCtrl+P',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.printToPDF(focusedWindow);
                 }
             }
@@ -94,28 +94,28 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Stats',
                 accelerator: 'CmdOrCtrl+1',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("stats");
                 }
             },
             {
                 label: 'Bio',
                 accelerator: 'CmdOrCtrl+2',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("bio");
                 }
             },
             {
                 label: 'Spellbook',
                 accelerator: 'CmdOrCtrl+3',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("spellbook");
                 }
             },
             {
                 label: 'Spell Catalog',
                 accelerator: 'CmdOrCtrl+4',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("spellcatalog");
                 }
             },
@@ -125,7 +125,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Open Custom Spells',
                 accelerator: 'CmdOrCtrl+Shift+4',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.openCustomSpells();
                 }
             },
@@ -165,7 +165,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
         submenu: [
             {
                 label: 'Documentation',
-                click(item: any, focusedWindow: any){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.openDocumentation();
                 }
             },
@@ -175,7 +175,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Toggle Developer Tools',
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                click(item: any, focusedWindow: any) {
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     if (focusedWindow) focusedWindow.webContents.toggleDevTools()
                 }
             }

@@ -6,7 +6,7 @@ export function switchTab(tabId: string){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
 }
 
-function printToPDF(window: any){
+function printToPDF(window: Electron.BrowserWindow){
     var printDialogOptions: SaveDialogOptions = {
         title: "Export Character Character Sheet",
         defaultPath: "Untitled.pdf",
