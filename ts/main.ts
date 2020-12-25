@@ -3,7 +3,7 @@ const fs = require('fs');
 const io = require('./json-io-main')
 const menu = require('./menu')
 const saveTracker = require('./save-tracker-main')
-const spells = require('./spells-main')	//not used directly, but gotta load it so it can receive ipc messages
+const spells = require('./spells-main')
 
 function createWindow() {
 	const win = new BrowserWindow({
