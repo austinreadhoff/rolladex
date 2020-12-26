@@ -141,13 +141,7 @@ function calculateAbilityMod(abilityScore: number){
 
 //#endregion
 
-//#region Spellbook Actions
-
-
-
-//#endregion
-
-//#region Misc Utilities
+//#region Menu Actions
 
 function switchTab(tabId: string){
     document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
@@ -158,6 +152,10 @@ function switchTab(tabId: string){
 
     document.body.scrollTop = 0;
 }
+
+//#endregion
+
+//#region Row builders
 
 export function buildAttackRow(){
     var attackRowHTML = 
