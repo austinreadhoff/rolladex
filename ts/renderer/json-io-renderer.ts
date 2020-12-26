@@ -1,7 +1,12 @@
+import { ipcRenderer } from "electron";
+import { buildAttackRow, buildCounterBlock, updateAllAbilityMods } from "./rolladex";
+import { applyAllSpellTips, buildSpellRow, togglePreparedSpells } from "./spells-renderer";
+import { switchTab } from "../main/menu-actions"
+
 var jsonSchemaVersion = 0.1;
 
-ipcRenderer.on('request-save-json', (event, arg) => {
-    var json = {}
+ipcRenderer.on('request-save-json', (event: any, arg: any) => {
+    var json: any = {}
     json["version"] = jsonSchemaVersion;
 
     document.querySelectorAll("input").forEach(el => {
@@ -27,12 +32,15 @@ ipcRenderer.on('request-save-json', (event, arg) => {
     });
 
     json["attack-stats"] = [];
-    document.getElementById("attack-stats").querySelectorAll(".attack-stat-row").forEach(row => {
-        if (row.querySelector(".attack-stat-name").value){
-            var attackJSON = {};
-            attackJSON["name"] = row.querySelector(".attack-stat-name").value;
-            attackJSON["bonus"] = row.querySelector(".attack-stat-bonus").value;
-            attackJSON["dmg"] = row.querySelector(".attack-stat-dmg").value;
+    document.getElementById("attack-stats")?.querySelectorAll(".attack-stat-row").forEach(row => {
+        var nameEl: HTMLInputElement = row.querySelector(".attack-stat-name");
+        var bonusEl: HTMLInputElement = row.querySelector(".attack-stat-bonus");
+        var dmgEl: HTMLInputElement = row.querySelector(".attack-stat-dmg");
+        if (nameEl.value){
+            var attackJSON: any = {};
+            attackJSON["name"] = nameEl.value;
+            attackJSON["bonus"] = bonusEl.value;
+            attackJSON["dmg"] = dmgEl.value;
             
             json["attack-stats"].push(attackJSON);
         }
@@ -40,20 +48,23 @@ ipcRenderer.on('request-save-json', (event, arg) => {
 
     json["misc-counters"] = [];
     document.getElementById("misc-counters").querySelectorAll(".misc-counter-block").forEach(row => {
-        if (row.querySelector(".counter-name").value){
-            var attackJSON = {};
-            attackJSON["name"] = row.querySelector(".counter-name").value;
-            attackJSON["current"] = row.querySelector(".counter-current").value;
-            attackJSON["max"] = row.querySelector(".counter-max").value;
+        var nameEl: HTMLInputElement = row.querySelector(".counter-name")
+        var currentEl: HTMLInputElement = row.querySelector(".counter-current")
+        var maxEl: HTMLInputElement = row.querySelector(".counter-max")
+        if (nameEl.value){
+            var attackJSON: any = {};
+            attackJSON["name"] = nameEl.value;
+            attackJSON["current"] = currentEl.value;
+            attackJSON["max"] = maxEl.value;
             
             json["misc-counters"].push(attackJSON);
         }
     });
 
     json["spells"] = {};
-    document.querySelectorAll(".spell-block").forEach(block => {
+    document.querySelectorAll(".spell-block").forEach((block: any) => {
         var spellLevel = block.dataset.level;
-        var spellLevelJSON = {};
+        var spellLevelJSON: any = {};
 
         if(spellLevel > 0){
             spellLevelJSON["spell-slots-remaining"] = block.querySelector(".spell-slots-remaining").value;
@@ -61,13 +72,15 @@ ipcRenderer.on('request-save-json', (event, arg) => {
         }
 
         spellLevelJSON["spells"] = [];
-        block.querySelectorAll(".spell-row").forEach(row => {
-            if(row.querySelector(".spell-name").value){
-                var spellJSON = {};
+        block.querySelectorAll(".spell-row").forEach((row: HTMLSelectElement) => {
+            var nameEl: HTMLInputElement = row.querySelector(".spell-name");
+            var preparedEl: HTMLInputElement = row.querySelector(".spell-prepared");
+            if(nameEl.value){
+                var spellJSON: any = {};
     
-                spellJSON["name"] = row.querySelector(".spell-name").value;
+                spellJSON["name"] = nameEl.value;
                 if (spellLevel > 0){
-                    spellJSON["prepared"] = row.querySelector(".spell-prepared").checked;
+                    spellJSON["prepared"] = preparedEl.checked;
                 }
     
                 spellLevelJSON["spells"].push(spellJSON);
@@ -81,7 +94,7 @@ ipcRenderer.on('request-save-json', (event, arg) => {
     ipcRenderer.send('send-save-json', json);
 });
 
-ipcRenderer.on('send-loaded-json', (event, json) => {
+ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
     switchTab("stats");
 
     document.title = json["character-name"] + " - RollaDex";
@@ -111,33 +124,41 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
             document.getElementById("attack-stats").appendChild(attackRow);
         }
     }
-    json["attack-stats"].forEach(attack => {
+    json["attack-stats"].forEach((attack: any) => {
         var attackRow = buildAttackRow();
-        attackRow.querySelector(".attack-stat-name").value = attack["name"];
-        attackRow.querySelector(".attack-stat-bonus").value = attack["bonus"];
-        attackRow.querySelector(".attack-stat-dmg").value = attack["dmg"];
+        let nameEl: HTMLInputElement = attackRow.querySelector(".attack-stat-name")
+        let bonusEl: HTMLInputElement = attackRow.querySelector(".attack-stat-bonus")
+        let dmgEl: HTMLInputElement = attackRow.querySelector(".attack-stat-dmg")
+        nameEl.value = attack["name"];
+        bonusEl.value = attack["bonus"];
+        dmgEl.value = attack["dmg"];
 
         document.getElementById("attack-stats").appendChild(attackRow);
     });
 
     document.getElementById("misc-counters").innerHTML = "";
-    json["misc-counters"].forEach(counter => {
+    json["misc-counters"].forEach((counter: any) => {
         var counterBlock = buildCounterBlock();
-        counterBlock.querySelector(".counter-name").value = counter["name"];
-        counterBlock.querySelector(".counter-current").value = counter["current"];
-        counterBlock.querySelector(".counter-max").value = counter["max"];
+        let nameEl: HTMLInputElement = counterBlock.querySelector(".counter-name");
+        let currentEl: HTMLInputElement = counterBlock.querySelector(".counter-current");
+        let maxEl: HTMLInputElement = counterBlock.querySelector(".counter-max");
+        nameEl.value = counter["name"];
+        currentEl.value = counter["current"];
+        maxEl.value = counter["max"];
 
         document.getElementById("misc-counters").appendChild(counterBlock);
     });
 
     for (var spellLevelName in json["spells"]){
-        var spellLevel = spellLevelName.substr(6);  //level-
+        var spellLevel: number = +spellLevelName.substr(6);  //level-
         var spellLevelJSON = json["spells"][spellLevelName];
-        var spellBlock = document.querySelector("[data-level='" + spellLevel + "']");
+        var spellBlock: HTMLElement = document.querySelector("[data-level='" + spellLevel + "']");
 
         if (spellLevel > 0){
-            spellBlock.querySelector(".spell-slots-remaining").value = spellLevelJSON["spell-slots-remaining"];
-            spellBlock.querySelector(".spell-slots-total").value = spellLevelJSON["spell-slots-total"];
+            var remainingEl: HTMLInputElement = spellBlock.querySelector(".spell-slots-remaining")
+            var totalEl: HTMLInputElement = spellBlock.querySelector(".spell-slots-total");
+            remainingEl.value = spellLevelJSON["spell-slots-remaining"];
+            totalEl.value = spellLevelJSON["spell-slots-total"];
         }
 
         spellBlock.querySelector("#spells").innerHTML = "";
@@ -145,11 +166,13 @@ ipcRenderer.on('send-loaded-json', (event, json) => {
             spellBlock.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
         }
 
-        spellLevelJSON["spells"].forEach(spell => {
+        spellLevelJSON["spells"].forEach((spell: any) => {
             var spellRow = buildSpellRow(spellLevel);
-            spellRow.querySelector(".spell-name").value = spell["name"];
+            let nameEl: HTMLInputElement = spellRow.querySelector(".spell-name")
+            nameEl.value = spell["name"];
             if (spellLevel > 0){
-                spellRow.querySelector(".spell-prepared").checked = spell["prepared"];
+                let preparedEl: HTMLInputElement = spellRow.querySelector(".spell-prepared")
+                preparedEl.checked = spell["prepared"];
             }
             spellBlock.querySelector("#spells").appendChild(spellRow);
         });

@@ -1,15 +1,13 @@
-const { BrowserWindow, dialog, shell } = require('electron');
-const fs = require('fs');
-const spells = require('./spells');
+import { PrintToPDFOptions, SaveDialogOptions } from "electron";
 
 var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
 
-function switchTab(tabId){
+export function switchTab(tabId: string){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
 }
 
-function printToPDF(window){
-    var printDialogOptions = {
+function printToPDF(window: Electron.BrowserWindow){
+    var printDialogOptions: SaveDialogOptions = {
         title: "Export Character Character Sheet",
         defaultPath: "Untitled.pdf",
         filters: [
@@ -18,12 +16,12 @@ function printToPDF(window){
                 extensions: ['pdf']
             }
         ],
-        properties: ["createDirectory", "promptToCreate"]
+        properties: ["createDirectory"]
     }
 
-    dialog.showSaveDialog(printDialogOptions).then(result => { 
-        window.webContents.printToPDF({}).then(data => {
-            fs.writeFile(result.filePath, data, (err) => {
+    dialog.showSaveDialog(printDialogOptions).then((result: any) => { 
+        window.webContents.printToPDF({}).then((data: any) => {
+            fs.writeFile(result.filePath, data, (err: any) => {
                 //done
             });
         });
@@ -37,5 +35,3 @@ function openCustomSpells(){
 function openDocumentation(){
     shell.openPath(documentationFilePath);
 }
-
-module.exports = {switchTab, printToPDF, openCustomSpells, openDocumentation};

@@ -1,24 +1,22 @@
-const { dialog, ipcMain, Menu, MenuItem } = require('electron');
-const fs = require('fs');
+import { OpenDialogOptions, SaveDialogOptions } from "electron";
 
-const saveTracker = require('./save-tracker')
 const recents = require('./recents')
 
-var savePath = null;
+var savePath: string = "";
 
-ipcMain.on('send-save-json', (event, json) => {
-    fs.writeFile(savePath, JSON.stringify(json), (err) => {
+ipcMain.on('send-save-json', (event: any, json: any) => {
+    fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
         saveTracker.resetSafeSave();
     });
 });
 
-ipcMain.on('check-recent-load', (event, arg) => {
+ipcMain.on('check-recent-load', (event: any, arg: any) => {
     //property juggling to match focusedWindowProperties usually expected by executeLoad
     var win = event;
     win.webContents = win.sender;
 
     recents.getRecentsJSON()
-        .then((json) => {
+        .then((json: any) => {
             if (json.lastOpen){
                 executeLoad(win, json.lastOpen);
             }
@@ -27,13 +25,13 @@ ipcMain.on('check-recent-load', (event, arg) => {
         });
 });
 
-function updateSavePath(path){
+function updateSavePath(path: string){
     savePath = path;
     recents.updateRecents(path)
-        .then(recentsArray => { updateRecentsMenu(recentsArray) });
+        .then((recentsArray: Array<any>) => { updateRecentsMenu(recentsArray) });
 }
 
-function newCharacter(window){
+function newCharacter(window: Electron.BrowserWindow){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Clear Without Saving", "Save Character", "Cancel"],
@@ -56,12 +54,12 @@ function newCharacter(window){
         }
     }
 
-    updateSavePath(null);
+    updateSavePath("");
     saveTracker.resetSafeSave();
     window.reload();
 }
 
-function saveToJSON(window){
+function saveToJSON(window: Electron.BrowserWindow){
     if (savePath) {
         window.webContents.send('request-save-json');
     }
@@ -70,8 +68,8 @@ function saveToJSON(window){
     }
 }
 
-function saveAsToJSON(window){
-    var saveDialogOptions = {
+function saveAsToJSON(window: Electron.BrowserWindow){
+    var saveDialogOptions: SaveDialogOptions = {
         title: "Save Character",
         defaultPath: "Untitled.json",
         filters: [
@@ -80,10 +78,10 @@ function saveAsToJSON(window){
                 extensions: ['json']
             }
         ],
-        properties: ["createDirectory", "promptToCreate"]
+        properties: ["createDirectory"]
     }
 
-    dialog.showSaveDialog(saveDialogOptions).then(result => {
+    dialog.showSaveDialog(saveDialogOptions).then((result: any) => {
         if (!result.canceled){
             updateSavePath(result.filePath);
             window.webContents.send('request-save-json');
@@ -91,7 +89,7 @@ function saveAsToJSON(window){
     });
 }
 
-function loadFromJSON(window, path){
+function loadFromJSON(window: Electron.BrowserWindow, path: string){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Load Without Saving", "Save Character", "Cancel"],
@@ -118,7 +116,7 @@ function loadFromJSON(window, path){
         executeLoad(window, path);
     }
     else{
-        var openDialogOptions = { 
+        var openDialogOptions: OpenDialogOptions = { 
             title: "Load Character", 
             filters: [
                 {
@@ -129,14 +127,14 @@ function loadFromJSON(window, path){
             properties: ["openFile"] 
         }
     
-        dialog.showOpenDialog(openDialogOptions).then(result => {
+        dialog.showOpenDialog(openDialogOptions).then((result: any) => {
             executeLoad(window, result.filePaths[0]);
         });
     }
 }
 
-function executeLoad(window, path){
-    fs.readFile(path, 'utf-8', (error, data) => {
+function executeLoad(window: Electron.BrowserWindow, path: string){
+    fs.readFile(path, 'utf-8', (error: any, data: any) => {
         updateSavePath(path);
         var json = JSON.parse(data);
         window.webContents.send('send-loaded-json', json);
@@ -146,7 +144,7 @@ function executeLoad(window, path){
 
 //this is here instead of menu.js or recents.js to avoid dependancy loop fuckery
 //I'm sorry
-function updateRecentsMenu(recentsArray){
+function updateRecentsMenu(recentsArray: Array<any>){
     var menu = Menu.getApplicationMenu();
 
     var recentMenu = menu.getMenuItemById("recents");
@@ -156,14 +154,14 @@ function updateRecentsMenu(recentsArray){
     }
     else{
         //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
-        recentMenu.submenu.clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
+        (recentMenu.submenu as any).clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
         recentMenu.submenu.items = [];  //empties the js array to solve the above issue
 
         recentsArray.forEach(character => {
             recentMenu.submenu.append(new MenuItem(
                 { 
                     label: character.path,
-                    click(item, focusedWindow){
+                    click(item: any, focusedWindow: Electron.BrowserWindow){
                         loadFromJSON(focusedWindow, character.path);
                     } 
                 })

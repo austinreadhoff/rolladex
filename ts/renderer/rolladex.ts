@@ -1,3 +1,7 @@
+import { ipcRenderer } from "electron";
+import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
+import { applyAllSpellTips, buildSpellRow, loadSpellData, togglePreparedSpells } from "./spells-renderer";
+
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
 });
@@ -15,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function(){
         });
 
         //listeners for calculating ability score mods
-        document.querySelectorAll('.ability-input').forEach(input => {
+        (document.querySelectorAll('.ability-input') as NodeListOf<HTMLInputElement>).forEach(input => {
             input.addEventListener('input', event => {
-                updateAbilityMods(input.id, input.value);
+                updateAbilityMods(input.id, +input.value);
             });
         });
         document.getElementById("proficiency").addEventListener('input', event =>{
@@ -40,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
         document.getElementById("btn-remove-attack").addEventListener('click', event =>{
-            event.target.parentElement.remove();
+            (event.target as HTMLElement).parentElement.remove();
         });
         document.getElementById("btn-add-attack").addEventListener('click', event =>{
             var attackRow = buildAttackRow();
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(){
         
         //setup and listeners for spells
         document.querySelectorAll(".spell-block").forEach(block => {
-            var spellLevel = block.dataset.level;
+            var spellLevel = +block.getAttribute("data-level");
     
             block.querySelector("#spells").innerHTML = "";
             block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
@@ -68,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function(){
         applyAllSpellTips();
 
         document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-            document.querySelectorAll(".spell-prepared").forEach(el => {
+            (document.querySelectorAll(".spell-prepared") as NodeListOf<HTMLInputElement>).forEach(el => {
                 el.checked = false;
                 togglePreparedSpells();
             });
@@ -76,8 +80,10 @@ document.addEventListener("DOMContentLoaded", function(){
     
         document.getElementById("btn-recover-slots").addEventListener('click', event => {
             document.querySelectorAll(".spell-block").forEach(block => {
-                if (block.dataset.level > 0){
-                    block.querySelector(".spell-slots-remaining").value = block.querySelector(".spell-slots-total").value;
+                if (+block.getAttribute("data-level") > 0){
+                    let remainingEl: HTMLInputElement = block.querySelector(".spell-slots-remaining")
+                    let totalEl: HTMLInputElement = block.querySelector(".spell-slots-total")
+                    remainingEl.value = totalEl.value;
                 }
             });
         });
@@ -90,16 +96,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
 //#region Ability Score Logic
 
-function updateAbilityMods(ability, score){
+function updateAbilityMods(ability: string, score: number){
     var modStr = getAbililityModString(score);
     var proficientModStr = getAbililityModString(score, true);
 
-    var joat = document.getElementById("joat").checked;
+    var joat = (document.getElementById("joat") as HTMLInputElement).checked;
     var joatModStr = getAbililityModString(score, false, true)
 
     document.getElementById(ability + "-mod").innerHTML = modStr;
     document.querySelectorAll('.' + ability + '-mod-prof').forEach(span =>{
-        if(span.previousElementSibling.checked)
+        if((span.previousElementSibling as HTMLInputElement).checked)
             span.innerHTML = proficientModStr;
         else if(span.classList.contains("mod-saving"))
             span.innerHTML = modStr;
@@ -109,54 +115,35 @@ function updateAbilityMods(ability, score){
             span.innerHTML = modStr;
     });
     if (ability == "dex"){
-        document.getElementById("initiative").value = joat ? joatModStr : modStr;
+        (document.getElementById("initiative") as HTMLInputElement).value = joat ? joatModStr : modStr;
     }
 }
 
-function updateAllAbilityMods(){
+export function updateAllAbilityMods(){
     var abilities = ["str","dex","con","int","wis","char"]
     abilities.forEach(ability =>{
-        updateAbilityMods(ability, document.getElementById(ability).value);
+        updateAbilityMods(ability, +(document.getElementById(ability) as HTMLInputElement).value);
     });
 }
 
-function getAbililityModString(abilityScore, applyProficiency = false, applyJoat = false){
-    var proficiencyBonus = document.getElementById("proficiency").value.replace(/\D/g,''); //regex for '+' characters
+function getAbililityModString(abilityScore: number, applyProficiency = false, applyJoat = false){
+    var proficiencyBonus = (document.getElementById("proficiency") as HTMLInputElement).value.replace(/\D/g,''); //regex for '+' characters
 
     var mod = calculateAbilityMod(abilityScore) 
         + (applyProficiency ? +proficiencyBonus : 0)
         + (applyJoat ? Math.floor(+proficiencyBonus/2) : 0);
-    return mod < 0 ? mod : ("+" + mod);
+    return mod < 0 ? mod.toString() : ("+" + mod);
 }
 
-function calculateAbilityMod(abilityScore){
+function calculateAbilityMod(abilityScore: number){
     return Math.floor(abilityScore / 2) - 5;
 }
 
 //#endregion
 
-//#region Spellbook Actions
+//#region Menu Actions
 
-function togglePrepared(el){
-    if (el.checked){
-        el.previousElementSibling.firstElementChild.classList.add("prepared");
-    }
-    else{
-        el.previousElementSibling.firstElementChild.classList.remove("prepared");
-    }
-}
-
-function togglePreparedSpells(){
-    document.querySelectorAll(".spell-prepared").forEach(el => {
-        togglePrepared(el);
-    });
-}
-
-//#endregion
-
-//#region Misc Utilities
-
-function switchTab(tabId){
+function switchTab(tabId: string){
     document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
     document.getElementById(tabId + "-tab").classList.add("active");
     
@@ -166,7 +153,11 @@ function switchTab(tabId){
     document.body.scrollTop = 0;
 }
 
-function buildAttackRow(){
+//#endregion
+
+//#region Row builders
+
+export function buildAttackRow(){
     var attackRowHTML = 
         `<button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
          <input class="form-control col-4 attack-stat attack-stat-name">
@@ -177,7 +168,7 @@ function buildAttackRow(){
     newRow.className = "attack-stat-row row";
     newRow.innerHTML = attackRowHTML;
     newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
-        event.target.parentElement.remove();
+        (event.target as HTMLElement).parentElement.remove();
         triggerUnsafeSave();
     });
     newRow.querySelectorAll('input').forEach(input => {
@@ -189,7 +180,7 @@ function buildAttackRow(){
     return newRow;
 }
 
-function buildCounterBlock(){
+export function buildCounterBlock(){
     var counterHTML = 
         `<button type="button" id="btn-remove-counter" class="btn btn-danger">-</button>
         <input class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
@@ -203,7 +194,7 @@ function buildCounterBlock(){
     newCounter.className = "misc-counter-block";
     newCounter.innerHTML = counterHTML;
     newCounter.querySelector("#btn-remove-counter").addEventListener('click', event =>{
-        event.target.parentElement.remove();
+        (event.target as HTMLElement).parentElement.remove();
         triggerUnsafeSave();
     });
     newCounter.querySelectorAll('input').forEach(input => {
@@ -213,54 +204,6 @@ function buildCounterBlock(){
     });
 
     return newCounter;
-}
-
-function buildSpellRow(level){
-    var spellHTML = 
-        `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
-         <div class="autocomplete col"><input class="form-control spell-input spell-name"></div>`;
-    if(level > 0){
-        spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
-    }
-
-    var newRow = document.createElement("div");
-    newRow.className = "spell-row row";
-    newRow.innerHTML = spellHTML;
-    newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
-        if (event.target.parentElement.querySelector(".spell-name").value == selectedCatalogSpell.name){
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-        event.target.parentElement.remove();
-        triggerUnsafeSave();
-    });
-    if(level > 0){
-        newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
-            togglePrepared(event.target);
-            triggerUnsafeSave();
-        });
-    }
-
-    newRow.querySelector(".spell-name").addEventListener('change', event =>{
-        applySpellTip(event.target);
-    });
-    newRow.querySelector(".spell-name").addEventListener('input', event => {
-        if (event.target.value.toUpperCase() == selectedCatalogSpell.name.toUpperCase()){
-            document.getElementById("btn-learn-spell").classList.add("disabled");
-        }
-        else{
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-    });
-
-    newRow.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', event => {
-            triggerUnsafeSave();
-        });
-    });
-
-    spellAutoComplete(newRow.querySelectorAll('.spell-name'), level);
-
-    return newRow;
 }
 
 //#endregion

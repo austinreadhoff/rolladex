@@ -2,10 +2,11 @@
   "name": "rolladex",
   "version": "1.0.0",
   "description": "Dnd 5e Character Sheet",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "tsc && electron .",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/austinread/rolladex#readme",
   "devDependencies": {
-    "electron": "^9.2.0"
+    "electron": "^9.2.0",
+    "typescript": "^4.1.3"
   }
 }

@@ -1,18 +1,14 @@
-const { Menu, MenuItem } = require('electron')
-const electron = require('electron')
-const app = electron.app
-
 const menuActions = require('./menu-actions')
-const io = require('./json-io')
+import {} from 'electron'
 
-const template = [
+const template: Electron.MenuItemConstructorOptions[] = [
     {
         label: 'File',
         submenu: [
             {
                 label: 'New Character',
                 accelerator: 'CmdOrCtrl+N',
-                click(item, focusedWindow) {
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     io.newCharacter(focusedWindow);
                 }
             },
@@ -22,7 +18,7 @@ const template = [
             {
                 label: 'Open Character',
                 accelerator: 'CmdOrCtrl+O',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.loadFromJSON(focusedWindow, null);
                 }
             },
@@ -37,14 +33,14 @@ const template = [
             {
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.saveToJSON(focusedWindow);
                 }
             },
             {
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     io.saveAsToJSON(focusedWindow);
                 }
             },
@@ -54,7 +50,7 @@ const template = [
             {
                 label: 'Export To PDF',
                 accelerator: 'CmdOrCtrl+P',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.printToPDF(focusedWindow);
                 }
             }
@@ -82,13 +78,13 @@ const template = [
                 role: 'paste'
             },
             {
-                role: 'pasteandmatchstyle'
+                role: 'pasteAndMatchStyle'
             },
             {
                 role: 'delete'
             },
             {
-                role: 'selectall'
+                role: 'selectAll'
             }
         ]
     },
@@ -98,28 +94,28 @@ const template = [
             {
                 label: 'Stats',
                 accelerator: 'CmdOrCtrl+1',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("stats");
                 }
             },
             {
                 label: 'Bio',
                 accelerator: 'CmdOrCtrl+2',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("bio");
                 }
             },
             {
                 label: 'Spellbook',
                 accelerator: 'CmdOrCtrl+3',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("spellbook");
                 }
             },
             {
                 label: 'Spell Catalog',
                 accelerator: 'CmdOrCtrl+4',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.switchTab("spellcatalog");
                 }
             },
@@ -129,7 +125,7 @@ const template = [
             {
                 label: 'Open Custom Spells',
                 accelerator: 'CmdOrCtrl+Shift+4',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.openCustomSpells();
                 }
             },
@@ -137,13 +133,13 @@ const template = [
                 type: 'separator'
             },
             {
-                role: 'resetzoom'
+                role: 'resetZoom'
             },
             {
-                role: 'zoomin'
+                role: 'zoomIn'
             },
             {
-                role: 'zoomout'
+                role: 'zoomOut'
             },
             {
                 type: 'separator'
@@ -169,7 +165,7 @@ const template = [
         submenu: [
             {
                 label: 'Documentation',
-                click(item, focusedWindow){
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     menuActions.openDocumentation();
                 }
             },
@@ -179,7 +175,7 @@ const template = [
             {
                 label: 'Toggle Developer Tools',
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                click(item, focusedWindow) {
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     if (focusedWindow) focusedWindow.webContents.toggleDevTools()
                 }
             }
@@ -209,7 +205,7 @@ if (process.platform === 'darwin') {
                 role: 'hide'
             },
             {
-                role: 'hideothers'
+                role: 'hideOthers'
             },
             {
                 role: 'unhide'
@@ -222,23 +218,6 @@ if (process.platform === 'darwin') {
             }
         ]
     })
-    // Edit menu.
-    template[1].submenu.push(
-        {
-            type: 'separator'
-        },
-        {
-            label: 'Speech',
-            submenu: [
-                {
-                    role: 'startspeaking'
-                },
-                {
-                    role: 'stopspeaking'
-                }
-            ]
-        }
-    )
     // Window menu.
     template[3].submenu = [
         {

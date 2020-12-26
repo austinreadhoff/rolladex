@@ -1,4 +1,6 @@
-function setUpSaveTracking(){
+import { ipcRenderer } from "electron";
+
+export function setUpSaveTracking(){
     document.querySelectorAll('input').forEach(input => {
         if (input.classList.contains("attack-stat") 
         || input.classList.contains("misc-counter")
@@ -37,7 +39,8 @@ function setUpSaveTracking(){
     });
 }
 
-function triggerUnsafeSave(){
-    document.title = "*" + document.getElementById("character-name").value + " - RollaDex";
+export function triggerUnsafeSave(){
+    let nameEl: HTMLInputElement = document.getElementById("character-name") as HTMLInputElement;
+    document.title = "*" + nameEl.value + " - RollaDex";
     ipcRenderer.send('update-save-safety', false);
 }
