@@ -82,8 +82,6 @@ export function loadSpellData(){
                     bttnEl.classList.add("disabled");
                 }
             });
-
-            resolve();
         });
     });
 }
