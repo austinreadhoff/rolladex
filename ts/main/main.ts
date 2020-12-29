@@ -1,5 +1,4 @@
 import { app, dialog, BrowserWindow, nativeImage } from 'electron';
-export const electron = require('electron');
 const io = require('./json-io-main')
 const menu = require('./menu')
 const saveTracker = require('./save-tracker-main')
