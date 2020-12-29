@@ -1,5 +1,6 @@
-import { app } from 'electron'
-const fs = require('fs')
+import { app, Menu, MenuItem } from 'electron';
+import { loadFromJSON } from './json-io-main';
+const fs = require('fs');
 
 var recentsFilePath = app.getPath('userData') + "/recents.json";
 
@@ -56,4 +57,30 @@ export function updateRecents(path: string){
             });
         });
     });
+}
+
+export function updateRecentsMenu(recentsArray: Array<any>){
+    var menu = Menu.getApplicationMenu();
+
+    var recentMenu = menu.getMenuItemById("recents");
+
+    if (recentsArray.length == 0){
+        recentMenu.submenu.append(new MenuItem({ label: 'No Recent Characters', enabled: false }));
+    }
+    else{
+        //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
+        (recentMenu.submenu as any).clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
+        recentMenu.submenu.items = [];  //empties the js array to solve the above issue
+
+        recentsArray.forEach(character => {
+            recentMenu.submenu.append(new MenuItem(
+                { 
+                    label: character.path,
+                    click(item: any, focusedWindow: Electron.BrowserWindow){
+                        loadFromJSON(focusedWindow, character.path);
+                    } 
+                })
+            );
+        });
+    }
 }

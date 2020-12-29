@@ -1,7 +1,7 @@
 import { app, Menu } from 'electron'
 import { RestType } from '../util/rest-type';
 import { takeRest, printToPDF, openCustomSpells, openDocumentation, switchTab } from './menu-actions'
-const io = require('./json-io-main')
+import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io-main'
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
@@ -11,7 +11,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'New Character',
                 accelerator: 'CmdOrCtrl+N',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
-                    io.newCharacter(focusedWindow);
+                    newCharacter(focusedWindow);
                 }
             },
             {
@@ -21,7 +21,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Open Character',
                 accelerator: 'CmdOrCtrl+O',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    io.loadFromJSON(focusedWindow, null);
+                    loadFromJSON(focusedWindow, null);
                 }
             },
             {
@@ -36,14 +36,14 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    io.saveToJSON(focusedWindow);
+                    saveToJSON(focusedWindow);
                 }
             },
             {
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    io.saveAsToJSON(focusedWindow);
+                    saveAsToJSON(focusedWindow);
                 }
             },
             {

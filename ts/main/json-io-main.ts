@@ -1,13 +1,13 @@
-import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog, Menu, MenuItem } from "electron";
+import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog } from "electron";
+import { resetSafeSave, SafeToSave } from './save-tracker-main';
+import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
 const fs = require('fs');
-const saveTracker = require('./save-tracker-main');
-const recents = require('./recents')
 
 var savePath: string = "";
 
 ipcMain.on('send-save-json', (event: any, json: any) => {
     fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
-        saveTracker.resetSafeSave();
+        resetSafeSave();
     });
 });
 
@@ -16,7 +16,7 @@ ipcMain.on('check-recent-load', (event: any, arg: any) => {
     var win = event;
     win.webContents = win.sender;
 
-    recents.getRecentsJSON()
+    getRecentsJSON()
         .then((json: any) => {
             if (json.lastOpen){
                 executeLoad(win, json.lastOpen);
@@ -28,12 +28,12 @@ ipcMain.on('check-recent-load', (event: any, arg: any) => {
 
 function updateSavePath(path: string){
     savePath = path;
-    recents.updateRecents(path)
-        .then((recentsArray: Array<any>) => { updateRecentsMenu(recentsArray) });
+    updateRecents(path)
+        .then((recentsArray: any) => { updateRecentsMenu(recentsArray) });
 }
 
 export function newCharacter(window: Electron.BrowserWindow){
-    if (!saveTracker.SafeToSave()){
+    if (!SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Clear Without Saving", "Save Character", "Cancel"],
             defaultId: 0,
@@ -56,7 +56,7 @@ export function newCharacter(window: Electron.BrowserWindow){
     }
 
     updateSavePath("");
-    saveTracker.resetSafeSave();
+    resetSafeSave();
     window.reload();
 }
 
@@ -91,7 +91,7 @@ export function saveAsToJSON(window: Electron.BrowserWindow){
 }
 
 export function loadFromJSON(window: Electron.BrowserWindow, path: string){
-    if (!saveTracker.SafeToSave()){
+    if (!SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Load Without Saving", "Save Character", "Cancel"],
             defaultId: 0,
@@ -139,34 +139,6 @@ function executeLoad(window: Electron.BrowserWindow, path: string){
         updateSavePath(path);
         var json = JSON.parse(data);
         window.webContents.send('send-loaded-json', json);
-        saveTracker.resetSafeSave();
+        resetSafeSave();
     });
-}
-
-//this is here instead of menu.js or recents.js to avoid dependancy loop fuckery
-//I'm sorry
-function updateRecentsMenu(recentsArray: Array<any>){
-    var menu = Menu.getApplicationMenu();
-
-    var recentMenu = menu.getMenuItemById("recents");
-
-    if (recentsArray.length == 0){
-        recentMenu.submenu.append(new MenuItem({ label: 'No Recent Characters', enabled: false }));
-    }
-    else{
-        //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
-        (recentMenu.submenu as any).clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
-        recentMenu.submenu.items = [];  //empties the js array to solve the above issue
-
-        recentsArray.forEach(character => {
-            recentMenu.submenu.append(new MenuItem(
-                { 
-                    label: character.path,
-                    click(item: any, focusedWindow: Electron.BrowserWindow){
-                        loadFromJSON(focusedWindow, character.path);
-                    } 
-                })
-            );
-        });
-    }
 }

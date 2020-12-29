@@ -1,6 +1,6 @@
 import { SaveDialogOptions, BrowserWindow, dialog, shell } from "electron";
+import { spellsFilePath } from './spells-main';
 const fs = require('fs');
-const spells = require('./spells-main')
 
 var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
 
@@ -35,7 +35,7 @@ export function takeRest(window: Electron.BrowserWindow, restType: number){
 }
 
 export function openCustomSpells(){
-    shell.openPath(spells.spellsFilePath);
+    shell.openPath(spellsFilePath);
 }
 
 export function openDocumentation(){

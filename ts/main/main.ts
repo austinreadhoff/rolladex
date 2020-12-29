@@ -1,7 +1,7 @@
 import { app, dialog, BrowserWindow, nativeImage } from 'electron';
-const io = require('./json-io-main')
-const menu = require('./menu')
-const saveTracker = require('./save-tracker-main')
+import { initMenu } from './menu';
+import { SafeToSave } from './save-tracker-main';
+import { saveToJSON } from './json-io-main';
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -14,12 +14,12 @@ function createWindow() {
 	});
 	win.maximize();
 
-	menu.initMenu();
+	initMenu();
 
 	win.loadFile('index.html');
 
 	win.on('close', function (e: any) {
-		if (!saveTracker.SafeToSave()){
+		if (!SafeToSave()){
 			var messageBoxOptions = {
 				buttons: ["Quit Without Saving", "Save Character", "Cancel"],
 				defaultId: 0,
@@ -33,7 +33,7 @@ function createWindow() {
 					break;
 				case 1:
 					e.preventDefault();
-					io.saveToJSON(win);
+					saveToJSON(win);
 					break;
 				case 2:
 					e.preventDefault();

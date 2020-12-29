@@ -1,7 +1,7 @@
-const {ipcRenderer} = require('electron')
+const { ipcRenderer } = require('electron')
 import { spellAutoComplete } from "./autocomplete";
 import { triggerUnsafeSave } from "./save-tracker-renderer";
-import { parseSpellJSON, Spell, SpellComponentProperties } from "./spell";
+import { parseSpellJSON, Spell, SpellComponentProperties } from "../util/spell";
 
 export var spellJSON: Spell[] = [];
 var selectedCatalogSpell: Spell;
