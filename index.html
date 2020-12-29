@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="css/print.css" media="print">
     <link rel="stylesheet" href="css/autocomplete.css">
 
-    <script src="src/spells-renderer.js"></script>
-    <script src="src/save-tracker-renderer.js"></script>
-    <script src="src/json-io-renderer.js"></script>
-    <script src="src/rolladex.js"></script>
-    <script src="src/autocomplete.js"></script>
+    <script>require("./src/renderer/spells-renderer.js")</script>
+    <script>require("./src/renderer/save-tracker-renderer.js")</script>
+    <script>require("./src/renderer/json-io-renderer.js")</script>
+    <script>require("./src/renderer/rolladex.js")</script>
+    <script>require("./src/renderer/autocomplete.js")</script>
 </head>
 
 <body>
@@ -534,7 +534,7 @@
                             <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
                         </div>
                     </div>
-                    <div class="col container block block-shaded spell-block" data-level="other">
+                    <div class="col container block block-shaded spell-block" data-level="-1">
                         <label class="row full-width-label">Other</label>
                         <div id="spells">
                             <!-- spells are generated here -->

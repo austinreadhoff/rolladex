@@ -1,9 +1,8 @@
-const { app, dialog, BrowserWindow, shell, nativeImage, ipcMain, Menu, MenuItem } = require('electron')
-const fs = require('fs');
+import { app, dialog, BrowserWindow, nativeImage } from 'electron';
+export const electron = require('electron');
 const io = require('./json-io-main')
 const menu = require('./menu')
 const saveTracker = require('./save-tracker-main')
-const spells = require('./spells-main')
 
 function createWindow() {
 	const win = new BrowserWindow({

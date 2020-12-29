@@ -1,4 +1,7 @@
-var spellsFilePath = app.getPath('userData') + "/spells.json";
+import { app, ipcMain } from 'electron'
+const fs = require('fs');
+
+export var spellsFilePath = app.getPath('userData') + "/spells.json";
 
 ipcMain.on('request-custom-spells', (event, arg) => {
     getCustomSpells(event.sender);
@@ -18,5 +21,3 @@ function getCustomSpells(window: any){
         }
     });
 }
-
-module.exports =  {spellsFilePath};

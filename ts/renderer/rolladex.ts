@@ -143,7 +143,7 @@ function calculateAbilityMod(abilityScore: number){
 
 //#region Menu Actions
 
-function switchTab(tabId: string){
+export function switchTab(tabId: string){
     document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
     document.getElementById(tabId + "-tab").classList.add("active");
     

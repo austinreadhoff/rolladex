@@ -1,5 +1,6 @@
-import { OpenDialogOptions, SaveDialogOptions } from "electron";
-
+import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog, Menu, MenuItem } from "electron";
+const fs = require('fs');
+const saveTracker = require('./save-tracker-main');
 const recents = require('./recents')
 
 var savePath: string = "";
@@ -31,7 +32,7 @@ function updateSavePath(path: string){
         .then((recentsArray: Array<any>) => { updateRecentsMenu(recentsArray) });
 }
 
-function newCharacter(window: Electron.BrowserWindow){
+export function newCharacter(window: Electron.BrowserWindow){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Clear Without Saving", "Save Character", "Cancel"],
@@ -59,7 +60,7 @@ function newCharacter(window: Electron.BrowserWindow){
     window.reload();
 }
 
-function saveToJSON(window: Electron.BrowserWindow){
+export function saveToJSON(window: Electron.BrowserWindow){
     if (savePath) {
         window.webContents.send('request-save-json');
     }
@@ -68,7 +69,7 @@ function saveToJSON(window: Electron.BrowserWindow){
     }
 }
 
-function saveAsToJSON(window: Electron.BrowserWindow){
+export function saveAsToJSON(window: Electron.BrowserWindow){
     var saveDialogOptions: SaveDialogOptions = {
         title: "Save Character",
         defaultPath: "Untitled.json",
@@ -89,7 +90,7 @@ function saveAsToJSON(window: Electron.BrowserWindow){
     });
 }
 
-function loadFromJSON(window: Electron.BrowserWindow, path: string){
+export function loadFromJSON(window: Electron.BrowserWindow, path: string){
     if (!saveTracker.SafeToSave()){
         var messageBoxOptions = {
             buttons: ["Load Without Saving", "Save Character", "Cancel"],
@@ -169,5 +170,3 @@ function updateRecentsMenu(recentsArray: Array<any>){
         });
     }
 }
-
-module.exports = {newCharacter, saveToJSON, saveAsToJSON, loadFromJSON, updateRecentsMenu};

@@ -1,6 +1,9 @@
+import { app } from 'electron'
+const fs = require('fs')
+
 var recentsFilePath = app.getPath('userData') + "/recents.json";
 
-function getRecentsJSON(){
+export function getRecentsJSON(){
     return new Promise((resolve, reject) => {
         fs.readFile(recentsFilePath, 'utf-8', (error: any, data: any) => {
             if (error){
@@ -17,7 +20,7 @@ function getRecentsJSON(){
     });
 }
 
-function updateRecents(path: string){
+export function updateRecents(path: string){
     return new Promise((resolve, reject) => {
         fs.readFile(recentsFilePath, 'utf-8', (error: any, data: any) => {
             var json = JSON.parse(data);
@@ -54,5 +57,3 @@ function updateRecents(path: string){
         });
     });
 }
-
-module.exports = {getRecentsJSON, updateRecents};

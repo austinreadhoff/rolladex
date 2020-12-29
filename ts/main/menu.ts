@@ -1,5 +1,6 @@
+import { app, Menu } from 'electron'
 const menuActions = require('./menu-actions')
-import {} from 'electron'
+const io = require('./json-io-main')
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
@@ -244,8 +245,6 @@ if (process.platform === 'darwin') {
     ]
 }
 
-function initMenu(){
+export function initMenu(){
     Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }
-
-module.exports = {initMenu};

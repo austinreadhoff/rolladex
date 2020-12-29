@@ -1,3 +1,5 @@
+import { ipcMain } from 'electron'
+
 var safeToSave = true;
 
 export function triggerUnsafeSave() { safeToSave = false; }

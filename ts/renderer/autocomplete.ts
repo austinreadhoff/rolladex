@@ -7,7 +7,7 @@ export class spellAutoComplete{
         var levelStr = level.toString();
     
         var spellOptions = spellJSON
-            .filter(spell => spell.level.toString() == levelStr || levelStr == "other")
+            .filter(spell => spell.level.toString() == levelStr || levelStr == "-1")
             .map(spell => spell.name);
     
         var inputs = Array.from(inputsHTMLCollection);

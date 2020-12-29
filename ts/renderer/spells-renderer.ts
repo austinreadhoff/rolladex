@@ -82,6 +82,8 @@ export function loadSpellData(){
                     bttnEl.classList.add("disabled");
                 }
             });
+
+            resolve(null);
         });
     });
 }
@@ -344,7 +346,7 @@ function populateFilterDropDown(filterElId: string, property: string){
         el.classList.add("form-check");
         el.innerHTML = 
         `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${property}-filter-${option}" data-filterval="${option}">
-        <label class="form-check-label" for="${property}-filter-${option}">${option == "0" ? "cantrip" : option.toLowerCase()}</label>`
+        <label class="form-check-label" for="${property}-filter-${option}">${option == "0" ? "cantrip" : option.toString().toLowerCase()}</label>`
 
         document.getElementById(filterElId).appendChild(el);
         
