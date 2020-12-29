@@ -13,6 +13,7 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
         || el.classList.contains("misc-counter")
         || el.classList.contains("spell-input")
         || el.classList.contains("catalog-filter")
+        || el.name == "spell-rest"
         || el.classList.contains("ignore")){
             return;   //Handled below
         }
@@ -50,14 +51,24 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
         var nameEl: HTMLInputElement = row.querySelector(".counter-name")
         var currentEl: HTMLInputElement = row.querySelector(".counter-current")
         var maxEl: HTMLInputElement = row.querySelector(".counter-max")
+        var shortRest: HTMLInputElement = row.querySelector(".counter-rest-short")
+        var longRest: HTMLInputElement = row.querySelector(".counter-rest-long")
         if (nameEl.value){
             var attackJSON: any = {};
             attackJSON["name"] = nameEl.value;
             attackJSON["current"] = currentEl.value;
             attackJSON["max"] = maxEl.value;
+            attackJSON["short-rest"] = shortRest.checked;
+            attackJSON["long-rest"] = longRest.checked;
             
             json["misc-counters"].push(attackJSON);
         }
+    });
+
+    
+    (document.getElementsByName("spell-rest") as NodeListOf<HTMLInputElement>).forEach(el => {
+        if (el.checked)
+            json["spell-rest"] = el.value;
     });
 
     json["spells"] = {};
@@ -103,6 +114,7 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
         || el.classList.contains("misc-counter")
         || el.classList.contains("spell-input")
         || el.classList.contains("catalog-filter")
+        || el.name == "spell-rest"
         || el.classList.contains("ignore")){
             return;   //Handled below
         }
@@ -141,11 +153,25 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
         let nameEl: HTMLInputElement = counterBlock.querySelector(".counter-name");
         let currentEl: HTMLInputElement = counterBlock.querySelector(".counter-current");
         let maxEl: HTMLInputElement = counterBlock.querySelector(".counter-max");
+        let shortRest: HTMLInputElement = counterBlock.querySelector(".counter-rest-short")
+        let longRest: HTMLInputElement = counterBlock.querySelector(".counter-rest-long")
         nameEl.value = counter["name"];
         currentEl.value = counter["current"];
         maxEl.value = counter["max"];
+        shortRest.checked = counter["short-rest"];
+        longRest.checked = counter["long-rest"];
+
+        if (shortRest.checked){
+            longRest.disabled = true;
+            longRest.checked = true;
+        }
 
         document.getElementById("misc-counters").appendChild(counterBlock);
+    });
+
+    (document.getElementsByName("spell-rest") as NodeListOf<HTMLInputElement>).forEach(el => {
+        if (el.value == json["spell-rest"])
+            el.checked = true;
     });
 
     for (var spellLevelName in json["spells"]){

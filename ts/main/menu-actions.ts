@@ -30,6 +30,10 @@ export function printToPDF(window: Electron.BrowserWindow){
     });
 }
 
+export function takeRest(window: Electron.BrowserWindow, restType: number){
+    window.webContents.send('send-take-rest', restType)
+}
+
 export function openCustomSpells(){
     shell.openPath(spells.spellsFilePath);
 }

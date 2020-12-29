@@ -19,6 +19,11 @@ export function setUpSaveTracking(){
                 triggerUnsafeSave();
             });
         }
+        else if (input.type == "radio"){
+            input.addEventListener('change', event => {
+                triggerUnsafeSave();
+            });
+        }
     });
     
     document.querySelectorAll('textarea').forEach(input => {
@@ -31,10 +36,6 @@ export function setUpSaveTracking(){
     });
 
     document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-        triggerUnsafeSave();
-    });
-    
-    document.getElementById("btn-recover-slots").addEventListener('click', event => {
         triggerUnsafeSave();
     });
 }

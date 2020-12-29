@@ -1,5 +1,6 @@
 import { app, Menu } from 'electron'
-const menuActions = require('./menu-actions')
+import { RestType } from '../util/rest-type';
+import { takeRest, printToPDF, openCustomSpells, openDocumentation, switchTab } from './menu-actions'
 const io = require('./json-io-main')
 
 const template: Electron.MenuItemConstructorOptions[] = [
@@ -52,7 +53,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Export To PDF',
                 accelerator: 'CmdOrCtrl+P',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.printToPDF(focusedWindow);
+                    printToPDF(focusedWindow);
                 }
             }
         ]
@@ -96,38 +97,28 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Stats',
                 accelerator: 'CmdOrCtrl+1',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.switchTab("stats");
+                    switchTab("stats");
                 }
             },
             {
                 label: 'Bio',
                 accelerator: 'CmdOrCtrl+2',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.switchTab("bio");
+                    switchTab("bio");
                 }
             },
             {
                 label: 'Spellbook',
                 accelerator: 'CmdOrCtrl+3',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.switchTab("spellbook");
+                    switchTab("spellbook");
                 }
             },
             {
                 label: 'Spell Catalog',
                 accelerator: 'CmdOrCtrl+4',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.switchTab("spellcatalog");
-                }
-            },
-            {
-                type: 'separator'
-            },
-            {
-                label: 'Open Custom Spells',
-                accelerator: 'CmdOrCtrl+Shift+4',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.openCustomSpells();
+                    switchTab("spellcatalog");
                 }
             },
             {
@@ -151,6 +142,32 @@ const template: Electron.MenuItemConstructorOptions[] = [
         ]
     },
     {
+        label: 'Actions',
+        submenu: [
+            {
+                label: 'Short Rest',
+                accelerator: 'CmdOrCtrl+R',
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                    takeRest(focusedWindow, RestType.Short);
+                }
+            },
+            {
+                label: 'Long Rest',
+                accelerator: 'CmdOrCtrl+L',
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                    takeRest(focusedWindow, RestType.Long);
+                }
+            },
+            {
+                label: 'Edit Custom Spells',
+                accelerator: 'CmdOrCtrl+Shift+4',
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                    openCustomSpells();
+                }
+            },
+        ]
+    },
+    {
         role: 'window',
         submenu: [
             {
@@ -167,7 +184,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
             {
                 label: 'Documentation',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    menuActions.openDocumentation();
+                    openDocumentation();
                 }
             },
             {
