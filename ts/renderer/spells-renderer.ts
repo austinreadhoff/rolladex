@@ -53,7 +53,7 @@ export function loadSpellData(){
             document.getElementById("btn-clear-filters").addEventListener('click', event => {
                 let nameEl: HTMLInputElement = document.getElementById("filter-name") as HTMLInputElement
                 nameEl.value = "";
-                document.querySelectorAll(".catalog-filter").forEach(el => el.setAttribute("checked", "false"));
+                (document.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
                 filterSpellCatalog();
             });
 
