@@ -29,9 +29,9 @@ export function parseSpellJSON(json: any[]){
         spell.classes = s["classes"];
         
         spell.components = new SpellComponentProperties;
-        spell.components.material = s["components"]["material"] == "true" ? true: false;
-        spell.components.somatic = s["components"]["somatic"] == "true" ? true: false;
-        spell.components.verbal = s["components"]["verbal"] == "true" ? true: false;
+        spell.components.material = s["components"]["material"];
+        spell.components.somatic = s["components"]["somatic"];
+        spell.components.verbal = s["components"]["verbal"];
         spell.components.materials = s["components"]["materials"] ? s["components"]["materials"] : "";
 
 
