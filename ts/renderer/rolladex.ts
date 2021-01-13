@@ -182,6 +182,7 @@ function takeRest(restType: number){
     if (restType == RestType.Long){
         (document.getElementById("current-hit-dice") as HTMLInputElement).value = (document.getElementById("max-hit-dice") as HTMLInputElement).value;
         (document.getElementById("current-hp") as HTMLInputElement).value = (document.getElementById("max-hp") as HTMLInputElement).value;
+        (document.getElementById("temp-hp") as HTMLInputElement).value = "";
     }
 }
 
