@@ -154,9 +154,9 @@ function filterSpellCatalog(){
     let nameEl = document.getElementById("filter-name") as HTMLInputElement
     var name = nameEl.value;
     var levels = Array.from(document.getElementById("level-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
-    var classes = Array.from(document.getElementById("class-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").toUpperCase());
-    var schools = Array.from(document.getElementById("school-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").toUpperCase());
-    var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").toUpperCase());
+    var classes = Array.from(document.getElementById("class-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+    var schools = Array.from(document.getElementById("school-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+    var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
 
     var filteredCatalog = spellJSON
         .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
