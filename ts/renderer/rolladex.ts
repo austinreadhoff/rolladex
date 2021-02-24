@@ -1,3 +1,4 @@
+import '../util/skillbox';
 import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
@@ -39,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function(){
             checkbox.addEventListener('change', event => {
                 updateAllAbilityMods();
             });
+        });
+        document.querySelectorAll('.skillbox').forEach(el => {
+            el.SetupSkillbox(updateAllAbilityMods);
+            el.UpdateSkillbox();
         });
 
         //setup and listeners for attacks
@@ -95,15 +100,18 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function updateAbilityMods(ability: string, score: number){
     var modStr = getAbililityModString(score);
-    var proficientModStr = getAbililityModString(score, true);
+    var proficientModStr = getAbililityModString(score, 1);
+    var expertModStr = getAbililityModString(score, 2);
 
     var joat = (document.getElementById("joat") as HTMLInputElement).checked;
-    var joatModStr = getAbililityModString(score, false, true)
+    var joatModStr = getAbililityModString(score, 0, true)
 
     document.getElementById(ability + "-mod").innerHTML = modStr;
     document.querySelectorAll('.' + ability + '-mod-prof').forEach(span =>{
-        if((span.previousElementSibling as HTMLInputElement).checked)
+        if((span.previousElementSibling as HTMLInputElement).checked || (span.previousElementSibling as Element).innerHTML == "P")
             span.innerHTML = proficientModStr;
+        else if ((span.previousElementSibling as Element).innerHTML == "E")
+            span.innerHTML = expertModStr;
         else if(span.classList.contains("mod-saving"))
             span.innerHTML = modStr;
         else if (joat)
@@ -123,11 +131,11 @@ export function updateAllAbilityMods(){
     });
 }
 
-function getAbililityModString(abilityScore: number, applyProficiency = false, applyJoat = false){
+function getAbililityModString(abilityScore: number, applyProficiency = 0, applyJoat = false){
     var proficiencyBonus = (document.getElementById("proficiency") as HTMLInputElement).value.replace(/\D/g,''); //regex for '+' characters
 
-    var mod = calculateAbilityMod(abilityScore) 
-        + (applyProficiency ? +proficiencyBonus : 0)
+    var mod = calculateAbilityMod(abilityScore)
+        + (applyProficiency * +proficiencyBonus) 
         + (applyJoat ? Math.floor(+proficiencyBonus/2) : 0);
     return mod < 0 ? mod.toString() : ("+" + mod);
 }

@@ -1,8 +1,7 @@
 import { ipcRenderer } from "electron";
 import { buildAttackRow, buildCounterBlock, updateAllAbilityMods, switchTab } from "./rolladex";
 import { applyAllSpellTips, buildSpellRow, togglePreparedSpells } from "./spells-renderer";
-
-var jsonSchemaVersion = 0.1;
+import { jsonSchemaVersion, UpgradeSchema } from "../util/character-schema";
 
 ipcRenderer.on('request-save-json', (event: any, arg: any) => {
     var json: any = {}
@@ -29,6 +28,10 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
             return;
         }
         json[el.id] = el.value;
+    });
+
+    document.querySelectorAll(".skillbox").forEach(el => {
+        json[el.id] = el.innerHTML;
     });
 
     json["attack-stats"] = [];
@@ -105,6 +108,10 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
 });
 
 ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
+    if (json["version"] < jsonSchemaVersion){
+        json = UpgradeSchema(json);
+    }
+
     switchTab("stats");
 
     document.title = json["character-name"] + " - RollaDex";
@@ -126,6 +133,11 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
                 el.checked = json[el.id];
             }
         }
+    });
+
+    document.querySelectorAll(".skillbox").forEach(el => {
+        el.innerHTML = json[el.id];
+        el.UpdateSkillbox();
     });
 
     document.getElementById("attack-stats").innerHTML = "";

@@ -60,6 +60,27 @@ img.currency{
     margin-bottom: 0;
 }
 
+.skillbox{
+    display: inline-block;
+    border: 1px solid white;
+    padding: 0px 5px;
+
+    font-family: monospace;
+    font-size: 1em;
+
+    cursor: pointer;
+    user-select: none;
+}
+.skillbox-null{
+    color: gray;
+}
+.skillbox-proficient{
+    color: lightgreen;
+}
+.skillbox-expertise{
+    color: gold;
+}
+
 .attack-stat-row, .spell-row {
     margin: 5px 0;
 }
