@@ -42,7 +42,10 @@ document.addEventListener("DOMContentLoaded", function(){
             });
         });
         document.querySelectorAll('.skillbox').forEach(el => {
-            el.SetupSkillbox(updateAllAbilityMods);
+            el.SetupSkillbox(() => {
+                updateAllAbilityMods();
+                triggerUnsafeSave();
+            });
             el.UpdateSkillbox();
         });
 
