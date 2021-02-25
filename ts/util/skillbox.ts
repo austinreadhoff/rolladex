@@ -37,15 +37,15 @@ if (!Element.prototype.hasOwnProperty('UpdateSkillbox')){
     Element.prototype.UpdateSkillbox = function(): void{
         switch(this.innerHTML){
             case "P":
-                this.classList.add("skillbox-proficient");
+                this.className = "skillbox skillbox-proficient";
                 break;
             case "E":
-                this.classList.add("skillbox-expertise");
+                this.className = "skillbox skillbox-expertise";
                 break;
             case "&nbsp":
             default:
                 this.innerHTML = "&nbsp";
-                this.classList.add("skillbox-null");
+                this.className = "skillbox skillbox-null";
                 break;
         }
     }
