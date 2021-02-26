@@ -1,5 +1,5 @@
 {
-    "dest": "release/",
+    "dest": "release/debian-installers/",
     "icon": "img/icon.png",
     "categories": [
       "Utility"
