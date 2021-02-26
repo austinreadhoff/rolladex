@@ -1,0 +1,10 @@
+{
+    "dest": "release/windows-installers/",
+    "icon": "img/icon.ico",
+    "tags": [
+      "Utility"
+    ],
+    "options": {
+      "authors": ["austinread"]
+    }
+  }
