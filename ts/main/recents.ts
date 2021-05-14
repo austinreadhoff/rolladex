@@ -64,14 +64,25 @@ export function updateRecentsMenu(recentsArray: Array<any>){
 
     var recentMenu = menu.getMenuItemById("recents");
 
+    var clearItem = new MenuItem(
+        {
+            label: 'Clear Recently Opened',
+            click(item: any, focusedWindow: Electron.BrowserWindow){
+                clearRecents().then(() => { updateRecentsMenu([])});
+            }
+        }
+    );
+
+    //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
+    (recentMenu.submenu as any).clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
+    recentMenu.submenu.items = [];  //empties the js array to solve the above issue
+
     if (recentsArray.length == 0){
         recentMenu.submenu.append(new MenuItem({ label: 'No Recent Characters', enabled: false }));
+        recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
+        recentMenu.submenu.append(clearItem);
     }
     else{
-        //see electron github issues 527 and 8598, there is no official method for clean removal of menu items
-        (recentMenu.submenu as any).clear();     //empties the submenu on the backend, but the js objects will still exist in memory in the array
-        recentMenu.submenu.items = [];  //empties the js array to solve the above issue
-
         recentsArray.forEach(character => {
             recentMenu.submenu.append(new MenuItem(
                 { 
@@ -82,5 +93,17 @@ export function updateRecentsMenu(recentsArray: Array<any>){
                 })
             );
         });
+
+        recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
+        recentMenu.submenu.append(clearItem);
     }
+}
+
+function clearRecents(){
+    return new Promise<void>((resolve, reject) => {
+        var json: any = {"lastOpen" : null, "recents": []};
+        fs.writeFile(recentsFilePath, JSON.stringify(json), (err: any) => {
+            resolve();
+        });
+    });   
 }
