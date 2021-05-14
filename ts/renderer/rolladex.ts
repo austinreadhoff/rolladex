@@ -164,7 +164,7 @@ export function switchTab(tabId: string){
 function takeRest(restType: number){
     triggerUnsafeSave();
 
-    let spellRest = 2;  //default to long even though the default should never be used
+    let spellRest = RestType.Long;  //default to long even though the default should never be used
     (document.getElementsByName("spell-rest") as NodeListOf<HTMLInputElement>).forEach(el => {
         if (el.checked)
             spellRest = +el.value;
@@ -185,7 +185,7 @@ function takeRest(restType: number){
         var maxEl: HTMLInputElement = row.querySelector(".counter-max")
         var shortRest: HTMLInputElement = row.querySelector(".counter-rest-short")
         var longRest: HTMLInputElement = row.querySelector(".counter-rest-long")
-        if ((shortRest.checked && restType == 1) || (longRest.checked && restType == 2)){
+        if ((shortRest.checked && restType == RestType.Short) || (longRest.checked && restType == RestType.Long)){
             currentEl.value = maxEl.value;
         }
     });
