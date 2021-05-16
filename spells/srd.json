@@ -6420,6 +6420,7 @@
     {
         "casting_time": "1 action",
         "classes": [
+            "Bard",
             "Sorcerer",
             "Warlock",
             "Wizard"
