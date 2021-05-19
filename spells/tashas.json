@@ -406,7 +406,7 @@
         "casting_time": "1 action",
         "classes": [
             "Artificer",
-            "Warlock",
+            "Sorcerer",
             "Wizard"
         ],
         "components": {
