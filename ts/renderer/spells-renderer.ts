@@ -1,13 +1,14 @@
 const { ipcRenderer } = require('electron')
 import { spellAutoComplete } from "./autocomplete";
 import { triggerUnsafeSave } from "./save-tracker-renderer";
-import { parseSpellJSON, Spell, SpellComponentProperties } from "../util/spell";
+import { Spell } from "../util/spell";
+import { viewModel } from "../util/viewmodel";
 
-export var spellJSON: Spell[] = [];
-var selectedCatalogSpell: Spell;
+export var spellCatalog: Spell[] = [];
+export var selectedCatalogSpell: Spell;
 
 ipcRenderer.on('send-custom-spells', (event, json) => {
-    spellJSON = spellJSON.concat(parseSpellJSON(json));
+    spellCatalog = spellCatalog.concat(json.map((j: any) => new Spell(j)));
 });
 
 export function loadSpellData(){
@@ -21,19 +22,19 @@ export function loadSpellData(){
         ];
 
         Promise.all(spellFilePromises).then((jsonCollections) => {
-            jsonCollections.forEach((c: any) => spellJSON = spellJSON.concat(parseSpellJSON(c)));
-            spellJSON = spellJSON.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
+            jsonCollections.forEach((c: any) => spellCatalog = spellCatalog.concat(c.map((j: any) => new Spell(j))));
+            spellCatalog = spellCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
-            createSpellCatalog(spellJSON);
+            createSpellCatalog(spellCatalog);
 
             var spellListBox: HTMLInputElement = document.getElementById("spell-listbox") as HTMLInputElement;
-            spellListBox.value = spellJSON[0].name;
-            mapCatalogSpell(spellJSON[0]);
+            spellListBox.value = spellCatalog[0].name;
+            mapCatalogSpell(spellCatalog[0]);
 
             spellListBox.addEventListener("change", event => {
                 let listBox: HTMLInputElement = event.target as HTMLInputElement
-                var spell = spellJSON.find(spell => spell.name == listBox.value);
+                var spell = spellCatalog.find(spell => spell.name == listBox.value);
                 mapCatalogSpell(spell);
             });
 
@@ -99,10 +100,10 @@ export function applyAllSpellTips(){
 }
 
 export function applySpellTip(el: HTMLInputElement){
-    var spell: any = spellJSON.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
+    var spell: Spell = spellCatalog.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
 
     if (spell){
-        el.title = buildFormatedSpellText(spell);
+        el.title = spell.fullTextFormatted();
     }
     else{
         el.title = "No Description Found";
@@ -130,12 +131,7 @@ function createSpellCatalog(spellList: Spell[]){
 }
 
 function mapCatalogSpell(spell: Spell){
-    selectedCatalogSpell = spell;
-    var classes = spell.classes.join(", ")
-
-    document.getElementById("catalog-source").innerHTML = "Source: " + spell.source;
-    document.getElementById("catalog-classes").innerHTML = "Classes: " + classes;
-    document.getElementById("catalog-text").innerHTML = buildFormatedSpellText(spell);
+    viewModel.spell(spell);
 
     //disabled learn button if it's already learned
     var learnBtn = document.getElementById("btn-learn-spell");
@@ -158,7 +154,7 @@ function filterSpellCatalog(){
     var schools = Array.from(document.getElementById("school-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
     var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
 
-    var filteredCatalog = spellJSON
+    var filteredCatalog = spellCatalog
         .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => levels.length < 1 || levels.indexOf(spell.level.toString().replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => classes.length < 1 || classes.some(c => spell.classes.map((c2: string) => c2.replace(/\W/g, '').toUpperCase()).includes(c)))
@@ -168,7 +164,7 @@ function filterSpellCatalog(){
     createSpellCatalog(filteredCatalog);
 }
 
-//helpers
+//#region helpers
 
 function getJSON(path: string){
     return new Promise((resolve, reject) => {
@@ -250,59 +246,6 @@ export function togglePreparedSpells(){
     });
 }
 
-function buildFormatedSpellText(spell: Spell){
-    var spellType = spell.school;
-    if (spell.level == 0){
-        spellType += " Cantrip"
-    }
-    else{
-        var levelFragment;
-
-        if (spell.level == 1)
-            levelFragment = "1st"
-        else if (spell.level == 2)
-            levelFragment = "2nd"
-        else if (spell.level == 3)
-            levelFragment = "2rd"
-        else
-            levelFragment = spell.level.toString() + "th"
-
-        spellType = levelFragment + "-level " + spellType
-    }
-    if (spell.ritual){
-        spellType += " (ritual)"
-    }
-
-    var fullDescription = spell.higherLevelDescription ? (spell.description + "\n\nAt Higher Levels: " + spell.higherLevelDescription) : spell.description
-
-    var text = 
-    `${spellType}\n`
-    +`Casting Time: ${spell.castingTime}\n`
-    +`Range: ${spell.range}\n`
-    +`Components: ${buildRawComponentString(spell.components)}\n`
-    +`Duration: ${spell.duration}\n\n`
-
-    +`${fullDescription}`;
-
-    return text;
-}
-
-function buildRawComponentString(spellComponents: SpellComponentProperties){
-    var raw = "";
-    if (spellComponents.verbal){
-        raw += "V"
-    }
-    if (spellComponents.somatic){
-        raw += raw.length > 0 ? ", S" : "S";
-    } 
-    if (spellComponents.material){
-        raw += raw.length > 0 ? ", M" : "M";
-        raw += " (" + spellComponents.materials + ")"
-    }
-
-    return raw;
-}
-
 function setupFilterToggle(toggleElId: string, filterUlId: string){
     let toggleEl = document.getElementById(toggleElId);
     let filterUl = document.getElementById(filterUlId);
@@ -321,7 +264,7 @@ function setupFilterToggle(toggleElId: string, filterUlId: string){
 function populateFilterDropDown(filterElId: string, property: string){
     var options: any[] = [];
 
-    spellJSON.forEach(spell => {
+    spellCatalog.forEach(spell => {
         if(Array.isArray(spell[property as keyof Spell])){
             let arr = spell[property as keyof Spell] as any[]
             arr.forEach((x: string) => {
@@ -355,3 +298,5 @@ function populateFilterDropDown(filterElId: string, property: string){
         });
     });
 }
+
+//#endregion

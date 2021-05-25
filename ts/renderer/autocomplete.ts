@@ -1,4 +1,4 @@
-import { applySpellTip, spellJSON } from "./spells-renderer";
+import { applySpellTip, spellCatalog } from "./spells-renderer";
 
 //Adapted and customized from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 export class spellAutoComplete{
@@ -6,7 +6,7 @@ export class spellAutoComplete{
         var currentFocus: number;
         var levelStr = level.toString();
     
-        var spellOptions = spellJSON
+        var spellOptions = spellCatalog
             .filter(spell => spell.level.toString() == levelStr || levelStr == "-1")
             .map(spell => spell.name);
     

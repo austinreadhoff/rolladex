@@ -4,8 +4,6 @@
     <title>RollaDex</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">    <!-- dark theme -->
     <link rel="stylesheet" href="css/rolladex.css">
@@ -723,18 +721,18 @@
                         </ul>
                     </div>
                 </div>
-                <div id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
+                <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
                     <div class="row">
                         <div class="col">
-                            <i id="catalog-source"></i>
+                            <i data-bind="text: sourceFormatted" id="catalog-source"></i>
                         </div>
                         <div class="col" id="catalog-classes-col">
-                            <i id="catalog-classes"></i>
+                            <i data-bind="text: classesFormatted" id="catalog-classes"></i>
                         </div>
                     </div>
                     <div class="row" id="catalog-text-row">
                         <div class="col" id="catalog-text-col">
-                            <p id="catalog-text"></p>
+                            <p data-bind="text: fullTextFormatted" id="catalog-text"></p>
                         </div>
                     </div>
                     <div class="row">

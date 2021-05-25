@@ -3,6 +3,7 @@ import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
 import { applyAllSpellTips, buildSpellRow, loadSpellData, togglePreparedSpells } from "./spells-renderer";
+import { applyDataBinding } from "../util/viewmodel";
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
@@ -13,6 +14,7 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
+    applyDataBinding();
 
     loadSpellData().then(() => {
         document.body.scrollTop = 0;
