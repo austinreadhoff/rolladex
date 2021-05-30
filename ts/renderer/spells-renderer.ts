@@ -26,7 +26,7 @@ export function loadSpellData(){
             spellCatalog = spellCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
-            createSpellCatalog(spellCatalog);
+            viewModel.spellCatalog(spellCatalog);
 
             var spellListBox: HTMLInputElement = document.getElementById("spell-listbox") as HTMLInputElement;
             spellListBox.value = spellCatalog[0].name;
@@ -114,22 +114,6 @@ export function applySpellTip(el: HTMLInputElement){
     }
 }
 
-function createSpellCatalog(spellList: Spell[]){
-    var spellListBox = document.getElementById("spell-listbox") as HTMLInputElement;
-    spellListBox.innerHTML = "";
-
-    spellList.forEach((spell: Spell) => {
-        var option = document.createElement("option");
-        option.value = spell.name;
-        option.innerHTML = spell.name;
-        spellListBox.appendChild(option);
-
-        if (selectedCatalogSpell && selectedCatalogSpell.name == spell.name){
-            spellListBox.value = spell.name;
-        }
-    });
-}
-
 function mapCatalogSpell(spell: Spell){
     viewModel.spell(spell);
 
@@ -161,7 +145,7 @@ function filterSpellCatalog(){
         .filter(spell => schools.length < 1 || schools.indexOf(spell.school.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1);
 
-    createSpellCatalog(filteredCatalog);
+    viewModel.spellCatalog(filteredCatalog);
 }
 
 //#region helpers

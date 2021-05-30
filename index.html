@@ -685,7 +685,9 @@
 
         <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
             <div id="spellcatalog-container" class="print-hidden">
-                <select id="spell-listbox" size="2">
+                <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" 
+                    id="spell-listbox" 
+                    size="2">
                     <!--spell listbox here-->
                 </select>
                 <div id="spellcatalog-filters" class="block block-bordered">
