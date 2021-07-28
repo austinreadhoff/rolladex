@@ -2319,7 +2319,7 @@
         "source": "SRD"
     },
     {
-        "casting_time": "1 action",
+        "casting_time": "1 bonus action",
         "classes": [
             "Paladin"
         ],
