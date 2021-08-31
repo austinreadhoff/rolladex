@@ -2,8 +2,17 @@ import '../util/skillbox';
 import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
-import { applyAllSpellTips, buildSpellRow, loadSpellData, togglePreparedSpells } from "./spells-renderer";
+import { applyAllSpellTips, loadSpellData, togglePreparedSpells } from "./spells-renderer";
 import { applyDataBinding } from "../util/viewmodel";
+
+//Misc TODO
+//Skillboxes
+//Add to catalog button
+//Compute ability modifiers etc
+//Spell CSS
+//Generally use bindings instead of html references
+//clean up no longer needed shit
+//Fix the saving/loading of spells re: autocomplete
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
@@ -43,45 +52,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 updateAllAbilityMods();
             });
         });
+        
         document.querySelectorAll('.skillbox').forEach(el => {
             el.SetupSkillbox(() => {
                 updateAllAbilityMods();
                 triggerUnsafeSave();
             });
             el.UpdateSkillbox();
-        });
-
-        //setup and listeners for attacks
-        document.getElementById("attack-stats").innerHTML = "";
-        for(var i = 0; i < 5; i++){
-            var attackRow = buildAttackRow();
-            document.getElementById("attack-stats").appendChild(attackRow);
-        }
-
-        document.getElementById("btn-remove-attack").addEventListener('click', event =>{
-            (event.target as HTMLElement).parentElement.remove();
-        });
-        document.getElementById("btn-add-attack").addEventListener('click', event =>{
-            var attackRow = buildAttackRow();
-            document.getElementById("attack-stats").appendChild(attackRow);
-        });
-
-        //listeners for counters
-        document.getElementById("btn-add-counter").addEventListener('click', event =>{
-            var counterBlock = buildCounterBlock();
-            document.getElementById("misc-counters").appendChild(counterBlock);
-        });
-        
-        //setup and listeners for spells
-        document.querySelectorAll(".spell-block").forEach(block => {
-            var spellLevel = +block.getAttribute("data-level");
-    
-            block.querySelector("#spells").innerHTML = "";
-            block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
-    
-            block.querySelector("#btn-add-spell").addEventListener('click', event =>{
-                block.querySelector("#spells").appendChild(buildSpellRow(spellLevel));
-            });
         });
 
         applyAllSpellTips();
@@ -197,71 +174,6 @@ function takeRest(restType: number){
         (document.getElementById("current-hp") as HTMLInputElement).value = (document.getElementById("max-hp") as HTMLInputElement).value;
         (document.getElementById("temp-hp") as HTMLInputElement).value = "";
     }
-}
-
-//#endregion
-
-//#region Row builders
-
-export function buildAttackRow(){
-    var attackRowHTML = 
-        `<button type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
-         <input class="form-control col-4 attack-stat attack-stat-name">
-         <input class="form-control col-2 attack-stat attack-stat-bonus">
-         <input class="form-control col-4 attack-stat attack-stat-dmg">`
-
-    var newRow = document.createElement("div");
-    newRow.className = "attack-stat-row row";
-    newRow.innerHTML = attackRowHTML;
-    newRow.querySelector("#btn-remove-attack").addEventListener('click', event =>{
-        (event.target as HTMLElement).parentElement.remove();
-        triggerUnsafeSave();
-    });
-    newRow.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', event => {
-            triggerUnsafeSave();
-        });
-    });
-
-    return newRow;
-}
-
-export function buildCounterBlock(){
-    var counterHTML = 
-        `<button type="button" id="btn-remove-counter" class="btn btn-danger">-</button>
-        <span>Refresh on:</span>
-        <input type="checkbox" class="misc-counter counter-rest-short">
-        <label>Short Rest</label>
-        <input type="checkbox" class="misc-counter counter-rest-long">
-        <label>Long Rest</label>
-        <input class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
-        <div class="counter-container">
-            <input class="form-control misc-counter counter-current" placeholder="Current">
-            <span>/</span>
-            <input class="form-control misc-counter counter-max" placeholder="Max">
-        </div>`
-
-    var newCounter = document.createElement("div");
-    newCounter.className = "misc-counter-block";
-    newCounter.innerHTML = counterHTML;
-    newCounter.querySelector("#btn-remove-counter").addEventListener('click', event =>{
-        (event.target as HTMLElement).parentElement.remove();
-        triggerUnsafeSave();
-    });
-    newCounter.querySelector('.counter-rest-short').addEventListener('change', event => {
-        let newValue = (event.target as HTMLInputElement).checked;
-        let longInput = newCounter.querySelector('.counter-rest-long') as HTMLInputElement;
-
-        longInput.checked = newValue;
-        longInput.disabled = newValue;
-    });
-    newCounter.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', event => {
-            triggerUnsafeSave();
-        });
-    });
-
-    return newCounter;
 }
 
 //#endregion

@@ -1,11 +1,10 @@
 const { ipcRenderer } = require('electron')
-import { spellAutoComplete } from "./autocomplete";
 import { triggerUnsafeSave } from "./save-tracker-renderer";
 import { Spell } from "../util/spell";
 import { viewModel } from "../util/viewmodel";
 
-export var spellCatalog: Spell[] = [];
-export var selectedCatalogSpell: Spell;
+export var spellCatalog: Spell[] = [];  //Represents what's currently in the sidebar, NOT the whole catalog that's stored in the VM
+export var selectedCatalogSpell: Spell; //The fuck is this?
 
 ipcRenderer.on('send-custom-spells', (event, json) => {
     spellCatalog = spellCatalog.concat(json.map((j: any) => new Spell(j)));
@@ -165,6 +164,7 @@ function getJSON(path: string){
     });
 }
 
+//TODO: obsolete after json-io is gone
 export function buildSpellRow(level: number){
     var spellHTML = 
         `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
@@ -209,8 +209,8 @@ export function buildSpellRow(level: number){
         });
     });
 
-    var autoComplete: spellAutoComplete = new spellAutoComplete();
-    autoComplete.init(newRow.querySelectorAll('.spell-name'), level.toString());
+    // var autoComplete: spellAutoComplete = new spellAutoComplete();
+    // autoComplete.init(newRow.querySelectorAll('.spell-name'), level.toString());
 
     return newRow;
 }
