@@ -6,13 +6,13 @@ import { applyAllSpellTips, loadSpellData, togglePreparedSpells } from "./spells
 import { applyDataBinding } from "../util/viewmodel";
 
 //Misc TODO
-//Skillboxes
+//Unsafe safe logic is messed up in some way(s) or another
 //Add to catalog button
-//Compute ability modifiers etc
 //Spell CSS
 //Generally use bindings instead of html references
 //clean up no longer needed shit
 //Fix the saving/loading of spells re: autocomplete
+//Fix Spell inputs being created willy nilly or some shit
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
@@ -35,32 +35,6 @@ document.addEventListener("DOMContentLoaded", function(){
             });
         });
 
-        //listeners for calculating ability score mods
-        (document.querySelectorAll('.ability-input') as NodeListOf<HTMLInputElement>).forEach(input => {
-            input.addEventListener('input', event => {
-                updateAbilityMods(input.id, +input.value);
-            });
-        });
-        document.getElementById("proficiency").addEventListener('input', event =>{
-            updateAllAbilityMods();
-        });
-        document.getElementById("joat").addEventListener('input', event =>{
-            updateAllAbilityMods();
-        });
-        document.querySelectorAll('.proficiency-check').forEach(checkbox => {
-            checkbox.addEventListener('change', event => {
-                updateAllAbilityMods();
-            });
-        });
-        
-        document.querySelectorAll('.skillbox').forEach(el => {
-            el.SetupSkillbox(() => {
-                updateAllAbilityMods();
-                triggerUnsafeSave();
-            });
-            el.UpdateSkillbox();
-        });
-
         applyAllSpellTips();
 
         (document.getElementById("spell-rest-long") as HTMLInputElement).checked = true;
@@ -77,56 +51,6 @@ document.addEventListener("DOMContentLoaded", function(){
         ipcRenderer.send('check-recent-load');
     });
 });
-
-//#region Ability Score Logic
-
-function updateAbilityMods(ability: string, score: number){
-    var modStr = getAbililityModString(score);
-    var proficientModStr = getAbililityModString(score, 1);
-    var expertModStr = getAbililityModString(score, 2);
-
-    var joat = (document.getElementById("joat") as HTMLInputElement).checked;
-    var joatModStr = getAbililityModString(score, 0, true)
-
-    document.getElementById(ability + "-mod").innerHTML = modStr;
-    document.querySelectorAll('.' + ability + '-mod-prof').forEach(span =>{
-        if((span.previousElementSibling as HTMLInputElement).checked || (span.previousElementSibling as Element).innerHTML == "P")
-            span.innerHTML = proficientModStr;
-        else if ((span.previousElementSibling as Element).innerHTML == "E")
-            span.innerHTML = expertModStr;
-        else if(span.classList.contains("mod-saving"))
-            span.innerHTML = modStr;
-        else if (joat)
-            span.innerHTML = joatModStr;
-        else
-            span.innerHTML = modStr;
-    });
-    if (ability == "dex"){
-        (document.getElementById("initiative") as HTMLInputElement).value = joat ? joatModStr : modStr;
-    }
-}
-
-export function updateAllAbilityMods(){
-    var abilities = ["str","dex","con","int","wis","char"]
-    abilities.forEach(ability =>{
-        updateAbilityMods(ability, +(document.getElementById(ability) as HTMLInputElement).value);
-    });
-}
-
-function getAbililityModString(abilityScore: number, applyProficiency = 0, applyJoat = false){
-    var proficiencyBonus = (document.getElementById("proficiency") as HTMLInputElement).value.replace(/\D/g,''); //regex for '+' characters
-
-    var mod = calculateAbilityMod(abilityScore)
-        + (applyProficiency * +proficiencyBonus) 
-        + (applyJoat ? Math.floor(+proficiencyBonus/2) : 0);
-    return mod < 0 ? mod.toString() : ("+" + mod);
-}
-
-function calculateAbilityMod(abilityScore: number){
-    return Math.floor(abilityScore / 2) - 5;
-}
-
-//#endregion
 
 //#region Menu Actions
 

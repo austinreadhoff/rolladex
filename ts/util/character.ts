@@ -76,6 +76,7 @@ export class Character {
     history: KnockoutObservable<string>;
     insight: KnockoutObservable<string>;
     intimidation: KnockoutObservable<string>;
+    investigation: KnockoutObservable<string>;
     medicine: KnockoutObservable<string>;
     nature: KnockoutObservable<string>;
     perception: KnockoutObservable<string>;
@@ -163,6 +164,7 @@ export class Character {
             this.history = ko.observable("&nbsp");
             this.insight = ko.observable("&nbsp");
             this.intimidation = ko.observable("&nbsp");
+            this.investigation = ko.observable("&nbsp");
             this.medicine = ko.observable("&nbsp");
             this.nature = ko.observable("&nbsp");
             this.perception = ko.observable("&nbsp");
@@ -187,6 +189,30 @@ export class Character {
             let parsed = JSON.parse(json);
             this.characterName = parsed.characterName;
         }
+    }
+
+    abilityModCheckbox(ability: number, hasProf: Boolean, usesJoat = false){
+        let profString = hasProf ? "P" : "&nbsp";
+        return this.abilityMod(ability, usesJoat, profString);
+    }
+
+    abilityMod(ability: number, usesJoat = false, profString = "&nbsp"){
+        return ko.computed(() =>{
+            let profBonus = this.proficiency().replace(/\D/g,'');
+            let profLevel: number;
+            if (profString == "&nbsp")
+                profLevel = 0;
+            else if (profString == "P")
+                profLevel = 1;
+            else if (profString == "E")
+                profLevel = 2;
+
+            let mod = Math.floor(+ability / 2) - 5
+                + (profLevel * +profBonus) 
+                + (usesJoat ? (this.joat() && profString == "&nbsp" ? Math.floor(+profBonus/2) : 0) : 0);
+            if (!mod) return "+0";
+            return mod < 0 ? mod.toString() : ("+" + mod);
+        }, this);
     }
 
     addAttackRow(){

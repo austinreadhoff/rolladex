@@ -1,7 +1,7 @@
 import * as ko from "knockout";
 const koMapping = require('knockout-mapping');
 import { ipcRenderer } from "electron";
-import { updateAllAbilityMods, switchTab } from "./rolladex";
+import { switchTab } from "./rolladex";
 import { applyAllSpellTips, togglePreparedSpells } from "./spells-renderer";
 import { jsonSchemaVersion } from "../util/character-schema";
 import { viewModel } from "../util/viewmodel";
@@ -26,7 +26,6 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
 
     document.title = viewModel.character().characterName() + " - RollaDex";
 
-    updateAllAbilityMods();
     togglePreparedSpells();
     applyAllSpellTips();
 });
