@@ -8,7 +8,6 @@ import { applyDataBinding } from "../util/viewmodel";
 //Misc TODO
 //Unsafe safe logic is messed up in some way(s) or another
 //Add to catalog button
-//Spell CSS
 //Generally use bindings instead of html references
 //clean up no longer needed shit
 //Fix the saving/loading of spells re: autocomplete
