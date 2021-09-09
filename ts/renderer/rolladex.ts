@@ -3,7 +3,8 @@ import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
 import { applyAllSpellTips, loadSpellData, togglePreparedSpells } from "./spells-renderer";
-import { applyDataBinding } from "../util/viewmodel";
+import { applyDataBinding, viewModel } from "../util/viewmodel";
+import { Counter, SpellLevel } from '../util/character';
 
 //Misc TODO
 //Unsafe safe logic is messed up in some way(s) or another
@@ -66,36 +67,22 @@ export function switchTab(tabId: string){
 function takeRest(restType: number){
     triggerUnsafeSave();
 
-    let spellRest = RestType.Long;  //default to long even though the default should never be used
-    (document.getElementsByName("spell-rest") as NodeListOf<HTMLInputElement>).forEach(el => {
-        if (el.checked)
-            spellRest = +el.value;
-    });
-
-    if (restType >= spellRest){ //Long rests refresh Warlocks too
-        document.querySelectorAll(".spell-block").forEach(block => {
-            if (+block.getAttribute("data-level") > 0){
-                let remainingEl: HTMLInputElement = block.querySelector(".spell-slots-remaining")
-                let totalEl: HTMLInputElement = block.querySelector(".spell-slots-total")
-                remainingEl.value = totalEl.value;
-            }
+    if (restType >= viewModel.character().spellRest()){ //Long rests refresh Warlocks too
+        viewModel.character().spellLevels().forEach((level: SpellLevel) => {
+            level.slotsRemaining(level.slotsTotal());
         });
     }
 
-    document.getElementById("misc-counters").querySelectorAll(".misc-counter-block").forEach(row => {
-        var currentEl: HTMLInputElement = row.querySelector(".counter-current")
-        var maxEl: HTMLInputElement = row.querySelector(".counter-max")
-        var shortRest: HTMLInputElement = row.querySelector(".counter-rest-short")
-        var longRest: HTMLInputElement = row.querySelector(".counter-rest-long")
-        if ((shortRest.checked && restType == RestType.Short) || (longRest.checked && restType == RestType.Long)){
-            currentEl.value = maxEl.value;
+    viewModel.character().miscCounters().forEach((counter: Counter) => {
+        if ((counter.shortRest() && restType == RestType.Short) || (counter.longRest() && restType == RestType.Long)){
+            counter.current(counter.max());
         }
     });
 
     if (restType == RestType.Long){
-        (document.getElementById("current-hit-dice") as HTMLInputElement).value = (document.getElementById("max-hit-dice") as HTMLInputElement).value;
-        (document.getElementById("current-hp") as HTMLInputElement).value = (document.getElementById("max-hp") as HTMLInputElement).value;
-        (document.getElementById("temp-hp") as HTMLInputElement).value = "";
+        viewModel.character().currentHitDice(viewModel.character().maxHitDice());
+        viewModel.character().currentHP(viewModel.character().maxHP());
+        viewModel.character().tempHP("");
     }
 }
 

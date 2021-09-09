@@ -267,7 +267,7 @@ class Attack {
     }
 }
 
-class Counter {
+export class Counter {
     name: KnockoutObservable<string>;
     current: KnockoutObservable<string>;
     max: KnockoutObservable<string>;
@@ -298,7 +298,7 @@ class Counter {
     }
 }
 
-class SpellLevel {
+export class SpellLevel {
     level: KnockoutObservable<number>;
     slotsRemaining: KnockoutObservable<string>;
     slotsTotal: KnockoutObservable<string>;
