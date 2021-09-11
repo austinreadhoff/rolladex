@@ -1,7 +1,7 @@
 import { applySpellTip, spellCatalog } from "./spells-renderer";
 
 //Adapted and customized from https://www.w3schools.com/howto/howto_js_autocomplete.asp
-export function initSpellAutoComplete(input: Node, level: number){
+export function initSpellAutoComplete(input: Node, level: number, observableName: KnockoutObservable<string>){
     var currentFocus: number;
     var levelStr = level.toString();
 
@@ -38,19 +38,20 @@ export function initSpellAutoComplete(input: Node, level: number){
                 /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
+                    observableName(this.getElementsByTagName("input")[0].value);
+
+                    //This is only necessary because the spell tips shows up when you hit enter on an option, but not when you click on it.
                     let container: any = this.parentElement?.parentElement;
                     if (container){
                         var containingInput: any = Array.from(container.children).find((child: any) => child.classList.contains("spell-name"));
                     }
                     if (containingInput){
-                        containingInput.value = this.getElementsByTagName("input")[0].value;
+                        applySpellTip(containingInput);                  
                     }
-                    
                     
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
-                    applySpellTip(containingInput);
                 });
                 a.appendChild(b);
             }

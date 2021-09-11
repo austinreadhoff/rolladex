@@ -177,6 +177,3 @@ img.currency{
     white-space: pre-line;
     overflow-y: auto;
 }
-#btn-learn-spell.disabled{
-    cursor: initial;
-}

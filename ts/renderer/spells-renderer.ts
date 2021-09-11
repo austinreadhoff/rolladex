@@ -1,10 +1,9 @@
 const { ipcRenderer } = require('electron')
-import { triggerUnsafeSave } from "./save-tracker-renderer";
 import { Spell } from "../util/spell";
 import { viewModel } from "../util/viewmodel";
 
-export var spellCatalog: Spell[] = [];  //Represents what's currently in the sidebar, NOT the whole catalog that's stored in the VM
-export var selectedCatalogSpell: Spell; //The fuck is this?
+//Represents the entire spell catalog, whereas the viewmodel SpellCatalog represents the current filtered version
+export var spellCatalog: Spell[] = [];
 
 ipcRenderer.on('send-custom-spells', (event, json) => {
     spellCatalog = spellCatalog.concat(json.map((j: any) => new Spell(j)));
@@ -29,12 +28,12 @@ export function loadSpellData(){
 
             var spellListBox: HTMLInputElement = document.getElementById("spell-listbox") as HTMLInputElement;
             spellListBox.value = spellCatalog[0].name;
-            mapCatalogSpell(spellCatalog[0]);
+            viewModel.spell(spellCatalog[0]);
 
             spellListBox.addEventListener("change", event => {
                 let listBox: HTMLInputElement = event.target as HTMLInputElement
                 var spell = spellCatalog.find(spell => spell.name == listBox.value);
-                mapCatalogSpell(spell);
+                viewModel.spell(spell);
             });
 
             //setup catalog filters
@@ -57,43 +56,7 @@ export function loadSpellData(){
                 filterSpellCatalog();
             });
 
-            //setup add to spellbook button
-            document.getElementById("btn-learn-spell").addEventListener('click', event => {
-                let bttnEl: HTMLElement = event.target as HTMLElement
-                if (!bttnEl.classList.contains("disabled")){
-                    var levelStr = selectedCatalogSpell.level;
-                    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find((div) => +div.getAttribute("data-level") == levelStr)
-    
-                    var inputToUpdate: HTMLInputElement;
-                    var firstInput: HTMLInputElement = spellBlock.querySelectorAll(".spell-name")[0] as HTMLInputElement;
-                    if (firstInput && !firstInput.value){
-                        inputToUpdate = firstInput;
-                    }
-                    else{
-                        var newRow = buildSpellRow(levelStr)
-                        inputToUpdate = newRow.querySelector(".spell-name")
-                        spellBlock.querySelector("#spells").appendChild(newRow);
-                    }
-                    inputToUpdate.value = selectedCatalogSpell.name;
-                    applySpellTip(inputToUpdate);
-
-                    triggerUnsafeSave();
-    
-                    bttnEl.classList.add("disabled");
-                }
-            });
-
             resolve(null);
-        });
-    });
-}
-
-export function applyAllSpellTips(){
-    document.querySelectorAll(".spell-name").forEach(input => {
-        applySpellTip(input as HTMLInputElement);
-        
-        input.addEventListener("change", event => {
-            applySpellTip(event.target as HTMLInputElement);
         });
     });
 }
@@ -107,26 +70,6 @@ export function applySpellTip(el: HTMLInputElement){
     else{
         el.title = "No Description Found";
     }
-
-    if (spell == selectedCatalogSpell){
-        document.getElementById("btn-learn-spell").classList.add("disabled");
-    }
-}
-
-function mapCatalogSpell(spell: Spell){
-    viewModel.spell(spell);
-
-    //disabled learn button if it's already learned
-    var learnBtn = document.getElementById("btn-learn-spell");
-    learnBtn.classList.remove("disabled");
-
-    var levelStr = spell.level;
-    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => +div.getAttribute("data-level") == levelStr);
-    (spellBlock.querySelectorAll(".spell-name") as NodeListOf<HTMLInputElement>).forEach(input => {
-        if (input.value.toUpperCase() == spell.name.toUpperCase()){
-            learnBtn.classList.add("disabled");
-        }
-    });
 }
 
 function filterSpellCatalog(){
@@ -161,72 +104,6 @@ function getJSON(path: string){
         };
     
         request.send();
-    });
-}
-
-//TODO: obsolete after json-io is gone
-export function buildSpellRow(level: number){
-    var spellHTML = 
-        `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
-         <div class="autocomplete col"><input class="form-control spell-input spell-name"></div>`;
-    if(level > 0){
-        spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
-    }
-
-    var newRow = document.createElement("div");
-    newRow.className = "spell-row row";
-    newRow.innerHTML = spellHTML;
-    newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
-        let bttnEl = event.target as HTMLElement
-        if ((bttnEl.parentElement.querySelector(".spell-name") as HTMLInputElement).value == selectedCatalogSpell.name){
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-        bttnEl.parentElement.remove();
-        triggerUnsafeSave();
-    });
-    if(level > 0){
-        newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
-            togglePrepared(event.target as HTMLInputElement);
-            triggerUnsafeSave();
-        });
-    }
-
-    newRow.querySelector(".spell-name").addEventListener('change', event =>{
-        applySpellTip(event.target as HTMLInputElement);
-    });
-    newRow.querySelector(".spell-name").addEventListener('input', event => {
-        if ((event.target as HTMLInputElement).value.toUpperCase() == selectedCatalogSpell.name.toUpperCase()){
-            document.getElementById("btn-learn-spell").classList.add("disabled");
-        }
-        else{
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-    });
-
-    newRow.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', event => {
-            triggerUnsafeSave();
-        });
-    });
-
-    // var autoComplete: spellAutoComplete = new spellAutoComplete();
-    // autoComplete.init(newRow.querySelectorAll('.spell-name'), level.toString());
-
-    return newRow;
-}
-
-function togglePrepared(el: HTMLInputElement){
-    if (el.checked){
-        el.previousElementSibling.firstElementChild.classList.add("prepared");
-    }
-    else{
-        el.previousElementSibling.firstElementChild.classList.remove("prepared");
-    }
-}
-
-export function togglePreparedSpells(){
-    document.querySelectorAll(".spell-prepared").forEach(el => {
-        togglePrepared(el as HTMLInputElement);
     });
 }
 

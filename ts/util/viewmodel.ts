@@ -20,12 +20,15 @@ export var viewModel = new ViewModel(new Character, [], new Spell());
 
 //to be executed on document ready
 export function applyDataBinding(){
-    //valueAccessor: the spell level
+    //valueAccessor: { the spell level, spell name }
     ko.bindingHandlers.bindSpell = {
         init: function(element: Node, valueAccessor: any){
-            let lvl: number = ko.unwrap(valueAccessor());
-            initSpellAutoComplete(element, lvl);
+            let args = valueAccessor();
+            let lvl: number = ko.unwrap(args.level);
+            let observableName: KnockoutObservable<string> = args.name;
+            initSpellAutoComplete(element, lvl, observableName);
 
+            applySpellTip(element as HTMLInputElement);
             element.addEventListener('keyup', event =>{
                 applySpellTip(event.target as HTMLInputElement);
             });

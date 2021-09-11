@@ -2,17 +2,12 @@ import '../util/skillbox';
 import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
-import { applyAllSpellTips, loadSpellData, togglePreparedSpells } from "./spells-renderer";
+import { loadSpellData } from "./spells-renderer";
 import { applyDataBinding, viewModel } from "../util/viewmodel";
-import { Counter, SpellLevel } from '../util/character';
+import { CharacterSpell, Counter, SpellLevel } from '../util/character';
 
 //Misc TODO
 //Unsafe safe logic is messed up in some way(s) or another
-//Add to catalog button
-//Generally use bindings instead of html references
-//clean up no longer needed shit
-//Fix the saving/loading of spells re: autocomplete
-//Fix Spell inputs being created willy nilly or some shit
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
@@ -35,14 +30,13 @@ document.addEventListener("DOMContentLoaded", function(){
             });
         });
 
-        applyAllSpellTips();
-
         (document.getElementById("spell-rest-long") as HTMLInputElement).checked = true;
 
         document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-            (document.querySelectorAll(".spell-prepared") as NodeListOf<HTMLInputElement>).forEach(el => {
-                el.checked = false;
-                togglePreparedSpells();
+            viewModel.character().spellLevels().forEach((level: SpellLevel) => {
+                level.spells().forEach((spell: CharacterSpell) => {
+                    spell.prepared(false);
+                })
             });
         });
 

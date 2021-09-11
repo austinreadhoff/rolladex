@@ -234,13 +234,21 @@ export class Character {
     }
 
     //these have to be here, otherwise the fromJS model update would bork
-    addSpell(spellLevel: any){
-        this.spellLevels()[spellLevel()].spells.push(new CharacterSpell());
+    addSpell(spellLevel: number, name: string = ""){
+        this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
         triggerUnsafeSave();
     }
     removeSpell(spell: CharacterSpell, spellLevel: any){
         this.spellLevels()[spellLevel()].spells.remove(spell);
         triggerUnsafeSave();
+    }
+    hasSpell(name: string){
+        for (let level of this.spellLevels()){
+            for (let spell of level.spells()){
+                if (spell.name() == name) return true;
+            }
+        }
+        return false;
     }
 }
 
@@ -327,15 +335,6 @@ export class SpellLevel {
 
         return num == 0 ? "Cantrips" : "Level " + num;
     });
-
-    // addSpell(){
-    //     this.spells.push(new CharacterSpell());
-    //     triggerUnsafeSave();
-    // }
-    // removeSpell(spell: CharacterSpell, spellLevel: any){
-    //     viewModel.character().spellLevels()[spellLevel()].spells.remove(spell);
-    //     triggerUnsafeSave();
-    // }
 }
 
 export class CharacterSpell {
