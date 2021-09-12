@@ -1,13 +1,9 @@
 import '../util/skillbox';
 import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
-import { setUpSaveTracking, triggerUnsafeSave } from "./save-tracker-renderer";
 import { loadSpellData } from "./spells-renderer";
 import { applyDataBinding, viewModel } from "../util/viewmodel";
 import { CharacterSpell, Counter, SpellLevel } from '../util/character';
-
-//Misc TODO
-//Unsafe safe logic is messed up in some way(s) or another
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);
@@ -40,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function(){
             });
         });
 
-        setUpSaveTracking();
-
         ipcRenderer.send('check-recent-load');
     });
 });
@@ -59,8 +53,6 @@ export function switchTab(tabId: string){
 }
 
 function takeRest(restType: number){
-    triggerUnsafeSave();
-
     if (restType >= viewModel.character().spellRest()){ //Long rests refresh Warlocks too
         viewModel.character().spellLevels().forEach((level: SpellLevel) => {
             level.slotsRemaining(level.slotsTotal());

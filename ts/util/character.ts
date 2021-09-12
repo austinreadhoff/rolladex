@@ -189,6 +189,28 @@ export class Character {
             let parsed = JSON.parse(json);
             this.characterName = parsed.characterName;
         }
+
+        let savedProperties: string[] = ['characterName', 'classLevel', 'background', 'playerName',
+        'race', 'alignment', 'xp', 'str', 'dex', 'con', 'int', 'wis', 'char', 'inspiration', 'proficiency', 'joat',
+        'savingStr', 'savingDex', 'savingCon', 'savingInt', 'savingWis', 'savingChar', 'armorClass', 'speed',
+        'currentHP', 'maxHP', 'tempHP', 'currentHitDice', 'maxHitDice', 'deathSavingSuccess1', 'deathSavingSuccess2',
+        'deathSavingSuccess3', 'deathSavingFailure1', 'deathSavingFailure2', 'deathSavingFailure3', 'copper',
+        'silver', 'electrum', 'gold', 'platinum', 'age', 'height', 'weight', 'eyes', 'skin', 'hair',
+        'spellcastingClass', 'spellcastingAbility', 'spellSaveDC', 'spellAttackBonus', 'proficienciesLanguages',
+        'equipment', 'features', 'physicalDescription', 'traits', 'ideals', 'bonds', 'flaws', 'backstory', 'allies',
+        'additionalFeatures', 'treasure', 'acrobatics', 'animalHandling', 'arcana', 'athletics', 'deception',
+        'history', 'insight', 'intimidation', 'investigation', 'medicine', 'nature', 'perception', 'performance',
+        'persuasion', 'religion', 'slightOfHand', 'stealth', 'survival', 'attackStats', 'miscCounters', 'spellRest',
+        'spellLevels'];
+        for(var p in savedProperties)
+        {
+            let propStr = savedProperties[p];
+            let propName = propStr as Extract<keyof this, string>;
+            if(this.hasOwnProperty(propStr)) {
+                (this[propName] as any).extend({notify: "always"});
+                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
+            }
+        }
     }
 
     abilityModCheckbox(ability: number, hasProf: Boolean, usesJoat = false){
@@ -217,23 +239,20 @@ export class Character {
 
     addAttackRow(){
         this.attackStats.push(new Attack())
-        triggerUnsafeSave();
     }
     removeAttackRow(row: Attack){
         viewModel.character().attackStats.remove(row);
-        triggerUnsafeSave();
     }
 
     addMiscCounter(){
         this.miscCounters.push(new Counter())
-        triggerUnsafeSave();
     }
     removeMiscCounter(counter: Counter){
         viewModel.character().miscCounters.remove(counter);
-        triggerUnsafeSave();
     }
 
     //these have to be here, otherwise the fromJS model update would bork
+    //unsure why unsafe save needs to be triggered in these manually
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
         triggerUnsafeSave();
@@ -318,7 +337,7 @@ export class SpellLevel {
         this.slotsTotal = ko.observable("0");
         this.spells = ko.observableArray([]);
 
-        let savedProperties: string[] = ["slotsRemaining", "slotsTotal"];
+        let savedProperties: string[] = ["slotsRemaining", "slotsTotal", "spells"];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -342,11 +361,10 @@ export class CharacterSpell {
     prepared: KnockoutObservable<boolean>;
 
     constructor(name: string = ""){
-
         this.name = ko.observable(name);
         this.prepared = ko.observable(false);
 
-        let savedProperties: string[] = ["name", "prepared", "dmg"];
+        let savedProperties: string[] = ["name", "prepared"];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
