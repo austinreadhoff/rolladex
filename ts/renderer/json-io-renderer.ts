@@ -2,7 +2,7 @@ import * as ko from "knockout";
 const koMapping = require('knockout-mapping');
 import { ipcRenderer } from "electron";
 import { switchTab } from "./rolladex";
-import { jsonSchemaVersion } from "../util/character-schema";
+import { jsonSchemaVersion, UpgradeSchema } from "../util/character-schema";
 import { viewModel } from "../util/viewmodel";
 import { resetSafeSave, triggerUnsafeSave } from "./save-tracker-renderer";
 
@@ -15,10 +15,9 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
 });
 
 ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
-    //TODO: This
-    // if (json["version"] < jsonSchemaVersion){
-    //     json = UpgradeSchema(json);
-    // }
+    if (json["version"] < jsonSchemaVersion){
+        json = UpgradeSchema(json);
+    }
 
     koMapping.fromJS(json, {}, viewModel.character);
 
