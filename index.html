@@ -4,8 +4,6 @@
     <title>RollaDex</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">    <!-- dark theme -->
     <link rel="stylesheet" href="css/rolladex.css">
@@ -35,41 +33,41 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+        <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
             <div id="stats-container" class="container-fluid">
                 <div class="header row block block-bordered">
                     <div class="col-4 form-group">
                         <label for="character-name">Character Name</label>
-                        <input id="character-name" class="form-control">
+                        <input data-bind="textInput: characterName" id="character-name" class="form-control">
                     </div>
 
                     <div class="col-8 container">
                         <div class="row">
                             <div class="form-group col">
                                 <label for="class-level">Class & Level</label>
-                                <input id="class-level" class="form-control">
+                                <input data-bind="textInput: classLevel" id="class-level" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="background">Background</label>
-                                <input id="background" class="form-control">
+                                <input data-bind="textInput: background" id="background" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="player-name">Player Name</label>
-                                <input id="player-name" class="form-control">
+                                <input data-bind="textInput: playerName" id="player-name" class="form-control">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label for="race">Race</label>
-                                <input id="race" class="form-control">
+                                <input data-bind="textInput: race" id="race" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="Alignment">Alignment</label>
-                                <input id="alignment" class="form-control">
+                                <input data-bind="textInput: alignment"id="alignment" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="xp">Experience Points</label>
-                                <input id="xp" class="form-control">
+                                <input data-bind="textInput: xp" id="xp" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -82,190 +80,190 @@
                                 <div id="ability-scores" class="block block-shaded col-4">
                                     <div class="ability-score-container form-group">
                                         <label>Strength</label>
-                                        <span id="str-mod" class="ability-mod">+0</span>
-                                        <input id="str" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: str" id="str" class="form-control ability-input">
                                     </div>
                                     <div class="ability-score-container form-group">
                                         <label>Dexterity</label>
-                                        <span id="dex-mod" class="ability-mod">+0</span>
-                                        <input id="dex" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(dex())" id="dex-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: dex" id="dex" class="form-control ability-input">
                                     </div>
                                     <div class="ability-score-container form-group">
                                         <label>Constitution</label>
-                                        <span id="con-mod" class="ability-mod">+0</span>
-                                        <input id="con" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(con())" id="con-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: con" id="con" class="form-control ability-input">
                                     </div>
                                     <div class="ability-score-container form-group">
                                         <label>Intelligence</label>
-                                        <span id="int-mod" class="ability-mod">+0</span>
-                                        <input id="int" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(int())" id="int-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: int" id="int" class="form-control ability-input">
                                     </div>
                                     <div class="ability-score-container form-group">
                                         <label>Wisdom</label>
-                                        <span id="wis-mod" class="ability-mod">+0</span>
-                                        <input id="wis" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(wis())" id="wis-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: wis" id="wis" class="form-control ability-input">
                                     </div>
                                     <div class="ability-score-container form-group">
                                         <label>Charisma</label>
-                                        <span id="char-mod" class="ability-mod">+0</span>
-                                        <input id="char" class="form-control ability-input">
+                                        <span data-bind="text: abilityMod(char())" id="char-mod" class="ability-mod"></span>
+                                        <input data-bind="textInput: char" id="char" class="form-control ability-input">
                                     </div>
                                 </div>
                                 <div id="skills-etc" classes="col-8">
                                     <div class="form-check print-hidden">
-                                        <input class="form-check-input proficiency-check" type="checkbox" id="inspiration">
+                                        <input data-bind="checked: inspiration" class="form-check-input proficiency-check" type="checkbox" id="inspiration">
                                         <label class="form-check-label" for="inspiration">Inspiration</label>
                                     </div>
                                     <div class="form-group">
                                         <label for="proficiency">Proficiency Bonus</label>
-                                        <input id="proficiency" class="form-control">
+                                        <input data-bind="textInput: proficiency" id="proficiency" class="form-control">
                                     </div>
                                     <div class="form-check print-hidden">
-                                        <input class="form-check-input joat-check" type="checkbox" id="joat">
+                                        <input data-bind="checked: joat" class="form-check-input joat-check" type="checkbox" id="joat">
                                         <label class="form-check-label" for="joat">Jack of All Trades</label>
                                     </div>
                                     <div id="saving-throws" class="block block-bordered">
                                         <label>Saving Throws</label>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-str">
-                                            <span id="saving-str-mod" class="str-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingStr" class="form-check-input proficiency-check" type="checkbox" id="saving-str">
+                                            <span data-bind="text: abilityModCheckbox(str(), savingStr())" id="saving-str-mod" class="str-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-str">Strength</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-dex">
-                                            <span id="saving-dex-mod" class="dex-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingDex" class="form-check-input proficiency-check" type="checkbox" id="saving-dex">
+                                            <span data-bind="text: abilityModCheckbox(dex(), savingDex())" id="saving-dex-mod" class="dex-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-dex">Dexterity</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-con">
-                                            <span id="saving-con-mod" class="con-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingCon" class="form-check-input proficiency-check" type="checkbox" id="saving-con">
+                                            <span data-bind="text: abilityModCheckbox(con(), savingCon())" id="saving-con-mod" class="con-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-con">Constitution</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-int">
-                                            <span id="saving-int-mod" class="int-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingInt" class="form-check-input proficiency-check" type="checkbox" id="saving-int">
+                                            <span data-bind="text: abilityModCheckbox(int(), savingInt())" id="saving-int-mod" class="int-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-int">Intelligence</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-wis">
-                                            <span id="saving-wis-mod" class="wis-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingWis" class="form-check-input proficiency-check" type="checkbox" id="saving-wis">
+                                            <span data-bind="text: abilityModCheckbox(wis(), savingWis())" id="saving-wis-mod" class="wis-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-wis">Wisdom</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input proficiency-check" type="checkbox" id="saving-char">
-                                            <span id="saving-char-mod" class="char-mod-prof mod-saving">+0</span>
+                                            <input data-bind="checked: savingChar" class="form-check-input proficiency-check" type="checkbox" id="saving-char">
+                                            <span data-bind="text: abilityModCheckbox(char(), savingChar())" id="saving-char-mod" class="char-mod-prof mod-saving"></span>
                                             <label class="form-check-label" for="saving-char">Charisma</label>
                                         </div>
                                     </div>
                                     <div id="skills" class="block block-bordered">
                                         <label>Skills</label>
                                         <div>
-                                            <div class="skillbox" id="acrobatics">&nbsp</div>
-                                            <span id="acrobatics-mod" class="dex-mod-prof">+0</span>
+                                            <div data-bind="skillbox: acrobatics" class="skillbox" id="acrobatics"></div>
+                                            <span data-bind="text: abilityMod(dex(), true, acrobatics())" id="acrobatics-mod" class="dex-mod-prof"></span>
                                             <label class="form-check-label" for="acrobatics">Acrobatics</label>
                                             <label class="ability-note">(Dex)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="animal-handling">&nbsp</div>
-                                            <span id="animal-handling-mod" class="wis-mod-prof">+0</span>
+                                            <div data-bind="skillbox: animalHandling" class="skillbox" id="animal-handling"></div>
+                                            <span data-bind="text: abilityMod(wis(), true, animalHandling())" id="animal-handling-mod" class="wis-mod-prof"></span>
                                             <label class="form-check-label" for="animal-handling">Animal Handling</label>
                                             <label class="ability-note">(Wis)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="arcana">&nbsp</div>
-                                            <span id="arcana-mod" class="int-mod-prof">+0</span>
+                                            <div data-bind="skillbox: arcana"  class="skillbox" id="arcana"></div>
+                                            <span data-bind="text: abilityMod(int(), true, arcana())" id="arcana-mod" class="int-mod-prof"></span>
                                             <label class="form-check-label" for="arcana">Arcana</label>
                                             <label class="ability-note">(Int)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="athletics">&nbsp</div>
-                                            <span id="athletics-mod" class="str-mod-prof">+0</span>
+                                            <div data-bind="skillbox: athletics" class="skillbox" id="athletics"></div>
+                                            <span data-bind="text: abilityMod(str(), true, athletics())" id="athletics-mod" class="str-mod-prof"></span>
                                             <label class="form-check-label" for="athletics">Athletics</label>
                                             <label class="ability-note">(Str)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="deception">&nbsp</div>
-                                            <span id="deception-mod" class="char-mod-prof">+0</span>
+                                            <div data-bind="skillbox: deception" class="skillbox" id="deception"></div>
+                                            <span data-bind="text: abilityMod(char(), true, deception())" id="deception-mod" class="char-mod-prof"></span>
                                             <label class="form-check-label" for="deception">Deception</label>
                                             <label class="ability-note">(Char)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="history">&nbsp</div>
-                                            <span id="history-mod" class="int-mod-prof">+0</span>
+                                            <div data-bind="skillbox: history" class="skillbox" id="history"></div>
+                                            <span data-bind="text: abilityMod(int(), true, history())" id="history-mod" class="int-mod-prof"></span>
                                             <label class="form-check-label" for="history">History</label>
                                             <label class="ability-note">(Int)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="insight">&nbsp</div>
-                                            <span id="insight-mod" class="wis-mod-prof">+0</span>
+                                            <div data-bind="skillbox: insight" class="skillbox" id="insight"></div>
+                                            <span data-bind="text: abilityMod(wis(), true, insight())" id="insight-mod" class="wis-mod-prof"></span>
                                             <label class="form-check-label" for="insight">Insight</label>
                                             <label class="ability-note">(Wis)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="intimidation">&nbsp</div>
-                                            <span id="intimidation-mod" class="char-mod-prof">+0</span>
+                                            <div data-bind="skillbox: intimidation" class="skillbox" id="intimidation"></div>
+                                            <span data-bind="text: abilityMod(char(), true, intimidation())" id="intimidation-mod" class="char-mod-prof"></span>
                                             <label class="form-check-label" for="intimidation">Intimidation</label>
                                             <label class="ability-note">(Char)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="investigation">&nbsp</div>
-                                            <span id="investigation-mod" class="int-mod-prof">+0</span>
+                                            <div data-bind="skillbox: investigation" class="skillbox" id="investigation"></div>
+                                            <span data-bind="text: abilityMod(int(), true, investigation())" id="investigation-mod" class="int-mod-prof"></span>
                                             <label class="form-check-label" for="investigation">Investigation</label>
                                             <label class="ability-note">(Int)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="medicine">&nbsp</div>
-                                            <span id="medicine-mod" class="wis-mod-prof">+0</span>
+                                            <div data-bind="skillbox: medicine" class="skillbox" id="medicine"></div>
+                                            <span data-bind="text: abilityMod(wis(), true, medicine())" id="medicine-mod" class="wis-mod-prof"></span>
                                             <label class="form-check-label" for="medicine">Medicine</label>
                                             <label class="ability-note">(Wis)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="nature">&nbsp</div>
-                                            <span id="nature-mod" class="int-mod-prof">+0</span>
+                                            <div data-bind="skillbox: nature" class="skillbox" id="nature"></div>
+                                            <span data-bind="text: abilityMod(int(), true, nature())" id="nature-mod" class="int-mod-prof"></span>
                                             <label class="form-check-label" for="nature">Nature</label>
                                             <label class="ability-note">(Int)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="perception">&nbsp</div>
-                                            <span id="perception-mod" class="wis-mod-prof">+0</span>
+                                            <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
+                                            <span data-bind="text: abilityMod(wis(), true, perception())" id="perception-mod" class="wis-mod-prof"></span>
                                             <label class="form-check-label" for="perception">Perception</label>
                                             <label class="ability-note">(Wis)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="performance">&nbsp</div>
-                                            <span id="performance-mod" class="char-mod-prof">+0</span>
+                                            <div data-bind="skillbox: performance" class="skillbox" id="performance"></div>
+                                            <span data-bind="text: abilityMod(char(), true, performance())" id="performance-mod" class="char-mod-prof"></span>
                                             <label class="form-check-label" for="performance">Performance</label>
                                             <label class="ability-note">(Char)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="persuasion">&nbsp</div>
-                                            <span id="persuasion-mod" class="char-mod-prof">+0</span>
+                                            <div data-bind="skillbox: persuasion" class="skillbox" id="persuasion"></div>
+                                            <span data-bind="text: abilityMod(char(), true, persuasion())" id="persuasion-mod" class="char-mod-prof"></span>
                                             <label class="form-check-label" for="persuasion">Persuasion</label>
                                             <label class="ability-note">(Char)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="religion">&nbsp</div>
-                                            <span id="religion-mod" class="int-mod-prof">+0</span>
+                                            <div data-bind="skillbox: religion" class="skillbox" id="religion"></div>
+                                            <span data-bind="text: abilityMod(int(), true, religion())" id="religion-mod" class="int-mod-prof"></span>
                                             <label class="form-check-label" for="religion">Religion</label>
                                             <label class="ability-note">(Int)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="slight-of-hand">&nbsp</div>
-                                            <span id="slight-of-hand-mod" class="dex-mod-prof">+0</span>
+                                            <div data-bind="skillbox: slightOfHand" class="skillbox" id="slight-of-hand"></div>
+                                            <span data-bind="text: abilityMod(dex(), true, slightOfHand())" id="slight-of-hand-mod" class="dex-mod-prof"></span>
                                             <label class="form-check-label" for="slight-of-hand">Slight of Hand</label>
                                             <label class="ability-note">(Dex)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="stealth">&nbsp</div>
-                                            <span id="stealth-mod" class="dex-mod-prof">+0</span>
+                                            <div data-bind="skillbox: stealth" class="skillbox" id="stealth"></div>
+                                            <span data-bind="text: abilityMod(dex(), true, stealth())" id="stealth-mod" class="dex-mod-prof"></span>
                                             <label class="form-check-label" for="stealth">Stealth</label>
                                             <label class="ability-note">(Dex)</label>
                                         </div>
                                         <div>
-                                            <div class="skillbox" id="survival">&nbsp</div>
-                                            <span id="survival-mod" class="wis-mod-prof">+0</span>
+                                            <div data-bind="skillbox: survival" class="skillbox" id="survival"></div>
+                                            <span data-bind="text: abilityMod(dex(), true, survival())" id="survival-mod" class="wis-mod-prof"></span>
                                             <label class="form-check-label" for="survival">Survival</label>
-                                            <label class="ability-note">(Wis)</label>
+                                            <label class="ability-note">(wis)</label>
                                         </div>
                                     </div>
                                 </div>
@@ -273,7 +271,7 @@
                             <div class="row">
                                 <div class="form-group col textarea-col">
                                     <label for="proficiencies-languages">Proficiencies & Languages</label>
-                                    <textarea class="form-control" id="proficiencies-languages" rows="7"></textarea>
+                                    <textarea data-bind="textInput: proficienciesLanguages" class="form-control" id="proficiencies-languages" rows="7"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -285,53 +283,53 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="armor-class">Armor Class</label>
-                                            <input id="armor-class" class="form-control">
+                                            <input data-bind="textInput: armorClass" id="armor-class" class="form-control">
                                         </div>
                                         <div class="form-group col">
                                             <label for="armor-class">Initiative</label>
-                                            <input id="initiative" class="form-control ignore" value="+0" readonly>
+                                            <input data-bind="value: abilityMod(dex(), true)" id="initiative" class="form-control ignore" readonly>
                                         </div>
                                         <div class="form-group col">
                                             <label for="speed">Speed</label>
-                                            <input id="speed" class="form-control">
+                                            <input data-bind="textInput: speed" id="speed" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col container">
                                             <label class="row">Hit Points</label>
                                             <div class="row">
-                                                <input id="current-hp" class="form-control col-5 print-hidden">
+                                                <input data-bind="textInput: currentHP" id="current-hp" class="form-control col-5 print-hidden">
                                                 <span class="col-1 print-hidden">/</span>
-                                                <input id="max-hp" class="form-control col-5">
+                                                <input data-bind="textInput: maxHP" id="max-hp" class="form-control col-5">
                                             </div>
                                         </div>
                                         <div class="col print-hidden">
                                             <label class="col">Temporary HP</label>
-                                            <input id="temp-hp" class="form-control">
+                                            <input data-bind="textInput: tempHP" id="temp-hp" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col container">
                                             <label class="row">Hit Dice</label>
                                             <div class="row">
-                                                <input id="current-hit-dice" class="form-control col-5 print-hidden">
+                                                <input data-bind="textInput: currentHitDice" id="current-hit-dice" class="form-control col-5 print-hidden">
                                                 <span class="col-1 print-hidden">/</span>
-                                                <input id="max-hit-dice" class="form-control col-5">
+                                                <input data-bind="textInput: maxHitDice" id="max-hit-dice" class="form-control col-5">
                                             </div>
                                         </div>
                                         <div class="col container print-hidden">
                                             <label class="row">Death Saves</label>
                                             <div class="row">
                                                 <label class="col-6">Successes</label>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-1"></div>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-2"></div>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-success-3"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingSuccess1" class="death-saving" type="checkbox" id="death-saving-success-1"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingSuccess2" class="death-saving" type="checkbox" id="death-saving-success-2"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingSuccess3" class="death-saving" type="checkbox" id="death-saving-success-3"></div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-6">Failures</label>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
-                                                <div class="col-2"><input class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingFailure1" class="death-saving" type="checkbox" id="death-saving-failure-1"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingFailure2" class="death-saving" type="checkbox" id="death-saving-failure-2"></div>
+                                                <div class="col-2"><input data-bind="checked: deathSavingFailure3" class="death-saving" type="checkbox" id="death-saving-failure-3"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -346,11 +344,16 @@
                                         <label class="col-2">Bonus</label>
                                         <label class="col-4">Damage/Type</label>
                                     </div>
-                                    <div id="attack-stats">
-                                        <!-- attack elements are generated here -->
+                                    <div data-bind="foreach: attackStats" id="attack-stats">
+                                        <div class="attack-stat-row row">
+                                            <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+                                            <input data-bind="textInput: name" class="form-control col-4 attack-stat attack-stat-name">
+                                            <input data-bind="textInput: bonus" class="form-control col-2 attack-stat attack-stat-bonus">
+                                            <input data-bind="textInput: dmg" class="form-control col-4 attack-stat attack-stat-dmg">
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <button type="button" id="btn-add-attack" class="btn btn-primary">+</button>
+                                        <button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -360,29 +363,29 @@
                                         <div class="col form-group">
                                             <img class="currency" src="./img/cp.png">
                                             <label for="copper">CP</label>
-                                            <input id="copper" class="form-control">
+                                            <input data-bind="textInput: copper" id="copper" class="form-control">
                                         </div>
                                         <div class="col form-group">
                                             <img class="currency" src="./img/sp.png">
                                             <label for="silver">SP</label>
-                                            <input id="silver" class="form-control">
+                                            <input data-bind="textInput: silver" id="silver" class="form-control">
                                         </div>
                                         <div class="col form-group">
                                             <img class="currency" src="./img/ep.png">
                                             <label for="electrum">EP</label>
-                                            <input id="electrum" class="form-control">
+                                            <input data-bind="textInput: electrum" id="electrum" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col form-group">
                                             <img class="currency" src="./img/gp.png">
                                             <label for="gold">GP</label>
-                                            <input id="gold" class="form-control">
+                                            <input data-bind="textInput: gold" id="gold" class="form-control">
                                         </div>
                                         <div class="col form-group">
                                             <img class="currency" src="./img/pp.png">
                                             <label for="platinum">PP</label>
-                                            <input id="platinum" class="form-control">
+                                            <input data-bind="textInput: platinum" id="platinum" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -390,7 +393,7 @@
                             <div class="row">
                                 <div class="form-group col textarea-col">
                                     <label for="equipment">Equipment</label>
-                                    <textarea class="form-control" id="equipment" rows="10"></textarea>
+                                    <textarea data-bind="textInput: equipment" class="form-control" id="equipment" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -400,7 +403,7 @@
                             <div class="row">
                                 <div class="form-group col textarea-col">
                                     <label for="features">Features & Traits</label>
-                                    <textarea class="form-control" id="features" rows="40"></textarea>
+                                    <textarea data-bind="textInput: features" class="form-control" id="features" rows="40"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -410,50 +413,63 @@
                 <div id="misc-counters-container" class="print-hidden">
                     <div id="misc-counters-header">
                         <label>Custom Counters</label>
-                        <button type="button" id="btn-add-counter" class="btn btn-primary">+</button>
+                        <button data-bind="click: addMiscCounter" type="button" id="btn-add-counter" class="btn btn-primary">+</button>
                     </div>
-                    <div id="misc-counters" class="row block block-shaded">
-                        <!-- counter elements are generated here -->
+                    <div data-bind="foreach: miscCounters" id="misc-counters" class="row block block-shaded">
+                        <div class="misc-counter-block">
+                            <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="btn btn-danger">-</button>
+                            <span>Refresh on:</span>
+                            <input data-bind="checked: shortRest" type="checkbox" class="misc-counter counter-rest-short">
+                            <label>Short Rest</label>
+                            <input data-bind="checked: longRest, disable: shortRest" type="checkbox" class="misc-counter counter-rest-long">
+                            <label>Long Rest</label>
+                            <input data-bind="textInput: name" class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
+                            <div class="counter-container">
+                                <input data-bind="textInput: current" class="form-control misc-counter counter-current" placeholder="Current">
+                                <span>/</span>
+                                <input data-bind="textInput: max" class="form-control misc-counter counter-max" placeholder="Max">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="tab-pane" id="bio" role="tabpanel" aria-labelledby="bio-tab">
+        <div data-bind="with: character" class="tab-pane" id="bio" role="tabpanel" aria-labelledby="bio-tab">
             <div id="bio-container" class="container-fluid">
                 <div class="header row block block-bordered">
                     <div class="col-6 form-group">
                         <label for="physical-description">Physical Description</label>
-                        <textarea id="physical-description" class="form-control" rows="5"></textarea>
+                        <textarea data-bind="textInput: physicalDescription" d="physical-description" class="form-control" rows="5"></textarea>
                     </div>
 
                     <div class="col-6 container">
                         <div class="row">
                             <div class="form-group col">
                                 <label for="age">Age</label>
-                                <input id="age" class="form-control">
+                                <input data-bind="textInput: age" id="age" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="height">Height</label>
-                                <input id="height" class="form-control">
+                                <input data-bind="textInput: height" id="height" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="weight">Weight</label>
-                                <input id="weight" class="form-control">
+                                <input data-bind="textInput: weight" id="weight" class="form-control">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label for="eyes">Eyes</label>
-                                <input id="eyes" class="form-control">
+                                <input data-bind="textInput: eyes" id="eyes" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="skin">Skin</label>
-                                <input id="skin" class="form-control">
+                                <input data-bind="textInput: skin" id="skin" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="hair">Hair</label>
-                                <input id="hair" class="form-control">
+                                <input data-bind="textInput: hair" id="hair" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -461,224 +477,100 @@
                 <div class="row">
                     <div class="col-3 form-group">
                         <label for="traits">Personality Traits</label>
-                        <textarea class="form-control" id="traits" rows="4"></textarea>
+                        <textarea data-bind="textInput: traits" class="form-control" id="traits" rows="4"></textarea>
                     </div>
                     <div class="col-3 form-group">
                         <label for="ideals">Ideals</label>
-                        <textarea class="form-control" id="ideals" rows="4"></textarea>
+                        <textarea data-bind="textInput: ideals" class="form-control" id="ideals" rows="4"></textarea>
                     </div>
                     <div class="col-3 form-group">
                         <label for="bonds">Bonds</label>
-                        <textarea class="form-control" id="bonds" rows="4"></textarea>
+                        <textarea data-bind="textInput: bonds" class="form-control" id="bonds" rows="4"></textarea>
                     </div>
                     <div class="col-3 form-group">
                         <label for="flaws">Flaws</label>
-                        <textarea class="form-control" id="flaws" rows="4"></textarea>
+                        <textarea data-bind="textInput: flaws" class="form-control" id="flaws" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 form-group">
                         <label for="backstory">Backstory</label>
-                        <textarea class="form-control" id="backstory" rows="10"></textarea>
+                        <textarea data-bind="textInput: backstory" class="form-control" id="backstory" rows="10"></textarea>
                     </div>
                     <div class="col-6 form-group">
                         <label for="allies">Allies & Organizations</label>
-                        <textarea class="form-control" id="allies" rows="10"></textarea>
+                        <textarea data-bind="textInput: allies" class="form-control" id="allies" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 form-group">
                         <label for="additional-features">Additional Features & Traits</label>
-                        <textarea class="form-control" id="additional-features" rows="10"></textarea>
+                        <textarea data-bind="textInput: additionalFeatures" class="form-control" id="additional-features" rows="10"></textarea>
                     </div>
                     <div class="col-6 form-group">
                         <label for="treasure">Treasure</label>
-                        <textarea class="form-control" id="treasure" rows="10"></textarea>
+                        <textarea data-bind="textInput: treasure" class="form-control" id="treasure" rows="10"></textarea>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
+        <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
             <div id="spellbook-container" class="container-fluid">
                 <div class="header row block block-bordered">
                     <div class="col-6 form-group">
                         <label for="spellcasting-class">Spellcasting Class</label>
-                        <input id="spellcasting-class" class="form-control">
+                        <input data-bind="textInput: spellcastingClass" id="spellcasting-class" class="form-control">
                     </div>
                     <div class="form-group col-2">
                         <label for="spellcasting-ability">Spellcasting Ability</label>
-                        <input id="spellcasting-ability" class="form-control">
+                        <input data-bind="textInput: spellcastingAbility" id="spellcasting-ability" class="form-control">
                     </div>
                     <div class="form-group col-2">
                         <label for="spell-save-dc">Spell Save DC</label>
-                        <input id="spell-save-dc" class="form-control">
+                        <input data-bind="textInput: spellSaveDC" id="spell-save-dc" class="form-control">
                     </div>
                     <div class="form-group col-2">
                         <label for="spell-attack-bonus">Spell Attack Bonus</label>
-                        <input id="spell-attack-bonus" class="form-control">
+                        <input data-bind="textInput: spellAttackBonus" id="spell-attack-bonus" class="form-control">
                     </div>
                 </div>
 
                 <div>
                     <div>
                         <span>Spell Slots Refresh on:</span>
-                        <input type="radio" name="spell-rest" id="spell-rest-short" value="1">
+                        <input data-bind="checked: spellRest" type="radio" name="spell-rest" id="spell-rest-short" value="1">
                         <label for="spell-rest-short">Short Rest</label>
-                        <input type="radio" name="spell-rest" id="spell-rest-long" value="2">
+                        <input data-bind="checked: spellRest" type="radio" name="spell-rest" id="spell-rest-long" value="2">
                         <label for="spell-rest-long">Long Rest</label>
                     </div>
                     <button type="button" id="btn-reset-prepared" class="btn btn-success">Reset Prepared Spells</button>
                 </div>
-                <div class="row">
-                    <div class="col container block block-shaded spell-block" data-level="0">
-                        <label class="row full-width-label">Cantrips</label>
+                <div data-bind="foreach: spellLevels" class="row">
+                    <div data-bind="attr: { 'data-level': level }" class="container block block-shaded spell-block">
+                        <label data-bind="text: levelFormatted" class="row full-width-label"></label>
                         <div id="spells">
-                            <!-- spells are generated here -->
+                            <!--ko if: level-->
+                            <div class="spell-slot-container">
+                                <input data-bind="textInput: slotsRemaining" class="form-control spell-input spell-slots-remaining" value="0">
+                                <span>/</span>
+                                <input data-bind="textInput: slotsTotal" class="form-control spell-input spell-slots-total" value="0">
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko foreach: spells -->
+                            <div class="spell-row row">
+                                <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
+                                <div class="autocomplete col">
+                                    <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class="form-control spell-input spell-name">
+                                </div>
+                                <!-- ko if: $parent.level -->
+                                <input data-bind="checked: prepared" class="col-1 spell-input spell-prepared print-hidden" type="checkbox">
+                                <!-- /ko -->
+                            </div>
+                            <!-- /ko -->
                         </div>
                         <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="-1">
-                        <label class="row full-width-label">Other</label>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col container block block-shaded spell-block" data-level="1">
-                        <label class="row full-width-label">Level 1 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="2">
-                        <label class="row full-width-label">Level 2 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="3">
-                        <label class="row full-width-label">Level 3 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col container block block-shaded spell-block" data-level="4">
-                        <label class="row full-width-label">Level 4 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="5">
-                        <label class="row full-width-label">Level 5 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="6">
-                        <label class="row full-width-label">Level 6 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col container block block-shaded spell-block" data-level="7">
-                        <label class="row full-width-label">Level 7 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="8">
-                        <label class="row full-width-label">Level 8 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
-                        </div>
-                    </div>
-                    <div class="col container block block-shaded spell-block" data-level="9">
-                        <label class="row full-width-label">Level 9 Slots</label>
-                        <div class="spell-slot-container">
-                            <input class="form-control spell-input spell-slots-remaining" value="0">
-                            <span>/</span>
-                            <input class="form-control spell-input spell-slots-total" value="0">
-                        </div>
-                        <div id="spells">
-                            <!-- spells are generated here -->
-                        </div>
-                        <div class="row">
-                            <button type="button" id="btn-add-spell" class="btn btn-primary">+</button>
+                            <button data-bind="click: function(){$parent.addSpell(level())}" type="button" id="btn-add-spell" class="btn btn-primary">+</button>
                         </div>
                     </div>
                 </div>
@@ -687,7 +579,9 @@
 
         <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
             <div id="spellcatalog-container" class="print-hidden">
-                <select id="spell-listbox" size="2">
+                <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" 
+                    id="spell-listbox" 
+                    size="2">
                     <!--spell listbox here-->
                 </select>
                 <div id="spellcatalog-filters" class="block block-bordered">
@@ -723,23 +617,23 @@
                         </ul>
                     </div>
                 </div>
-                <div id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
+                <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
                     <div class="row">
                         <div class="col">
-                            <i id="catalog-source"></i>
+                            <i data-bind="text: sourceFormatted" id="catalog-source"></i>
                         </div>
                         <div class="col" id="catalog-classes-col">
-                            <i id="catalog-classes"></i>
+                            <i data-bind="text: classesFormatted" id="catalog-classes"></i>
                         </div>
                     </div>
                     <div class="row" id="catalog-text-row">
                         <div class="col" id="catalog-text-col">
-                            <p id="catalog-text"></p>
+                            <p data-bind="text: fullTextFormatted" id="catalog-text"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
+                            <button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
                         </div>
                     </div>
                 </div>

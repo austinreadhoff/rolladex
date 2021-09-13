@@ -1,13 +1,12 @@
 const { ipcRenderer } = require('electron')
-import { spellAutoComplete } from "./autocomplete";
-import { triggerUnsafeSave } from "./save-tracker-renderer";
-import { parseSpellJSON, Spell, SpellComponentProperties } from "../util/spell";
+import { Spell } from "../util/spell";
+import { viewModel } from "../util/viewmodel";
 
-export var spellJSON: Spell[] = [];
-var selectedCatalogSpell: Spell;
+//Represents the entire spell catalog, whereas the viewmodel SpellCatalog represents the current filtered version
+export var spellCatalog: Spell[] = [];
 
 ipcRenderer.on('send-custom-spells', (event, json) => {
-    spellJSON = spellJSON.concat(parseSpellJSON(json));
+    spellCatalog = spellCatalog.concat(json.map((j: any) => new Spell(j)));
 });
 
 export function loadSpellData(){
@@ -21,20 +20,20 @@ export function loadSpellData(){
         ];
 
         Promise.all(spellFilePromises).then((jsonCollections) => {
-            jsonCollections.forEach((c: any) => spellJSON = spellJSON.concat(parseSpellJSON(c)));
-            spellJSON = spellJSON.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
+            jsonCollections.forEach((c: any) => spellCatalog = spellCatalog.concat(c.map((j: any) => new Spell(j))));
+            spellCatalog = spellCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
 
             //setup catalog selection
-            createSpellCatalog(spellJSON);
+            viewModel.spellCatalog(spellCatalog);
 
             var spellListBox: HTMLInputElement = document.getElementById("spell-listbox") as HTMLInputElement;
-            spellListBox.value = spellJSON[0].name;
-            mapCatalogSpell(spellJSON[0]);
+            spellListBox.value = spellCatalog[0].name;
+            viewModel.spell(spellCatalog[0]);
 
             spellListBox.addEventListener("change", event => {
                 let listBox: HTMLInputElement = event.target as HTMLInputElement
-                var spell = spellJSON.find(spell => spell.name == listBox.value);
-                mapCatalogSpell(spell);
+                var spell = spellCatalog.find(spell => spell.name == listBox.value);
+                viewModel.spell(spell);
             });
 
             //setup catalog filters
@@ -57,97 +56,20 @@ export function loadSpellData(){
                 filterSpellCatalog();
             });
 
-            //setup add to spellbook button
-            document.getElementById("btn-learn-spell").addEventListener('click', event => {
-                let bttnEl: HTMLElement = event.target as HTMLElement
-                if (!bttnEl.classList.contains("disabled")){
-                    var levelStr = selectedCatalogSpell.level;
-                    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find((div) => +div.getAttribute("data-level") == levelStr)
-    
-                    var inputToUpdate: HTMLInputElement;
-                    var firstInput: HTMLInputElement = spellBlock.querySelectorAll(".spell-name")[0] as HTMLInputElement;
-                    if (firstInput && !firstInput.value){
-                        inputToUpdate = firstInput;
-                    }
-                    else{
-                        var newRow = buildSpellRow(levelStr)
-                        inputToUpdate = newRow.querySelector(".spell-name")
-                        spellBlock.querySelector("#spells").appendChild(newRow);
-                    }
-                    inputToUpdate.value = selectedCatalogSpell.name;
-                    applySpellTip(inputToUpdate);
-
-                    triggerUnsafeSave();
-    
-                    bttnEl.classList.add("disabled");
-                }
-            });
-
             resolve(null);
         });
     });
 }
 
-export function applyAllSpellTips(){
-    document.querySelectorAll(".spell-name").forEach(input => {
-        applySpellTip(input as HTMLInputElement);
-        
-        input.addEventListener("change", event => {
-            applySpellTip(event.target as HTMLInputElement);
-        });
-    });
-}
-
 export function applySpellTip(el: HTMLInputElement){
-    var spell: any = spellJSON.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
+    var spell: Spell = spellCatalog.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
 
     if (spell){
-        el.title = buildFormatedSpellText(spell);
+        el.title = spell.fullTextFormatted();
     }
     else{
         el.title = "No Description Found";
     }
-
-    if (spell == selectedCatalogSpell){
-        document.getElementById("btn-learn-spell").classList.add("disabled");
-    }
-}
-
-function createSpellCatalog(spellList: Spell[]){
-    var spellListBox = document.getElementById("spell-listbox") as HTMLInputElement;
-    spellListBox.innerHTML = "";
-
-    spellList.forEach((spell: Spell) => {
-        var option = document.createElement("option");
-        option.value = spell.name;
-        option.innerHTML = spell.name;
-        spellListBox.appendChild(option);
-
-        if (selectedCatalogSpell && selectedCatalogSpell.name == spell.name){
-            spellListBox.value = spell.name;
-        }
-    });
-}
-
-function mapCatalogSpell(spell: Spell){
-    selectedCatalogSpell = spell;
-    var classes = spell.classes.join(", ")
-
-    document.getElementById("catalog-source").innerHTML = "Source: " + spell.source;
-    document.getElementById("catalog-classes").innerHTML = "Classes: " + classes;
-    document.getElementById("catalog-text").innerHTML = buildFormatedSpellText(spell);
-
-    //disabled learn button if it's already learned
-    var learnBtn = document.getElementById("btn-learn-spell");
-    learnBtn.classList.remove("disabled");
-
-    var levelStr = spell.level;
-    var spellBlock = Array.from(document.querySelectorAll(".spell-block")).find(div => +div.getAttribute("data-level") == levelStr);
-    (spellBlock.querySelectorAll(".spell-name") as NodeListOf<HTMLInputElement>).forEach(input => {
-        if (input.value.toUpperCase() == spell.name.toUpperCase()){
-            learnBtn.classList.add("disabled");
-        }
-    });
 }
 
 function filterSpellCatalog(){
@@ -158,17 +80,17 @@ function filterSpellCatalog(){
     var schools = Array.from(document.getElementById("school-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
     var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
 
-    var filteredCatalog = spellJSON
+    var filteredCatalog = spellCatalog
         .filter(spell => !name || spell.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => levels.length < 1 || levels.indexOf(spell.level.toString().replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => classes.length < 1 || classes.some(c => spell.classes.map((c2: string) => c2.replace(/\W/g, '').toUpperCase()).includes(c)))
         .filter(spell => schools.length < 1 || schools.indexOf(spell.school.replace(/\W/g, '').toUpperCase()) != -1)
         .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1);
 
-    createSpellCatalog(filteredCatalog);
+    viewModel.spellCatalog(filteredCatalog);
 }
 
-//helpers
+//#region helpers
 
 function getJSON(path: string){
     return new Promise((resolve, reject) => {
@@ -183,124 +105,6 @@ function getJSON(path: string){
     
         request.send();
     });
-}
-
-export function buildSpellRow(level: number){
-    var spellHTML = 
-        `<button type="button" id="btn-remove-spell" class=" col-1 btn btn-danger">-</button>
-         <div class="autocomplete col"><input class="form-control spell-input spell-name"></div>`;
-    if(level > 0){
-        spellHTML+= `<input class="col-1 spell-input spell-prepared print-hidden" type="checkbox">`
-    }
-
-    var newRow = document.createElement("div");
-    newRow.className = "spell-row row";
-    newRow.innerHTML = spellHTML;
-    newRow.querySelector("#btn-remove-spell").addEventListener('click', event =>{
-        let bttnEl = event.target as HTMLElement
-        if ((bttnEl.parentElement.querySelector(".spell-name") as HTMLInputElement).value == selectedCatalogSpell.name){
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-        bttnEl.parentElement.remove();
-        triggerUnsafeSave();
-    });
-    if(level > 0){
-        newRow.querySelector(".spell-prepared").addEventListener('click', event =>{
-            togglePrepared(event.target as HTMLInputElement);
-            triggerUnsafeSave();
-        });
-    }
-
-    newRow.querySelector(".spell-name").addEventListener('change', event =>{
-        applySpellTip(event.target as HTMLInputElement);
-    });
-    newRow.querySelector(".spell-name").addEventListener('input', event => {
-        if ((event.target as HTMLInputElement).value.toUpperCase() == selectedCatalogSpell.name.toUpperCase()){
-            document.getElementById("btn-learn-spell").classList.add("disabled");
-        }
-        else{
-            document.getElementById("btn-learn-spell").classList.remove("disabled");
-        }
-    });
-
-    newRow.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', event => {
-            triggerUnsafeSave();
-        });
-    });
-
-    var autoComplete: spellAutoComplete = new spellAutoComplete();
-    autoComplete.init(newRow.querySelectorAll('.spell-name'), level.toString());
-
-    return newRow;
-}
-
-function togglePrepared(el: HTMLInputElement){
-    if (el.checked){
-        el.previousElementSibling.firstElementChild.classList.add("prepared");
-    }
-    else{
-        el.previousElementSibling.firstElementChild.classList.remove("prepared");
-    }
-}
-
-export function togglePreparedSpells(){
-    document.querySelectorAll(".spell-prepared").forEach(el => {
-        togglePrepared(el as HTMLInputElement);
-    });
-}
-
-function buildFormatedSpellText(spell: Spell){
-    var spellType = spell.school;
-    if (spell.level == 0){
-        spellType += " Cantrip"
-    }
-    else{
-        var levelFragment;
-
-        if (spell.level == 1)
-            levelFragment = "1st"
-        else if (spell.level == 2)
-            levelFragment = "2nd"
-        else if (spell.level == 3)
-            levelFragment = "2rd"
-        else
-            levelFragment = spell.level.toString() + "th"
-
-        spellType = levelFragment + "-level " + spellType
-    }
-    if (spell.ritual){
-        spellType += " (ritual)"
-    }
-
-    var fullDescription = spell.higherLevelDescription ? (spell.description + "\n\nAt Higher Levels: " + spell.higherLevelDescription) : spell.description
-
-    var text = 
-    `${spellType}\n`
-    +`Casting Time: ${spell.castingTime}\n`
-    +`Range: ${spell.range}\n`
-    +`Components: ${buildRawComponentString(spell.components)}\n`
-    +`Duration: ${spell.duration}\n\n`
-
-    +`${fullDescription}`;
-
-    return text;
-}
-
-function buildRawComponentString(spellComponents: SpellComponentProperties){
-    var raw = "";
-    if (spellComponents.verbal){
-        raw += "V"
-    }
-    if (spellComponents.somatic){
-        raw += raw.length > 0 ? ", S" : "S";
-    } 
-    if (spellComponents.material){
-        raw += raw.length > 0 ? ", M" : "M";
-        raw += " (" + spellComponents.materials + ")"
-    }
-
-    return raw;
 }
 
 function setupFilterToggle(toggleElId: string, filterUlId: string){
@@ -321,7 +125,7 @@ function setupFilterToggle(toggleElId: string, filterUlId: string){
 function populateFilterDropDown(filterElId: string, property: string){
     var options: any[] = [];
 
-    spellJSON.forEach(spell => {
+    spellCatalog.forEach(spell => {
         if(Array.isArray(spell[property as keyof Spell])){
             let arr = spell[property as keyof Spell] as any[]
             arr.forEach((x: string) => {
@@ -355,3 +159,5 @@ function populateFilterDropDown(filterElId: string, property: string){
         });
     });
 }
+
+//#endregion
