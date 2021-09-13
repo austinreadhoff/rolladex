@@ -1,6 +1,5 @@
 import * as ko from "knockout";
 import { triggerUnsafeSave } from "../renderer/save-tracker-renderer";
-import { UpgradeSchema } from "./character-schema";
 import { RestType } from "./rest-type";
 import { viewModel } from "./viewmodel";
 
