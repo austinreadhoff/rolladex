@@ -211,6 +211,8 @@ export class Character {
 
     abilityMod(ability: number, usesJoat = false, profString = "&nbsp"){
         return ko.computed(() =>{
+            if (!ability) return "+0";
+
             let profBonus = this.proficiency().replace(/\D/g,'');
             let profLevel: number;
             if (profString == "&nbsp")
