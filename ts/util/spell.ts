@@ -36,7 +36,7 @@ export class Spell {
             else if (this.level == 2)
                 levelFragment = "2nd"
             else if (this.level == 3)
-                levelFragment = "2rd"
+                levelFragment = "3rd"
             else
                 levelFragment = this.level.toString() + "th"
 
