@@ -109,7 +109,7 @@ export class Spell {
             this.higherLevelDescription = json["higher_levels"];
             this.level = +json["level"];
             this.range = json["range"];
-            this.ritual = json["ritual"] == "true" ? true : false;
+            this.ritual = json["ritual"];
             this.school = json["school"];
             this.source = json["source"];
         }
