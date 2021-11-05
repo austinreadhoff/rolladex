@@ -1,4 +1,3 @@
-import '../util/skillbox';
 import { ipcRenderer } from "electron";
 import { RestType } from "../util/rest-type";
 import { loadSpellData } from "./spells-renderer";
