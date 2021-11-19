@@ -264,17 +264,8 @@ export class Character {
     }
 }
 
-class Attack {
-    name: KnockoutObservable<string>;
-    bonus: KnockoutObservable<string>;
-    dmg: KnockoutObservable<string>;
-
-    constructor(){
-        this.name = ko.observable("");
-        this.bonus = ko.observable("");
-        this.dmg = ko.observable("");
-
-        let savedProperties: string[] = ["name", "bonus", "dmg"];
+class CharacterProperty {
+    constructor(savedProperties: string[]){
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -287,7 +278,21 @@ class Attack {
     }
 }
 
-export class Counter {
+class Attack extends CharacterProperty{
+    name: KnockoutObservable<string>;
+    bonus: KnockoutObservable<string>;
+    dmg: KnockoutObservable<string>;
+
+    constructor(){
+        super(["name", "bonus", "dmg"]);
+
+        this.name = ko.observable("");
+        this.bonus = ko.observable("");
+        this.dmg = ko.observable("");
+    }
+}
+
+export class Counter extends CharacterProperty {
     name: KnockoutObservable<string>;
     current: KnockoutObservable<string>;
     max: KnockoutObservable<string>;
@@ -295,22 +300,13 @@ export class Counter {
     longRest: KnockoutObservable<boolean>;
 
     constructor(){
+        super(["name", "current", "max", "shortRest", "longRest"]);
+
         this.name = ko.observable("");
         this.current = ko.observable("");
         this.max = ko.observable("");
         this.shortRest = ko.observable(false);
         this.longRest = ko.observable(false);
-
-        let savedProperties: string[] = ["name", "current", "max", "shortRest", "longRest"];
-        for(var p in savedProperties)
-        {
-            let propStr = savedProperties[p];
-            let propName = propStr as Extract<keyof this, string>;
-            if(this.hasOwnProperty(propStr)) {
-                (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
-            }
-        }
 
         this.shortRest.subscribe((newValue: boolean) => {
             this.longRest(newValue);
@@ -318,28 +314,19 @@ export class Counter {
     }
 }
 
-export class SpellLevel {
+export class SpellLevel extends CharacterProperty {
     level: KnockoutObservable<number>;
     slotsRemaining: KnockoutObservable<string>;
     slotsTotal: KnockoutObservable<string>;
     spells: KnockoutObservableArray<CharacterSpell>;
 
     constructor(level: number){
+        super(["slotsRemaining", "slotsTotal", "spells"]);
+
         this.level = ko.observable(level);
         this.slotsRemaining = ko.observable("0");
         this.slotsTotal = ko.observable("0");
         this.spells = ko.observableArray([]);
-
-        let savedProperties: string[] = ["slotsRemaining", "slotsTotal", "spells"];
-        for(var p in savedProperties)
-        {
-            let propStr = savedProperties[p];
-            let propName = propStr as Extract<keyof this, string>;
-            if(this.hasOwnProperty(propStr)) {
-                (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
-            }
-        }
     }
 
     levelFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
@@ -349,23 +336,14 @@ export class SpellLevel {
     });
 }
 
-export class CharacterSpell {
+export class CharacterSpell extends CharacterProperty {
     name: KnockoutObservable<string>;
     prepared: KnockoutObservable<boolean>;
 
     constructor(name: string = ""){
+        super(["name", "prepared"]);
+
         this.name = ko.observable(name);
         this.prepared = ko.observable(false);
-
-        let savedProperties: string[] = ["name", "prepared"];
-        for(var p in savedProperties)
-        {
-            let propStr = savedProperties[p];
-            let propName = propStr as Extract<keyof this, string>;
-            if(this.hasOwnProperty(propStr)) {
-                (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
-            }
-        }
     }
 }
