@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function(){
     loadSpellData().then(() => {
         document.body.scrollTop = 0;
         
-        //tabs
         document.querySelectorAll('.nav-link').forEach(tab => {
             tab.addEventListener('click', event => {
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
