@@ -266,6 +266,8 @@ export class Character {
 
 class CharacterProperty {
     constructor(savedProperties: string[]){
+        this.initProps();
+
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -276,6 +278,8 @@ class CharacterProperty {
             }
         }
     }
+
+    protected initProps(): void {}
 }
 
 class Attack extends CharacterProperty{
@@ -285,7 +289,9 @@ class Attack extends CharacterProperty{
 
     constructor(){
         super(["name", "bonus", "dmg"]);
-
+    }
+    
+    initProps(){
         this.name = ko.observable("");
         this.bonus = ko.observable("");
         this.dmg = ko.observable("");
@@ -301,7 +307,9 @@ export class Counter extends CharacterProperty {
 
     constructor(){
         super(["name", "current", "max", "shortRest", "longRest"]);
+    }
 
+    initProps(){
         this.name = ko.observable("");
         this.current = ko.observable("");
         this.max = ko.observable("");
@@ -322,8 +330,11 @@ export class SpellLevel extends CharacterProperty {
 
     constructor(level: number){
         super(["slotsRemaining", "slotsTotal", "spells"]);
+        this.level(level);
+    }
 
-        this.level = ko.observable(level);
+    initProps(){
+        this.level = ko.observable(0);
         this.slotsRemaining = ko.observable("0");
         this.slotsTotal = ko.observable("0");
         this.spells = ko.observableArray([]);
@@ -342,8 +353,11 @@ export class CharacterSpell extends CharacterProperty {
 
     constructor(name: string = ""){
         super(["name", "prepared"]);
+        this.name(name);
+    }
 
-        this.name = ko.observable(name);
+    initProps(){
+        this.name = ko.observable("");
         this.prepared = ko.observable(false);
     }
 }
