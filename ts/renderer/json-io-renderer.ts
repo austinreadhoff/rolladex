@@ -9,6 +9,7 @@ import { resetSafeSave, triggerUnsafeSave } from "./save-tracker-renderer";
 ipcRenderer.on('request-save-json', (event: any, arg: any) => {
     viewModel.character().version(jsonSchemaVersion);
     var json: any = JSON.parse(ko.toJSON(viewModel.character()));   //the extra .parse ensures functions are excluded
+    json["spellRest"] = json["spellRest"].toString();   //workaround, ensures enum saves as string
 
     document.title = viewModel.character().characterName() + " - RollaDex";
     ipcRenderer.send('send-save-json', json);
