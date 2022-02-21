@@ -1,6 +1,6 @@
 import * as ko from "knockout";
-import { triggerUnsafeSave } from "../renderer/save-tracker-renderer";
-import { RestType } from "./rest-type";
+import { triggerUnsafeSave } from "./save-tracker";
+import { RestType } from "../shared/rest-type";
 import { viewModel } from "./viewmodel";
 
 export class Character {

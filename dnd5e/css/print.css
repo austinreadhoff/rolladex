@@ -1,0 +1,60 @@
+body{
+    color: black;
+    width: 1240px;
+}
+
+input, textarea{
+    color: black !important;
+}
+
+.tab-pane{
+    page-break-after: always;
+}
+
+.print-hidden, .btn, img, #autocomplete-list{
+    display: none !important;
+}
+
+.container{
+    min-width: auto !important;
+}
+
+.tab-pane{
+    display: block !important;
+}
+
+.form-control[readonly]{
+    color: black !important;
+}
+
+.block-shaded{
+    border: 2px solid #adb5bd;
+}
+
+.skillbox{
+    color: black !important;
+}
+
+.prepared{
+    border: 1px solid #222 !important;
+    border-radius: 0.25rem !important;
+}
+
+#proficiencies-languages{
+    height: 50em;
+}
+#equipment{
+    height: 40em;
+}
+#features{
+    height: 100em;
+}
+#physical-description{
+    height: 15em;
+}
+#traits, #ideals, #bonds, #flaws{
+    height: 10em;
+}
+#backstory, #allies, #additional-features, #treasure{
+    height: 40em;
+}

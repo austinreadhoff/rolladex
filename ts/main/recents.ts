@@ -1,5 +1,5 @@
 import { app, Menu, MenuItem } from 'electron';
-import { loadFromJSON } from './json-io-main';
+import { loadFromJSON } from './json-io';
 const fs = require('fs');
 
 var recentsFilePath = app.getPath('userData') + "/recents.json";

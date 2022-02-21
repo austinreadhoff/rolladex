@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron')
-import { Spell } from "../util/spell";
-import { viewModel } from "../util/viewmodel";
+import { Spell } from "./spell";
+import { viewModel } from "./viewmodel";
 
 //Represents the entire spell catalog, whereas the viewmodel SpellCatalog represents the current filtered version
 export var spellCatalog: Spell[] = [];

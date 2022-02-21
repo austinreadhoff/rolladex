@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron";
-import { viewModel } from "../util/viewmodel";
+import { viewModel } from "./viewmodel";
 
 export function triggerUnsafeSave(){
     document.title = "*" + viewModel.character().characterName() + " - RollaDex";

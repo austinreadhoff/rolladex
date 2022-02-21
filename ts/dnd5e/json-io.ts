@@ -1,10 +1,10 @@
 import * as ko from "knockout";
 const koMapping = require('knockout-mapping');
 import { ipcRenderer } from "electron";
-import { switchTab } from "./rolladex";
-import { jsonSchemaVersion, UpgradeSchema } from "../util/character-schema";
-import { viewModel } from "../util/viewmodel";
-import { resetSafeSave, triggerUnsafeSave } from "./save-tracker-renderer";
+import { switchTab } from "./dnd5e";
+import { jsonSchemaVersion, UpgradeSchema } from "./character-schema";
+import { viewModel } from "./viewmodel";
+import { resetSafeSave, triggerUnsafeSave } from "./save-tracker";
 
 ipcRenderer.on('request-save-json', (event: any, arg: any) => {
     viewModel.character().version(jsonSchemaVersion);

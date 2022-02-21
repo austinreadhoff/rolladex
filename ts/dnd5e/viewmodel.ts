@@ -1,8 +1,8 @@
 import { Character } from "./character"
 import { Spell } from "./spell";
 import * as ko from "knockout";
-import { initSpellAutoComplete } from "../renderer/autocomplete";
-import { applySpellTip } from "../renderer/spells-renderer";
+import { initSpellAutoComplete } from "./autocomplete";
+import { applySpellTip } from "./spells";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;

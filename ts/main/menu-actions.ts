@@ -1,5 +1,5 @@
 import { SaveDialogOptions, BrowserWindow, dialog, shell } from "electron";
-import { spellsFilePath } from './spells-main';
+import { spellsFilePath } from './spells';
 const fs = require('fs');
 
 var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");

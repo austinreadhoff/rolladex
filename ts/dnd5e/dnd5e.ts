@@ -1,8 +1,8 @@
 import { ipcRenderer } from "electron";
-import { RestType } from "../util/rest-type";
-import { loadSpellData } from "./spells-renderer";
-import { applyDataBinding, viewModel } from "../util/viewmodel";
-import { CharacterSpell, Counter, SpellLevel } from '../util/character';
+import { RestType } from "../shared/rest-type";
+import { loadSpellData } from "./spells";
+import { applyDataBinding, viewModel } from "./viewmodel";
+import { CharacterSpell, Counter, SpellLevel } from './character';
 
 ipcRenderer.on('send-switch-tab', (event, tabId) => {
     switchTab(tabId);

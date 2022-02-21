@@ -1,5 +1,5 @@
 import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog } from "electron";
-import { resetSafeSave, SafeToSave } from './save-tracker-main';
+import { resetSafeSave, SafeToSave } from './save-tracker';
 import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
 const fs = require('fs');
 

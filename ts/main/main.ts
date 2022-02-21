@@ -1,7 +1,7 @@
 import { app, dialog, BrowserWindow, nativeImage } from 'electron';
 import { initMenu } from './menu';
-import { SafeToSave } from './save-tracker-main';
-import { saveToJSON } from './json-io-main';
+import { SafeToSave } from './save-tracker';
+import { saveToJSON } from './json-io';
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -16,7 +16,7 @@ function createWindow() {
 
 	initMenu();
 
-	win.loadFile('index.html');
+	win.loadFile('landing.html');
 
 	win.on('close', function (e: any) {
 		if (!SafeToSave()){

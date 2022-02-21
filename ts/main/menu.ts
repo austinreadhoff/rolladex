@@ -1,7 +1,7 @@
 import { app, Menu } from 'electron'
-import { RestType } from '../util/rest-type';
+import { RestType } from '../shared/rest-type';
 import { takeRest, printToPDF, openCustomSpells, openDocumentation, switchTab } from './menu-actions'
-import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io-main'
+import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
