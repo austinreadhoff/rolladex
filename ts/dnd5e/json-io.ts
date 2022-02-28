@@ -4,7 +4,7 @@ import { ipcRenderer } from "electron";
 import { switchTab } from "./dnd5e";
 import { jsonSchemaVersion, UpgradeSchema } from "./character-schema";
 import { viewModel } from "./viewmodel";
-import { resetSafeSave, triggerUnsafeSave } from "./save-tracker";
+import { resetSafeSave, triggerUnsafeSave } from "../shared/save-tracker";
 
 ipcRenderer.on('request-save-json', (event: any, arg: any) => {
     viewModel.character().version(jsonSchemaVersion);
@@ -29,18 +29,18 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
         || input.classList.contains("misc-counter")
         || input.classList.contains("spell-input")){
             input.addEventListener('input', event => {
-                triggerUnsafeSave();
+                triggerUnsafeSave(viewModel.character().characterName());
             });
         }
         else if (input.type == "checkbox" 
         && (input.classList.contains("spell-prepared")) || (input.classList.contains("misc-counter"))){
             input.addEventListener('change', event => {
-                triggerUnsafeSave();
+                triggerUnsafeSave(viewModel.character().characterName());
             });
         }
     });
 
     switchTab("stats");
 
-    resetSafeSave();
+    resetSafeSave(viewModel.character().characterName());
 });

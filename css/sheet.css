@@ -1,3 +1,32 @@
 .nav-item{
     cursor: pointer;
 }
+
+.form-group{
+    width:100%;
+}
+input, textarea{
+    color: #eee !important;
+    background-color: #333 !important;
+    border-color: #333 !important;
+}
+
+.full-width-label{
+    width: 100%;
+}
+.form-control[readonly]{
+    background-color: #444 !important;
+}
+
+.block{
+    padding: 5px 20px;
+    border-radius: 4px;
+}
+
+.block-shaded{
+    background:#444;
+}
+
+.block-bordered{
+    border: 2px solid #adb5bd;
+}

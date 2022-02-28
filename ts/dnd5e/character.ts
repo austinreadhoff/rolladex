@@ -1,10 +1,13 @@
 import * as ko from "knockout";
-import { triggerUnsafeSave } from "./save-tracker";
+import { CharacterProperty } from "../shared/character-property";
+import { triggerUnsafeSave } from "../shared/save-tracker";
 import { RestType } from "../shared/rest-type";
 import { viewModel } from "./viewmodel";
+import { jsonSchemaVersion, gameName } from "./character-schema";
 
 export class Character {
     version: KnockoutObservable<number>;
+    game: KnockoutObservable<string>;
     characterName: KnockoutObservable<string>;
     classLevel: KnockoutObservable<string>;
     background: KnockoutObservable<string>;
@@ -91,7 +94,8 @@ export class Character {
     spellLevels: KnockoutObservableArray<SpellLevel>;
 
     constructor(){
-        this.version = ko.observable(0.3);
+        this.version = ko.observable(jsonSchemaVersion);
+        this.game = ko.observable(gameName);
         this.characterName = ko.observable("");
         this.classLevel = ko.observable("");
         this.background = ko.observable("");
@@ -199,7 +203,7 @@ export class Character {
             let propName = propStr as Extract<keyof this, string>;
             if(this.hasOwnProperty(propStr)) {
                 (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
+                (this[propName] as any).subscribe(function(){triggerUnsafeSave(viewModel.character().characterName());});
             }
         }
     }
@@ -248,11 +252,11 @@ export class Character {
     //unsure why unsafe save needs to be triggered in these manually
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
-        triggerUnsafeSave();
+        triggerUnsafeSave(this.characterName());
     }
     removeSpell(spell: CharacterSpell, spellLevel: any){
         this.spellLevels()[spellLevel()].spells.remove(spell);
-        triggerUnsafeSave();
+        triggerUnsafeSave(this.characterName());
     }
     hasSpell(name: string){
         for (let level of this.spellLevels()){
@@ -264,31 +268,13 @@ export class Character {
     }
 }
 
-class CharacterProperty {
-    constructor(savedProperties: string[]){
-        this.initProps();
-
-        for(var p in savedProperties)
-        {
-            let propStr = savedProperties[p];
-            let propName = propStr as Extract<keyof this, string>;
-            if(this.hasOwnProperty(propStr)) {
-                (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave();});
-            }
-        }
-    }
-
-    protected initProps(): void {}
-}
-
 class Attack extends CharacterProperty{
     name: KnockoutObservable<string>;
     bonus: KnockoutObservable<string>;
     dmg: KnockoutObservable<string>;
 
     constructor(){
-        super(["name", "bonus", "dmg"]);
+        super(() => viewModel.character().characterName(), ["name", "bonus", "dmg"]);
     }
     
     initProps(){
@@ -306,7 +292,7 @@ export class Counter extends CharacterProperty {
     longRest: KnockoutObservable<boolean>;
 
     constructor(){
-        super(["name", "current", "max", "shortRest", "longRest"]);
+        super(() => viewModel.character().characterName(), ["name", "current", "max", "shortRest", "longRest"]);
     }
 
     initProps(){
@@ -329,7 +315,7 @@ export class SpellLevel extends CharacterProperty {
     spells: KnockoutObservableArray<CharacterSpell>;
 
     constructor(level: number){
-        super(["slotsRemaining", "slotsTotal", "spells"]);
+        super(() => viewModel.character().characterName(), ["slotsRemaining", "slotsTotal", "spells"]);
         this.level(level);
     }
 
@@ -352,7 +338,7 @@ export class CharacterSpell extends CharacterProperty {
     prepared: KnockoutObservable<boolean>;
 
     constructor(name: string = ""){
-        super(["name", "prepared"]);
+        super(() => viewModel.character().characterName(), ["name", "prepared"]);
         this.name(name);
     }
 

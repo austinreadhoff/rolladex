@@ -1,4 +1,8 @@
+import { applyDataBinding, viewModel } from "./viewmodel";
+
 document.addEventListener("DOMContentLoaded", function(){
+    applyDataBinding();
+    
     document.querySelectorAll('.nav-link').forEach(tab => {
         tab.addEventListener('click', event => {
             switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));

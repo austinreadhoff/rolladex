@@ -10,13 +10,10 @@
         
         <link rel="stylesheet" href="css/pf2e.css">
         <link rel="stylesheet" href="css/print.css" media="print">
-        <!-- <link rel="stylesheet" href="css/autocomplete.css"> -->
     
-        <!-- <script>require("../src/pf2e/spells.js")</script> -->
         <script>require("../src/pf2e/save-tracker.js")</script>
         <script>require("../src/pf2e/json-io.js")</script>
         <script>require("../src/pf2e/pf2e.js")</script>
-        <!-- <script>require("../src/pf2e/autocomplete.js")</script> -->
     </head>
 
     <body>
@@ -46,7 +43,64 @@
         <div class="tab-conent">
             <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                 <div id="stats-container" class="container-fluid">
-
+                    <div class="header row block block-bordered">    
+                        <div class="col container">
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label for="character-name">Character Name</label>
+                                    <input data-bind="textInput: characterName" id="character-name" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="player-name">Player Name</label>
+                                    <input data-bind="textInput: playerName" id="player-name" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="xp">Experience Points (XP)</label>
+                                    <input data-bind="textInput: playerName" id="player-name" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="level">Level</label>
+                                    <input data-bind="textInput: level" id="level" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label for="ancestry-heritage">Ancestry and Heritage</label>
+                                    <input data-bind="textInput: ancestryHeritage" id="ancestry-heritage" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="background">Background</label>
+                                    <input data-bind="textInput: background"id="background" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="character-class">Class</label>
+                                    <input data-bind="textInput: characterClass" id="character-class" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="hero-points">Hero Points</label>
+                                    <input data-bind="textInput: heroPoints" id="hero-points" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label for="size">Size</label>
+                                    <input data-bind="textInput: size" id="size" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="alignment">Alignment</label>
+                                    <input data-bind="textInput: alignment"id="alignment" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="traits">Traits</label>
+                                    <input data-bind="textInput: traits" id="traits" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="diety">Diety</label>
+                                    <input data-bind="textInput: diety" id="diety" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
