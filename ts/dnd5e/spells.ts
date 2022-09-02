@@ -5,7 +5,7 @@ import { viewModel } from "./viewmodel";
 //Represents the entire spell catalog, whereas the viewmodel SpellCatalog represents the current filtered version
 export var spellCatalog: Spell[] = [];
 
-ipcRenderer.on('send-custom-spells', (event, json) => {
+ipcRenderer.on('send-custom-spells', (event:any, json:any) => {
     spellCatalog = spellCatalog.concat(json.map((j: any) => new Spell(j)));
 });
 
