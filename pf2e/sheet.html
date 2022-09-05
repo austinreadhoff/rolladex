@@ -101,6 +101,152 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="container">
+                                <div class="row">
+                                    <div id="ability-scores" class="block block-shaded col-4">
+                                        <div class="ability-score-container form-group">
+                                            <label>Strength</label>
+                                            <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: str" id="str" class="form-control ability-input">
+                                        </div>
+                                        <div class="ability-score-container form-group">
+                                            <label>Dexterity</label>
+                                            <span data-bind="text: abilityMod(dex())" id="dex-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: dex" id="dex" class="form-control ability-input">
+                                        </div>
+                                        <div class="ability-score-container form-group">
+                                            <label>Constitution</label>
+                                            <span data-bind="text: abilityMod(con())" id="con-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: con" id="con" class="form-control ability-input">
+                                        </div>
+                                        <div class="ability-score-container form-group">
+                                            <label>Intelligence</label>
+                                            <span data-bind="text: abilityMod(int())" id="int-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: int" id="int" class="form-control ability-input">
+                                        </div>
+                                        <div class="ability-score-container form-group">
+                                            <label>Wisdom</label>
+                                            <span data-bind="text: abilityMod(wis())" id="wis-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: wis" id="wis" class="form-control ability-input">
+                                        </div>
+                                        <div class="ability-score-container form-group">
+                                            <label>Charisma</label>
+                                            <span data-bind="text: abilityMod(char())" id="char-mod" class="ability-mod"></span>
+                                            <input data-bind="textInput: char" id="char" class="form-control ability-input">
+                                        </div>
+                                    </div>
+                                    <div id="skills" class="block block-bordered col-8">
+                                        <label>Skills</label>
+                                        <div>
+                                            <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
+                                            <span data-bind="text: abilityMod(wis(), perception())" id="perception-mod" class="wis-mod-prof"></span>
+                                            <b class="form-check-label" for="perception">Perception</b>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: acrobatics" class="skillbox" id="acrobatics"></div>
+                                            <span data-bind="text: abilityMod(dex(), acrobatics())" id="acrobatics-mod" class="dex-mod-prof"></span>
+                                            <label class="form-check-label" for="acrobatics">Acrobatics</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: arcana" class="skillbox" id="arcana"></div>
+                                            <span data-bind="text: abilityMod(int(), arcana())" id="arcana-mod" class="int-mod-prof"></span>
+                                            <label class="form-check-label" for="arcana">Arcana</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: athletics" class="skillbox" id="athletics"></div>
+                                            <span data-bind="text: abilityMod(str(), athletics())" id="athletics-mod" class="str-mod-prof"></span>
+                                            <label class="form-check-label" for="athletics">Athletics</label>
+                                            <label class="ability-note">(Str)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: crafting" class="skillbox" id="crafting"></div>
+                                            <span data-bind="text: abilityMod(int(), crafting())" id="crafting-mod" class="int-mod-prof"></span>
+                                            <label class="form-check-label" for="acrobatics">Crafting</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: deception" class="skillbox" id="deception"></div>
+                                            <span data-bind="text: abilityMod(char(), deception())" id="deception-mod" class="char-mod-prof"></span>
+                                            <label class="form-check-label" for="deception">Deception</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: diplomacy" class="skillbox" id="diplomacy"></div>
+                                            <span data-bind="text: abilityMod(char(), diplomacy())" id="diplomacy-mod" class="char-mod-prof"></span>
+                                            <label class="form-check-label" for="diplomacy">Diplomacy</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: intimidation" class="skillbox" id="intimidation"></div>
+                                            <span data-bind="text: abilityMod(char(), intimidation())" id="intimidation-mod" class="char-mod-prof"></span>
+                                            <label class="form-check-label" for="intimidation">Intimidation</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: medicine" class="skillbox" id="medicine"></div>
+                                            <span data-bind="text: abilityMod(wis(), medicine())" id="medicine-mod" class="wis-mod-prof"></span>
+                                            <label class="form-check-label" for="medicine">Medicine</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: nature" class="skillbox" id="nature"></div>
+                                            <span data-bind="text: abilityMod(wis(), nature())" id="nature-mod" class="wis-mod-prof"></span>
+                                            <label class="form-check-label" for="nature">Nature</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
+                                            <span data-bind="text: abilityMod(int(), perception())" id="perception-mod" class="int-mod-prof"></span>
+                                            <label class="form-check-label" for="perception">Occultism</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: performance" class="skillbox" id="performance"></div>
+                                            <span data-bind="text: abilityMod(char(), performance())" id="performance-mod" class="char-mod-prof"></span>
+                                            <label class="form-check-label" for="performance">Performance</label>
+                                            <label class="ability-note">(Char)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: religion" class="skillbox" id="religion"></div>
+                                            <span data-bind="text: abilityMod(wis(), religion())" id="religion-mod" class="wis-mod-prof"></span>
+                                            <label class="form-check-label" for="religion">Religion</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: society" class="skillbox" id="society"></div>
+                                            <span data-bind="text: abilityMod(int(), society())" id="society-mod" class="int-mod-prof"></span>
+                                            <label class="form-check-label" for="society">Society</label>
+                                            <label class="ability-note">(Int)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: stealth" class="skillbox" id="stealth"></div>
+                                            <span data-bind="text: abilityMod(dex(), stealth())" id="stealth-mod" class="dex-mod-prof"></span>
+                                            <label class="form-check-label" for="stealth">Stealth</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: survival" class="skillbox" id="survival"></div>
+                                            <span data-bind="text: abilityMod(dex(), survival())" id="survival-mod" class="wis-mod-prof"></span>
+                                            <label class="form-check-label" for="survival">Survival</label>
+                                            <label class="ability-note">(Wis)</label>
+                                        </div>
+                                        <div>
+                                            <div data-bind="skillbox: thievery" class="skillbox" id="thievery"></div>
+                                            <span data-bind="text: abilityMod(dex(), thievery())" id="thievery-mod" class="dex-mod-prof"></span>
+                                            <label class="form-check-label" for="thievery">Thievery</label>
+                                            <label class="ability-note">(Dex)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
