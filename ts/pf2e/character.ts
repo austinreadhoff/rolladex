@@ -54,6 +54,13 @@ export class Character {
     dying: KnockoutObservable<string>;
     wounded: KnockoutObservable<string>;
     conditions: KnockoutObservable<string>;
+    armorUnarmored: KnockoutObservable<string>;
+    armorLight: KnockoutObservable<string>;
+    armorMedium: KnockoutObservable<string>;
+    armorHeavy: KnockoutObservable<string>;
+    weaponsSimple: KnockoutObservable<string>;
+    weaponsMartial: KnockoutObservable<string>;
+    weaponsUnarmed: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -106,6 +113,13 @@ export class Character {
         this.dying = ko.observable("");
         this.wounded = ko.observable("");
         this.conditions = ko.observable("");
+        this.armorUnarmored = ko.observable("U");
+        this.armorLight = ko.observable("U");
+        this.armorMedium = ko.observable("U");
+        this.armorHeavy = ko.observable("U");
+        this.weaponsSimple = ko.observable("U");
+        this.weaponsMartial = ko.observable("U");
+        this.weaponsUnarmed = ko.observable("U");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
@@ -113,7 +127,8 @@ export class Character {
          'perception', 'acrobatics', 'arcana', 'athletics', 'crafting', 'deception', 'diplomacy', 'intimidation', 'medicine',
          'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 
          'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
-         'dying', 'wounded', 'conditions'];
+         'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
+         'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -172,35 +187,47 @@ export class Character {
         }, this);
     }
 
+    simpleProficiency(proficiencyLevel = "U"){
+        return ko.computed(() =>{
+            let proficiency = this.calculateProficiency(proficiencyLevel);
+            return proficiency < 0 ? proficiency.toString() : ("+" + proficiency);
+        }, this);
+    }
+
+    private calculateProficiency(proficiencyLevel = "U"): number {
+        let proficiencyBonus: number;
+        switch(proficiencyLevel) { 
+            case "T": { 
+                proficiencyBonus = 2 + +this.level();
+                break; 
+            } 
+            case "E": { 
+                proficiencyBonus = 4 + +this.level();
+                break; 
+            } 
+            case "M": { 
+                proficiencyBonus = 6 + +this.level();
+                break; 
+            } 
+            case "L": { 
+                proficiencyBonus = 8 + +this.level();
+                break; 
+            } 
+            default: { 
+                proficiencyBonus = 0; 
+                break; 
+            } 
+        }
+
+        return proficiencyBonus;
+    }
+
     private calculateModifier(ability: number, proficiencyLevel = "U"): number {
         if (!ability) return 0;
 
-            let proficiencyBonus: number;
-            switch(proficiencyLevel) { 
-                case "T": { 
-                    proficiencyBonus = 2 + +this.level();
-                    break; 
-                } 
-                case "E": { 
-                    proficiencyBonus = 4 + +this.level();
-                    break; 
-                } 
-                case "M": { 
-                    proficiencyBonus = 6 + +this.level();
-                    break; 
-                } 
-                case "L": { 
-                    proficiencyBonus = 8 + +this.level();
-                    break; 
-                } 
-                default: { 
-                    proficiencyBonus = 0; 
-                    break; 
-                } 
-            } 
-
-            let mod = Math.floor(ability / 2) - 5 + (proficiencyBonus)
-            if (!mod) return 0;
-            return mod;
+        let proficiency = this.calculateProficiency(proficiencyLevel);
+        let mod = Math.floor(ability / 2) - 5 + proficiency;
+        if (!mod) return 0;
+        return mod;
     }
 }

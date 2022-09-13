@@ -329,7 +329,49 @@
                                                 <input data-bind="textInput: speed" id="speed" class="form-control">
                                             </div>
                                         </div>
-                                        
+                                        <div class="row">
+                                            <div class=" col">
+                                                <label>Armor Proficiencies</label>
+                                                <div>
+                                                    <div data-bind="skillbox: armorUnarmored" class="skillbox" id="armor-unarmored"></div>
+                                                    <span data-bind="text: simpleProficiency(armorUnarmored())"></span>
+                                                    <label class="form-check-label" for="armor-unarmored">Unarmored</label>
+                                                </div>
+                                                <div>
+                                                    <div data-bind="skillbox: armorLight" class="skillbox" id="armor-light"></div>
+                                                    <span data-bind="text: simpleProficiency(armorLight())"></span>
+                                                    <label class="form-check-label" for="armor-light">Light</label>
+                                                </div>
+                                                <div>
+                                                    <div data-bind="skillbox: armorMedium" class="skillbox" id="armor-medium"></div>
+                                                    <span data-bind="text: simpleProficiency(armorMedium())"></span>
+                                                    <label class="form-check-label" for="armor-medium">Medium</label>
+                                                </div>
+                                                <div>
+                                                    <div data-bind="skillbox: armorHeavy" class="skillbox" id="armor-heavy"></div>
+                                                    <span data-bind="text: simpleProficiency(armorHeavy())"></span>
+                                                    <label class="form-check-label" for="armor-heavy">Heavy</label>
+                                                </div>
+                                            </div>
+                                            <div class=" col">
+                                                <label>Weapon Proficiencies</label>
+                                                <div>
+                                                    <div data-bind="skillbox: weaponsUnarmed" class="skillbox" id="weapons-unarmed"></div>
+                                                    <span data-bind="text: simpleProficiency(weaponsUnarmed())"></span>
+                                                    <label class="form-check-label" for="weapons-unarmed">Unarmed Attacks</label>
+                                                </div>
+                                                <div>
+                                                    <div data-bind="skillbox: weaponsSimple" class="skillbox" id="weapons-simple"></div>
+                                                    <span data-bind="text: simpleProficiency(weaponsSimple())"></span>
+                                                    <label class="form-check-label" for="weapons-simple">Simple</label>
+                                                </div>
+                                                <div>
+                                                    <div data-bind="skillbox: weaponsMartial" class="skillbox" id="weapons-martial"></div>
+                                                    <span data-bind="text: simpleProficiency(weaponsMartial())"></span>
+                                                    <label class="form-check-label" for="weapons-martial">Martial</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
