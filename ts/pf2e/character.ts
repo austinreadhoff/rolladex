@@ -41,6 +41,11 @@ export class Character {
     stealth: KnockoutObservable<string>;
     survival: KnockoutObservable<string>;
     thievery: KnockoutObservable<string>;
+    savingReflex: KnockoutObservable<string>;
+    savingFort: KnockoutObservable<string>;
+    savingWill: KnockoutObservable<string>;
+    classDCAbility: KnockoutObservable<string>;
+    classDCProficiency: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -80,12 +85,17 @@ export class Character {
         this.stealth = ko.observable("U");
         this.survival = ko.observable("U");
         this.thievery = ko.observable("U");
+        this.savingReflex = ko.observable("U");
+        this.savingFort = ko.observable("U");
+        this.savingWill = ko.observable("U");
+        this.classDCAbility = ko.observable("STR");
+        this.classDCProficiency = ko.observable("U");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
          'size', 'alignment', 'traits', 'diety', 'level', 'heroPoints', 'str', 'dex', 'con', 'int', 'wis', 'char',
          'perception', 'acrobatics', 'arcana', 'athletics', 'crafting', 'deception', 'diplomacy', 'intimidation', 'medicine',
-         'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery'];
+         'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 'savingReflex', 'savingFort', 'savingWill'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -99,7 +109,53 @@ export class Character {
 
     abilityMod(ability: number, proficiencyLevel = "U"){
         return ko.computed(() =>{
-            if (!ability) return "+0";
+            let mod = this.calculateModifier(ability, proficiencyLevel);
+            return mod < 0 ? mod.toString() : ("+" + mod);
+        }, this);
+    }
+
+
+    abilityDC(abilityStr: string, proficiencyLevel = "U"){
+        return ko.computed(() =>{
+            let ability: number;
+            switch(abilityStr.toUpperCase()) { 
+                case "STR": { 
+                    ability = +this.str();
+                    break; 
+                } 
+                case "DEX": { 
+                    ability = +this.dex();
+                    break; 
+                } 
+                case "CON": { 
+                    ability = +this.con();
+                    break; 
+                } 
+                case "INT": { 
+                    ability = +this.int();
+                    break; 
+                } 
+                case "WIS": { 
+                    ability = +this.wis();
+                    break; 
+                } 
+                case "CHAR": { 
+                    ability = +this.char();
+                    break; 
+                } 
+                default: { //should never happen
+                    ability = +this.str(); 
+                    break; 
+                } 
+            } 
+
+            let mod = this.calculateModifier(ability, proficiencyLevel);
+            return 10 + mod;
+        }, this);
+    }
+
+    private calculateModifier(ability: number, proficiencyLevel = "U"): number {
+        if (!ability) return 0;
 
             let proficiencyBonus: number;
             switch(proficiencyLevel) { 
@@ -125,9 +181,8 @@ export class Character {
                 } 
             } 
 
-            let mod = Math.floor(+ability / 2) - 5 + (proficiencyBonus)
-            if (!mod) return "+0";
-            return mod < 0 ? mod.toString() : ("+" + mod);
-        }, this);
+            let mod = Math.floor(ability / 2) - 5 + (proficiencyBonus)
+            if (!mod) return 0;
+            return mod;
     }
 }
