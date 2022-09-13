@@ -46,6 +46,14 @@ export class Character {
     savingWill: KnockoutObservable<string>;
     classDCAbility: KnockoutObservable<string>;
     classDCProficiency: KnockoutObservable<string>;
+    armorClass: KnockoutObservable<string>;
+    speed: KnockoutObservable<string>;
+    currentHP: KnockoutObservable<string>;
+    maxHP: KnockoutObservable<string>;
+    tempHP: KnockoutObservable<string>;
+    dying: KnockoutObservable<string>;
+    wounded: KnockoutObservable<string>;
+    conditions: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -90,12 +98,22 @@ export class Character {
         this.savingWill = ko.observable("U");
         this.classDCAbility = ko.observable("STR");
         this.classDCProficiency = ko.observable("U");
+        this.armorClass = ko.observable("");
+        this.speed = ko.observable("");
+        this.currentHP = ko.observable("");
+        this.maxHP = ko.observable("");
+        this.tempHP = ko.observable("");
+        this.dying = ko.observable("");
+        this.wounded = ko.observable("");
+        this.conditions = ko.observable("");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
          'size', 'alignment', 'traits', 'diety', 'level', 'heroPoints', 'str', 'dex', 'con', 'int', 'wis', 'char',
          'perception', 'acrobatics', 'arcana', 'athletics', 'crafting', 'deception', 'diplomacy', 'intimidation', 'medicine',
-         'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 'savingReflex', 'savingFort', 'savingWill'];
+         'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 
+         'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
+         'dying', 'wounded', 'conditions'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];

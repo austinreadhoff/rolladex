@@ -281,6 +281,59 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="container block block-shaded">
+                                        <div class="row">
+                                            <div class="col container">
+                                                <label class="row">Hit Points</label>
+                                                <div class="row">
+                                                    <input data-bind="textInput: currentHP" id="current-hp" class="form-control col-5 print-hidden">
+                                                    <span class="col-1 print-hidden">/</span>
+                                                    <input data-bind="textInput: maxHP" id="max-hp" class="form-control col-5">
+                                                </div>
+                                            </div>
+                                            <div class="col print-hidden">
+                                                <label class="col">Temporary HP</label>
+                                                <input data-bind="textInput: tempHP" id="temp-hp" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col container">
+                                                <label class="row">Dying</label>
+                                                <input data-bind="textInput: dying" id="dying" class="form-control row">
+                                            </div>
+                                            <div class="col container">
+                                                <label class="row">Wounded</label>
+                                                <input data-bind="textInput: wounded" id="wounded" class="form-control row">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col textarea-col">
+                                                <label for="conditions">Conditions</label>
+                                                <textarea data-bind="textInput: conditions" class="form-control" id="conditions" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container block block-bordered">
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="armor-class">Armor Class</label>
+                                                <input data-bind="textInput: armorClass" id="armor-class" class="form-control">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="speed">Speed</label>
+                                                <input data-bind="textInput: speed" id="speed" class="form-control">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
