@@ -19,12 +19,14 @@ export class Character {
     diety: KnockoutObservable<string>;
     level: KnockoutObservable<string>;
     heroPoints: KnockoutObservable<string>;
+
     str: KnockoutObservable<string>;
     dex: KnockoutObservable<string>;
     con: KnockoutObservable<string>;
     int: KnockoutObservable<string>;
     wis: KnockoutObservable<string>;
     char: KnockoutObservable<string>;
+
     perception: KnockoutObservable<string>;
     acrobatics: KnockoutObservable<string>;
     arcana: KnockoutObservable<string>;
@@ -42,33 +44,62 @@ export class Character {
     stealth: KnockoutObservable<string>;
     survival: KnockoutObservable<string>;
     thievery: KnockoutObservable<string>;
+
     savingReflex: KnockoutObservable<string>;
     savingFort: KnockoutObservable<string>;
     savingWill: KnockoutObservable<string>;
+
     classDCAbility: KnockoutObservable<string>;
     classDCProficiency: KnockoutObservable<string>;
+
     armorClass: KnockoutObservable<string>;
     speed: KnockoutObservable<string>;
+
     currentHP: KnockoutObservable<string>;
     maxHP: KnockoutObservable<string>;
     tempHP: KnockoutObservable<string>;
     dying: KnockoutObservable<string>;
     wounded: KnockoutObservable<string>;
     conditions: KnockoutObservable<string>;
+
     armorUnarmored: KnockoutObservable<string>;
     armorLight: KnockoutObservable<string>;
     armorMedium: KnockoutObservable<string>;
     armorHeavy: KnockoutObservable<string>;
+
     weaponsSimple: KnockoutObservable<string>;
     weaponsMartial: KnockoutObservable<string>;
     weaponsUnarmed: KnockoutObservable<string>;
+
     languages: KnockoutObservable<string>;
+
     shieldBonus: KnockoutObservable<string>;
     shieldHardness: KnockoutObservable<string>;
     shieldCurrentHP: KnockoutObservable<string>;
     shieldMaxHP: KnockoutObservable<string>;
     shieldBT: KnockoutObservable<string>;
+
+    ethnicity: KnockoutObservable<string>;
+    nationality: KnockoutObservable<string>;
+    birthplace: KnockoutObservable<string>;
+    age: KnockoutObservable<string>;
+    gender: KnockoutObservable<string>;
+    heightWeight: KnockoutObservable<string>;
+    appearance: KnockoutObservable<string>;
+
+    attitude: KnockoutObservable<string>;
+    beliefs: KnockoutObservable<string>;
+    likes: KnockoutObservable<string>;
+    dislikes: KnockoutObservable<string>;
+    catchphrases: KnockoutObservable<string>;
+    party: KnockoutObservable<string>;
+    backstory: KnockoutObservable<string>;
+
     attackStats: KnockoutObservableArray<Attack>;
+
+    placeholderFeats: KnockoutObservable<string>;
+    placeholderSpells: KnockoutObservable<string>;
+    placeholderFormulas: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -134,7 +165,26 @@ export class Character {
         this.shieldCurrentHP = ko.observable("");
         this.shieldMaxHP = ko.observable("");
         this.shieldBT = ko.observable("");
+        this.appearance = ko.observable("");
+        this.ethnicity = ko.observable("");
+        this.nationality = ko.observable("");
+        this.birthplace = ko.observable("");
+        this.age = ko.observable("");
+        this.gender = ko.observable("");
+        this.heightWeight = ko.observable("");
+        this.attitude = ko.observable("");
+        this.beliefs = ko.observable("");
+        this.likes = ko.observable("");
+        this.dislikes = ko.observable("");
+        this.catchphrases = ko.observable("");
+        this.party = ko.observable("");
+        this.backstory = ko.observable("");
+
         this.attackStats = ko.observableArray([new Attack()]);
+
+        this.placeholderFeats = ko.observable("");
+        this.placeholderSpells = ko.observable("");
+        this.placeholderFormulas = ko.observable("");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
@@ -144,7 +194,10 @@ export class Character {
          'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
          'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
          'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed', 'languages', 'shieldBonus', 'shieldHardness',
-         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT'];
+         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'placeholderFeats',
+         'placeholderFeats', 'placeholderFeats', 'appearance', 'ethnicity', 'nationality', 'birthplace',
+         'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
+         'backstory'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];

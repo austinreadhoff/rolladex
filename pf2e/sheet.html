@@ -34,10 +34,16 @@
                 <a class="nav-link" id="spellbook-tab" data-toggle="tab" role="tab" aria-controls="spellbook" aria-selected="false">Spellbook</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="formulas-tab" data-toggle="tab" role="tab" aria-controls="formulas" aria-selected="false">Formulas</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link btn-success" id="featcatalog-tab" data-toggle="tab" role="tab" aria-controls="featcatalog" aria-selected="false">Feat Catalog</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link btn-success" id="spellcatalog-tab" data-toggle="tab" role="tab" aria-controls="spellcatalog" aria-selected="false">Spell Catalog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-success" id="craftingcatalog-tab" data-toggle="tab" role="tab" aria-controls="craftingcatalog" aria-selected="false">Crafting Catalog</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -447,38 +453,127 @@
             </div>
 
             <div data-bind="with: character" class="tab-pane" id="feats" role="tabpanel" aria-labelledby="feats-tab">
-                <div id="stats-container" class="container-fluid">
-                    
+                <div id="feats-container" class="container-fluid">
+                    <div class="form-group col textarea-col">
+                        <label for="placeholderFeats">Feats</label>
+                        <textarea data-bind="textInput: placeholderFeats" class="form-control" id="placeholder-feats" rows="25"></textarea>
+                    </div>
                 </div>
             </div>
 
             <div data-bind="with: character" class="tab-pane" id="bio" role="tabpanel" aria-labelledby="bio-tab">
-                <div id="stats-container" class="container-fluid">
-
+                <div id="bio-container" class="container-fluid">
+                    <div class="header row block block-bordered">
+                        <div class="col-6 form-group">
+                            <label for="appearance">Appearance</label>
+                            <textarea data-bind="textInput: appearance" id="appearance" class="form-control" rows="5"></textarea>
+                        </div>
+    
+                        <div class="col-6 container">
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label for="ethnicity">Ethnicity</label>
+                                    <input data-bind="textInput: ethnicity" id="ethnicity" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="nationality">Nationality</label>
+                                    <input data-bind="textInput: nationality" id="nationality" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="birthplace">Birthplace</label>
+                                    <input data-bind="textInput: birthplace" id="birthplace" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label for="age">Age</label>
+                                    <input data-bind="textInput: age" id="age" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="ht-wt">HT/WT</label>
+                                    <input data-bind="textInput: heightWeight" id="ht-wt" class="form-control">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="gender">Gender/Pronouns</label>
+                                    <input data-bind="textInput: gender" id="gender" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 form-group">
+                            <label for="attitude">Attitude</label>
+                            <textarea data-bind="textInput: attitude" class="form-control" id="attitude" rows="4"></textarea>
+                        </div>
+                        <div class="col-3 form-group">
+                            <label for="beliefs">Beliefs</label>
+                            <textarea data-bind="textInput: beliefs" class="form-control" id="beliefs" rows="4"></textarea>
+                        </div>
+                        <div class="col-2 form-group">
+                            <label for="likes">Likes</label>
+                            <textarea data-bind="textInput: likes" class="form-control" id="likes" rows="4"></textarea>
+                        </div>
+                        <div class="col-2 form-group">
+                            <label for="dislikes">Dislikes</label>
+                            <textarea data-bind="textInput: dislikes" class="form-control" id="dislikes" rows="4"></textarea>
+                        </div>
+                        <div class="col-2 form-group">
+                            <label for="catchphrases">Catchphrases</label>
+                            <textarea data-bind="textInput: catchphrases" class="form-control" id="catchphrases" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <label for="backstory">Backstory</label>
+                            <textarea data-bind="textInput: backstory" class="form-control" id="backstory" rows="10"></textarea>
+                        </div>
+                        <div class="col-6 form-group">
+                            <label for="party">Party</label>
+                            <textarea data-bind="textInput: party" class="form-control" id="party" rows="10"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div data-bind="with: character" class="tab-pane" id="gear" role="tabpanel" aria-labelledby="gear-tab">
-                <div id="stats-container" class="container-fluid">
+                <div id="gear-container" class="container-fluid">
 
                 </div>
             </div>
 
             <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
-                <div id="stats-container" class="container-fluid">
-                    
+                <div id="spellbook-container" class="container-fluid">
+                    <div class="form-group col textarea-col">
+                        <label for="placeholderSpells">Spells</label>
+                        <textarea data-bind="textInput: placeholderSpells" class="form-control" id="placeholder-spells" rows="25"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div data-bind="with: character" class="tab-pane" id="formulas" role="tabpanel" aria-labelledby="formulas-tab">
+                <div id="formulas-container" class="container-fluid">
+                    <div class="form-group col textarea-col">
+                        <label for="placeholderFormulas">Crafting Formulas</label>
+                        <textarea data-bind="textInput: placeholderFormulas" class="form-control" id="placeholder-formulas" rows="25"></textarea>
+                    </div>
                 </div>
             </div>
 
             <div class="tab-pane" id="featcatalog" role="tabpanel" aria-labelledby="featcatalog-tab">
                 <div id="featcatalog-container" class="print-hidden">
-                    
+                    <p>TODO</p>
                 </div>
             </div>
 
             <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
                 <div id="spellcatalog-container" class="print-hidden">
-                    
+                    <p>TODO</p>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="craftingcatalog" role="tabpanel" aria-labelledby="craftingcatalog-tab">
+                <div id="craftingcatalog-container" class="print-hidden">
+                    <p>TODO</p>
                 </div>
             </div>
         </div>

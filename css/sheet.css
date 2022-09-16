@@ -1,3 +1,14 @@
+#stats .block{
+    margin: 5px;
+}
+#bio .block, #spellbook .block{
+    margin: 5px 0;
+}
+
+.textarea-col{
+    padding: 0 5px;
+}
+
 .nav-item{
     cursor: pointer;
 }
