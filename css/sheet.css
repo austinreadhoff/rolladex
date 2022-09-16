@@ -74,3 +74,10 @@ input, textarea{
 .skillbox-legendary{
     color: gold;
 }
+
+.attack-stat-row {
+    margin: 5px 0;
+}
+.attack-stat-row input {
+    margin-right: 5px;
+}

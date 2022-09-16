@@ -2,6 +2,7 @@ import * as ko from "knockout";
 import { triggerUnsafeSave } from "../shared/save-tracker";
 import { viewModel } from "./viewmodel";
 import { jsonSchemaVersion, gameName } from "./character-schema";
+import { CharacterProperty } from "../shared/character-property";
 
 export class Character {
     version: KnockoutObservable<number>;
@@ -61,6 +62,13 @@ export class Character {
     weaponsSimple: KnockoutObservable<string>;
     weaponsMartial: KnockoutObservable<string>;
     weaponsUnarmed: KnockoutObservable<string>;
+    languages: KnockoutObservable<string>;
+    shieldBonus: KnockoutObservable<string>;
+    shieldHardness: KnockoutObservable<string>;
+    shieldCurrentHP: KnockoutObservable<string>;
+    shieldMaxHP: KnockoutObservable<string>;
+    shieldBT: KnockoutObservable<string>;
+    attackStats: KnockoutObservableArray<Attack>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -120,6 +128,13 @@ export class Character {
         this.weaponsSimple = ko.observable("U");
         this.weaponsMartial = ko.observable("U");
         this.weaponsUnarmed = ko.observable("U");
+        this.languages = ko.observable("");
+        this.shieldBonus = ko.observable("");
+        this.shieldHardness = ko.observable("");
+        this.shieldCurrentHP = ko.observable("");
+        this.shieldMaxHP = ko.observable("");
+        this.shieldBT = ko.observable("");
+        this.attackStats = ko.observableArray([new Attack()]);
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
@@ -128,7 +143,8 @@ export class Character {
          'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 
          'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
          'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
-         'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed'];
+         'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed', 'languages', 'shieldBonus', 'shieldHardness',
+         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -229,5 +245,30 @@ export class Character {
         let mod = Math.floor(ability / 2) - 5 + proficiency;
         if (!mod) return 0;
         return mod;
+    }
+
+    addAttackRow(){
+        this.attackStats.push(new Attack())
+    }
+    removeAttackRow(row: Attack){
+        viewModel.character().attackStats.remove(row);
+    }
+}
+
+class Attack extends CharacterProperty{
+    name: KnockoutObservable<string>;
+    bonus: KnockoutObservable<string>;
+    dmg: KnockoutObservable<string>;
+    traits: KnockoutObservable<string>;
+
+    constructor(){
+        super(() => viewModel.character().characterName(), ["name", "bonus", "dmg", "traits"]);
+    }
+    
+    initProps(){
+        this.name = ko.observable("");
+        this.bonus = ko.observable("");
+        this.dmg = ko.observable("");
+        this.traits = ko.observable("");
     }
 }

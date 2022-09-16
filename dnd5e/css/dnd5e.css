@@ -13,10 +13,10 @@ img.currency{
     height: 1.5em;
 }
 
-.attack-stat-row, .spell-row {
+.spell-row {
     margin: 5px 0;
 }
-.attack-stat-row input, .spell-row * {
+.spell-row * {
     margin-right: 5px;
 }
 

@@ -106,7 +106,7 @@
                         <div class="col">
                             <div class="container">
                                 <div class="row">
-                                    <div id="ability-scores" class="block block-shaded col-3">
+                                    <div id="ability-scores" class="block block-shaded col-4">
                                         <div class="ability-score-container form-group">
                                             <label>Strength</label>
                                             <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
@@ -279,6 +279,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="form-group col textarea-col">
+                                        <label for="languages">Languages</label>
+                                        <textarea data-bind="textInput: languages" class="form-control" id="languages" rows="5"></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col">
@@ -358,7 +364,7 @@
                                                 <div>
                                                     <div data-bind="skillbox: weaponsUnarmed" class="skillbox" id="weapons-unarmed"></div>
                                                     <span data-bind="text: simpleProficiency(weaponsUnarmed())"></span>
-                                                    <label class="form-check-label" for="weapons-unarmed">Unarmed Attacks</label>
+                                                    <label class="form-check-label" for="weapons-unarmed">Unarmed</label>
                                                 </div>
                                                 <div>
                                                     <div data-bind="skillbox: weaponsSimple" class="skillbox" id="weapons-simple"></div>
@@ -371,6 +377,66 @@
                                                     <label class="form-check-label" for="weapons-martial">Martial</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="container block block-bordered">
+                                        <div class="row">
+                                            <label>Shield</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col">
+                                                <label for="shield-bonus">Bonus</label>
+                                                <input data-bind="textInput: shieldBonus" id="shield-bonus" class="form-control">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="shield-hardness">Hardness</label>
+                                                <input data-bind="textInput: shieldHardness" id="shield-hardness" class="form-control">
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="shield-bt">BT</label>
+                                                <input data-bind="textInput: shieldBT" id="shield-bt" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col container">
+                                                <label class="row">HP</label>
+                                                <div class="row">
+                                                    <input data-bind="textInput: shieldCurrentHP" id="shield-current-hp" class="form-control col-5 print-hidden">
+                                                    <span class="col-1 print-hidden">/</span>
+                                                    <input data-bind="textInput: shieldMaxHP" id="shield-max-hp" class="form-control col-5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container block block-shaded">
+                                        <label class="row full-width-label">Attacks</label>
+                                        <div class="row">
+                                            <label class="col-1 print-hidden"></label>
+                                            <label class="col-4">Name</label>
+                                            <label class="col-2">Bonus</label>
+                                            <label class="col-4">Damage/Type</label>
+                                        </div>
+                                        <div data-bind="foreach: attackStats" id="attack-stats">
+                                            <div class="attack-stat-row row">
+                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+                                                <input data-bind="textInput: name" class="form-control col-4 attack-stat attack-stat-name">
+                                                <input data-bind="textInput: bonus" class="form-control col-2 attack-stat attack-stat-bonus">
+                                                <input data-bind="textInput: dmg" class="form-control col-4 attack-stat attack-stat-dmg">
+                                            </div>
+                                            <div class="attack-stat-row row">
+                                                <input data-bind="textInput: traits" class="form-control col-12 attack-stat attack-stat-traits">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary">+</button>
                                         </div>
                                     </div>
                                 </div>
