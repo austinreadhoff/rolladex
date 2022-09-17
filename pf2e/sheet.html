@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="form-group col">
                                     <label for="xp">Experience Points (XP)</label>
-                                    <input data-bind="textInput: playerName" id="player-name" class="form-control">
+                                    <input data-bind="textInput: xp" id="xp" class="form-control">
                                 </div>
                                 <div class="form-group col">
                                     <label for="level">Level</label>
@@ -241,9 +241,9 @@
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
-                                                <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
-                                                <span data-bind="text: abilityMod(int(), perception())" id="perception-mod" class="int-mod-prof"></span>
-                                                <label class="form-check-label" for="perception">Occultism</label>
+                                                <div data-bind="skillbox: occultism" class="skillbox" id="occultism"></div>
+                                                <span data-bind="text: abilityMod(int(), perception())" id="occultism-mod" class="int-mod-prof"></span>
+                                                <label class="form-check-label" for="occultism">Occultism</label>
                                                 <label class="ability-note">(Int)</label>
                                             </div>
                                             <div>
