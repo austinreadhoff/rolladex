@@ -1,3 +1,45 @@
-<h1>Whaddado</h1>
-<a href="dnd5e/sheet.html">DnD 5e</a>
-<a href="pf2e/sheet.html">PF2e</a>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+    </head>
+    
+    <body>
+        <h1>🎲 RollaDex 🎲</h1>
+        <div id="games">
+            <a href="dnd5e/sheet.html">
+                <img src="./img/logo_dnd.png"/>
+                <p>DnD 5e</p>
+            </a>
+            <a href="pf2e/sheet.html">
+                <img src="./img/pathfinder_logo.png"/>
+                <p>Pathfinder 2e</p>
+            </a>
+        </div>
+        <style>
+            #games{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            #games a{
+                border: 1px solid white;
+                border-radius: 20px;
+                padding: 10px;
+                margin: 10px;
+                width: 30%;
+            }
+            a, a:hover{
+                text-decoration: none;
+                font-size: 1.5em;
+            }
+            img{
+                display: block;
+                margin:auto;
+                height: 3em;
+            }
+            h1, a p{
+                text-align: center;
+            }
+        </style>
+    </body>
+</html>

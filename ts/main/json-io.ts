@@ -58,6 +58,7 @@ export function newCharacter(window: Electron.BrowserWindow){
     updateSavePath("");
     resetSafeSave();
     window.reload();
+    window.loadFile("landing.html");
 }
 
 export function saveToJSON(window: Electron.BrowserWindow){
