@@ -95,6 +95,18 @@ export class Character {
     party: KnockoutObservable<string>;
     backstory: KnockoutObservable<string>;
 
+    bulk: KnockoutObservable<string>;
+    copper: KnockoutObservable<string>;
+    silver: KnockoutObservable<string>;
+    gold: KnockoutObservable<string>;
+    platinum: KnockoutObservable<string>;
+    storedMoney: KnockoutObservable<string>;
+    gems: KnockoutObservable<string>;
+    assets: KnockoutObservable<string>;
+    itemsEquipped: KnockoutObservable<string>;
+    itemsPermanent: KnockoutObservable<string>;
+    itemsConsumable: KnockoutObservable<string>;
+
     attackStats: KnockoutObservableArray<Attack>;
 
     placeholderFeats: KnockoutObservable<string>;
@@ -179,6 +191,17 @@ export class Character {
         this.catchphrases = ko.observable("");
         this.party = ko.observable("");
         this.backstory = ko.observable("");
+        this.bulk = ko.observable("");
+        this.copper = ko.observable("");
+        this.silver = ko.observable("");
+        this.gold = ko.observable("");
+        this.platinum = ko.observable("");
+        this.storedMoney = ko.observable("");
+        this.gems = ko.observable("");
+        this.assets = ko.observable("");
+        this.itemsEquipped = ko.observable("");
+        this.itemsPermanent = ko.observable("");
+        this.itemsConsumable = ko.observable("");
 
         this.attackStats = ko.observableArray([new Attack()]);
 
@@ -197,7 +220,8 @@ export class Character {
          'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'placeholderFeats',
          'placeholderFeats', 'placeholderFeats', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
-         'backstory'];
+         'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
+         'itemsEquipped', 'itemsPermanent', 'itemsConsumable'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -298,6 +322,18 @@ export class Character {
         let mod = Math.floor(ability / 2) - 5 + proficiency;
         if (!mod) return 0;
         return mod;
+    }
+
+    encumberanceLimit(){
+        return ko.computed(() =>{
+            return 5 + this.calculateModifier(+this.str(), "U");
+        }, this);
+    }
+
+    maxBulk(){
+        return ko.computed(() =>{
+            return 10 + this.calculateModifier(+this.str(), "U");
+        }, this);
     }
 
     addAttackRow(){

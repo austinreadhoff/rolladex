@@ -1,7 +1,7 @@
 #stats .block{
     margin: 5px;
 }
-#bio .block, #spellbook .block{
+#bio .block, #spellbook .block, #gear .block{
     margin: 5px 0;
 }
 
@@ -91,4 +91,8 @@ input, textarea{
 }
 .attack-stat-row input {
     margin-right: 5px;
+}
+
+img.currency{
+    height: 1.5em;
 }

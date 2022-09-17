@@ -537,7 +537,76 @@
 
             <div data-bind="with: character" class="tab-pane" id="gear" role="tabpanel" aria-labelledby="gear-tab">
                 <div id="gear-container" class="container-fluid">
-
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="container block block-shaded">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <img class="currency" src="../img/cp.png">
+                                        <label for="copper">CP</label>
+                                        <input data-bind="textInput: copper" id="copper" class="form-control">
+                                    </div>
+                                    <div class="col form-group">
+                                        <img class="currency" src="../img/sp.png">
+                                        <label for="silver">SP</label>
+                                        <input data-bind="textInput: silver" id="silver" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <img class="currency" src="../img/gp.png">
+                                        <label for="gold">GP</label>
+                                        <input data-bind="textInput: gold" id="gold" class="form-control">
+                                    </div>
+                                    <div class="col form-group">
+                                        <img class="currency" src="../img/pp.png">
+                                        <label for="platinum">PP</label>
+                                        <input data-bind="textInput: platinum" id="platinum" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 form-group">
+                            <label for="stored-money">Stored Money</label>
+                            <textarea data-bind="textInput: storedMoney" class="form-control" id="stored-money" rows="4"></textarea>
+                        </div>
+                        <div class="col-3 form-group">
+                            <label for="gems">Gems and Valuables</label>
+                            <textarea data-bind="textInput: gems" class="form-control" id="gems" rows="4"></textarea>
+                        </div>
+                        <div class="col-3 form-group">
+                            <label for="assets">Holdings and Assets</label>
+                            <textarea data-bind="textInput: assets" class="form-control" id="assets" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row container">
+                        <div class="col-4">
+                            <div class="row block-bordered">
+                                <div class="col form-group">
+                                    <label for="bulk">Bulk</label>
+                                    <input data-bind="textInput: bulk" id="bulk" class="form-control">
+                                </div>
+                                <div class="col form-group">
+                                    <p>Encumberance Over: <span data-bind="text: encumberanceLimit()"></span></p>
+                                    <p>Max Load: <span data-bind="text: maxBulk()"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 form-group">
+                            <label for="items-equipped">Equipped</label>
+                            <textarea data-bind="textInput: itemsEquipped" class="form-control" id="items-equipped" rows="14"></textarea>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="items-permanent">Permanent Items</label>
+                            <textarea data-bind="textInput: itemsPermanent" class="form-control" id="items-permanent" rows="14"></textarea>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="items-consumable">Consumables</label>
+                            <textarea data-bind="textInput: itemsConsumable" class="form-control" id="items-consumable" rows="14"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 
