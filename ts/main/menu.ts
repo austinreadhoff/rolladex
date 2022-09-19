@@ -55,7 +55,8 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Export To PDF',
                 accelerator: 'CmdOrCtrl+P',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    printToPDF(focusedWindow);
+                    if (focusedWindow.webContents.getURL().indexOf("landing") == -1)
+                        printToPDF(focusedWindow);
                 }
             }
         ]
