@@ -36,14 +36,16 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    saveToJSON(focusedWindow);
+                    if (focusedWindow.webContents.getURL().indexOf("landing") == -1)
+                        saveToJSON(focusedWindow);
                 }
             },
             {
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    saveAsToJSON(focusedWindow);
+                    if (focusedWindow.webContents.getURL().indexOf("landing") == -1)
+                        saveAsToJSON(focusedWindow);
                 }
             },
             {

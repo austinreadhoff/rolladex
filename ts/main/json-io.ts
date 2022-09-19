@@ -140,9 +140,11 @@ function executeLoad(window: Electron.BrowserWindow, path: string){
         let json = JSON.parse(data);
 
         let game = json.game;
-        if (game == "dnd5e" && window.webContents.getURL().indexOf("dnd5e") == -1)
+        let currentUrl = window.webContents.getURL();
+
+        if (game == "dnd5e" && currentUrl.indexOf("dnd5e") == -1)
             window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json); });
-        else if (game == "pf2e" && window.webContents.getURL().indexOf("pf2e") == -1)
+        else if (game == "pf2e" && currentUrl.indexOf("pf2e") == -1)
             window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json); });
         else{
             sendJSONToPage(window, json);
