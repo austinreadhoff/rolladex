@@ -70,21 +70,6 @@ input, textarea{
     cursor: pointer;
     user-select: none;
 }
-.skillbox-untrained{
-    color: gray;
-}
-.skillbox-trained{
-    color: lightgreen;
-}
-.skillbox-expert{
-    color: turquoise;
-}
-.skillbox-master{
-    color: violet;
-}
-.skillbox-legendary{
-    color: gold;
-}
 
 .attack-stat-row {
     margin: 5px 0;

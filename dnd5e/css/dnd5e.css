@@ -1,3 +1,13 @@
+.skillbox-null{
+    color: gray;
+}
+.skillbox-proficient{
+    color: lightgreen;
+}
+.skillbox-expertise{
+    color: gold;
+}
+
 .spell-row {
     margin: 5px 0;
 }

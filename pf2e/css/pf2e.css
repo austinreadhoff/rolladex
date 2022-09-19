@@ -1,3 +1,19 @@
 #stats .block{
     margin: 5px;
 }
+
+.skillbox-untrained{
+    color: gray;
+}
+.skillbox-trained{
+    color: lightgreen;
+}
+.skillbox-expert{
+    color: turquoise;
+}
+.skillbox-master{
+    color: violet;
+}
+.skillbox-legendary{
+    color: gold;
+}
