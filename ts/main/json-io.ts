@@ -12,14 +12,12 @@ ipcMain.on('send-save-json', (event: any, json: any) => {
 });
 
 ipcMain.on('check-recent-load', (event: any, arg: any) => {
-    //property juggling to match focusedWindowProperties usually expected by executeLoad
-    var win = event;
-    win.webContents = win.sender;
+    var win = event.sender.getOwnerBrowserWindow();
 
     getRecentsJSON()
         .then((json: any) => {
             if (json.lastOpen){
-                executeLoad(win, json.lastOpen);
+                executeLoad(win, json.lastOpen, true);
             }
             
             updateRecentsMenu(json.recents)
@@ -134,7 +132,7 @@ export function loadFromJSON(window: Electron.BrowserWindow, path: string){
     }
 }
 
-function executeLoad(window: Electron.BrowserWindow, path: string){
+function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolean = false){
     fs.readFile(path, 'utf-8', (error: any, data: any) => {
         updateSavePath(path);
         let json = JSON.parse(data);
@@ -143,16 +141,28 @@ function executeLoad(window: Electron.BrowserWindow, path: string){
         let currentUrl = window.webContents.getURL();
 
         if (game == "dnd5e" && currentUrl.indexOf("dnd5e") == -1)
-            window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json); });
+            window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json, delay) });
+
         else if (game == "pf2e" && currentUrl.indexOf("pf2e") == -1)
-            window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json); });
+            window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json, delay) });
+
         else{
             sendJSONToPage(window, json);
         }
     });
 }
 
-function sendJSONToPage(window: Electron.BrowserWindow, json: any){
-    window.webContents.send('send-loaded-json', json);
-    resetSafeSave();
+//The delay is necessary for loading the most recent file on launch.
+//I gave up figuring out why and I hate it as much as you do.
+function sendJSONToPage(window: Electron.BrowserWindow, json: any, delay: boolean = false){
+    if (delay){
+        setTimeout(() => {
+            window.webContents.send('send-loaded-json', json);
+            resetSafeSave();
+        }, 250);
+    }
+    else{
+        window.webContents.send('send-loaded-json', json);
+        resetSafeSave();
+    }
 }

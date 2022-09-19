@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 })
             });
         });
-
-        ipcRenderer.send('check-recent-load');
     });
 });
 
