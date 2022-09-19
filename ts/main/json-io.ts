@@ -57,7 +57,6 @@ export function newCharacter(window: Electron.BrowserWindow){
 
     updateSavePath("");
     resetSafeSave();
-    window.reload();
     window.loadFile("landing.html");
 }
 
@@ -138,8 +137,20 @@ export function loadFromJSON(window: Electron.BrowserWindow, path: string){
 function executeLoad(window: Electron.BrowserWindow, path: string){
     fs.readFile(path, 'utf-8', (error: any, data: any) => {
         updateSavePath(path);
-        var json = JSON.parse(data);
-        window.webContents.send('send-loaded-json', json);
-        resetSafeSave();
+        let json = JSON.parse(data);
+
+        let game = json.game;
+        if (game == "dnd5e" && window.webContents.getURL().indexOf("dnd5e") == -1)
+            window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json); });
+        else if (game == "pf2e" && window.webContents.getURL().indexOf("pf2e") == -1)
+            window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json); });
+        else{
+            sendJSONToPage(window, json);
+        }
     });
+}
+
+function sendJSONToPage(window: Electron.BrowserWindow, json: any){
+    window.webContents.send('send-loaded-json', json);
+    resetSafeSave();
 }
