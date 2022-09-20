@@ -1,0 +1,7 @@
+#items-equipped, #items-permanent, #items-consumable, #backstory {
+    height: 75em;
+}
+
+#placeholder-feats, #placeholder-spells, #placeholder-formulas {
+    height: 100em;
+}
