@@ -62,7 +62,6 @@ function takeRest(restType: number){
     });
 
     if (restType == RestType.Long){
-        viewModel.character().currentHitDice(viewModel.character().maxHitDice());
         viewModel.character().currentHP(viewModel.character().maxHP());
         viewModel.character().tempHP("");
     }
