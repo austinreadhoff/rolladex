@@ -1,8 +1,5 @@
 import { SaveDialogOptions, BrowserWindow, dialog, shell } from "electron";
-import { spellsFilePath } from './spells';
 const fs = require('fs');
-
-var documentationFilePath = ("https://github.com/austinread/rolladex/wiki");
 
 export function switchTab(tabId: string){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
@@ -32,12 +29,4 @@ export function printToPDF(window: Electron.BrowserWindow){
 
 export function takeRest(window: Electron.BrowserWindow, restType: number){
     window.webContents.send('send-take-rest', restType)
-}
-
-export function openCustomSpells(){
-    shell.openPath(spellsFilePath);
-}
-
-export function openDocumentation(){
-    shell.openPath(documentationFilePath);
 }

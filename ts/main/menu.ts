@@ -1,6 +1,6 @@
 import { app, Menu } from 'electron'
 import { RestType } from '../shared/rest-type';
-import { takeRest, printToPDF, openCustomSpells, openDocumentation, switchTab } from './menu-actions'
+import { takeRest, printToPDF, switchTab } from './menu-actions'
 import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
 
 const template: Electron.MenuItemConstructorOptions[] = [
@@ -160,14 +160,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     takeRest(focusedWindow, RestType.Long);
                 }
-            },
-            {
-                label: 'Edit Custom Spells',
-                accelerator: 'CmdOrCtrl+Shift+4',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    openCustomSpells();
-                }
-            },
+            }
         ]
     },
     {
@@ -184,15 +177,6 @@ const template: Electron.MenuItemConstructorOptions[] = [
     {
         role: 'help',
         submenu: [
-            {
-                label: 'Documentation',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    openDocumentation();
-                }
-            },
-            {
-                type: 'separator'
-            },
             {
                 label: 'Toggle Developer Tools',
                 accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
