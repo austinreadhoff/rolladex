@@ -233,6 +233,8 @@ export class Character {
         }
     }
 
+    //Returns string modifier for a given ability and prof level
+    //+4, +0, -1
     abilityMod(ability: number, proficiencyLevel = "U"){
         return ko.computed(() =>{
             let mod = this.calculateModifier(ability, proficiencyLevel);
@@ -240,7 +242,8 @@ export class Character {
         }, this);
     }
 
-
+    //Returns DC for a given ability
+    //14, 10, 9
     abilityDC(abilityStr: string, proficiencyLevel = "U"){
         return ko.computed(() =>{
             let ability: number;
@@ -280,6 +283,19 @@ export class Character {
         }, this);
     }
 
+    //returns number modifier for given ability and prof level
+    //4, 0, -1
+    calculateModifier(ability: number, proficiencyLevel = "U"): number {
+        if (!ability) return 0;
+
+        let proficiency = this.calculateProficiency(proficiencyLevel);
+        let mod = Math.floor(ability / 2) - 5 + proficiency;
+        if (!mod) return 0;
+        return mod;
+    }
+
+    //returns string for only a prof bonus, no ability attached
+    //+4, +0, -1
     simpleProficiency(proficiencyLevel = "U"){
         return ko.computed(() =>{
             let proficiency = this.calculateProficiency(proficiencyLevel);
@@ -287,6 +303,8 @@ export class Character {
         }, this);
     }
 
+    //returns number for only a prof bonus, no ability attached
+    //4, 0, -1
     private calculateProficiency(proficiencyLevel = "U"): number {
         let proficiencyBonus: number;
         switch(proficiencyLevel) { 
@@ -313,15 +331,6 @@ export class Character {
         }
 
         return proficiencyBonus;
-    }
-
-    private calculateModifier(ability: number, proficiencyLevel = "U"): number {
-        if (!ability) return 0;
-
-        let proficiency = this.calculateProficiency(proficiencyLevel);
-        let mod = Math.floor(ability / 2) - 5 + proficiency;
-        if (!mod) return 0;
-        return mod;
     }
 
     encumberanceLimit(){
