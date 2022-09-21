@@ -97,31 +97,17 @@ const template: Electron.MenuItemConstructorOptions[] = [
         label: 'View',
         submenu: [
             {
-                label: 'Stats',
-                accelerator: 'CmdOrCtrl+1',
+                label: 'Next Tab',
+                accelerator: 'CmdOrCtrl+Tab',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    switchTab("stats");
+                    switchTab(true);
                 }
             },
             {
-                label: 'Bio',
-                accelerator: 'CmdOrCtrl+2',
+                label: 'Previous Tab',
+                accelerator: 'CmdOrCtrl+Shift+Tab',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    switchTab("bio");
-                }
-            },
-            {
-                label: 'Spellbook',
-                accelerator: 'CmdOrCtrl+3',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    switchTab("spellbook");
-                }
-            },
-            {
-                label: 'Spell Catalog',
-                accelerator: 'CmdOrCtrl+4',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    switchTab("spellcatalog");
+                    switchTab(false);
                 }
             },
             {

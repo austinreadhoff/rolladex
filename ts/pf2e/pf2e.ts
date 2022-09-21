@@ -1,6 +1,29 @@
 import { ipcRenderer } from "electron";
 import { applyDataBinding, viewModel } from "./viewmodel";
 
+var currentTab = "stats";
+
+ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
+    let tabs = ["stats", "feats", "bio", "gear", "spellbook", "formulas", "featcatalog", "spellcatalog", "craftingcatalog"];
+    let i = tabs.indexOf(currentTab);
+    let tabId;
+    if (direction){
+        if (i == tabs.length-1)
+            tabId = tabs[0];
+        else
+            tabId = tabs[i+1];
+    }
+    else{
+        if (i == 0)
+            tabId = tabs[tabs.length-1];
+        else
+            tabId = tabs[i-1];
+    }
+
+    currentTab = tabId;
+    switchTab(tabId);
+});
+
 ipcRenderer.on('send-take-rest', (event, restType) => {
     takeRest(); //only one type of rest, doesn't matter which is sent
 });

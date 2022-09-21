@@ -4,7 +4,26 @@ import { loadSpellData } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { CharacterSpell, Counter, SpellLevel } from './character';
 
-ipcRenderer.on('send-switch-tab', (event, tabId) => {
+var currentTab = "stats";
+
+ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
+    let tabs = ["stats", "bio", "spellbook", "spellcatalog"];
+    let i = tabs.indexOf(currentTab);
+    let tabId;
+    if (direction){
+        if (i == tabs.length-1)
+            tabId = tabs[0];
+        else
+            tabId = tabs[i+1];
+    }
+    else{
+        if (i == 0)
+            tabId = tabs[tabs.length-1];
+        else
+            tabId = tabs[i-1];
+    }
+
+    currentTab = tabId;
     switchTab(tabId);
 });
 

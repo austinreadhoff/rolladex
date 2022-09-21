@@ -1,8 +1,9 @@
 import { SaveDialogOptions, BrowserWindow, dialog, shell } from "electron";
 const fs = require('fs');
 
-export function switchTab(tabId: string){
-    BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', tabId);
+//true: forward, false: back
+export function switchTab(direction: boolean){
+    BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', direction);
 }
 
 export function printToPDF(window: Electron.BrowserWindow){
