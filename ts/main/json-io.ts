@@ -159,7 +159,7 @@ function sendJSONToPage(window: Electron.BrowserWindow, json: any, delay: boolea
         setTimeout(() => {
             window.webContents.send('send-loaded-json', json);
             resetSafeSave();
-        }, 250);
+        }, 500);
     }
     else{
         window.webContents.send('send-loaded-json', json);
