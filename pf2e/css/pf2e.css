@@ -2,6 +2,10 @@
     margin: 5px;
 }
 
+#lore-skills{
+    padding: 5px 15px;
+}
+
 .skillbox-untrained{
     color: gray;
 }
@@ -16,4 +20,9 @@
 }
 .skillbox-legendary{
     color: gold;
+}
+
+.btn-small{
+    padding: 3px;
+    border-radius: 10px;
 }

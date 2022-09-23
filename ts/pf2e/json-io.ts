@@ -24,7 +24,9 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
     //fromJS will not run constructors for loaded children, and therefore save trackers will not be initiated
     //the following is a janky workaround, sorry
     document.querySelectorAll('input').forEach(input => {
-        if (input.classList.contains("attack-stat")){
+        if (input.classList.contains("attack-stat")
+        || input.classList.contains("lore-field")
+        || input.classList.contains("other-weapon-field")){
             input.addEventListener('input', event => {
                 triggerUnsafeSave(viewModel.character().characterName());
             });

@@ -283,6 +283,19 @@
                                                 <label class="ability-note">(Dex)</label>
                                             </div>
                                         </div>
+                                        <div id="lore-skills" class="block block-bordered">
+                                            <label>Lore Skills</label>
+                                            <label class="ability-note">(Int)</label>
+                                            <button data-bind="click: addLoreSkill" type="button" id="btn-add-lore" class="btn btn-primary btn-small">+</button>
+                                            <div data-bind="foreach: loreSkills">
+                                                <div class="lore-skill">
+                                                    <button data-bind="click: $parent.removeLoreSkill" type="button" id="btn-remove-lore" class="btn btn-danger btn-small">-</button>
+                                                    <div data-bind="skillbox: proficiency" class="skillbox lore-field"></div>
+                                                    <span data-bind="text: $parent.abilityMod($parent.int(), proficiency())" class="int-mod-prof"></span>
+                                                    <input data-bind="textInput: name" class="form-control lore-field">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -382,6 +395,17 @@
                                                     <span data-bind="text: simpleProficiency(weaponsMartial())"></span>
                                                     <label class="form-check-label" for="weapons-martial">Martial</label>
                                                 </div>
+                                                </br>
+                                                <label>Other Weapons</label>
+                                                <button data-bind="click: addOtherWeapon" type="button" id="btn-add-other-weapon" class="btn btn-primary btn-small">+</button>
+                                                <div data-bind="foreach: otherWeapons">
+                                                    <div class="other-weapon">
+                                                        <button data-bind="click: $parent.removeOtherWeapon" type="button" id="btn-remove-other-weapon" class="btn btn-danger btn-small">-</button>
+                                                        <div data-bind="skillbox: proficiency" class="skillbox other-weapon-field"></div>
+                                                        <span data-bind="text: $parent.simpleProficiency(proficiency())"></span>
+                                                        <input data-bind="textInput: name" class="form-control other-weapon-field">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -423,7 +447,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="container block block-shaded">
-                                        <label class="row full-width-label">Attacks</label>
+                                        <label class="row full-width-label">Attacks&nbsp<button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary btn-small">+</button></label>
+                                        
                                         <div class="row">
                                             <label class="col-1 print-hidden"></label>
                                             <label class="col-4">Name</label>
@@ -432,7 +457,7 @@
                                         </div>
                                         <div data-bind="foreach: attackStats" id="attack-stats">
                                             <div class="attack-stat-row row">
-                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="col-1 btn btn-danger">-</button>
+                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="btn btn-danger btn-small">-</button>
                                                 <input data-bind="textInput: name" class="form-control col-4 attack-stat attack-stat-name">
                                                 <input data-bind="textInput: bonus" class="form-control col-2 attack-stat attack-stat-bonus">
                                                 <input data-bind="textInput: dmg" class="form-control col-4 attack-stat attack-stat-dmg">
@@ -440,9 +465,6 @@
                                             <div class="attack-stat-row row">
                                                 <input data-bind="textInput: traits" class="form-control col-12 attack-stat attack-stat-traits">
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary">+</button>
                                         </div>
                                     </div>
                                 </div>

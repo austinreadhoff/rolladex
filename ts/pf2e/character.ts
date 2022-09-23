@@ -108,6 +108,8 @@ export class Character {
     itemsConsumable: KnockoutObservable<string>;
 
     attackStats: KnockoutObservableArray<Attack>;
+    loreSkills: KnockoutObservableArray<Proficiency>;
+    otherWeapons: KnockoutObservableArray<Proficiency>;
 
     placeholderFeats: KnockoutObservable<string>;
     placeholderSpells: KnockoutObservable<string>;
@@ -204,6 +206,8 @@ export class Character {
         this.itemsConsumable = ko.observable("");
 
         this.attackStats = ko.observableArray([new Attack()]);
+        this.loreSkills = ko.observableArray([]);
+        this.otherWeapons = ko.observableArray([]);
 
         this.placeholderFeats = ko.observable("");
         this.placeholderSpells = ko.observable("");
@@ -221,7 +225,7 @@ export class Character {
          'placeholderFeats', 'placeholderFeats', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
          'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
-         'itemsEquipped', 'itemsPermanent', 'itemsConsumable'];
+         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -351,6 +355,20 @@ export class Character {
     removeAttackRow(row: Attack){
         viewModel.character().attackStats.remove(row);
     }
+
+    addLoreSkill(){
+        this.loreSkills.push(new Proficiency())
+    }
+    removeLoreSkill(lore: Proficiency){
+        viewModel.character().loreSkills.remove(lore);
+    }
+
+    addOtherWeapon(){
+        this.otherWeapons.push(new Proficiency())
+    }
+    removeOtherWeapon(weapon: Proficiency){
+        viewModel.character().otherWeapons.remove(weapon);
+    }
 }
 
 class Attack extends CharacterProperty{
@@ -368,5 +386,19 @@ class Attack extends CharacterProperty{
         this.bonus = ko.observable("");
         this.dmg = ko.observable("");
         this.traits = ko.observable("");
+    }
+}
+
+class Proficiency extends CharacterProperty{
+    name: KnockoutObservable<string>;
+    proficiency: KnockoutObservable<string>;
+
+    constructor(){
+        super(() => viewModel.character().characterName(), ["name", "proficiency"]);
+    }
+    
+    initProps(){
+        this.name = ko.observable("");
+        this.proficiency = ko.observable("");
     }
 }
