@@ -24,7 +24,7 @@
   "homepage": "https://github.com/austinread/rolladex#readme",
   "devDependencies": {
     "@types/knockout": "^3.4.70",
-    "electron": "^9.2.0",
+    "electron": "^20.0.0",
     "electron-installer-debian": "^3.1.0",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.2.0",
