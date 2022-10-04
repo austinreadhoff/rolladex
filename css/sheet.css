@@ -82,3 +82,17 @@ input, textarea{
 img.currency{
     height: 1.5em;
 }
+
+#misc-counters-header{
+    margin: 0 5px;
+}
+.misc-counter-block{
+    margin: 0 5px;
+}
+.counter-name{
+    margin: 5px 0;
+}
+.counter-container *, .spell-slot-container *{
+    display: inline-block;
+    width: auto;
+}

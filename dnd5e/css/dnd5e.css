@@ -15,19 +15,6 @@
     margin-right: 5px;
 }
 
-#misc-counters-header{
-    margin: 0 5px;
-}
-.misc-counter-block{
-    margin: 0 5px;
-}
-.counter-name{
-    margin: 5px 0;
-}
-.counter-container *, .spell-slot-container *{
-    display: inline-block;
-    width: auto;
-}
 .spell-slot-container input{
     width: 45%;
 }

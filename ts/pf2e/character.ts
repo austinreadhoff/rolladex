@@ -110,6 +110,7 @@ export class Character {
     attackStats: KnockoutObservableArray<Attack>;
     loreSkills: KnockoutObservableArray<Proficiency>;
     otherWeapons: KnockoutObservableArray<Proficiency>;
+    miscCounters: KnockoutObservableArray<Counter>;
 
     placeholderFeats: KnockoutObservable<string>;
     placeholderSpells: KnockoutObservable<string>;
@@ -208,6 +209,7 @@ export class Character {
         this.attackStats = ko.observableArray([new Attack()]);
         this.loreSkills = ko.observableArray([]);
         this.otherWeapons = ko.observableArray([]);
+        this.miscCounters = ko.observableArray([]);
 
         this.placeholderFeats = ko.observable("");
         this.placeholderSpells = ko.observable("");
@@ -225,7 +227,7 @@ export class Character {
          'placeholderFeats', 'placeholderFeats', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
          'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
-         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons'];
+         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -369,6 +371,13 @@ export class Character {
     removeOtherWeapon(weapon: Proficiency){
         viewModel.character().otherWeapons.remove(weapon);
     }
+
+    addMiscCounter(){
+        this.miscCounters.push(new Counter())
+    }
+    removeMiscCounter(counter: Counter){
+        viewModel.character().miscCounters.remove(counter);
+    }
 }
 
 class Attack extends CharacterProperty{
@@ -400,5 +409,23 @@ class Proficiency extends CharacterProperty{
     initProps(){
         this.name = ko.observable("");
         this.proficiency = ko.observable("");
+    }
+}
+
+export class Counter extends CharacterProperty {
+    name: KnockoutObservable<string>;
+    current: KnockoutObservable<string>;
+    max: KnockoutObservable<string>;
+    rest: KnockoutObservable<boolean>;
+
+    constructor(){
+        super(() => viewModel.character().characterName(), ["name", "current", "max", "rest"]);
+    }
+
+    initProps(){
+        this.name = ko.observable("");
+        this.current = ko.observable("");
+        this.max = ko.observable("");
+        this.rest = ko.observable(false);
     }
 }

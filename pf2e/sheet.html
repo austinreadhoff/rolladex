@@ -471,6 +471,26 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="misc-counters-container" class="print-hidden">
+                        <div id="misc-counters-header">
+                            <label>Custom Counters</label>
+                            <button data-bind="click: addMiscCounter" type="button" id="btn-add-counter" class="btn btn-primary btn-small">+</button>
+                        </div>
+                        <div data-bind="foreach: miscCounters" id="misc-counters" class="row block block-shaded">
+                            <div class="misc-counter-block">
+                                <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="btn btn-danger btn-small">-</button>
+                                <span>Reset Daily</span>
+                                <input data-bind="checked: rest" type="checkbox" class="misc-counter counter-rest">
+                                <input data-bind="textInput: name" class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
+                                <div class="counter-container">
+                                    <input data-bind="textInput: current" class="form-control misc-counter counter-current" placeholder="Current">
+                                    <span>/</span>
+                                    <input data-bind="textInput: max" class="form-control misc-counter counter-max" placeholder="Max">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

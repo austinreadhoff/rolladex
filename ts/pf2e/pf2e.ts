@@ -1,4 +1,5 @@
 import { ipcRenderer } from "electron";
+import { Counter } from "./character";
 import { applyDataBinding, viewModel } from "./viewmodel";
 
 var currentTab = "stats";
@@ -52,9 +53,15 @@ export function switchTab(tabId: string){
 }
 
 function takeRest(){
+    viewModel.character().miscCounters().forEach((counter: Counter) => {
+        if (counter.rest()){
+            counter.current(counter.max());
+        }
+    });
+
     let character = viewModel.character();
     let currentHP = +character.currentHP();
-    let hpRecovered = character.calculateModifier(+viewModel.character().con())*(+character.level());
+    let hpRecovered = character.calculateModifier(+character.con())*(+character.level());
     if ((currentHP + hpRecovered) > +character.maxHP()){
         viewModel.character().currentHP(character.maxHP());
         return;

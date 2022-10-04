@@ -25,9 +25,16 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
     //the following is a janky workaround, sorry
     document.querySelectorAll('input').forEach(input => {
         if (input.classList.contains("attack-stat")
+        || input.classList.contains("misc-counter")
         || input.classList.contains("lore-field")
         || input.classList.contains("other-weapon-field")){
             input.addEventListener('input', event => {
+                triggerUnsafeSave(viewModel.character().characterName());
+            });
+        }
+        else if (input.type == "checkbox" 
+        && input.classList.contains("misc-counter")){
+            input.addEventListener('change', event => {
                 triggerUnsafeSave(viewModel.character().characterName());
             });
         }
