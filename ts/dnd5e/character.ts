@@ -56,8 +56,6 @@ export class Character {
     hair: KnockoutObservable<string>;
     spellcastingClass: KnockoutObservable<string>;
     spellcastingAbility: KnockoutObservable<string>;
-    spellSaveDC: KnockoutObservable<string>;
-    spellAttackBonus: KnockoutObservable<string>;
     proficienciesLanguages: KnockoutObservable<string>;
     equipment: KnockoutObservable<string>;
     features: KnockoutObservable<string>;
@@ -143,9 +141,7 @@ export class Character {
         this.skin = ko.observable("");
         this.hair = ko.observable("");
         this.spellcastingClass = ko.observable("");
-        this.spellcastingAbility = ko.observable("");
-        this.spellSaveDC = ko.observable("");
-        this.spellAttackBonus = ko.observable("");
+        this.spellcastingAbility = ko.observable("STR");
         this.proficienciesLanguages = ko.observable("");
         this.equipment = ko.observable("");
         this.features = ko.observable("");
@@ -191,7 +187,7 @@ export class Character {
         'currentHP', 'maxHP', 'tempHP', 'currentHitDice', 'maxHitDice', 'deathSavingSuccess1', 'deathSavingSuccess2',
         'deathSavingSuccess3', 'deathSavingFailure1', 'deathSavingFailure2', 'deathSavingFailure3', 'copper',
         'silver', 'electrum', 'gold', 'platinum', 'age', 'height', 'weight', 'eyes', 'skin', 'hair',
-        'spellcastingClass', 'spellcastingAbility', 'spellSaveDC', 'spellAttackBonus', 'proficienciesLanguages',
+        'spellcastingClass', 'spellcastingAbility', 'proficienciesLanguages',
         'equipment', 'features', 'physicalDescription', 'traits', 'ideals', 'bonds', 'flaws', 'backstory', 'allies',
         'additionalFeatures', 'treasure', 'acrobatics', 'animalHandling', 'arcana', 'athletics', 'deception',
         'history', 'insight', 'intimidation', 'investigation', 'medicine', 'nature', 'perception', 'performance',
@@ -232,6 +228,46 @@ export class Character {
             if (!mod) return "+0";
             return mod < 0 ? mod.toString() : ("+" + mod);
         }, this);
+    }
+
+    //because calculated properties can't be math'd
+    private calculateSpellAttackBonus(ability: string) : number {
+	let abilityScore;
+	switch(ability){
+	    case "STR":
+		abilityScore = this.str();
+		break;
+	    case "DEX":
+		abilityScore = this.dex();
+		break;
+	    case "CON":
+		abilityScore = this.con();
+		break;
+	    case "INT":
+		abilityScore = this.int();
+		break;
+	    case "WIS":
+		abilityScore = this.wis();
+		break;
+	    case "CHAR":
+		abilityScore = this.char();
+		break;
+	}
+
+	return (Math.floor(+abilityScore / 2) - 5)
+	    + +(this.proficiency().replace(/\D/g,''));
+    }
+    
+    spellAttackBonus(ability: string){
+	return ko.computed(() => {
+	    return this.calculateSpellAttackBonus(ability);
+	}, this);
+    }
+
+    spellSaveDC(ability: string){
+	return ko.computed(() => {
+	    return 8 + this.calculateSpellAttackBonus(ability);
+	}, this);
     }
 
     addAttackRow(){

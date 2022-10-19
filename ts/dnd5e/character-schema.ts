@@ -1,5 +1,5 @@
 //Whenever this verison is increased, add a conversion method to the switch statement that increments the version from the previous
-export var jsonSchemaVersion = 0.4;
+export var jsonSchemaVersion = 0.5;
 export var gameName = "dnd5e";
 
 export function UpgradeSchema(json: any){
@@ -10,6 +10,8 @@ export function UpgradeSchema(json: any){
             json = ConvertToViewModelSchema(json);
         case 0.3:
             json = AddGameProperty(json);
+	case 0.4:
+	    json = RemoveSpellStats(json);
     }
 
     return json;
@@ -119,5 +121,13 @@ function ConvertToViewModelSchema(json: any){
 function AddGameProperty(json: any){
     json["game"] = gameName;
     json["version"] = 0.4;
+    return json;
+}
+
+function RemoveSpellStats(json: any){
+    delete json["spellSaveDC"];
+    delete json["spellAttackBonus"];
+
+    json["version"] = 0.5;
     return json;
 }

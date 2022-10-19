@@ -527,15 +527,22 @@
                     </div>
                     <div class="form-group col-2">
                         <label for="spellcasting-ability">Spellcasting Ability</label>
-                        <input data-bind="textInput: spellcastingAbility" id="spellcasting-ability" class="form-control">
+		        <select id="spellcasting-ability" data-bind="value: spellcastingAbility">
+                          <option value="STR">STR</option>
+                          <option value="DEX">DEX</option>
+                          <option value="CON">CON</option>
+                          <option value="INT">INT</option>
+                          <option value="WIS">WIS</option>
+                          <option value="CHAR">CHA</option>
+                        </select>
                     </div>
                     <div class="form-group col-2">
                         <label for="spell-save-dc">Spell Save DC</label>
-                        <input data-bind="textInput: spellSaveDC" id="spell-save-dc" class="form-control">
+			<span data-bind="text: spellSaveDC(spellcastingAbility())" id="spell-save-dc" class="form-control"></span>
                     </div>
                     <div class="form-group col-2">
                         <label for="spell-attack-bonus">Spell Attack Bonus</label>
-                        <input data-bind="textInput: spellAttackBonus" id="spell-attack-bonus" class="form-control">
+			<span data-bind="text: spellAttackBonus(spellcastingAbility())" id="spell-attack-bonus" class="form-control"></span>
                     </div>
                 </div>
 
