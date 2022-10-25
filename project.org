@@ -1,0 +1,44 @@
+#+TODO: TODO DOING | DONE
+#+TAGS: bug(b)  dnd5e(d)  pf2e(p)
+
+* Low Priority Backlog
+** TODO Child skillboxes don't trigger unsafe save                 :bug:pf2e:
+- lore skills & other weapon proficiencies
+** TODO Change menu items per page?
+** TODO Dock Tabs
+** TODO LR Should give half hit dice                              :bug:dnd5e:
+** TODO Uppercase the goddamn name
+** TODO datalist tag for typeaheads
+** TODO Inconsistent spell description formatting                     :dnd5e:
+** TODO Alternate search titles for certain spells                    :dnd5e:
+** TODO Remove from spellbook button in catalog
+** TODO Signify spellbook spells using icon in catalog list
+** TODO Custom undo stack
+* 0.3.0 [1/6]
+** DONE pf2e MVP                                                       :pf2e:
+** DOING Spell Library [1/3]                                           :pf2e:
+*** DONE Import Data
+*** TODO Build Library
+*** TODO Build Spellbook
+** TODO Feat Library                                                   :pf2e:
+** TODO Formula Library                                                :pf2e:
+** TODO Track Bulk of All items                                        :pf2e:
+- Remove textareas, track lists of complex equipment items w/ bulk value, do the math for:
+ - Light and negligible items
+ - Coins
+ - Armor that's worn v carried
+ - Warning the user if they are encumbered or at max
+- Possibility: Gear Catalog
+** TODO Character Pictures
+* 0.2.1
+** DONE Fix loading of spell rest type
+** DONE Fix save triggering issues
+** DONE 3rd, not 2rd level spells
+** DONE Actually mark rituals
+* 0.2.0
+** DONE Data Binding
+** DONE Fix Class Spell Lists
+** DONE Clear Recents List
+** DONE Fix Branding Smite class list
+* 0.1.0
+** DONE MVP
