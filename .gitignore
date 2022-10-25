@@ -1,4 +1,6 @@
 node_modules/
 src/
 release/
+parsers/input/
+parsers/output/
 *~
