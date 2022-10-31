@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
 import { Counter } from "./character";
+import { loadSpellData } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 
 var currentTab = "stats";
@@ -31,11 +32,13 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 
 document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
-    
-    document.querySelectorAll('.nav-link').forEach(tab => {
-        tab.addEventListener('click', event => {
-            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
-        });
+
+    loadSpellData().then(() => {
+        document.querySelectorAll('.nav-link').forEach(tab => {
+	    tab.addEventListener('click', event => {
+		switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+	    });
+	});
     });
 });
 

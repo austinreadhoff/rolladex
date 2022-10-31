@@ -29,64 +29,9 @@
     border-radius: 4px;
 }
 
-#spellcatalog-container{
-    display: flex;
-    padding: 20px;
-    height: 90%;
-}
-#spell-listbox{
-    height: 100%;
-    width: 21em;
-    background-color: gray;
-}
-#spellcatalog-container option{
-    color: #fff;
-    background-color: gray;
-}
-#spellcatalog-filters{
-    overflow-y: auto;
-    word-break: break-word;
-}
-#spellcatalog-filters label{
-    white-space: pre;
-    cursor: pointer;
-    user-select: none;
-}
-.filter-toggle{
-    cursor: pointer;
-}
-.filter-toggle-icon{
-    display: inline-block;
-    user-select: none;
-}
-.filter-toggle-icon.down{
-    transform: rotate(90deg);
-}
-.spell-container{
-    height: 100%;
-}
-#catalog-spell-container .row{
-    padding-top: 10px;
-}
-#catalog-spell-container p{
-    border: 1px solid #333;
-    border-radius: 0.25rem;
-    padding: 0.375rem 0.75rem;
-}
 #catalog-source, #catalog-classes{
     color: lightgray;
 }
 #catalog-classes-col{
     text-align: end;
-}
-#catalog-text-row{
-    height:75%;
-}
-#catalog-text-col{
-    height:100%;
-}
-#catalog-text{
-    height:100%;
-    white-space: pre-line;
-    overflow-y: auto;
 }
