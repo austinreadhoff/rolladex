@@ -674,45 +674,43 @@
             <div class="tab-pane" id="featcatalog" role="tabpanel" aria-labelledby="featcatalog-tab">
                 <div id="featcatalog-container" class="print-hidden">
                     <p>TODO</p>
-                </di>
+                </div>
             </div>
 
             <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
                 <div id="spellcatalog-container" class="print-hidden">
-                    <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" 
-			id="spell-listbox" 
-			size="2">
-			<!--spell listbox here-->
-		    </select>
-		    <div id="spellcatalog-filters" class="block block-bordered">
-			<div class="form-group">
-			    <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
-			</div>
-			<div class="form-group">
-			    <label for="filter-name">Name</label>
-			    <input id="filter-name" class="form-control ignore">
-			</div>
-			<div class="form-group">
-			    <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
-			    <ul id="level-filters" hidden>
-				<!--options autopopulated from spell catalog data-->
-			    </ul>
-			</div>
-		    </div>
-		    <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
-			<div class="row" id="catalog-text-row">
-			    <div class="col" id="catalog-text-col">
-				<p data-bind="text: traditionsFormatted, visible: traditions.length > 0" id="catalog-text"></p>
-			    </div>
-			</div>
-			<div class="row">
-			    <div class="col">
-				<!--<button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>-->
-			    </div>
-			</div>
-		    </div>
+                    <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" id="spell-listbox" size="2">
+                        <!--spell listbox here-->
+                    </select>
+                    <div id="spellcatalog-filters" class="block block-bordered">
+                        <div class="form-group">
+                            <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-name">Name</label>
+                            <input id="filter-name" class="form-control ignore">
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="level-filters" hidden>
+                                <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
+                        <div class="row" id="catalog-text-row">
+                            <div class="col" id="catalog-text-col">
+                                <p data-bind="text: traditionsFormatted, visible: traditions.length > 0" id="catalog-text"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!--<button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>  
 
             <div class="tab-pane" id="craftingcatalog" role="tabpanel" aria-labelledby="craftingcatalog-tab">
                 <div id="craftingcatalog-container" class="print-hidden">
