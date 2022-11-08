@@ -7,7 +7,7 @@ def del_if_exists(obj, prop):
 
 def extract_from_system(obj, prop):
     if prop in obj["system"]:
-        if "value" in obj["system"][prop] and prop != "traits":
+        if "value" in obj["system"][prop] and prop != "traits" and prop != "save":
             obj[prop] = obj["system"][prop]["value"]
         else:
             obj[prop] = obj["system"][prop]
@@ -30,26 +30,27 @@ for filename in os.listdir(input_dir):
     del_if_exists(spell["system"],"ability")
     del_if_exists(spell["system"],"area")
     del_if_exists(spell["system"],"areasize")
-    del_if_exists(spell["system"],"cost")
     del_if_exists(spell["system"],"damage")
     del_if_exists(spell["system"],"hasCounteractCheck")
     del_if_exists(spell["system"],"overlays")
     del_if_exists(spell["system"],"prepared")
-    del_if_exists(spell["system"],"primarycheck")
     del_if_exists(spell["system"],"rules")
-    del_if_exists(spell["system"],"save")
-    del_if_exists(spell["system"],"secondarycasters")
-    del_if_exists(spell["system"],"secondarycheck")
     del_if_exists(spell["system"],"spellType")
     del_if_exists(spell["system"],"sustained")
 
     extract_from_system(spell, "category")
+    extract_from_system(spell, "cost")
     extract_from_system(spell, "components")
     extract_from_system(spell, "description")
+    extract_from_system(spell, "duration")
     extract_from_system(spell, "level")
     extract_from_system(spell, "materials")
+    extract_from_system(spell, "primarycheck")
     extract_from_system(spell, "range")
+    extract_from_system(spell, "save")
     extract_from_system(spell, "school")
+    extract_from_system(spell, "secondarycasters")
+    extract_from_system(spell, "secondarycheck")
     extract_from_system(spell, "source")
     extract_from_system(spell, "target")
     extract_from_system(spell, "time")

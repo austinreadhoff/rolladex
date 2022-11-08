@@ -700,12 +700,31 @@
                     <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
-                                <p data-bind="text: traditionsFormatted, visible: traditions.length > 0" id="catalog-text"></p>
+                                <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
+                                <div>
+                                    <span data-bind="text: rarityFormatted, class: rarityClass"></span>
+                                    <!-- ko foreach: tags  -->
+                                    <span data-bind="text: $data" class="spell-tag"></span>
+                                    <!-- /ko -->
+                                </div>
+                                <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
+                                <div data-bind="text: traditionsFormatted, visible: traditions.length > 0"></div>
+                                <div data-bind="text: timeAndComponents"></div>
+                                <div data-bind="text: costFormatted, visible: cost.length > 0"></div>
+                                <div data-bind="text: secondaryCastersFormatted, visible: secondaryCasters.length > 0"></div>
+                                <div data-bind="text: primaryCheckFormatted, visible: primaryCheck.length > 0"></div>
+                                <div data-bind="text: secondaryCheckFormatted, visible: secondaryCheck.length > 0"></div>
+                                <div data-bind="text: saveFormatted, visible: savingThrow.value.length > 0"></div>
+                                <div data-bind="text: rangeFormatted, visible: range.length > 0"></div>
+                                <div data-bind="text: targetFormatted, visible: target.length > 0"></div>
+                                <div data-bind="text: durationFormatted, visible: duration.length > 0"></div>
+                                <hr>
+                                <div data-bind="html: description"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <!--<button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>-->
+                                <!-- <button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button> -->
                             </div>
                         </div>
                     </div>
