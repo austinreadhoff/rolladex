@@ -691,9 +691,71 @@
                             <input id="filter-name" class="form-control ignore">
                         </div>
                         <div class="form-group">
+                            <label for="filter-tags">Tags (; delimted)</label>
+                            <input id="filter-tags" class="form-control ignore">
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="category-filter-toggle"><label for="category-filters">Category    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="category-filters" hidden>
+                                <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="cantrip-filter-toggle"><label for="cantrip-filters">Cantrip    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="cantrip-filters" hidden>
+                                <li>
+                                    <input type="radio" name="cantrip-filter" id="cantrip-unfiltered" value="0" checked>
+                                    <label >Unfiltered</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="cantrip-filter" value="1">
+                                    <label>Yes</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="cantrip-filter" value="2">
+                                    <label>No</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
                             <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="level-filters" hidden>
                                 <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="tradition-filter-toggle"><label for="traidtion-filters">Tradition    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="tradition-filters" hidden>
+                                <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="school-filter-toggle"><label for="school-filters">School    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="school-filters" hidden>
+                                <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="source-filter-toggle"><label for="source-filters">Source    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="source-filters" hidden>
+                                <!--options autopopulated from spell catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="rarity-filter-toggle"><label for="rarity-filters">Rarity    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="rarity-filters" hidden>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
+                                    <label class="form-check-label" for="rarity-filter-common">common</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
+                                    <label class="form-check-label" for="rarity-filter-uncommon">uncommon</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
+                                    <label class="form-check-label" for="rarity-filter-rare">rare</label>
+                                </li>
                             </ul>
                         </div>
                     </div>

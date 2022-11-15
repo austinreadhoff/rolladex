@@ -12,16 +12,17 @@
 ** TODO datalist tag for typeaheads
 ** TODO Inconsistent spell description formatting                     :dnd5e:
 ** TODO Alternate search titles for certain spells                    :dnd5e:
+** TODO Remove link text from spells                                   :pf2e:
 ** TODO Remove from spellbook button in catalog
 ** TODO Signify spellbook spells using icon in catalog list
 ** TODO Custom undo stack
-* 0.3.0 [1/6]
+* 0.3.0 [1/5]
 ** DONE pf2e MVP                                                       :pf2e:
 ** DOING Spell Library [1/3]                                           :pf2e:
 *** DONE Import Data
 *** DOING Build Library
 - action/reation images
-- filters: name(str), tag(str), spell/focus, level(including cantrip), tradition, school, source
+- filters: name(str), tag(str), spell/focus/ritual/cantrip, level, tradition, school, source
 *** TODO Build Spellbook
 - spell levels cantrip-1-10
 - focus levels cantrip-1-10
