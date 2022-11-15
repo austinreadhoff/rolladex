@@ -91,7 +91,7 @@ export class Spell {
     });
 
     timeAndComponents: ko.PureComputed<string> = ko.pureComputed(() => {
-        return "Cast: " + this.time + " " + this.components.toString();
+        return "Cast: " + this.time + ", " + this.components.toString();
     });
     
     traditionsFormatted: ko.PureComputed<string> = ko.pureComputed(() => {

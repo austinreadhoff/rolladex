@@ -8,6 +8,7 @@
 ** TODO Dock Tabs
 ** TODO LR Should give half hit dice                              :bug:dnd5e:
 ** TODO Character Pictures
+** TODO Action icons                                                   :pf2e:
 ** TODO Uppercase the goddamn name
 ** TODO datalist tag for typeaheads
 ** TODO Inconsistent spell description formatting                     :dnd5e:
@@ -18,11 +19,10 @@
 ** TODO Custom undo stack
 * 0.3.0 [1/5]
 ** DONE pf2e MVP                                                       :pf2e:
-** DOING Spell Library [1/3]                                           :pf2e:
+** DOING Spell Library [2/3]                                           :pf2e:
 *** DONE Import Data
-*** DOING Build Library
-- action/reation images
-- filters: name(str), tag(str), spell/focus/ritual/cantrip, level, tradition, school, source
+*** DONE Build Library
+- filters
 *** TODO Build Spellbook
 - spell levels cantrip-1-10
 - focus levels cantrip-1-10
