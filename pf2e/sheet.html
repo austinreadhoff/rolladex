@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="css/pf2e.css">
         <link rel="stylesheet" href="css/print.css" media="print">
 	
-        <script>require("../src/pf2e/spells.js")</script>    
+        <script>require("../src/pf2e/spells.js")</script>
+        <script>require("../src/pf2e/feats.js")</script>
         <script>require("../src/pf2e/save-tracker.js")</script>
         <script>require("../src/pf2e/json-io.js")</script>
         <script>require("../src/pf2e/pf2e.js")</script>
@@ -673,7 +674,72 @@
 
             <div class="tab-pane" id="featcatalog" role="tabpanel" aria-labelledby="featcatalog-tab">
                 <div id="featcatalog-container" class="print-hidden">
-                    <p>TODO</p>
+                    <select data-bind="options: featCatalog, optionsText: 'name', optionsValue: 'name'" id="feat-listbox" size="2">
+                        <!--feat listbox here-->
+                    </select>
+                    <div id="featcatalog-filters" class="block block-bordered">
+                        <div class="form-group">
+                            <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-name">Name</label>
+                            <input id="filter-name" class="form-control ignore">
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-tags">Tags (; delimted)</label>
+                            <input id="filter-tags" class="form-control ignore">
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="level-filters" hidden>
+                                <!--options autopopulated from catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="source-filter-toggle"><label for="source-filters">Source    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="source-filters" hidden>
+                                <!--options autopopulated from catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <div class="filter-toggle" id="rarity-filter-toggle"><label for="rarity-filters">Rarity    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="rarity-filters" hidden>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
+                                    <label class="form-check-label" for="rarity-filter-common">common</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
+                                    <label class="form-check-label" for="rarity-filter-uncommon">uncommon</label>
+                                </li>
+                                <li class="form-check">
+                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
+                                    <label class="form-check-label" for="rarity-filter-rare">rare</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-bind="with: feat" id="catalog-feat-container" class="feat-container block block-shaded container-fluid">
+                        <div class="row" id="catalog-text-row">
+                            <div class="col" id="catalog-text-col">
+                                <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
+                                <div>
+                                    <span data-bind="text: rarityFormatted, class: rarityClass"></span>
+                                    <!-- ko foreach: tags  -->
+                                    <span data-bind="text: $data" class="spell-tag"></span>
+                                    <!-- /ko -->
+                                </div>
+                                <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
+                                <hr>
+                                <div data-bind="html: description"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- todo: button go here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

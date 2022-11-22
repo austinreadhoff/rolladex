@@ -1,7 +1,7 @@
 import * as ko from "knockout";
-import { saveAsToJSON } from "../main/json-io";
+import { CatalogObject, CatalogTraits } from "../shared/catalog";
 
-export class Spell {
+export class Spell extends CatalogObject {
     name: string;
     category: string;
     components: SpellComponentProperties;
@@ -16,7 +16,7 @@ export class Spell {
     target: string;
     time: number;
     traditions: string[];
-    traits: SpellTraits;
+    traits: CatalogTraits;
     primaryCheck: string;
     secondaryCheck: string;
     savingThrow: SpellSave;
@@ -101,6 +101,8 @@ export class Spell {
     });
 
     constructor(json?: any){
+        super();
+
         if(json === undefined){
             this.name = "";
             this.category = "";
@@ -123,7 +125,7 @@ export class Spell {
             this.time = 1;
             this.traditions = [];
 
-            this.traits = new SpellTraits;
+            this.traits = new CatalogTraits;
             this.traits.custom = "";
             this.traits.rarity = "";
             this.traits.value = [];
@@ -157,7 +159,7 @@ export class Spell {
             this.time = json["time"];
             this.traditions = json["traditions"];
             
-            this.traits = new SpellTraits;
+            this.traits = new CatalogTraits;
             this.traits.custom = json["traits"]["custom"];
             this.traits.rarity = json["traits"]["rarity"];
             this.traits.value = json["traits"]["value"];
@@ -170,10 +172,6 @@ export class Spell {
             this.savingThrow.basic = json["save"]["basic"];
             this.savingThrow.value = json["save"]["value"];
         }
-    }
-
-    private capitalize(str: string){
-        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 }
 
@@ -196,12 +194,6 @@ export class SpellComponentProperties {
 
 	return output;
     }
-}
-
-export class SpellTraits {
-    custom: string; //Can this be removed?
-    rarity: string;
-    value: string[];
 }
 
 export class SpellSave {

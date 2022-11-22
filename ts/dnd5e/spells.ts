@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron')
+import { getJSON, populateFilterDropDown, setupFilterToggle } from "../shared/catalog";
 import { Spell } from "./spell";
 import { viewModel } from "./viewmodel";
 
@@ -39,10 +40,10 @@ export function loadSpellData(){
             setupFilterToggle("school-filter-toggle", "school-filters");
             setupFilterToggle("source-filter-toggle", "source-filters");
 
-            populateFilterDropDown("level-filters", "level");
-            populateFilterDropDown("class-filters", "classes");
-            populateFilterDropDown("school-filters", "school");
-            populateFilterDropDown("source-filters", "source");
+            populateFilterDropDown(spellCatalog, "level-filters", "level", filterSpellCatalog);
+            populateFilterDropDown(spellCatalog, "class-filters", "classes", filterSpellCatalog);
+            populateFilterDropDown(spellCatalog, "school-filters", "school", filterSpellCatalog);
+            populateFilterDropDown(spellCatalog, "source-filters", "source", filterSpellCatalog);
 
             document.getElementById("btn-clear-filters").addEventListener('click', event => {
                 let nameEl: HTMLInputElement = document.getElementById("filter-name") as HTMLInputElement
@@ -84,75 +85,3 @@ function filterSpellCatalog(){
 
     viewModel.spellCatalog(filteredCatalog);
 }
-
-//#region helpers
-
-function getJSON(path: string){
-    return new Promise((resolve, reject) => {
-        var request = new XMLHttpRequest();
-        request.open('GET', path, true);
-    
-        request.onload = function() {
-            if (request.status >= 200 && request.status < 400) {
-                resolve(JSON.parse(request.responseText));
-            }
-        };
-    
-        request.send();
-    });
-}
-
-function setupFilterToggle(toggleElId: string, filterUlId: string){
-    let toggleEl = document.getElementById(toggleElId);
-    let filterUl = document.getElementById(filterUlId);
-
-    toggleEl.addEventListener('click', event => {
-        if (filterUl.hidden) {
-            filterUl.hidden = false;
-            toggleEl.querySelector(".filter-toggle-icon").classList.add("down");
-        } else {
-            filterUl.hidden = true;
-            toggleEl.querySelector(".filter-toggle-icon").classList.remove("down");
-        }
-    })
-}
-
-function populateFilterDropDown(filterElId: string, property: string){
-    var options: any[] = [];
-
-    spellCatalog.forEach(spell => {
-        if(Array.isArray(spell[property as keyof Spell])){
-            let arr = spell[property as keyof Spell] as any[]
-            arr.forEach((x: string) => {
-                if (options.indexOf(x.toUpperCase()) == -1){
-                    options.push(x.toUpperCase());
-                }
-            });
-        }
-        else{
-            let str = spell[property as keyof Spell]
-            if (options.indexOf(str) == -1){
-                options.push(str);
-            }
-        }
-    });
-
-    options.sort(); //handles strings
-    options.sort((a,b) => { return a-b });  //handles numbers without 1, 10, 2...
-
-    options.forEach(option => {
-        var el = document.createElement("li");
-        el.classList.add("form-check");
-        el.innerHTML = 
-        `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${property}-filter-${option}" data-filterval="${option}">
-        <label class="form-check-label" for="${property}-filter-${option}">${option == "0" ? "cantrip" : option.toString().toLowerCase()}</label>`
-
-        document.getElementById(filterElId).appendChild(el);
-        
-        document.getElementById(`${property}-filter-${option}`).addEventListener('input', event =>{
-            filterSpellCatalog();
-        });
-    });
-}
-
-//#endregion

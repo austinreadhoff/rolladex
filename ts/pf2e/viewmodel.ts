@@ -1,20 +1,25 @@
 import { Character } from "./character";
 import { Spell } from "./spell";
 import * as ko from "knockout";
+import { Feat } from "./feat";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
     spellCatalog: KnockoutObservableArray<Spell>;
     spell: KnockoutObservable<Spell>;
+    featCatalog: KnockoutObservableArray<Feat>;
+    feat: KnockoutObservable<Feat>;
 
-    constructor(character: Character, spells: Array<Spell>, spell: Spell){
+    constructor(character: Character, spells: Array<Spell>, spell: Spell, feats: Array<Feat>, feat: Feat){
         this.character = ko.observable(character);
         this.spellCatalog = ko.observableArray(spells);
-	this.spell = ko.observable(spell);
+	    this.spell = ko.observable(spell);
+        this.featCatalog = ko.observableArray(feats);
+        this.feat = ko.observable(feat);
     }
 }
 
-export var viewModel = new ViewModel(new Character, [], new Spell());
+export var viewModel = new ViewModel(new Character, [], new Spell(), [], new Feat());
 
 //to be executed on document ready
 export function applyDataBinding(){

@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
 import { Counter } from "./character";
+import { loadFeatData } from "./feats";
 import { loadSpellData } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 
@@ -33,12 +34,16 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
 
-    loadSpellData().then(() => {
+    let dataLoadingPromises = [
+        loadSpellData(),
+        loadFeatData()
+    ];
+    Promise.all(dataLoadingPromises).then(() => {
         document.querySelectorAll('.nav-link').forEach(tab => {
-	    tab.addEventListener('click', event => {
-		switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
-	    });
-	});
+            tab.addEventListener('click', event => {
+            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+            });
+        });
     });
 });
 
