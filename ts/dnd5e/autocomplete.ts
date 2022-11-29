@@ -1,11 +1,11 @@
-import { applySpellTip, spellCatalog } from "./spells";
+import { spellCatalogController } from "./spells";
 
 //Adapted and customized from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 export function initSpellAutoComplete(input: Node, level: number, observableName: KnockoutObservable<string>){
     var currentFocus: number;
     var levelStr = level.toString();
 
-    var spellOptions = spellCatalog
+    var spellOptions = spellCatalogController.fullCatalog
         .filter(spell => spell.level.toString() == levelStr || levelStr == "-1")
         .map(spell => spell.name);
 
@@ -46,7 +46,7 @@ export function initSpellAutoComplete(input: Node, level: number, observableName
                         var containingInput: any = Array.from(container.children).find((child: any) => child.classList.contains("spell-name"));
                     }
                     if (containingInput){
-                        applySpellTip(containingInput);                  
+                        spellCatalogController.applyToolTip(containingInput);                  
                     }
                     
                     /*close the list of autocompleted values,

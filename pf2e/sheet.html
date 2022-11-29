@@ -673,11 +673,14 @@
             </div>
 
             <div class="tab-pane" id="featcatalog" role="tabpanel" aria-labelledby="featcatalog-tab">
-                <div id="featcatalog-container" class="print-hidden">
-                    <select data-bind="options: featCatalog, optionsText: 'name', optionsValue: 'name'" id="feat-listbox" size="2">
+                <div class="catalog-container print-hidden">
+                    <select data-bind="options: featCatalog, optionsText: 'name', optionsValue: 'name'" 
+                    id="feat-listbox" 
+                    class="catalog-listbox"
+                    size="2">
                         <!--feat listbox here-->
                     </select>
-                    <div id="featcatalog-filters" class="block block-bordered">
+                    <div class="block block-bordered catalog-filters">
                         <div class="form-group">
                             <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                         </div>
@@ -744,11 +747,14 @@
             </div>
 
             <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
-                <div id="spellcatalog-container" class="print-hidden">
-                    <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" id="spell-listbox" size="2">
+                <div class="catalog-container print-hidden">
+                    <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" 
+                        id="spell-listbox" 
+                        class="catalog-listbox"
+                        size="2">
                         <!--spell listbox here-->
                     </select>
-                    <div id="spellcatalog-filters" class="block block-bordered">
+                    <div class="block block-bordered catalog-filters">
                         <div class="form-group">
                             <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                         </div>
@@ -860,7 +866,7 @@
             </div>  
 
             <div class="tab-pane" id="craftingcatalog" role="tabpanel" aria-labelledby="craftingcatalog-tab">
-                <div id="craftingcatalog-container" class="print-hidden">
+                <div class="catalog-container print-hidden">
                     <p>TODO</p>
                 </div>
             </div>

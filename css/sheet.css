@@ -98,25 +98,25 @@ img.currency{
 }
 
 
-#spellcatalog-container{
+.catalog-container{
     display: flex;
     padding: 20px;
     height: 90%;
 }
-#spell-listbox{
+.catalog-listbox{
     height: 100%;
     width: 21em;
     background-color: gray;
 }
-#spellcatalog-container option{
+.catalog-container option{
     color: #fff;
     background-color: gray;
 }
-#spellcatalog-filters{
+.catalog-filters{
     overflow-y: auto;
     word-break: break-word;
 }
-#spellcatalog-filters label{
+.catalog-filters label{
     white-space: pre;
     cursor: pointer;
     user-select: none;

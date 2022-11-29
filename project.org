@@ -17,6 +17,9 @@
 ** TODO Remove from spellbook button in catalog
 ** TODO Signify spellbook spells using icon in catalog list
 ** TODO Custom undo stack
+* 0.3.1 [0/2]
+** TODO MacOS build scripts
+** TODO Figure out a way to update content w/o version update
 * 0.3.0 [3/7]
 ** DONE pf2e MVP                                                       :pf2e:
 ** DOING Spell Library [2/3]                                           :pf2e:
@@ -40,7 +43,7 @@
  - Armor that's worn v carried
  - Warning the user if they are encumbered or at max
 - Possibility: Gear Catalog
-** DONE Survival is Wisdom                                            :dnd5e:
+** DONE Survival is Wisdom                                        :bug:dnd5e:
 ** DONE Track spell attack/dc by choosing ability                     :dnd5e:
 * 0.2.1
 ** DONE Fix loading of spell rest type

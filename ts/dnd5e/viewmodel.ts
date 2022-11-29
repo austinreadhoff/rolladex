@@ -2,7 +2,7 @@ import { Character } from "./character"
 import { Spell } from "./spell";
 import * as ko from "knockout";
 import { initSpellAutoComplete } from "./autocomplete";
-import { applySpellTip } from "./spells";
+import { spellCatalogController } from "./spells";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -28,9 +28,9 @@ export function applyDataBinding(){
             let observableName: KnockoutObservable<string> = args.name;
             initSpellAutoComplete(element, lvl, observableName);
 
-            applySpellTip(element as HTMLInputElement);
+            spellCatalogController.applyToolTip(element as HTMLInputElement);
             element.addEventListener('keyup', event =>{
-                applySpellTip(event.target as HTMLInputElement);
+                spellCatalogController.applyToolTip(event.target as HTMLInputElement);
             });
         },
     }

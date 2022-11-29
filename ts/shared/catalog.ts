@@ -1,5 +1,13 @@
 //Contains miscellaneous helper classes and functions that are shared between catalog code
 
+export class CatalogController<T> { 
+    fullCatalog: T[];
+    baseElement: HTMLElement;
+    loadData: Function;
+    filterCatalog: Function;
+    applyToolTip: (el: HTMLInputElement) => void;
+}
+
 export class CatalogObject {
     capitalize(str: string){
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -27,10 +35,7 @@ export function getJSON(path: string){
     });
 }
 
-export function setupFilterToggle(toggleElId: string, filterUlId: string){
-    let toggleEl = document.getElementById(toggleElId);
-    let filterUl = document.getElementById(filterUlId);
-
+export function setupFilterToggle(toggleEl: HTMLElement, filterUl: HTMLElement){
     toggleEl.addEventListener('click', event => {
         if (filterUl.hidden) {
             filterUl.hidden = false;
@@ -47,7 +52,8 @@ export function setupFilterToggle(toggleElId: string, filterUlId: string){
 //filterElId: where the filters go
 //property: the property on type T that is being filtered by
 //filterCallback: the function that performs the filtering on the dataset, to be called when filters change
-export function populateFilterDropDown<T>(catalog: T[], filterElId: string, property: string, filterCallback: Function){
+//zeroCantrip: values of "0" should be replaced with the string "cantrip"
+export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, property: string, filterCallback: Function, zeroCantrip: boolean = false){
     var options: any[] = [];
 
     catalog.forEach(obj => {
@@ -72,14 +78,14 @@ export function populateFilterDropDown<T>(catalog: T[], filterElId: string, prop
 
     options.forEach(option => {
         var el = document.createElement("li");
+        let inputID = `${property}-filter-${option.toString().replace(/[^a-zA-Z0-9]*/g, "")}`;
         el.classList.add("form-check");
         el.innerHTML = 
-        `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${property}-filter-${option}" data-filterval="${option}">
-        <label class="form-check-label" for="${property}-filter-${option}">${option == "0" ? "cantrip" : option.toString().toLowerCase()}</label>`
+        `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}">
+        <label class="form-check-label" for="${inputID}">${option == "0" && zeroCantrip ? "cantrip" : option.toString().toLowerCase()}</label>`
 
-        document.getElementById(filterElId).appendChild(el);
-        
-        document.getElementById(`${property}-filter-${option}`).addEventListener('input', event =>{
+        filterEl.appendChild(el);
+        filterEl.querySelector("#"+inputID).addEventListener('input', event =>{
             filterCallback();
         });
     });

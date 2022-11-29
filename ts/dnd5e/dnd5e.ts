@@ -1,6 +1,6 @@
 import { ipcRenderer } from "electron";
 import { RestType } from "../shared/rest-type";
-import { loadSpellData } from "./spells";
+import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { CharacterSpell, Counter, SpellLevel } from './character';
 
@@ -34,9 +34,9 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
 
-    loadSpellData().then(() => {
+    spellCatalogController.loadData().then(() => {
         document.body.scrollTop = 0;
-        
+
         document.querySelectorAll('.nav-link').forEach(tab => {
             tab.addEventListener('click', event => {
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
 export function switchTab(tabId: string){
     document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
     document.getElementById(tabId + "-tab").classList.add("active");
-    
+
     document.querySelectorAll('.tab-pane').forEach(t => { t.className = "tab-pane"; });
     document.querySelector("#" + tabId).className = "tab-pane show active";
 

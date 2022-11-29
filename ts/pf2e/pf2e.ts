@@ -1,7 +1,7 @@
 import { ipcRenderer } from "electron";
 import { Counter } from "./character";
-import { loadFeatData } from "./feats";
-import { loadSpellData } from "./spells";
+import { featCatalogController } from "./feats";
+import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 
 var currentTab = "stats";
@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
 
     let dataLoadingPromises = [
-        loadSpellData(),
-        loadFeatData()
+        spellCatalogController.loadData(),
+        featCatalogController.loadData()
     ];
     Promise.all(dataLoadingPromises).then(() => {
         document.querySelectorAll('.nav-link').forEach(tab => {

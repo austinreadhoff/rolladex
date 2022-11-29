@@ -588,13 +588,14 @@
         </div>
 
         <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
-            <div id="spellcatalog-container" class="print-hidden">
+            <div class="catalog-container print-hidden">
                 <select data-bind="options: spellCatalog, optionsText: 'name', optionsValue: 'name'" 
-                    id="spell-listbox" 
+                    id="spell-listbox"
+                    class="catalog-listbox" 
                     size="2">
                     <!--spell listbox here-->
                 </select>
-                <div id="spellcatalog-filters" class="block block-bordered">
+                <div class="block block-bordered catalog-filters">
                     <div class="form-group">
                         <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                     </div>
