@@ -722,14 +722,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: feat" id="catalog-feat-container" class="feat-container block block-shaded container-fluid">
+                    <div data-bind="with: feat" id="catalog-content" class="feat-container block block-shaded container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
                                 <div>
                                     <span data-bind="text: rarityFormatted, class: rarityClass"></span>
                                     <!-- ko foreach: tags  -->
-                                    <span data-bind="text: $data" class="spell-tag"></span>
+                                    <span data-bind="text: $data" class="catalog-tag"></span>
                                     <!-- /ko -->
                                 </div>
                                 <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
@@ -831,14 +831,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: spell" id="catalog-spell-container" class="spell-container block block-shaded container-fluid">
+                    <div data-bind="with: spell" id="catalog-content" class="block block-shaded container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
                                 <div>
                                     <span data-bind="text: rarityFormatted, class: rarityClass"></span>
                                     <!-- ko foreach: tags  -->
-                                    <span data-bind="text: $data" class="spell-tag"></span>
+                                    <span data-bind="text: $data" class="catalog-tag"></span>
                                     <!-- /ko -->
                                 </div>
                                 <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>

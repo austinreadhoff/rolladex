@@ -33,7 +33,7 @@
     padding: 0.375rem 0.75rem;
     overflow-y: auto;
 }
-.spell-tag{
+.catalog-tag{
     background-color: #522e2c;
     border-color: #d8c483;
     border-style: double;
@@ -45,13 +45,13 @@
     display: inline-block;
     margin: 0.1em 0;
 }
-.spell-tag.rarity-common{
+.catalog-tag.rarity-common{
     display: none;
 }
-.spell-tag.rarity-uncommon{
+.catalog-tag.rarity-uncommon{
     background-color: #c45500;
 }
-.spell-tag.rarity-rare{
+.catalog-tag.rarity-rare{
     background-color: #0c1466;
 }
 #catalog-text-col #type-level{

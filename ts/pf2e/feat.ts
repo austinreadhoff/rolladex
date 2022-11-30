@@ -15,7 +15,7 @@ export class Feat extends CatalogObject {
         return this.capitalize(this.traits.rarity);
     });
     rarityClass: ko.PureComputed<string> = ko.pureComputed(() => {
-        return "feat-tag rarity-" + this.traits.rarity; 
+        return "catalog-tag rarity-" + this.traits.rarity; 
     });
     tags: ko.PureComputed<string[]> = ko.pureComputed(() => {
 	    return this.traits.value

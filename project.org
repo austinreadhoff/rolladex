@@ -4,6 +4,7 @@
 * Low Priority Backlog
 ** TODO Child skillboxes don't trigger unsafe save                 :bug:pf2e:
 - lore skills & other weapon proficiencies
+** TODO Catalog's don't show initial item selected                      :bug:
 ** TODO Change menu items per page?
 ** TODO Dock Tabs
 ** TODO LR Should give half hit dice                              :bug:dnd5e:

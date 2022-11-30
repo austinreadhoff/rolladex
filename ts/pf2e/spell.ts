@@ -26,7 +26,7 @@ export class Spell extends CatalogObject {
         return this.capitalize(this.traits.rarity);
     });
     rarityClass: ko.PureComputed<string> = ko.pureComputed(() => {
-        return "spell-tag rarity-" + this.traits.rarity; 
+        return "catalog-tag rarity-" + this.traits.rarity; 
     });
 
     tags: ko.PureComputed<string[]> = ko.pureComputed(() => {

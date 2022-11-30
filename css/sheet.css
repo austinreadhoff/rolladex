@@ -131,10 +131,8 @@ img.currency{
 .filter-toggle-icon.down{
     transform: rotate(90deg);
 }
-.spell-container{
+#catalog-content .row{
     height: 100%;
-}
-#catalog-spell-container .row{
     padding-top: 10px;
 }
 #catalog-text-row{
