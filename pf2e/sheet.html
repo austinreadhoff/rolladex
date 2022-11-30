@@ -699,6 +699,12 @@
                             </ul>
                         </div>
                         <div class="form-group">
+                            <div class="filter-toggle" id="type-filter-toggle"><label for="type-filters">Type    </label><span class="filter-toggle-icon">‣</span></div>
+                            <ul id="type-filters" hidden>
+                                <!--options autopopulated from catalog data-->
+                            </ul>
+                        </div>
+                        <div class="form-group">
                             <div class="filter-toggle" id="source-filter-toggle"><label for="source-filters">Source    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="source-filters" hidden>
                                 <!--options autopopulated from catalog data-->
@@ -731,8 +737,10 @@
                                     <!-- ko foreach: tags  -->
                                     <span data-bind="text: $data" class="catalog-tag"></span>
                                     <!-- /ko -->
+                                    <span data-bind="text: actionDisplay"></span>
                                 </div>
                                 <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
+                                <div data-bind="text: prerequisitesFormatted, visible: prerequisites.length > 0"></div>
                                 <hr>
                                 <div data-bind="html: description"></div>
                             </div>

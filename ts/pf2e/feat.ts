@@ -7,7 +7,7 @@ export class Feat extends CatalogObject {
     description: string;
     featType: string;
     level: number;
-    prerequisites: string[];
+    prerequisites: Prereq[];
     source: string;
     traits: CatalogTraits;
 
@@ -23,12 +23,22 @@ export class Feat extends CatalogObject {
             .sort();
     });
 
+    actionDisplay: ko.PureComputed<string> = ko.pureComputed(() => {
+        return this.actionType != "passive" ? "(Actions: " + this.actionType + ")" : "";
+    });    
+
     typeAndLevel: ko.PureComputed<string> = ko.pureComputed(() => {
         return "Feat " + this.level;
     });    
     
     sourceFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
         return "Source: " + this.source;
+    });
+
+    prerequisitesFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        return "Prerequisites: " + this.prerequisites
+        .map(p => p.value)
+        .join(", ");
     });
 
     constructor(json?: any){
@@ -63,4 +73,8 @@ export class Feat extends CatalogObject {
             this.traits.value = json["traits"]["value"];
         }
     }
+}
+
+class Prereq{
+    value: string;
 }

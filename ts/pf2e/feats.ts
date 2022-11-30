@@ -34,6 +34,7 @@ class FeatCatalogController implements CatalogController<Feat>{
                 document.getElementById("filter-tags").addEventListener('input', event => { this.filterCatalog(); });
     
                 setupFilterToggle(this.baseElement.querySelector("#level-filter-toggle"), this.baseElement.querySelector("#level-filters"));
+                setupFilterToggle(this.baseElement.querySelector("#type-filter-toggle"), this.baseElement.querySelector("#type-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#source-filter-toggle"), this.baseElement.querySelector("#source-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#rarity-filter-toggle"), this.baseElement.querySelector("#rarity-filters"));
     
@@ -44,6 +45,7 @@ class FeatCatalogController implements CatalogController<Feat>{
                 });
     
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#type-filters"), "featType", () => { this.filterCatalog(); });
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", () => { this.filterCatalog(); });
     
                 document.getElementById("btn-clear-filters").addEventListener('click', event => {
@@ -68,6 +70,7 @@ class FeatCatalogController implements CatalogController<Feat>{
         let tagsEl = document.getElementById("filter-tags") as HTMLInputElement
         var tags = tagsEl.value.split(";").map(t => t.replace(/\W/g, '').toUpperCase());
         var levels = Array.from(document.getElementById("level-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+        var types = Array.from(document.getElementById("type-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
         var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
         var rarities = Array.from(document.getElementById("rarity-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
     
@@ -76,6 +79,7 @@ class FeatCatalogController implements CatalogController<Feat>{
             .filter(feat => (tags.length < 1 || tags.every(t => t.length < 1)) 
                 || tags.some(t => feat.traits.value.map((t2: string) => t2.replace(/\W/g, '').toUpperCase()).includes(t)))
             .filter(feat => levels.length < 1 || (levels.indexOf(feat.level.toString().replace(/\W/g, '').toUpperCase()) != -1))
+            .filter(feat => types.length < 1 || (types.indexOf(feat.featType.toString().replace(/\W/g, '').toUpperCase()) != -1))
             .filter(feat => sources.length < 1 || sources.indexOf(feat.source.replace(/\W/g, '').toUpperCase()) != -1)
             .filter(feat => rarities.length < 1 || rarities.indexOf(feat.traits.rarity.replace(/\W/g, '').toUpperCase()) != -1);
     
