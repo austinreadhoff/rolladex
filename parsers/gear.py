@@ -6,8 +6,11 @@ def del_if_exists(obj, prop):
         del obj[prop]
 
 def extract_from_system(obj, prop):
-    if prop in obj["system"] and obj["system"][prop] is not None and not isinstance(obj["system"][prop], int):
-        if "value" in obj["system"][prop] and prop != "traits" and prop != "damage":
+    if prop in obj["system"] and  isinstance(obj["system"][prop], int):
+        obj[prop] = obj["system"][prop]
+
+    elif prop in obj["system"] and obj["system"][prop] is not None:
+        if "value" in obj["system"][prop] and prop != "traits" and prop != "damage" and prop != "hp":
             obj[prop] = obj["system"][prop]["value"]
         else:
             obj[prop] = obj["system"][prop]
@@ -41,8 +44,11 @@ for filename in os.listdir(input_dir):
     extract_from_system(gear, "level")
     extract_from_system(gear, "price")
     extract_from_system(gear, "source")
+    extract_from_system(gear, "strength")
+    extract_from_system(gear, "speed")
     extract_from_system(gear, "traits")
     extract_from_system(gear, "usage")
+    extract_from_system(gear, "weight")
 
     del gear["system"]
     equipment.append(gear)

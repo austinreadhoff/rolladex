@@ -946,6 +946,17 @@
                                     <!-- /ko -->
                                 </div>
                                 <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
+                                <div>
+                                    <span data-bind="text: priceFormatted"></span>;&nbsp
+                                    <span data-bind="text: weightFormatted"></span>
+                                </div>
+                                <div data-bind="text: armorStats, visible: acBonus > 0 && hardness == 0"></div>
+                                <div data-bind="text: weaponStats, visible: damage.dice > 0"></div>
+                                <div data-bind="text: shieldStats, visible: hardness > 0"></div>
+                                <div data-bind="text: groupFormatted, visible: group.length > 0"></div>
+                                <div data-bind="text: categoryFormatted, visible: category.length > 0"></div>
+                                <div data-bind="text: usageFormatted, visible: usage.length > 0"></div>
+                                <div data-bind="text: baseFormatted, visible: baseItem.length > 0"></div>
                                 <hr>
                                 <div data-bind="html: description"></div>
                             </div>
