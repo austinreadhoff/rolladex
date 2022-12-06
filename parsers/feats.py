@@ -16,7 +16,7 @@ def extract_from_system(obj, prop):
 
 input_dir = "input"
 output_file = "output/output.json"
-spells = json.loads("[]")
+feats = json.loads("[]")
 
 print("processing...")
 for filename in os.listdir(input_dir):
@@ -27,10 +27,6 @@ for filename in os.listdir(input_dir):
     del_if_exists(feat,"_id")
     del_if_exists(feat,"img")
     del_if_exists(feat,"type")
-    del_if_exists(feat["system"],"actionCategory")
-    del_if_exists(feat["system"],"actions")
-    del_if_exists(feat["system"],"frequency")
-    del_if_exists(feat["system"],"rules")
 
     extract_from_system(feat, "actionType")
     extract_from_system(feat, "description")
@@ -41,9 +37,9 @@ for filename in os.listdir(input_dir):
     extract_from_system(feat, "traits")
 
     del feat["system"]
-    spells.append(feat)
+    feats.append(feat)
 
-spells.sort(key = lambda s: s["name"])
+feats.sort(key = lambda s: s["name"])
 output = open(output_file, 'w')
-json.dump(spells, output)
+json.dump(feats, output)
 print("done")
