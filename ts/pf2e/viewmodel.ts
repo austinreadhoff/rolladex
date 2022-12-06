@@ -2,6 +2,7 @@ import { Character } from "./character";
 import { Spell } from "./spell";
 import * as ko from "knockout";
 import { Feat } from "./feat";
+import { Gear } from "./gear";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -9,17 +10,28 @@ export class ViewModel {
     spell: KnockoutObservable<Spell>;
     featCatalog: KnockoutObservableArray<Feat>;
     feat: KnockoutObservable<Feat>;
+    gearCatalog: KnockoutObservableArray<Gear>;
+    gear: KnockoutObservable<Gear>;
 
-    constructor(character: Character, spells: Array<Spell>, spell: Spell, feats: Array<Feat>, feat: Feat){
+    constructor(character: Character, 
+        spells: Array<Spell>, spell: Spell, 
+        feats: Array<Feat>, feat: Feat,
+        equipment: Array<Gear>, gear: Gear) 
+    {
         this.character = ko.observable(character);
         this.spellCatalog = ko.observableArray(spells);
 	    this.spell = ko.observable(spell);
         this.featCatalog = ko.observableArray(feats);
         this.feat = ko.observable(feat);
+        this.gearCatalog = ko.observableArray(equipment);
+        this.gear = ko.observable(gear);
     }
 }
 
-export var viewModel = new ViewModel(new Character, [], new Spell(), [], new Feat());
+export var viewModel = new ViewModel(new Character, 
+    [], new Spell(), 
+    [], new Feat(),
+    [], new Gear());
 
 //to be executed on document ready
 export function applyDataBinding(){

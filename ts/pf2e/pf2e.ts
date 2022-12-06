@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
 import { Counter } from "./character";
+import { gearCatalogController } from "./equipment";
 import { featCatalogController } from "./feats";
 import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
@@ -36,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     let dataLoadingPromises = [
         spellCatalogController.loadData(),
-        featCatalogController.loadData()
+        featCatalogController.loadData(),
+        gearCatalogController.loadData()
     ];
     Promise.all(dataLoadingPromises).then(() => {
         document.querySelectorAll('.nav-link').forEach(tab => {
