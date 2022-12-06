@@ -19,7 +19,7 @@ class FeatCatalogController implements CatalogController<Feat>{
                 //setup catalog selection
                 viewModel.featCatalog(this.fullCatalog);
     
-                var featListBox: HTMLInputElement = document.getElementById("feat-listbox") as HTMLInputElement;
+                var featListBox: HTMLInputElement = this.baseElement.querySelector("#feat-listbox") as HTMLInputElement;
                 featListBox.value = this.fullCatalog[0].name;
                 viewModel.feat(this.fullCatalog[0]);
     
@@ -30,15 +30,15 @@ class FeatCatalogController implements CatalogController<Feat>{
                 });
     
                 //setup catalog filters
-                document.getElementById("filter-name").addEventListener('input', event => { this.filterCatalog(); });
-                document.getElementById("filter-tags").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(); });
     
                 setupFilterToggle(this.baseElement.querySelector("#level-filter-toggle"), this.baseElement.querySelector("#level-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#type-filter-toggle"), this.baseElement.querySelector("#type-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#source-filter-toggle"), this.baseElement.querySelector("#source-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#rarity-filter-toggle"), this.baseElement.querySelector("#rarity-filters"));
     
-                document.querySelectorAll('.rarity-filter').forEach(el => {
+                this.baseElement.querySelectorAll('.rarity-filter').forEach(el => {
                     el.addEventListener('input', event =>{
                         this.filterCatalog();
                     });
@@ -48,14 +48,14 @@ class FeatCatalogController implements CatalogController<Feat>{
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#type-filters"), "featType", () => { this.filterCatalog(); });
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", () => { this.filterCatalog(); });
     
-                document.getElementById("btn-clear-filters").addEventListener('click', event => {
-                    let nameEl: HTMLInputElement = document.getElementById("filter-name") as HTMLInputElement
+                this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
+                    let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
                     nameEl.value = "";
     
-                    let tagsEl: HTMLInputElement = document.getElementById("filter-tags") as HTMLInputElement
+                    let tagsEl: HTMLInputElement = this.baseElement.querySelector("#filter-tags") as HTMLInputElement
                     tagsEl.value = "";
     
-                    (document.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
+                    (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
                     this.filterCatalog();
                 });
     
@@ -65,14 +65,14 @@ class FeatCatalogController implements CatalogController<Feat>{
     }
 
     filterCatalog(){
-        let nameEl = document.getElementById("filter-name") as HTMLInputElement
+        let nameEl = this.baseElement.querySelector("#filter-name") as HTMLInputElement
         var name = nameEl.value;
-        let tagsEl = document.getElementById("filter-tags") as HTMLInputElement
+        let tagsEl = this.baseElement.querySelector("#filter-tags") as HTMLInputElement
         var tags = tagsEl.value.split(";").map(t => t.replace(/\W/g, '').toUpperCase());
-        var levels = Array.from(document.getElementById("level-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
-        var types = Array.from(document.getElementById("type-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
-        var sources = Array.from(document.getElementById("source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
-        var rarities = Array.from(document.getElementById("rarity-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+        var levels = Array.from(this.baseElement.querySelector("#level-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+        var types = Array.from(this.baseElement.querySelector("#type-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+        var sources = Array.from(this.baseElement.querySelector("#source-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
+        var rarities = Array.from(this.baseElement.querySelector("#rarity-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());
     
         var filteredCatalog = this.fullCatalog
             .filter(feat => !name || feat.name.replace(/\W/g, '').toUpperCase().indexOf(name.replace(/\W/g, '').toUpperCase()) != -1)
