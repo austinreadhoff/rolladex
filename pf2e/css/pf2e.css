@@ -54,6 +54,9 @@
 .catalog-tag.rarity-rare{
     background-color: #0c1466;
 }
+.catalog-tag.rarity-unique{
+    background-color: #800080;
+}
 #catalog-text-col #type-level{
     float: right;
 }
