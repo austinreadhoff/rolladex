@@ -212,6 +212,20 @@ if (process.platform === 'darwin') {
     // Window menu.
     template[3].submenu = [
         {
+            label: 'Next Tab',
+            accelerator: 'Ctrl+Tab',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchTab(true);
+            }
+        },
+        {
+            label: 'Previous Tab',
+            accelerator: 'Ctrl+Shift+Tab',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchTab(false);
+            }
+        },
+        {
             label: 'Close',
             accelerator: 'CmdOrCtrl+W',
             role: 'close'
