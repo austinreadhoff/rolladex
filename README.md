@@ -29,3 +29,9 @@ To run locally:
 `npm run package-windows`
 
 `npm run create-windows-installer`
+
+### Packaging for MacOS:
+
+`npm run package-macos`
+
+`npm run create-macos-installer`
