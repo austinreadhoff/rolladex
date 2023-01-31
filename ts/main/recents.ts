@@ -97,6 +97,8 @@ export function updateRecentsMenu(recentsArray: Array<any>){
         recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
         recentMenu.submenu.append(clearItem);
     }
+
+    Menu.setApplicationMenu(menu);
 }
 
 function clearRecents(){
