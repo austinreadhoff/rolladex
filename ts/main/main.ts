@@ -4,6 +4,12 @@ import { SafeToSave } from './save-tracker';
 import { saveToJSON } from './json-io';
 
 function createWindow() {
+	app.setAboutPanelOptions({
+		applicationName: "RollaDex",
+		applicationVersion: "0.2.1",
+		iconPath: "./img/icon.png"	//Win/Linux only
+	})
+
 	const win = new BrowserWindow({
 		width: 800,
 		height: 600,
@@ -11,7 +17,7 @@ function createWindow() {
 			nodeIntegration: true,
 			contextIsolation: false
 		},
-		icon: nativeImage.createFromPath("./img/icon.png")
+		icon: nativeImage.createFromPath("./img/icon.png")	//Win/Linux only
 	});
 	win.maximize();
 

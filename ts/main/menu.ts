@@ -175,9 +175,8 @@ const template: Electron.MenuItemConstructorOptions[] = [
 ]
 
 if (process.platform === 'darwin') {
-    const name = app.getName()
     template.unshift({
-        label: name,
+        label: app.getName(),
         submenu: [
             {
                 role: 'about'

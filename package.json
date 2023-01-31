@@ -1,5 +1,5 @@
 {
-  "name": "rolladex",
+  "name": "RollaDex",
   "version": "0.2.1",
   "description": "Dnd 5e Character Sheet",
   "main": "./src/main/main.js",
@@ -8,9 +8,11 @@
     "start": "tsc && electron .",
     "build": "tsc",
     "package-linux": "electron-packager . rolladex --overwrite --platform=linux --arch=x64 --icon=img/icon.png --prune=true --out=release",
-    "package-windows": "electron-packager . rolladex --overwrite --platform=win32 --arch=x64 --icon=img/icon.png --prune=true --out=release",
+    "package-windows": "electron-packager . Rolladex --overwrite --platform=win32 --arch=x64 --icon=img/icon.png --prune=true --out=release",
+    "package-macos": "electron-packager . RollaDex --overwrite --platform=darwin --arch=arm64 --icon=img/icon.icns --prune=true --out=release",
     "create-debian-installer": "electron-installer-debian --src release/rolladex-linux-x64/ --arch amd64 --config debian.json",
-    "create-windows-installer": "electron-installer-windows --src release/rolladex-win32-x64/ --arch amd64 --config windows.json"
+    "create-windows-installer": "electron-installer-windows --src release/rolladex-win32-x64/ --arch amd64 --config windows.json",
+    "create-macos-installer": "electron-installer-dmg ./release/rolladex-darwin-arm64/rolladex.app RollaDex --out=./release/rolladex-darwin-arm64/ --title=RollaDex --icon=img/icon.icns --arch amd64 --config macos.json"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "electron": "^20.0.0",
     "electron-installer-debian": "^3.1.0",
     "electron-installer-windows": "^3.0.0",
+    "electron-installer-dmg": "^4.0.0",
     "electron-packager": "^15.2.0",
     "knockout": "^3.5.1",
     "knockout-mapping": "^2.6.0",

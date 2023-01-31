@@ -1,0 +1,10 @@
+{
+    "dest": "release/macos-installers/",
+    "icon": "img/icon.icns",
+    "tags": [
+      "Utility"
+    ],
+    "options": {
+      "authors": ["austinread"]
+    }
+  }
