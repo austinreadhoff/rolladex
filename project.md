@@ -1,32 +1,28 @@
 ## 0.3.1
-- [ ] MacOS build scripts
 - [ ] Figure out a way to update content w/o version update
-
-## 0.3.0
-- [X] pf2e MVP 
-- [X] Spell Library, pf2e 
-    - [X] Import Data
-    - [X] Build Library
-    - [X] filters
 - [ ] Build Spellbook, pf2e 
-    - [ ] spell levels cantrip-1-10
-    - [ ] focus levels cantrip-1-10
-    - [ ] hookup add to spellbook button
-    - [ ] format for hover-over text
-- [X] Feat Library, pf2e 
-    - [X] Import Data
-    - [X] Build Library
-- [ ] Character Feat List, pf2e 
-- [X] Formula Library, pf2e 
-    - [X] Import Data
-    - [X] Build Library
 - [ ] Character Formula list, pf2e 
+- [ ] Character Feat List, pf2e 
 - [ ] Gear List, pf2e 
     - [ ] gear lists w/ name and bulk fields
     - [ ] track bulk total, counting light and neglible
     - [ ] track coins
     - [ ] track worn v carried armor
     - [ ] warn user of encumbered or max
+
+## 0.3.0
+- [X] MacOS Compatilibity
+- [X] pf2e MVP 
+- [X] Spell Library, pf2e 
+    - [X] Import Data
+    - [X] Build Library
+    - [X] filters
+- [X] Feat Library, pf2e 
+    - [X] Import Data
+    - [X] Build Library
+- [X] Formula Library, pf2e 
+    - [X] Import Data
+    - [X] Build Library
 - [X] Survival is Wisdom in 5e
 - [X] Track spell attack/dc by choosing ability in 5e
 
