@@ -35,9 +35,6 @@
                 <a class="nav-link" id="spellbook-tab" data-toggle="tab" role="tab" aria-controls="spellbook" aria-selected="false">Spellbook</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="formulas-tab" data-toggle="tab" role="tab" aria-controls="formulas" aria-selected="false">Formulas</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link btn-success" id="featcatalog-tab" data-toggle="tab" role="tab" aria-controls="featcatalog" aria-selected="false">Feat Catalog</a>
             </li>
             <li class="nav-item">
@@ -498,8 +495,8 @@
             <div data-bind="with: character" class="tab-pane" id="feats" role="tabpanel" aria-labelledby="feats-tab">
                 <div id="feats-container" class="container-fluid">
                     <div class="form-group col textarea-col">
-                        <label for="placeholderFeats">Feats</label>
-                        <textarea data-bind="textInput: placeholderFeats" class="form-control" id="placeholder-feats" rows="25"></textarea>
+                        <label for="featsFeatures">Feats & Features</label>
+                        <textarea data-bind="textInput: featsFeatures" class="form-control" id="feats-features" rows="25"></textarea>
                     </div>
                 </div>
             </div>
@@ -658,15 +655,6 @@
                     <div class="form-group col textarea-col">
                         <label for="placeholderSpells">Spells</label>
                         <textarea data-bind="textInput: placeholderSpells" class="form-control" id="placeholder-spells" rows="25"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div data-bind="with: character" class="tab-pane" id="formulas" role="tabpanel" aria-labelledby="formulas-tab">
-                <div id="formulas-container" class="container-fluid">
-                    <div class="form-group col textarea-col">
-                        <label for="placeholderFormulas">Crafting Formulas</label>
-                        <textarea data-bind="textInput: placeholderFormulas" class="form-control" id="placeholder-formulas" rows="25"></textarea>
                     </div>
                 </div>
             </div>

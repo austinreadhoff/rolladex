@@ -112,9 +112,8 @@ export class Character {
     otherWeapons: KnockoutObservableArray<Proficiency>;
     miscCounters: KnockoutObservableArray<Counter>;
 
-    placeholderFeats: KnockoutObservable<string>;
+    featsFeatures: KnockoutObservable<string>;
     placeholderSpells: KnockoutObservable<string>;
-    placeholderFormulas: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -211,9 +210,8 @@ export class Character {
         this.otherWeapons = ko.observableArray([]);
         this.miscCounters = ko.observableArray([]);
 
-        this.placeholderFeats = ko.observable("");
+        this.featsFeatures = ko.observable("");
         this.placeholderSpells = ko.observable("");
-        this.placeholderFormulas = ko.observable("");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
@@ -223,8 +221,8 @@ export class Character {
          'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
          'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
          'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed', 'languages', 'shieldBonus', 'shieldHardness',
-         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'placeholderFeats',
-         'placeholderFeats', 'placeholderFeats', 'appearance', 'ethnicity', 'nationality', 'birthplace',
+         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'featsFeatures',
+         'placeholderSpells', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
          'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
          'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters'];

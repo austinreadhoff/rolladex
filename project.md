@@ -1,14 +1,5 @@
 ## 0.3.1
 - [ ] Figure out a way to update content w/o version update
-- [ ] Build Spellbook, pf2e 
-- [ ] Character Formula list, pf2e 
-- [ ] Character Feat List, pf2e 
-- [ ] Gear List, pf2e 
-    - [ ] gear lists w/ name and bulk fields
-    - [ ] track bulk total, counting light and neglible
-    - [ ] track coins
-    - [ ] track worn v carried armor
-    - [ ] warn user of encumbered or max
 
 ## 0.3.0
 - [X] MacOS Compatilibity
@@ -17,6 +8,7 @@
     - [X] Import Data
     - [X] Build Library
     - [X] filters
+- [ ] Build Spellbook, pf2e
 - [X] Feat Library, pf2e 
     - [X] Import Data
     - [X] Build Library
