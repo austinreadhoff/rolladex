@@ -3,6 +3,7 @@ import { triggerUnsafeSave } from "../shared/save-tracker";
 import { viewModel } from "./viewmodel";
 import { jsonSchemaVersion, gameName } from "./character-schema";
 import { CharacterProperty } from "../shared/character-property";
+import { SpellcastingType } from "./spellcasting-type";
 
 export class Character {
     version: KnockoutObservable<number>;
@@ -113,7 +114,12 @@ export class Character {
     miscCounters: KnockoutObservableArray<Counter>;
 
     featsFeatures: KnockoutObservable<string>;
-    placeholderSpells: KnockoutObservable<string>;
+
+    spellcastingTradition: KnockoutObservable<string>;
+    spellcastingType: KnockoutObservable<SpellcastingType>;
+    spellcastingAbility: KnockoutObservable<string>;
+    spellDCProficiency: KnockoutObservable<string>;
+    spellAttackProficiency: KnockoutObservable<string>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -211,18 +217,24 @@ export class Character {
         this.miscCounters = ko.observableArray([]);
 
         this.featsFeatures = ko.observable("");
-        this.placeholderSpells = ko.observable("");
+
+        this.spellcastingTradition = ko.observable("arcane");
+        this.spellcastingType = ko.observable(SpellcastingType.Prepared);
+        this.spellcastingAbility = ko.observable("STR");
+        this.spellDCProficiency = ko.observable("U");
+        this.spellAttackProficiency = ko.observable("U");
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
          'size', 'alignment', 'traits', 'diety', 'level', 'heroPoints', 'str', 'dex', 'con', 'int', 'wis', 'char',
          'perception', 'acrobatics', 'arcana', 'athletics', 'crafting', 'deception', 'diplomacy', 'intimidation', 'medicine',
          'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 
+         'classDCAbility', 'classDCProficiency', 'spellDCProficiency', 'spellAttackProficiency',
          'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
          'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
          'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed', 'languages', 'shieldBonus', 'shieldHardness',
          'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'featsFeatures',
-         'placeholderSpells', 'appearance', 'ethnicity', 'nationality', 'birthplace',
+         'spellcastingTradition', 'spellcastingType', 'spellcastingAbility', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
          'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
          'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters'];
@@ -239,9 +251,13 @@ export class Character {
 
     //Returns string modifier for a given ability and prof level
     //+4, +0, -1
-    abilityMod(ability: number, proficiencyLevel = "U"){
+    abilityMod(ability: number | string, proficiencyLevel = "U"){
+        if (isNaN(+ability)){
+            ability = this.abilityStringToNumber(ability as string);
+        }
+
         return ko.computed(() =>{
-            let mod = this.calculateModifier(ability, proficiencyLevel);
+            let mod = this.calculateModifier(ability as number, proficiencyLevel);
             return mod < 0 ? mod.toString() : ("+" + mod);
         }, this);
     }
@@ -250,38 +266,7 @@ export class Character {
     //14, 10, 9
     abilityDC(abilityStr: string, proficiencyLevel = "U"){
         return ko.computed(() =>{
-            let ability: number;
-            switch(abilityStr.toUpperCase()) { 
-                case "STR": { 
-                    ability = +this.str();
-                    break; 
-                } 
-                case "DEX": { 
-                    ability = +this.dex();
-                    break; 
-                } 
-                case "CON": { 
-                    ability = +this.con();
-                    break; 
-                } 
-                case "INT": { 
-                    ability = +this.int();
-                    break; 
-                } 
-                case "WIS": { 
-                    ability = +this.wis();
-                    break; 
-                } 
-                case "CHAR": { 
-                    ability = +this.char();
-                    break; 
-                } 
-                default: { //should never happen
-                    ability = +this.str(); 
-                    break; 
-                } 
-            } 
-
+            let ability: number = this.abilityStringToNumber(abilityStr);
             let mod = this.calculateModifier(ability, proficiencyLevel);
             return 10 + mod;
         }, this);
@@ -335,6 +320,41 @@ export class Character {
         }
 
         return proficiencyBonus;
+    }
+
+    private abilityStringToNumber(abilityStr: string): number{
+        let ability: number;
+        switch(abilityStr.toUpperCase()) { 
+            case "STR": { 
+                ability = +this.str();
+                break; 
+            } 
+            case "DEX": { 
+                ability = +this.dex();
+                break; 
+            } 
+            case "CON": { 
+                ability = +this.con();
+                break; 
+            } 
+            case "INT": { 
+                ability = +this.int();
+                break; 
+            } 
+            case "WIS": { 
+                ability = +this.wis();
+                break; 
+            } 
+            case "CHAR": { 
+                ability = +this.char();
+                break; 
+            } 
+            default: { //should never happen
+                ability = +this.str(); 
+                break; 
+            } 
+        }
+        return ability;
     }
 
     encumberanceLimit(){

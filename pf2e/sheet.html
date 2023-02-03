@@ -652,9 +652,43 @@
 
             <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
                 <div id="spellbook-container" class="container-fluid">
-                    <div class="form-group col textarea-col">
-                        <label for="placeholderSpells">Spells</label>
-                        <textarea data-bind="textInput: placeholderSpells" class="form-control" id="placeholder-spells" rows="25"></textarea>
+                    <div class="header row block block-bordered">
+                        <div class="form-group col-2">
+                            <label for="spellcasting-tradition">Magical Traition</label>
+                            <select id="spellcasting-tradition" data-bind="value: spellcastingTradition">
+                              <option value="arcane">Arcane</option>
+                              <option value="divine">Divine</option>
+                              <option value="occult">Occult</option>
+                              <option value="primal">Primal</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-2">
+                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-prepared" value="1">
+                            <label for="spell-rest-prepared">Prepared</label>
+                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-spontaneous" value="2">
+                            <label for="spell-rest-spontaneous">Spontaneous</label>
+                        </div>
+                        <div class="form-group col-2">
+                            <label for="spellcasting-ability">Spellcasting Ability</label>
+                            <select id="spellcasting-ability" data-bind="value: spellcastingAbility">
+                              <option value="STR">STR</option>
+                              <option value="DEX">DEX</option>
+                              <option value="CON">CON</option>
+                              <option value="INT">INT</option>
+                              <option value="WIS">WIS</option>
+                              <option value="CHAR">CHA</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-2">
+                            <div data-bind="skillbox: spellDCProficiency" class="skillbox" id="spell-dc-prof"></div>
+                            <label class="form-check-label" for="spell-dc-prof">Spell DC = </label>
+                            <span data-bind="text: abilityDC(spellcastingAbility(), spellDCProficiency())" id="spell-dc"></span>
+                        </div>
+                        <div class="form-group col-2">
+                            <div data-bind="skillbox: spellAttackProficiency" class="skillbox" id="spell-attack-prof"></div>
+                            <label class="form-check-label" for="spell-attack-prof">Spell Attack Roll = </label>
+                            <span data-bind="text: abilityMod(spellcastingAbility(), spellAttackProficiency())" id="spell-attack"></span>
+                        </div>
                     </div>
                 </div>
             </div>
