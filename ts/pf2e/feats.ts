@@ -87,7 +87,7 @@ class FeatCatalogController implements CatalogController<Feat>{
     }
 
     applyToolTip(el: HTMLInputElement) {
-        //TODO
+        //Not Implemented
     }
 }
 

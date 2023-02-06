@@ -83,7 +83,7 @@ class GearCatalogController implements CatalogController<Gear>{
     }
 
     applyToolTip(el: HTMLInputElement) {
-        //TODO
+        //Not Implemented
     }
 }
 
