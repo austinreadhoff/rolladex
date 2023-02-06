@@ -4,19 +4,15 @@ Supported Games:
 - DnD 5e
 - Pathfinder 2e
 
-Shoutout to [this repo](https://github.com/vorpalhex/srd_spells) for making a JSON collection of 5e SRD spell data freely available
-
 ## Usage
-Grab the latest package for your OS and install
+If it exists, grab the latest package for your OS and install.  Otherwise, you can always...
 
 ## Building from Source
 `npm ci`
 
 `tsc`
 
-To run locally:
-
-`npm start` or F5 in VS Code to debug
+`npm start`
 
 ### Packaging for Debian Linux:
 
@@ -35,3 +31,7 @@ To run locally:
 `npm run package-macos`
 
 `npm run create-macos-installer`
+
+## Thanks
+- [DnD 5e SRD Spells](https://github.com/vorpalhex/srd_spells)
+- [Pathfinder 2e Content](https://github.com/foundryvtt/pf2e)
