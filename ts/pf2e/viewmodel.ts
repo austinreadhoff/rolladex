@@ -3,6 +3,8 @@ import { Spell } from "./spell";
 import * as ko from "knockout";
 import { Feat } from "./feat";
 import { Gear } from "./gear";
+import { initSpellAutoComplete } from "../shared/autocomplete";
+import { spellCatalogController } from "./spells";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -35,11 +37,55 @@ export var viewModel = new ViewModel(new Character,
 
 //to be executed on document ready
 export function applyDataBinding(){
+    //valueAccessor: { the spellBookLevel (1-14), spell name }
+    ko.bindingHandlers.bindSpell = {
+        init: function(element: Node, valueAccessor: any){
+            let args = valueAccessor();
+            let lvl: number = ko.unwrap(args.level);
+            
+            var spellOptions;
+            //1-10: regular level 1-10 spells
+            if (lvl < 11){
+                spellOptions = spellCatalogController.fullCatalog
+                    .filter(s => s.category == "spell" && s.level == lvl && s.traits.value.indexOf("cantrip") == -1);
+            }
+            //11: Innate spell, return everything
+            else if (lvl == 11){
+                spellOptions = spellCatalogController.fullCatalog;
+            }
+            //12: Cantrips, return anything labeled cantrip, spell or focus
+            else if (lvl == 12) {
+                spellOptions = spellCatalogController.fullCatalog
+                    .filter(s => s.traits.value.indexOf("cantrip") != -1);
+            }
+            //13: Focus Spells, return focus spells, but not focus cantrips
+            else if (lvl == 13) {
+                spellOptions = spellCatalogController.fullCatalog
+                    .filter(s => s.category == "focus" && s.traits.value.indexOf("cantrip") == -1);
+            }
+            //14: Rituals, return only rituals
+            else if (lvl == 14) {
+                spellOptions = spellCatalogController.fullCatalog
+                    .filter(s => s.category == "ritual" && s.traits.value.indexOf("cantrip") == -1);
+            }
+
+
+            let options: string[] = spellOptions.map(spell => spell.name);
+
+            let observableName: KnockoutObservable<string> = args.name;
+            initSpellAutoComplete(element, options, observableName, (el) => spellCatalogController.applyToolTip(el));
+
+            spellCatalogController.applyToolTip(element as HTMLInputElement);
+            element.addEventListener('keyup', event =>{
+                spellCatalogController.applyToolTip(event.target as HTMLInputElement);
+            });
+        },
+    }
+
     //valueAccessor: proficiency string
     ko.bindingHandlers.skillbox = {
         init: function(element: HTMLElement, valueAccessor: any){
             let profString = valueAccessor();
-            let value = ko.unwrap(profString());
 
             element.addEventListener("click", event => {
                 if (element.classList.contains("skillbox-untrained")){

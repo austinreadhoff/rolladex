@@ -39,6 +39,7 @@ export class Spell extends CatalogObject {
     typeAndLevel: ko.PureComputed<string> = ko.pureComputed(() => {
         let s = "";
         
+        //Don't reorder these ifs, cantrip status takes precedence over other categories
         if (this.traits.value.indexOf("cantrip") != -1)
             s = "Cantrip ";
         else if (this.category == "spell")
@@ -49,6 +50,22 @@ export class Spell extends CatalogObject {
             s = "Focus ";
 
         s += this.level;
+        return s;
+    });
+
+    //Gives the correct number for the spell to be placed in the spellbook UI
+    //Spell 1-10, Innate 11, Cantrip 12, Focus 13, Ritual 14
+    //There is no value for innate spells because those can be any spell
+    spellBookLevel: ko.PureComputed<number> = ko.pureComputed(() => {
+        let s = this.level;
+        
+        if (this.traits.value.indexOf("cantrip") != -1)
+            s = 12;
+        else if (this.category == "ritual")
+            s = 14;
+        else if (this.category == "focus")
+            s = 13;
+
         return s;
     });
     
@@ -98,6 +115,30 @@ export class Spell extends CatalogObject {
         return "Traditions: " + this.traditions
             .map(x => this.capitalize(x))
             .join(", ");
+    });
+
+    fullTextFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        let tags = this.tags()
+            .map(t => "[" + t + "]")
+            .join("");
+
+        var text = 
+        "[" + this.rarityFormatted() + "]" + tags +"\n"
+        + (this.source.length > 0 ? this.sourceFormatted() + "\n" : "")
+        + (this.traditions.length > 0 ? this.traditionsFormatted() + "\n" : "")
+        + (this.timeAndComponents() + "\n")
+        + (this.cost.length > 0 ? this.costFormatted() + "\n" : "")
+        + (this.secondaryCasters.length > 0 ? this.secondaryCastersFormatted() + "\n" : "")
+        + (this.primaryCheck.length > 0 ? this.primaryCheckFormatted() + "\n" : "")
+        + (this.secondaryCheck.length > 0 ? this.secondaryCheckFormatted() + "\n" : "")
+        + (this.savingThrow.value.length > 0 ? this.saveFormatted() + "\n" : "")
+        + (this.range.length > 0 ? this.rangeFormatted() + "\n" : "")
+        + (this.target.length > 0 ? this.targetFormatted() + "\n" : "")
+        + (this.duration.length > 0 ? this.durationFormatted() + "\n" : "")
+        + "\n"
+        + this.description;
+
+        return text;
     });
 
     constructor(json?: any){

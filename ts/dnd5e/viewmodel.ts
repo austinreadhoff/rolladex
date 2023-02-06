@@ -1,7 +1,7 @@
 import { Character } from "./character"
 import { Spell } from "./spell";
 import * as ko from "knockout";
-import { initSpellAutoComplete } from "./autocomplete";
+import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
 
 export class ViewModel {
@@ -24,9 +24,15 @@ export function applyDataBinding(){
     ko.bindingHandlers.bindSpell = {
         init: function(element: Node, valueAccessor: any){
             let args = valueAccessor();
+
             let lvl: number = ko.unwrap(args.level);
+            var levelStr = lvl.toString();
+            var options = spellCatalogController.fullCatalog
+                .filter(spell => spell.level.toString() == levelStr || levelStr == "-1")
+                .map(spell => spell.name);
+
             let observableName: KnockoutObservable<string> = args.name;
-            initSpellAutoComplete(element, lvl, observableName);
+            initSpellAutoComplete(element, options, observableName, (el) => spellCatalogController.applyToolTip(el));
 
             spellCatalogController.applyToolTip(element as HTMLInputElement);
             element.addEventListener('keyup', event =>{

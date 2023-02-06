@@ -6,6 +6,7 @@
     
         <link rel="stylesheet" href="../css/bootstrap.min.css">    <!-- dark theme -->
         <link rel="stylesheet" href="../css/sheet.css">
+        <link rel="stylesheet" href="../css/autocomplete.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
         
         <link rel="stylesheet" href="css/pf2e.css">
@@ -690,6 +691,46 @@
                             <span data-bind="text: abilityMod(spellcastingAbility(), spellAttackProficiency())" id="spell-attack"></span>
                         </div>
                     </div>
+                    <div data-bind="foreach: spellLevels" class="row">
+                        <div data-bind="attr: { 'data-level': level }" class="container block block-shaded spell-block">
+                            <label data-bind="text: levelFormatted" class="row full-width-label"></label>
+                            <div id="spells">
+                                <!--ko if: (level() < 11)-->
+                                <div class="spell-slot-container">
+                                    <input data-bind="textInput: slotsRemaining" class="form-control spell-input spell-slots-remaining" value="0">
+                                    <span>/</span>
+                                    <input data-bind="textInput: slotsTotal" class="form-control spell-input spell-slots-total" value="0">
+                                </div>
+                                <!-- /ko -->
+                                <!--ko if: (level() == 13)-->
+                                <div class="spell-slot-container">
+                                    <input data-bind="textInput: focusPointsRemaining" class="form-control spell-input focus-points-remaining" value="0">
+                                    <span>/</span>
+                                    <input data-bind="textInput: focusPointsTotal" class="form-control spell-input focus-points-total" value="0">
+                                </div>
+                                <!-- /ko -->
+                                <!-- ko foreach: spells -->
+                                <div class="spell-row row">
+                                    <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="btn btn-danger btn-small">-</button>
+                                    <div class="autocomplete col">
+                                        <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class="form-control spell-input spell-name">
+                                    </div>
+                                    <!-- ko if: ($parent.level() < 11 || $parent.level() == 12)-->
+                                    <input data-bind="checked: prepared" class="col-1 spell-input spell-prepared print-hidden" type="checkbox">
+                                    <!-- /ko -->
+                                    <!-- ko if: ($parent.level() == 11)-->
+                                    <input data-bind="textInput: innateCurrent" class="col-1 form-control spell-input innate-current" value="0">
+                                    <span>/</span>
+                                    <input data-bind="textInput: innateMax" class="col-1 form-control spell-input innate-max" value="0">
+                                    <!-- /ko -->
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                            <div class="row">
+                                <button data-bind="click: function(){$parent.addSpell(level())}" type="button" id="btn-add-spell" class="btn btn-primary btn-small">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -895,7 +936,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <!-- <button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button> -->
+                                <button data-bind="click: function(){$root.character().addSpell(spellBookLevel(), name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
                             </div>
                         </div>
                     </div>

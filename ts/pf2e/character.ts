@@ -4,6 +4,7 @@ import { viewModel } from "./viewmodel";
 import { jsonSchemaVersion, gameName } from "./character-schema";
 import { CharacterProperty } from "../shared/character-property";
 import { SpellcastingType } from "./spellcasting-type";
+import { Spell } from "./spell";
 
 export class Character {
     version: KnockoutObservable<number>;
@@ -120,6 +121,7 @@ export class Character {
     spellcastingAbility: KnockoutObservable<string>;
     spellDCProficiency: KnockoutObservable<string>;
     spellAttackProficiency: KnockoutObservable<string>;
+    spellLevels: KnockoutObservableArray<SpellLevel>;
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
@@ -223,6 +225,11 @@ export class Character {
         this.spellcastingAbility = ko.observable("STR");
         this.spellDCProficiency = ko.observable("U");
         this.spellAttackProficiency = ko.observable("U");
+        this.spellLevels = ko.observableArray([]);
+
+        for (var i = 1; i <= 14; i++){
+            this.spellLevels.push(new SpellLevel(i));
+        }
 
 
         let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
@@ -237,7 +244,7 @@ export class Character {
          'spellcastingTradition', 'spellcastingType', 'spellcastingAbility', 'appearance', 'ethnicity', 'nationality', 'birthplace',
          'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
          'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
-         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters'];
+         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters', 'spellLevels'];
         for(var p in savedProperties)
         {
             let propStr = savedProperties[p];
@@ -396,6 +403,25 @@ export class Character {
     removeMiscCounter(counter: Counter){
         viewModel.character().miscCounters.remove(counter);
     }
+
+    //these have to be here, otherwise the fromJS model update would bork
+    //unsure why unsafe save needs to be triggered in these manually
+    addSpell(spellLevel: number, name: string = ""){
+        this.spellLevels()[spellLevel-1].spells.push(new CharacterSpell(name));
+        triggerUnsafeSave(this.characterName());
+    }
+    removeSpell(spell: CharacterSpell, spellLevel: any){
+        this.spellLevels()[spellLevel()].spells.remove(spell);
+        triggerUnsafeSave(this.characterName());
+    }
+    hasSpell(name: string){
+        for (let level of this.spellLevels()){
+            for (let spell of level.spells()){
+                if (spell.name() == name) return true;
+            }
+        }
+        return false;
+    }
 }
 
 class Attack extends CharacterProperty{
@@ -445,5 +471,77 @@ export class Counter extends CharacterProperty {
         this.current = ko.observable("");
         this.max = ko.observable("");
         this.rest = ko.observable(false);
+    }
+}
+
+export class SpellLevel extends CharacterProperty {
+    level: KnockoutObservable<number>;
+    slotsRemaining: KnockoutObservable<string>;
+    slotsTotal: KnockoutObservable<string>;
+    focusPointsRemaining: KnockoutObservable<string>;
+    focusPointsTotal: KnockoutObservable<string>;
+    spells: KnockoutObservableArray<CharacterSpell>;
+
+    constructor(level: number){
+        super(() => viewModel.character().characterName(), ["slotsRemaining", "slotsTotal", "focusPointsRemaining", "focusPointsTotal", "spells"]);
+        this.level(level);
+    }
+
+    initProps(){
+        this.level = ko.observable(0);
+        this.slotsRemaining = ko.observable("0");
+        this.slotsTotal = ko.observable("0");
+        this.focusPointsRemaining = ko.observable("0");
+        this.focusPointsTotal = ko.observable("0");
+        this.spells = ko.observableArray([]);
+    }
+
+    levelFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        var num = this.level();
+
+        var display: string;
+        switch(num) { 
+            case 11: { 
+                display = "Innate Spells";
+                break; 
+            } 
+            case 12: { 
+                display = "Cantrips (Level " + Math.ceil(+viewModel.character().level() / 2 ) + ")";
+                break; 
+            } 
+            case 13: { 
+                display = "Focus Spells (Level " + Math.ceil(+viewModel.character().level() / 2 ) + ")";
+                break; 
+            } 
+            case 14: { 
+                display = "Rituals";
+                break; 
+            } 
+            default: { 
+                display = "Level " + num; 
+                break; 
+            } 
+        }
+
+        return display;
+    });
+}
+
+export class CharacterSpell extends CharacterProperty {
+    name: KnockoutObservable<string>;
+    prepared: KnockoutObservable<boolean>;
+    innateCurrent: KnockoutObservable<string>;
+    innateMax: KnockoutObservable<string>;
+
+    constructor(name: string = ""){
+        super(() => viewModel.character().characterName(), ["name", "prepared", "innateCurrent", "innateMax"]);
+        this.name(name);
+    }
+
+    initProps(){
+        this.name = ko.observable("");
+        this.prepared = ko.observable(false);
+        this.innateCurrent = ko.observable("0");
+        this.innateMax = ko.observable("0");
     }
 }

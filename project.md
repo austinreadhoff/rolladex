@@ -8,7 +8,7 @@
     - [X] Import Data
     - [X] Build Library
     - [X] filters
-- [ ] Build Spellbook, pf2e
+- [X] Build Spellbook, pf2e
 - [X] Feat Library, pf2e 
     - [X] Import Data
     - [X] Build Library
@@ -26,6 +26,7 @@
 
 ## 0.2.0
 - [X] Data Binding
+- [X] TypeScript conversion
 - [X] Fix Class Spell Lists
 - [X] Clear Recents List
 - [X] Fix Branding Smite class list
@@ -35,9 +36,7 @@
 
 ---
 
-## Low Priority Backlog and Stray Thoughts
-- Child skillboxes don't trigger unsafe save 
-    - lore skills & other weapon proficiencies
+## Low Priority Backlog and Stray Thoughts, in no particular order
 - Catalog's don't show initial item selected
 - Change menu items per page?
 - Dock Tabs
@@ -45,11 +44,12 @@
 - Long Rest Should give half hit dice
 - Character Pictures
 - pf2e Action icons 
-- Uppercase the goddamn name
+- Uppercase the goddamn name (windows and linux)
 - datalist tag for typeaheads
 - Inconsistent 5e spell description formatting
 - Alternate search titles for certain spells srd vs 5e phb
 - Remove link text from pf2e spells 
+- pf2e spell descriptions, strip out html in tooltip
 - Remove from spellbook button in catalog
 - Signify spellbook spells using icon in catalog list
 - Custom undo stack

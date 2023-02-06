@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron";
-import { Counter } from "./character";
+import { Counter, CharacterSpell, SpellLevel } from "./character";
 import { gearCatalogController } from "./equipment";
 import { featCatalogController } from "./feats";
 import { spellCatalogController } from "./spells";
@@ -63,6 +63,20 @@ export function switchTab(tabId: string){
 }
 
 function takeRest(){
+    viewModel.character()
+        .spellLevels()
+        .filter(sl => +sl.level() < 11)
+        .forEach((level: SpellLevel) => {
+            level.slotsRemaining(level.slotsTotal());
+    });
+
+    viewModel.character()
+        .spellLevels()[10]
+        .spells()
+        .forEach((s: CharacterSpell) => {
+            s.innateCurrent(s.innateMax())
+    });
+
     viewModel.character().miscCounters().forEach((counter: Counter) => {
         if (counter.rest()){
             counter.current(counter.max());

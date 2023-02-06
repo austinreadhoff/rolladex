@@ -1,13 +1,6 @@
-import { spellCatalogController } from "./spells";
-
 //Adapted and customized from https://www.w3schools.com/howto/howto_js_autocomplete.asp
-export function initSpellAutoComplete(input: Node, level: number, observableName: KnockoutObservable<string>){
+export function initSpellAutoComplete(input: Node, spellOptions: string[], observableName: KnockoutObservable<string>, applyToolTipFunc: (arg: HTMLInputElement) => void){
     var currentFocus: number;
-    var levelStr = level.toString();
-
-    var spellOptions = spellCatalogController.fullCatalog
-        .filter(spell => spell.level.toString() == levelStr || levelStr == "-1")
-        .map(spell => spell.name);
 
     /*execute a function when someone writes in the text field:*/
     input.addEventListener("input", function (this:any, e) {
@@ -46,7 +39,7 @@ export function initSpellAutoComplete(input: Node, level: number, observableName
                         var containingInput: any = Array.from(container.children).find((child: any) => child.classList.contains("spell-name"));
                     }
                     if (containingInput){
-                        spellCatalogController.applyToolTip(containingInput);                  
+                        applyToolTipFunc(containingInput as HTMLInputElement);                  
                     }
                     
                     /*close the list of autocompleted values,

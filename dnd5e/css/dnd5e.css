@@ -8,27 +8,6 @@
     color: gold;
 }
 
-.spell-row {
-    margin: 5px 0;
-}
-.spell-row * {
-    margin-right: 5px;
-}
-
-.spell-slot-container input{
-    width: 45%;
-}
-
-.spell-block{
-    margin: 15px !important;
-    width: 30%;
-}
-
-.prepared{
-    border: 3px solid gold !important;
-    border-radius: 4px;
-}
-
 #catalog-source, #catalog-classes{
     color: lightgray;
 }

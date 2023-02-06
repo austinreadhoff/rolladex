@@ -109,7 +109,14 @@ class SpellCatalogController implements CatalogController<Spell>{
     }
 
     applyToolTip(el: HTMLInputElement) {
-        //TODO
+        var spell: Spell = this.fullCatalog.find(s => s.name.replace(/\W/g, '').toUpperCase() == el.value.replace(/\W/g, '').toUpperCase());
+
+        if (spell){
+            el.title = spell.fullTextFormatted();
+        }
+        else{
+            el.title = "No Description Found";
+        }
     }
 }
 
