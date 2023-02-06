@@ -17,6 +17,7 @@
     - [X] Build Library
 - [X] Survival is Wisdom in 5e
 - [X] Track spell attack/dc by choosing ability in 5e
+- [X] Seperate menus by game
 
 ## 0.2.1
 - [X] Fix loading of spell rest type
@@ -38,7 +39,6 @@
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
 - Catalog's don't show initial item selected
-- Change menu items per page?
 - Dock Tabs
 - Rich Text for text areas
 - Long Rest Should give half hit dice

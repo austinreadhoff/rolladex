@@ -6,6 +6,10 @@ export function switchTab(direction: boolean){
     BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', direction);
 }
 
+export function switchToTab(tabId: string){
+    BrowserWindow.getFocusedWindow().webContents.send('send-switch-to-tab', tabId);
+}
+
 export function printToPDF(window: Electron.BrowserWindow){
     var printDialogOptions: SaveDialogOptions = {
         title: "Export Character Character Sheet",

@@ -7,6 +7,10 @@ import { applyDataBinding, viewModel } from "./viewmodel";
 
 var currentTab = "stats";
 
+ipcRenderer.on('send-switch-to-tab', (event, tabId: string) => {
+    switchTab(tabId);
+});
+
 ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
     let tabs = ["stats", "feats", "bio", "gear", "spellbook", "formulas", "featcatalog", "spellcatalog", "craftingcatalog"];
     let i = tabs.indexOf(currentTab);
@@ -33,6 +37,7 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
+    ipcRenderer.send('set-game-menu', "pf2e");
     applyDataBinding();
 
     let dataLoadingPromises = [

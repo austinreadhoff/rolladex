@@ -6,6 +6,10 @@ import { CharacterSpell, Counter, SpellLevel } from './character';
 
 var currentTab = "stats";
 
+ipcRenderer.on('send-switch-to-tab', (event, tabId: string) => {
+    switchTab(tabId);
+});
+
 ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
     let tabs = ["stats", "bio", "spellbook", "spellcatalog"];
     let i = tabs.indexOf(currentTab);
@@ -32,6 +36,7 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
+    ipcRenderer.send('set-game-menu', "dnd5e");
     applyDataBinding();
 
     spellCatalogController.loadData().then(() => {
