@@ -1,6 +1,6 @@
 {
   "name": "RollaDex",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Dnd 5e Character Sheet",
   "main": "./src/main/main.js",
   "scripts": {
