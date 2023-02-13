@@ -81,7 +81,7 @@ export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, p
         let inputID = `${property}-filter-${option.toString().replace(/[^a-zA-Z0-9]*/g, "")}`;
         el.classList.add("form-check");
         el.innerHTML = 
-        `<input class="form-check-input catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}">
+        `<input class="rpgui-checkbox catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}">
         <label class="form-check-label" for="${inputID}">${option == "0" && zeroCantrip ? "cantrip" : option.toString().toLowerCase()}</label>`
 
         filterEl.appendChild(el);

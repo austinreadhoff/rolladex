@@ -1,5 +1,5 @@
 ## 0.3.1
-- [ ] Figure out a way to update content w/o version update
+- [ ] Visual Overhaul
 
 ## 0.3.0
 - [X] MacOS Compatilibity
@@ -38,6 +38,7 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
+- Figure out a way to update content w/o version update
 - Catalog's don't show initial item selected
 - Dock Tabs
 - Rich Text for text areas

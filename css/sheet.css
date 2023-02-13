@@ -1,25 +1,68 @@
-#stats .block{
-    margin: 5px;
-}
-#bio .block, #spellbook .block, #gear .block{
-    margin: 5px 0;
+/* Overrides for RPGUI */
+@font-face 
+{ 
+    font-family: 'Runescape';
+    src: url('../fonts/RuneScape-UF.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/RuneScape-UF.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/RuneScape-UF.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/RuneScape-UF.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/RuneScape-UF.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/RuneScape-UF.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-.textarea-col{
-    padding: 0 5px;
+.rpgui-content{
+    position: static;
+    overflow: initial;
 }
 
-.nav-item{
-    cursor: pointer;
+.rpgui-content * {
+    font-family: "Runescape";
+    font-size: 20px;
+}
+
+.rpgui-content textarea{
+    height: auto;
+}
+
+.rpgui-container{
+    position: static;
+}
+
+.rpgui-button.btn-small{
+    padding-left: .5em;
+    padding-right: .5em;
+    min-width: 0;
+    height: 1.75em;
+}
+
+.rpgui-content input[type=checkbox].rpgui-checkbox+label{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+/* EndOverrides for RPGUI */
+
+@font-face 
+{ 
+    font-family: 'Bittypix';
+    src: url('../fonts/Bittypix-Monospace.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Bittypix-Monospace.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/Bittypix-Monospace.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/Bittypix-Monospace.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/Bittypix-Monospace.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/Bittypix-Monospace.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body{
+    background: #222;
+}
+
+input {
+    text-align: center;
 }
 
 .form-group{
     width:100%;
-}
-input, textarea{
-    color: #eee !important;
-    background-color: #333 !important;
-    border-color: #333 !important;
 }
 
 .full-width-label{
@@ -29,29 +72,26 @@ input, textarea{
     background-color: #444 !important;
 }
 
-.block{
-    padding: 5px 20px;
-    border-radius: 4px;
+.nav-link{
+    margin: 0 5px;
 }
 
-.block-shaded{
-    background:#444;
+.tab-content>.tab-pane {
+    display: none;
 }
-
-.block-bordered{
-    border: 2px solid #adb5bd;
+.tab-content>.active {
+    display: block;
 }
 
 .ability-score-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:5px 0;
-    background-color:#222;
-    border-radius: 4px;
+    margin-bottom:15px;
 }
 .ability-mod{
-    font-size: 2em;
+    font-size: 2em !important;
+    padding: 10px 0;
 }
 .ability-note{
     color: darkgray;
@@ -60,13 +100,14 @@ input, textarea{
 
 .skillbox{
     display: inline-block;
-    border: 1px solid #adb5bd;
-    border-radius: 4px;
-    padding: 0px 5px;
+    border: 2px inset #d27d2c;
+    border-radius: 2px;
+    padding: 3px 3px;
+    margin: 2px 0;
     height: 1.5em;
 
-    font-family: monospace;
-    font-size: 1em;
+    font-family: "Bittypix";
+    font-size: .75em;
 
     cursor: pointer;
     user-select: none;
@@ -81,6 +122,7 @@ input, textarea{
 
 img.currency{
     height: 1.5em;
+    margin-top: 5px;
 }
 
 #misc-counters-header{

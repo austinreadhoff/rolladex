@@ -48,7 +48,7 @@
         <div class="tab-content">
             <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                 <div id="stats-container" class="container-fluid">
-                    <div class="header row block block-bordered">    
+                    <div class="header row block ">    
                         <div class="col container">
                             <div class="row">
                                 <div class="form-group col">
@@ -111,7 +111,7 @@
                         <div class="col">
                             <div class="container">
                                 <div class="row">
-                                    <div id="ability-scores" class="block block-shaded col-4">
+                                    <div id="ability-scores" class="  col-4">
                                         <div class="ability-score-container form-group">
                                             <label>Strength</label>
                                             <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
@@ -144,7 +144,7 @@
                                         </div>
                                     </div>
                                     <div id="skills-etc">
-                                        <div id="class-dc" class="block">
+                                        <div id="class-dc" >
                                             <div>
                                                 <div data-bind="skillbox: classDCProficiency" class="skillbox" id="class-dc-prof"></div>
                                                 <select data-bind="value: classDCAbility">
@@ -159,130 +159,130 @@
                                                 <span data-bind="text: abilityDC(classDCAbility(), classDCProficiency())" id="class-dc"></span>
                                             </div>
                                         </div>
-                                        <div id="saving-throws" class="block block-bordered">
+                                        <div id="saving-throws" >
                                             <label>Saving Throws</label>
                                             <div>
                                                 <div data-bind="skillbox: savingReflex" class="skillbox" id="saving-reflex"></div>
-                                                <span data-bind="text: abilityMod(dex(), savingReflex())" id="saving-reflex-mod" class="dex-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(dex(), savingReflex())" id="saving-reflex-mod" ></span>
                                                 <label class="form-check-label" for="saving-reflex">Reflex</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: savingFort" class="skillbox" id="saving-fort"></div>
-                                                <span data-bind="text: abilityMod(con(), savingFort())" id="saving-fort-mod" class="con-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(con(), savingFort())" id="saving-fort-mod" ></span>
                                                 <label class="form-check-label" for="saving-fort">Fortitude</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: savingWill" class="skillbox" id="saving-will"></div>
-                                                <span data-bind="text: abilityMod(wis(), savingWill())" id="saving-will-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(wis(), savingWill())" id="saving-will-mod" ></span>
                                                 <label class="form-check-label" for="saving-will">Will</label>
                                             </div>
                                         </div>
-                                        <div id="skills" class="block block-bordered">
+                                        <div id="skills" >
                                             <label>Skills</label>
                                             <div>
                                                 <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
-                                                <span data-bind="text: abilityMod(wis(), perception())" id="perception-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(wis(), perception())" id="perception-mod" ></span>
                                                 <b class="form-check-label" for="perception">Perception</b>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: acrobatics" class="skillbox" id="acrobatics"></div>
-                                                <span data-bind="text: abilityMod(dex(), acrobatics())" id="acrobatics-mod" class="dex-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(dex(), acrobatics())" id="acrobatics-mod" ></span>
                                                 <label class="form-check-label" for="acrobatics">Acrobatics</label>
                                                 <label class="ability-note">(Dex)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: arcana" class="skillbox" id="arcana"></div>
-                                                <span data-bind="text: abilityMod(int(), arcana())" id="arcana-mod" class="int-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(int(), arcana())" id="arcana-mod" ></span>
                                                 <label class="form-check-label" for="arcana">Arcana</label>
                                                 <label class="ability-note">(Int)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: athletics" class="skillbox" id="athletics"></div>
-                                                <span data-bind="text: abilityMod(str(), athletics())" id="athletics-mod" class="str-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(str(), athletics())" id="athletics-mod" ></span>
                                                 <label class="form-check-label" for="athletics">Athletics</label>
                                                 <label class="ability-note">(Str)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: crafting" class="skillbox" id="crafting"></div>
-                                                <span data-bind="text: abilityMod(int(), crafting())" id="crafting-mod" class="int-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(int(), crafting())" id="crafting-mod" ></span>
                                                 <label class="form-check-label" for="acrobatics">Crafting</label>
                                                 <label class="ability-note">(Int)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: deception" class="skillbox" id="deception"></div>
-                                                <span data-bind="text: abilityMod(char(), deception())" id="deception-mod" class="char-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(char(), deception())" id="deception-mod" ></span>
                                                 <label class="form-check-label" for="deception">Deception</label>
                                                 <label class="ability-note">(Char)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: diplomacy" class="skillbox" id="diplomacy"></div>
-                                                <span data-bind="text: abilityMod(char(), diplomacy())" id="diplomacy-mod" class="char-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(char(), diplomacy())" id="diplomacy-mod" ></span>
                                                 <label class="form-check-label" for="diplomacy">Diplomacy</label>
                                                 <label class="ability-note">(Char)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: intimidation" class="skillbox" id="intimidation"></div>
-                                                <span data-bind="text: abilityMod(char(), intimidation())" id="intimidation-mod" class="char-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(char(), intimidation())" id="intimidation-mod" ></span>
                                                 <label class="form-check-label" for="intimidation">Intimidation</label>
                                                 <label class="ability-note">(Char)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: medicine" class="skillbox" id="medicine"></div>
-                                                <span data-bind="text: abilityMod(wis(), medicine())" id="medicine-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(wis(), medicine())" id="medicine-mod" ></span>
                                                 <label class="form-check-label" for="medicine">Medicine</label>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: nature" class="skillbox" id="nature"></div>
-                                                <span data-bind="text: abilityMod(wis(), nature())" id="nature-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(wis(), nature())" id="nature-mod" ></span>
                                                 <label class="form-check-label" for="nature">Nature</label>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: occultism" class="skillbox" id="occultism"></div>
-                                                <span data-bind="text: abilityMod(int(), perception())" id="occultism-mod" class="int-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(int(), perception())" id="occultism-mod" ></span>
                                                 <label class="form-check-label" for="occultism">Occultism</label>
                                                 <label class="ability-note">(Int)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: performance" class="skillbox" id="performance"></div>
-                                                <span data-bind="text: abilityMod(char(), performance())" id="performance-mod" class="char-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(char(), performance())" id="performance-mod" ></span>
                                                 <label class="form-check-label" for="performance">Performance</label>
                                                 <label class="ability-note">(Char)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: religion" class="skillbox" id="religion"></div>
-                                                <span data-bind="text: abilityMod(wis(), religion())" id="religion-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(wis(), religion())" id="religion-mod" ></span>
                                                 <label class="form-check-label" for="religion">Religion</label>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: society" class="skillbox" id="society"></div>
-                                                <span data-bind="text: abilityMod(int(), society())" id="society-mod" class="int-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(int(), society())" id="society-mod" ></span>
                                                 <label class="form-check-label" for="society">Society</label>
                                                 <label class="ability-note">(Int)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: stealth" class="skillbox" id="stealth"></div>
-                                                <span data-bind="text: abilityMod(dex(), stealth())" id="stealth-mod" class="dex-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(dex(), stealth())" id="stealth-mod" ></span>
                                                 <label class="form-check-label" for="stealth">Stealth</label>
                                                 <label class="ability-note">(Dex)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: survival" class="skillbox" id="survival"></div>
-                                                <span data-bind="text: abilityMod(dex(), survival())" id="survival-mod" class="wis-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(dex(), survival())" id="survival-mod" ></span>
                                                 <label class="form-check-label" for="survival">Survival</label>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
                                                 <div data-bind="skillbox: thievery" class="skillbox" id="thievery"></div>
-                                                <span data-bind="text: abilityMod(dex(), thievery())" id="thievery-mod" class="dex-mod-prof"></span>
+                                                <span data-bind="text: abilityMod(dex(), thievery())" id="thievery-mod" ></span>
                                                 <label class="form-check-label" for="thievery">Thievery</label>
                                                 <label class="ability-note">(Dex)</label>
                                             </div>
                                         </div>
-                                        <div id="lore-skills" class="block block-bordered">
+                                        <div id="lore-skills" >
                                             <label>Lore Skills</label>
                                             <label class="ability-note">(Int)</label>
                                             <button data-bind="click: addLoreSkill" type="button" id="btn-add-lore" class="btn btn-primary btn-small">+</button>
@@ -290,7 +290,7 @@
                                                 <div class="lore-skill">
                                                     <button data-bind="click: $parent.removeLoreSkill" type="button" id="btn-remove-lore" class="btn btn-danger btn-small">-</button>
                                                     <div data-bind="skillbox: proficiency" class="skillbox lore-field"></div>
-                                                    <span data-bind="text: $parent.abilityMod($parent.int(), proficiency())" class="int-mod-prof"></span>
+                                                    <span data-bind="text: $parent.abilityMod($parent.int(), proficiency())" ></span>
                                                     <input data-bind="textInput: name" class="form-control lore-field">
                                                 </div>
                                             </div>
@@ -308,7 +308,7 @@
                         <div class="col">
                             <div class="container">
                                 <div class="row">
-                                    <div class="container block block-shaded">
+                                    <div class="container block ">
                                         <div class="row">
                                             <div class="col container">
                                                 <label class="row">Hit Points</label>
@@ -342,7 +342,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="container block block-bordered">
+                                    <div class="container block ">
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="armor-class">Armor Class</label>
@@ -414,7 +414,7 @@
                         <div class="col">
                             <div class="container">
                                 <div class="row">
-                                    <div class="container block block-bordered">
+                                    <div class="container block ">
                                         <div class="row">
                                             <label>Shield</label>
                                         </div>
@@ -445,7 +445,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="container block block-shaded">
+                                    <div class="container block ">
                                         <label class="row full-width-label">Attacks&nbsp<button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary btn-small">+</button></label>
                                         
                                         <div class="row">
@@ -476,7 +476,7 @@
                             <label>Custom Counters</label>
                             <button data-bind="click: addMiscCounter" type="button" id="btn-add-counter" class="btn btn-primary btn-small">+</button>
                         </div>
-                        <div data-bind="foreach: miscCounters" id="misc-counters" class="row block block-shaded">
+                        <div data-bind="foreach: miscCounters" id="misc-counters" class="row block ">
                             <div class="misc-counter-block">
                                 <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="btn btn-danger btn-small">-</button>
                                 <span>Reset Daily</span>
@@ -504,7 +504,7 @@
 
             <div data-bind="with: character" class="tab-pane" id="bio" role="tabpanel" aria-labelledby="bio-tab">
                 <div id="bio-container" class="container-fluid">
-                    <div class="header row block block-bordered">
+                    <div class="header row block ">
                         <div class="col-6 form-group">
                             <label for="appearance">Appearance</label>
                             <textarea data-bind="textInput: appearance" id="appearance" class="form-control" rows="5"></textarea>
@@ -580,7 +580,7 @@
                 <div id="gear-container" class="container-fluid">
                     <div class="row">
                         <div class="col-3">
-                            <div class="container block block-shaded">
+                            <div class="container block ">
                                 <div class="row">
                                     <div class="col form-group">
                                         <img class="currency" src="../img/cp.png">
@@ -622,7 +622,7 @@
                     </div>
                     <div class="row container">
                         <div class="col-4">
-                            <div class="row block-bordered">
+                            <div class="row ">
                                 <div class="col form-group">
                                     <label for="bulk">Bulk</label>
                                     <input data-bind="textInput: bulk" id="bulk" class="form-control">
@@ -653,7 +653,7 @@
 
             <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
                 <div id="spellbook-container" class="container-fluid">
-                    <div class="header row block block-bordered">
+                    <div class="header row block ">
                         <div class="form-group col-2">
                             <label for="spellcasting-tradition">Magical Traition</label>
                             <select id="spellcasting-tradition" data-bind="value: spellcastingTradition">
@@ -692,7 +692,7 @@
                         </div>
                     </div>
                     <div data-bind="foreach: spellLevels" class="row">
-                        <div data-bind="attr: { 'data-level': level }" class="container block block-shaded spell-block">
+                        <div data-bind="attr: { 'data-level': level }" class="container block  spell-block">
                             <label data-bind="text: levelFormatted" class="row full-width-label"></label>
                             <div id="spells">
                                 <!--ko if: (level() < 11)-->
@@ -742,7 +742,7 @@
                     size="2">
                         <!--feat listbox here-->
                     </select>
-                    <div class="block block-bordered catalog-filters">
+                    <div class="  catalog-filters">
                         <div class="form-group">
                             <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                         </div>
@@ -776,25 +776,25 @@
                             <div class="filter-toggle" id="rarity-filter-toggle"><label for="rarity-filters">Rarity    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="rarity-filters" hidden>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
                                     <label class="form-check-label" for="rarity-filter-common">common</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
                                     <label class="form-check-label" for="rarity-filter-uncommon">uncommon</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
                                     <label class="form-check-label" for="rarity-filter-rare">rare</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
                                     <label class="form-check-label" for="rarity-filter-unique">unique</label>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: feat" id="catalog-content" class="feat-container block block-shaded container-fluid">
+                    <div data-bind="with: feat" id="catalog-content" class="feat-container block  container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
@@ -828,7 +828,7 @@
                         size="2">
                         <!--spell listbox here-->
                     </select>
-                    <div class="block block-bordered catalog-filters">
+                    <div class="  catalog-filters">
                         <div class="form-group">
                             <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                         </div>
@@ -891,25 +891,25 @@
                             <div class="filter-toggle" id="rarity-filter-toggle"><label for="rarity-filters">Rarity    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="rarity-filters" hidden>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
                                     <label class="form-check-label" for="rarity-filter-common">common</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
                                     <label class="form-check-label" for="rarity-filter-uncommon">uncommon</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
                                     <label class="form-check-label" for="rarity-filter-rare">rare</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
                                     <label class="form-check-label" for="rarity-filter-unique">unique</label>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: spell" id="catalog-content" class="block block-shaded container-fluid">
+                    <div data-bind="with: spell" id="catalog-content" class="  container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
@@ -951,7 +951,7 @@
                     size="2">
                         <!--gear listbox here-->
                     </select>
-                    <div class="block block-bordered catalog-filters">
+                    <div class="  catalog-filters">
                         <div class="form-group">
                             <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
                         </div>
@@ -979,25 +979,25 @@
                             <div class="filter-toggle" id="rarity-filter-toggle"><label for="rarity-filters">Rarity    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="rarity-filters" hidden>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-common" data-filterval="common">
                                     <label class="form-check-label" for="rarity-filter-common">common</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-uncommon" data-filterval="uncommon">
                                     <label class="form-check-label" for="rarity-filter-uncommon">uncommon</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-rare" data-filterval="rare">
                                     <label class="form-check-label" for="rarity-filter-rare">rare</label>
                                 </li>
                                 <li class="form-check">
-                                    <input class="form-check-input catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
+                                    <input class="rpgui-checkbox catalog-filter rarity-filter" type="checkbox" id="rarity-filter-unique" data-filterval="unique">
                                     <label class="form-check-label" for="rarity-filter-unique">unique</label>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: gear" id="catalog-content" class="gear-container block block-shaded container-fluid">
+                    <div data-bind="with: gear" id="catalog-content" class="gear-container block  container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
