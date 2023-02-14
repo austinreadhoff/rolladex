@@ -1,7 +1,7 @@
 ## 0.3.1
 - [ ] Visual Overhaul
     - [X] RPGUI on sheets
-    - [ ] Pixelate money images
+    - [X] Pixelate money images
     - [ ] Custom progress bar component
     - [ ] Do something with the startup page
 
