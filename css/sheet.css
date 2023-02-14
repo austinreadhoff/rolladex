@@ -168,15 +168,29 @@ img.currency{
 .catalog-listbox{
     height: 100%;
     width: 21em;
-    background-color: gray;
+    background-color: #854c30;
 }
 .catalog-container option{
     color: #fff;
-    background-color: gray;
+    background-color: #854c30;
+}
+.catalog-container option:hover{
+    color: #ff0;
+}
+.catalog-container option:checked{
+    background-color: rgba(0,0,0,.3);
 }
 .catalog-filters{
     overflow-y: auto;
     word-break: break-word;
+}
+.catalog-filters ul{
+    padding-left: 0;
+    margin: 0;
+}
+.catalog-filters li{
+    list-style: none;
+    margin-left: 10px;
 }
 .catalog-filters label{
     white-space: pre;
@@ -201,4 +215,7 @@ img.currency{
 }
 #catalog-text-col{
     height:100%;
+}
+#btn-learn-spell{
+    margin-top: 1em;
 }

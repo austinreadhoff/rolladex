@@ -588,9 +588,9 @@
                     size="2">
                     <!--spell listbox here-->
                 </select>
-                <div class="  catalog-filters">
+                <div class="rpgui-container framed catalog-filters">
                     <div class="form-group">
-                        <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                        <button type="button" id="btn-clear-filters" class="rpgui-button"><p>Unfilter</p></button>
                     </div>
                     <div class="form-group">
                         <label for="filter-name">Name</label>
@@ -621,7 +621,7 @@
                         </ul>
                     </div>
                 </div>
-                <div data-bind="with: spell" id="catalog-content" class="  container-fluid">
+                <div data-bind="with: spell" id="catalog-content" class="rpgui-container framed-golden-2 container-fluid">
                     <div class="row">
                         <div class="col">
                             <i data-bind="text: sourceFormatted" id="catalog-source"></i>
@@ -637,7 +637,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
+                            <button data-bind="click: function(){$root.character().addSpell(level, name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="rpgui-button golden"><p>+ Add to Spellbook</p></button>
                         </div>
                     </div>
                 </div>

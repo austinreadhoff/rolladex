@@ -39,7 +39,6 @@
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
 - Figure out a way to update content w/o version update
-- Catalog's don't show initial item selected
 - Dock Tabs
 - Rich Text for text areas
 - Long Rest Should give half hit dice
