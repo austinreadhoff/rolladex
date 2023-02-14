@@ -23,9 +23,9 @@ export function initSpellAutoComplete(input: Node, spellOptions: string[], obser
                 /*create a DIV element for each matching element:*/
                 b = document.createElement("DIV");
                 /*make the matching letters bold:*/
-                b.innerHTML = spellOptions[i].substr(0, matchIndex);
+                b.innerHTML = "<span>" + spellOptions[i].substr(0, matchIndex) + "</span>";
                 b.innerHTML += "<strong>" + spellOptions[i].substr(matchIndex, val.length) + "</strong>";
-                b.innerHTML += spellOptions[i].substr(matchIndex + val.length);
+                b.innerHTML += "<span>" + spellOptions[i].substr(matchIndex + val.length) + "</span>";
                 /*insert a input field that will hold the current array item's value:*/
                 b.innerHTML += "<input type='hidden' value='" + spellOptions[i] + "'>";
                 /*execute a function when someone clicks on the item value (DIV element):*/

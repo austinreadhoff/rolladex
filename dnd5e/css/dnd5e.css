@@ -8,6 +8,10 @@
     color: gold;
 }
 
+#spell-save-dc, #spell-attack-bonus{
+    font-size: 2em;
+}
+
 #catalog-source, #catalog-classes{
     color: lightgray;
 }
