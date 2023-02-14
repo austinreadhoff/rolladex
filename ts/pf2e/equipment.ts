@@ -43,8 +43,8 @@ class GearCatalogController implements CatalogController<Gear>{
                     });
                 });
 
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "equipment", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "equipment", () => { this.filterCatalog(); });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement

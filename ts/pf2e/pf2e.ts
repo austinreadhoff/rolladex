@@ -58,11 +58,15 @@ document.addEventListener("DOMContentLoaded", function(){
 //#region Menu Actions
 
 export function switchTab(tabId: string){
-    document.querySelectorAll('.nav-link').forEach(t => { t.classList.remove("active"); });
+    document.querySelectorAll('.nav-link').forEach(t => { 
+        t.classList.remove("active"); 
+        t.classList.remove("down");
+    });
     document.getElementById(tabId + "-tab").classList.add("active");
+    document.getElementById(tabId + "-tab").classList.add("down");
     
     document.querySelectorAll('.tab-pane').forEach(t => { t.className = "tab-pane"; });
-    document.querySelector("#" + tabId).className = "tab-pane show active";
+    document.querySelector("#" + tabId).className = "tab-pane active";
 
     document.body.scrollTop = 0;
 }

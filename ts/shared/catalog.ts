@@ -51,9 +51,10 @@ export function setupFilterToggle(toggleEl: HTMLElement, filterUl: HTMLElement){
 //catalog: the full array of data
 //filterElId: where the filters go
 //property: the property on type T that is being filtered by
+//uniqueString: differentiates control and label IDs from others in the same sheet
 //filterCallback: the function that performs the filtering on the dataset, to be called when filters change
 //zeroCantrip: values of "0" should be replaced with the string "cantrip"
-export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, property: string, filterCallback: Function, zeroCantrip: boolean = false){
+export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, property: string, uniqueString: string, filterCallback: Function, zeroCantrip: boolean = false){
     var options: any[] = [];
 
     catalog.forEach(obj => {
@@ -78,7 +79,7 @@ export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, p
 
     options.forEach(option => {
         var el = document.createElement("li");
-        let inputID = `${property}-filter-${option.toString().replace(/[^a-zA-Z0-9]*/g, "")}`;
+        let inputID = `${uniqueString}-${property}-filter-${option.toString().replace(/[^a-zA-Z0-9]*/g, "")}`;
         el.classList.add("form-check");
         el.innerHTML = 
         `<input class="rpgui-checkbox catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}">

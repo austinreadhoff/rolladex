@@ -1,9 +1,5 @@
-#stats .block{
-    margin: 5px;
-}
-
 #lore-skills{
-    padding: 5px 15px;
+    width: 10em;
 }
 
 .skillbox-untrained{
@@ -22,13 +18,8 @@
     color: gold;
 }
 
-.btn-small{
-    padding: 3px;
-    border-radius: 10px;
-}
-
 #catalog-text-col{
-    border: 1px solid #333;
+    border: 1px solid white;
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
     overflow-y: auto;

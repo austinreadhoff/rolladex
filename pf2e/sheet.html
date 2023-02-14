@@ -4,7 +4,8 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
     
-        <link rel="stylesheet" href="../css/bootstrap.min.css">    <!-- dark theme -->
+        <link rel="stylesheet" href="../css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="../node_modules/rpgui/rpgui.min.css">
         <link rel="stylesheet" href="../css/sheet.css">
         <link rel="stylesheet" href="../css/autocomplete.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
@@ -18,38 +19,23 @@
         <script>require("../src/pf2e/pf2e.js")</script>
     </head>
 
-    <body>
-        <ul class="nav nav-pills print-hidden" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="stats-tab" data-toggle="tab" role="tab" aria-controls="stats" aria-selected="true">Stats</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="feats-tab" data-toggle="tab" role="tab" aria-controls="feats" aria-selected="false">Feats</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="bio-tab" data-toggle="tab" role="tab" aria-controls="bio" aria-selected="false">Bio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="gear-tab" data-toggle="tab" role="tab" aria-controls="gear" aria-selected="false">Gear</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="spellbook-tab" data-toggle="tab" role="tab" aria-controls="spellbook" aria-selected="false">Spellbook</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-success" id="featcatalog-tab" data-toggle="tab" role="tab" aria-controls="featcatalog" aria-selected="false">Feat Catalog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-success" id="spellcatalog-tab" data-toggle="tab" role="tab" aria-controls="spellcatalog" aria-selected="false">Spell Catalog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-success" id="craftingcatalog-tab" data-toggle="tab" role="tab" aria-controls="craftingcatalog" aria-selected="false">Gear Catalog</a>
-            </li>
-        </ul>
+    <body class="rpgui-content">
+        <div class="nav print-hidden">
+            <button class="nav-link rpgui-button active down" id="stats-tab"><p>Stats</p></button>
+            <button class="nav-link rpgui-button" id="feats-tab"><p>Feats</p></button>
+            <button class="nav-link rpgui-button" id="bio-tab"><p>Bio</p></button>
+            <button class="nav-link rpgui-button" id="gear-tab"><p>Gear</p></button>
+            <button class="nav-link rpgui-button" id="spellbook-tab"><p>Spellbook</p></button>
+            <button class="nav-link rpgui-button" id="featcatalog-tab"><p>Feat Catalog</p></button>
+            <button class="nav-link rpgui-button" id="spellcatalog-tab"><p>Spell Catalog</p></button>
+            <button class="nav-link rpgui-button" id="craftingcatalog-tab"><p>Gear Catalog</p></button>
+        </div>
+        <hr class="golden">
         <div class="tab-content">
             <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                 <div id="stats-container" class="container-fluid">
-                    <div class="header row block ">    
-                        <div class="col container">
+                    <div class="header row">    
+                        <div class="col container rpgui-container framed-golden">
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="character-name">Character Name</label>
@@ -111,7 +97,7 @@
                         <div class="col">
                             <div class="container">
                                 <div class="row">
-                                    <div id="ability-scores" class="  col-4">
+                                    <div id="ability-scores" class="col-4 rpgui-container framed">
                                         <div class="ability-score-container form-group">
                                             <label>Strength</label>
                                             <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
@@ -143,11 +129,11 @@
                                             <input data-bind="textInput: char" id="char" class="form-control ability-input">
                                         </div>
                                     </div>
-                                    <div id="skills-etc">
-                                        <div id="class-dc" >
+                                    <div id="skills-etc" class="rpgui-container framed">
+                                        <div id="class-dc">
                                             <div>
                                                 <div data-bind="skillbox: classDCProficiency" class="skillbox" id="class-dc-prof"></div>
-                                                <select data-bind="value: classDCAbility">
+                                                <select data-bind="value: classDCAbility" class="rpgui-dropdown">
                                                     <option value="STR">STR</option>
                                                     <option value="DEX">DEX</option>
                                                     <option value="CON">CON</option>
@@ -182,7 +168,7 @@
                                             <div>
                                                 <div data-bind="skillbox: perception" class="skillbox" id="perception"></div>
                                                 <span data-bind="text: abilityMod(wis(), perception())" id="perception-mod" ></span>
-                                                <b class="form-check-label" for="perception">Perception</b>
+                                                <label class="form-check-label" for="perception">Perception</label>
                                                 <label class="ability-note">(Wis)</label>
                                             </div>
                                             <div>
@@ -285,10 +271,10 @@
                                         <div id="lore-skills" >
                                             <label>Lore Skills</label>
                                             <label class="ability-note">(Int)</label>
-                                            <button data-bind="click: addLoreSkill" type="button" id="btn-add-lore" class="btn btn-primary btn-small">+</button>
+                                            <button data-bind="click: addLoreSkill" type="button" id="btn-add-lore" class="rpgui-button btn-small">+</button>
                                             <div data-bind="foreach: loreSkills">
                                                 <div class="lore-skill">
-                                                    <button data-bind="click: $parent.removeLoreSkill" type="button" id="btn-remove-lore" class="btn btn-danger btn-small">-</button>
+                                                    <button data-bind="click: $parent.removeLoreSkill" type="button" id="btn-remove-lore" class="rpgui-button btn-small">-</button>
                                                     <div data-bind="skillbox: proficiency" class="skillbox lore-field"></div>
                                                     <span data-bind="text: $parent.abilityMod($parent.int(), proficiency())" ></span>
                                                     <input data-bind="textInput: name" class="form-control lore-field">
@@ -297,15 +283,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col textarea-col">
-                                        <label for="languages">Languages</label>
-                                        <textarea data-bind="textInput: languages" class="form-control" id="languages" rows="5"></textarea>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col rpgui-container framed">
                             <div class="container">
                                 <div class="row">
                                     <div class="container block ">
@@ -333,12 +313,14 @@
                                                 <input data-bind="textInput: wounded" id="wounded" class="form-control row">
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="row">
                                             <div class="form-group col textarea-col">
                                                 <label for="conditions">Conditions</label>
                                                 <textarea data-bind="textInput: conditions" class="form-control" id="conditions" rows="5"></textarea>
                                             </div>
                                         </div>
+                                        <hr>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -394,12 +376,20 @@
                                                     <span data-bind="text: simpleProficiency(weaponsMartial())"></span>
                                                     <label class="form-check-label" for="weapons-martial">Martial</label>
                                                 </div>
-                                                </br>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="form-group col textarea-col">
+                                                <label for="languages">Languages</label>
+                                                <textarea data-bind="textInput: languages" class="form-control" id="languages" rows="5"></textarea>
+                                            </div>
+                                            <div class="col">
                                                 <label>Other Weapons</label>
-                                                <button data-bind="click: addOtherWeapon" type="button" id="btn-add-other-weapon" class="btn btn-primary btn-small">+</button>
+                                                <button data-bind="click: addOtherWeapon" type="button" id="btn-add-other-weapon" class="rpgui-button btn-small">+</button>
                                                 <div data-bind="foreach: otherWeapons">
                                                     <div class="other-weapon">
-                                                        <button data-bind="click: $parent.removeOtherWeapon" type="button" id="btn-remove-other-weapon" class="btn btn-danger btn-small">-</button>
+                                                        <button data-bind="click: $parent.removeOtherWeapon" type="button" id="btn-remove-other-weapon" class="rpgui-button btn-small">-</button>
                                                         <div data-bind="skillbox: proficiency" class="skillbox other-weapon-field"></div>
                                                         <span data-bind="text: $parent.simpleProficiency(proficiency())"></span>
                                                         <input data-bind="textInput: name" class="form-control other-weapon-field">
@@ -411,7 +401,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col rpgui-container framed">
                             <div class="container">
                                 <div class="row">
                                     <div class="container block ">
@@ -444,9 +434,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="row">
                                     <div class="container block ">
-                                        <label class="row full-width-label">Attacks&nbsp<button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="btn btn-primary btn-small">+</button></label>
+                                        <label class="row full-width-label">Attacks&nbsp<button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="rpgui-button btn-small">+</button></label>
                                         
                                         <div class="row">
                                             <label class="col-1 print-hidden"></label>
@@ -456,7 +447,7 @@
                                         </div>
                                         <div data-bind="foreach: attackStats" id="attack-stats">
                                             <div class="attack-stat-row row">
-                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="btn btn-danger btn-small">-</button>
+                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="rpgui-button btn-small">-</button>
                                                 <input data-bind="textInput: name" class="form-control col-4 attack-stat attack-stat-name">
                                                 <input data-bind="textInput: bonus" class="form-control col-2 attack-stat attack-stat-bonus">
                                                 <input data-bind="textInput: dmg" class="form-control col-4 attack-stat attack-stat-dmg">
@@ -474,13 +465,13 @@
                     <div id="misc-counters-container" class="print-hidden">
                         <div id="misc-counters-header">
                             <label>Custom Counters</label>
-                            <button data-bind="click: addMiscCounter" type="button" id="btn-add-counter" class="btn btn-primary btn-small">+</button>
+                            <button data-bind="click: addMiscCounter" type="button" id="btn-add-counter" class="rpgui-button btn-small">+</button>
                         </div>
                         <div data-bind="foreach: miscCounters" id="misc-counters" class="row block ">
-                            <div class="misc-counter-block">
-                                <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="btn btn-danger btn-small">-</button>
-                                <span>Reset Daily</span>
-                                <input data-bind="checked: rest" type="checkbox" class="misc-counter counter-rest">
+                            <div class="misc-counter-block rpgui-container framed-grey">
+                                <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="rpgui-button btn-small">-</button>
+                                <input data-bind="checked: rest, attr: { id: 'misc-counter-reset-'+$index() }" type="checkbox" class="misc-counter rpgui-checkbox">
+                                <label data-bind="attr: { for: 'misc-counter-reset-'+$index() }">Reset Daily</label>
                                 <input data-bind="textInput: name" class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
                                 <div class="counter-container">
                                     <input data-bind="textInput: current" class="form-control misc-counter counter-current" placeholder="Current">
@@ -495,7 +486,7 @@
 
             <div data-bind="with: character" class="tab-pane" id="feats" role="tabpanel" aria-labelledby="feats-tab">
                 <div id="feats-container" class="container-fluid">
-                    <div class="form-group col textarea-col">
+                    <div class="form-group col textarea-col rpgui-container framed-golden-2">
                         <label for="featsFeatures">Feats & Features</label>
                         <textarea data-bind="textInput: featsFeatures" class="form-control" id="feats-features" rows="25"></textarea>
                     </div>
@@ -503,7 +494,7 @@
             </div>
 
             <div data-bind="with: character" class="tab-pane" id="bio" role="tabpanel" aria-labelledby="bio-tab">
-                <div id="bio-container" class="container-fluid">
+                <div id="bio-container" class="container-fluid rpgui-container framed">
                     <div class="header row block ">
                         <div class="col-6 form-group">
                             <label for="appearance">Appearance</label>
@@ -742,9 +733,9 @@
                     size="2">
                         <!--feat listbox here-->
                     </select>
-                    <div class="  catalog-filters">
+                    <div class="rpgui-container framed catalog-filters">
                         <div class="form-group">
-                            <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                            <button type="button" id="btn-clear-filters" class="rpgui-button"><p>Unfilter</p></button>
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
@@ -794,7 +785,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: feat" id="catalog-content" class="feat-container block  container-fluid">
+                    <div data-bind="with: feat" id="catalog-content" class="feat-container block rpgui-container framed-golden-2 container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
@@ -805,8 +796,12 @@
                                     <!-- /ko -->
                                     <span data-bind="text: actionDisplay"></span>
                                 </div>
-                                <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
-                                <div data-bind="text: prerequisitesFormatted, visible: prerequisites.length > 0"></div>
+                                <div>
+                                    <span data-bind="text: sourceFormatted, visible: source.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: prerequisitesFormatted, visible: prerequisites.length > 0"></span>
+                                </div>
                                 <hr>
                                 <div data-bind="html: description"></div>
                             </div>
@@ -828,9 +823,9 @@
                         size="2">
                         <!--spell listbox here-->
                     </select>
-                    <div class="  catalog-filters">
+                    <div class="rpgui-container framed catalog-filters">
                         <div class="form-group">
-                            <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                            <button type="button" id="btn-clear-filters" class="rpgui-button"><p>Unfilter</p></button>
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
@@ -850,16 +845,16 @@
                             <div class="filter-toggle" id="cantrip-filter-toggle"><label for="cantrip-filters">Cantrip    </label><span class="filter-toggle-icon">‣</span></div>
                             <ul id="cantrip-filters" hidden>
                                 <li>
-                                    <input type="radio" name="cantrip-filter" id="cantrip-unfiltered" value="0" checked>
-                                    <label >Unfiltered</label>
+                                    <input type="radio" name="cantrip-filter" id="cantrip-unfiltered" class="rpgui-radio" value="0" checked>
+                                    <label for="cantrip-unfiltered">Unfiltered</label>
                                 </li>
                                 <li>
-                                    <input type="radio" name="cantrip-filter" value="1">
-                                    <label>Yes</label>
+                                    <input type="radio" name="cantrip-filter" id="cantrip-yes" class="rpgui-radio" value="1">
+                                    <label for="cantrip-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input type="radio" name="cantrip-filter" value="2">
-                                    <label>No</label>
+                                    <input type="radio" name="cantrip-filter" id="cantrip-no" class="rpgui-radio" value="2">
+                                    <label for="cantrip-no">No</label>
                                 </li>
                             </ul>
                         </div>
@@ -909,7 +904,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: spell" id="catalog-content" class="  container-fluid">
+                    <div data-bind="with: spell" id="catalog-content" class="rpgui-container framed-golden-2 container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
@@ -919,24 +914,46 @@
                                     <span data-bind="text: $data" class="catalog-tag"></span>
                                     <!-- /ko -->
                                 </div>
-                                <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
-                                <div data-bind="text: traditionsFormatted, visible: traditions.length > 0"></div>
-                                <div data-bind="text: timeAndComponents"></div>
-                                <div data-bind="text: costFormatted, visible: cost.length > 0"></div>
-                                <div data-bind="text: secondaryCastersFormatted, visible: secondaryCasters.length > 0"></div>
-                                <div data-bind="text: primaryCheckFormatted, visible: primaryCheck.length > 0"></div>
-                                <div data-bind="text: secondaryCheckFormatted, visible: secondaryCheck.length > 0"></div>
-                                <div data-bind="text: saveFormatted, visible: savingThrow.value.length > 0"></div>
-                                <div data-bind="text: rangeFormatted, visible: range.length > 0"></div>
-                                <div data-bind="text: targetFormatted, visible: target.length > 0"></div>
-                                <div data-bind="text: durationFormatted, visible: duration.length > 0"></div>
+                                <div>
+                                    <span data-bind="text: sourceFormatted, visible: source.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: traditionsFormatted, visible: traditions.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: timeAndComponents"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: costFormatted, visible: cost.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: secondaryCastersFormatted, visible: secondaryCasters.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: primaryCheckFormatted, visible: primaryCheck.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: secondaryCheckFormatted, visible: secondaryCheck.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: saveFormatted, visible: savingThrow.value.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: rangeFormatted, visible: range.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: targetFormatted, visible: target.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: durationFormatted, visible: duration.length > 0"></span>
+                                </div>
                                 <hr>
                                 <div data-bind="html: description"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <button data-bind="click: function(){$root.character().addSpell(spellBookLevel(), name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="btn btn-primary">+ Add to Spellbook</button>
+                                <button data-bind="click: function(){$root.character().addSpell(spellBookLevel(), name)}, disable: $root.character().hasSpell(name)" type="button" id="btn-learn-spell" class="rpgui-button golden"><p>+ Add to Spellbook</p></button>
                             </div>
                         </div>
                     </div>
@@ -951,9 +968,9 @@
                     size="2">
                         <!--gear listbox here-->
                     </select>
-                    <div class="  catalog-filters">
+                    <div class="rpgui-container framed catalog-filters">
                         <div class="form-group">
-                            <button type="button" id="btn-clear-filters" class="btn btn-primary">Clear Filters</button>
+                            <button type="button" id="btn-clear-filters" class="rpgui-button"><p>Unfilter</p></button>
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
@@ -997,7 +1014,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-bind="with: gear" id="catalog-content" class="gear-container block  container-fluid">
+                    <div data-bind="with: gear" id="catalog-content" class="gear-container block rpgui-container framed-golden-2 container-fluid">
                         <div class="row" id="catalog-text-row">
                             <div class="col" id="catalog-text-col">
                                 <h3 data-bind="text: typeAndLevel" id="type-level"></h3>
@@ -1007,18 +1024,34 @@
                                     <span data-bind="text: $data" class="catalog-tag"></span>
                                     <!-- /ko -->
                                 </div>
-                                <div data-bind="text: sourceFormatted, visible: source.length > 0"></div>
                                 <div>
-                                    <span data-bind="text: priceFormatted"></span>;&nbsp
+                                    <span data-bind="text: sourceFormatted, visible: source.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: priceFormatted"></span><span>,</span>&nbsp
                                     <span data-bind="text: weightFormatted"></span>
                                 </div>
-                                <div data-bind="text: armorStats, visible: acBonus > 0 && hardness == 0"></div>
-                                <div data-bind="text: weaponStats, visible: damage.dice > 0"></div>
-                                <div data-bind="text: shieldStats, visible: hardness > 0"></div>
-                                <div data-bind="text: groupFormatted, visible: group.length > 0"></div>
-                                <div data-bind="text: categoryFormatted, visible: category.length > 0"></div>
-                                <div data-bind="text: usageFormatted, visible: usage.length > 0"></div>
-                                <div data-bind="text: baseFormatted, visible: baseItem.length > 0"></div>
+                                <div>
+                                    <span data-bind="text: armorStats, visible: acBonus > 0 && hardness == 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: weaponStats, visible: damage.dice > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: shieldStats, visible: hardness > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: groupFormatted, visible: group.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: categoryFormatted, visible: category.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: usageFormatted, visible: usage.length > 0"></span>
+                                </div>
+                                <div>
+                                    <span data-bind="text: baseFormatted, visible: baseItem.length > 0"></span>
+                                </div>
                                 <hr>
                                 <div data-bind="html: description"></div>
                             </div>

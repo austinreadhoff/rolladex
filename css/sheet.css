@@ -42,7 +42,8 @@
     height: 1.75em;
 }
 
-.rpgui-content input[type=checkbox].rpgui-checkbox+label{
+.rpgui-content input[type=checkbox].rpgui-checkbox+label,
+.rpgui-content input[type=radio].rpgui-radio+label {
     margin-top: 3px;
     margin-bottom: 3px;
 }

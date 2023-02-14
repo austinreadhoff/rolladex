@@ -53,11 +53,11 @@ class SpellCatalogController implements CatalogController<Spell>{
                     });
                 });
     
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#category-filters"), "category", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", () => { this.filterCatalog(); }, true);
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#tradition-filters"), "traditions", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#category-filters"), "category", "spells", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog(); }, true);
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#tradition-filters"), "traditions", "spells", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(); });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement

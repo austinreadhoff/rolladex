@@ -40,10 +40,10 @@ class SpellCatalogController implements CatalogController<Spell> {
                 setupFilterToggle(this.baseElement.querySelector("#school-filter-toggle"), this.baseElement.querySelector("#school-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#source-filter-toggle"), this.baseElement.querySelector("#source-filters"));
     
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", () => { this.filterCatalog() }, true);
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#class-filters"), "classes", () => { this.filterCatalog() });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", () => { this.filterCatalog() });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", () => { this.filterCatalog() });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog() }, true);
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#class-filters"), "classes", "spells", () => { this.filterCatalog() });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog() });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog() });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
