@@ -644,10 +644,10 @@
 
             <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
                 <div id="spellbook-container" class="container-fluid">
-                    <div class="header row block ">
+                    <div class="header row rpgui-container framed-golden">
                         <div class="form-group col-2">
                             <label for="spellcasting-tradition">Magical Traition</label>
-                            <select id="spellcasting-tradition" data-bind="value: spellcastingTradition">
+                            <select id="spellcasting-tradition" class="rpgui-dropdown" data-bind="value: spellcastingTradition" style="width:50%;">
                               <option value="arcane">Arcane</option>
                               <option value="divine">Divine</option>
                               <option value="occult">Occult</option>
@@ -655,14 +655,14 @@
                             </select>
                         </div>
                         <div class="form-group col-2">
-                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-prepared" value="1">
-                            <label for="spell-rest-prepared">Prepared</label>
-                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-spontaneous" value="2">
-                            <label for="spell-rest-spontaneous">Spontaneous</label>
+                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-prepared" class="rpgui-radio" value="1">
+                            <label for="spell-type-prepared">Prepared</label>
+                            <input data-bind="checked: spellcastingType" type="radio" name="spell-type" id="spell-type-spontaneous" class="rpgui-radio" value="2">
+                            <label for="spell-type-spontaneous">Spontaneous</label>
                         </div>
                         <div class="form-group col-2">
                             <label for="spellcasting-ability">Spellcasting Ability</label>
-                            <select id="spellcasting-ability" data-bind="value: spellcastingAbility">
+                            <select id="spellcasting-ability" class="rpgui-dropdown" data-bind="value: spellcastingAbility" style="width:50%;">
                               <option value="STR">STR</option>
                               <option value="DEX">DEX</option>
                               <option value="CON">CON</option>
@@ -671,20 +671,21 @@
                               <option value="CHAR">CHA</option>
                             </select>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="text-align: center;">
                             <div data-bind="skillbox: spellDCProficiency" class="skillbox" id="spell-dc-prof"></div>
-                            <label class="form-check-label" for="spell-dc-prof">Spell DC = </label>
+                            <label class="form-check-label" for="spell-dc-prof">Spell DC = </label><br/><br/>
                             <span data-bind="text: abilityDC(spellcastingAbility(), spellDCProficiency())" id="spell-dc"></span>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="text-align: center;">
                             <div data-bind="skillbox: spellAttackProficiency" class="skillbox" id="spell-attack-prof"></div>
-                            <label class="form-check-label" for="spell-attack-prof">Spell Attack Roll = </label>
+                            <label class="form-check-label" for="spell-attack-prof">Spell Attack Roll = </label><br/><br/>
                             <span data-bind="text: abilityMod(spellcastingAbility(), spellAttackProficiency())" id="spell-attack"></span>
                         </div>
                     </div>
                     <div data-bind="foreach: spellLevels" class="row">
-                        <div data-bind="attr: { 'data-level': level }" class="container block  spell-block">
-                            <label data-bind="text: levelFormatted" class="row full-width-label"></label>
+                        <div data-bind="attr: { 'data-level': level }" class="container spell-block rpgui-container framed">
+                            <label data-bind="text: levelFormatted" class="full-width-label"></label>
+                            <button data-bind="click: function(){$parent.addSpell(level())}" type="button" id="btn-add-spell" class="rpgui-button btn-small">+</button>
                             <div id="spells">
                                 <!--ko if: (level() < 11)-->
                                 <div class="spell-slot-container">
@@ -702,12 +703,13 @@
                                 <!-- /ko -->
                                 <!-- ko foreach: spells -->
                                 <div class="spell-row row">
-                                    <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="btn btn-danger btn-small">-</button>
+                                    <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="rpgui-button btn-small">-</button>
                                     <div class="autocomplete col">
                                         <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class="form-control spell-input spell-name">
                                     </div>
                                     <!-- ko if: ($parent.level() < 11 || $parent.level() == 12)-->
-                                    <input data-bind="checked: prepared" class="col-1 spell-input spell-prepared print-hidden" type="checkbox">
+                                    <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-input spell-prepared rpgui-checkbox print-hidden" type="checkbox">
+                                    <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }"></label>
                                     <!-- /ko -->
                                     <!-- ko if: ($parent.level() == 11)-->
                                     <input data-bind="textInput: innateCurrent" class="col-1 form-control spell-input innate-current" value="0">
@@ -716,9 +718,6 @@
                                     <!-- /ko -->
                                 </div>
                                 <!-- /ko -->
-                            </div>
-                            <div class="row">
-                                <button data-bind="click: function(){$parent.addSpell(level())}" type="button" id="btn-add-spell" class="btn btn-primary btn-small">+</button>
                             </div>
                         </div>
                     </div>

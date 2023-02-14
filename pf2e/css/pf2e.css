@@ -18,6 +18,10 @@
     color: gold;
 }
 
+#spell-dc, #spell-attack{
+    font-size: 2em;
+}
+
 #catalog-text-col{
     border: 1px solid white;
     border-radius: 0.25rem;
