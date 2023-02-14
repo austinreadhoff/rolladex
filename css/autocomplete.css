@@ -25,7 +25,7 @@
 }
 .autocomplete-items div {
   padding: 10px;
-  cursor: pointer;
+  cursor: url("../node_modules/rpgui/img/cursor/point.png") 10 0,auto;
   background-color: #854c30;
   border-bottom: 1px solid #d4d4d4;
 }

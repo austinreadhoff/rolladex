@@ -1,5 +1,9 @@
 ## 0.3.1
 - [ ] Visual Overhaul
+    - [X] RPGUI on sheets
+    - [ ] Pixelate money images
+    - [ ] Custom progress bar component
+    - [ ] Do something with the startup page
 
 ## 0.3.0
 - [X] MacOS Compatilibity
