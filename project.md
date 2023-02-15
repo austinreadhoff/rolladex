@@ -4,6 +4,7 @@
     - [X] Pixelate money images
     - [ ] Custom progress bar component
     - [ ] Do something with the startup page
+    - [ ] print.css
 
 ## 0.3.0
 - [X] MacOS Compatilibity

@@ -1,0 +1,49 @@
+@font-face 
+{ 
+    font-family: 'PressStart';
+    src: url('../fonts/PressStart2P.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/PressStart2P.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/PressStart2P.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/PressStart2P.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/PressStart2P.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/PressStart2P.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body{
+    background-image: url("../img/landing_bg.png") !important;
+}
+.rpgui-content * {
+    font-family: "PressStart";
+}
+
+#content{
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+#title{
+    position: relative;
+    width: fit-content;
+    margin: 1em auto 0 auto;
+    font-size: 4em;
+}
+#games-container{
+    margin-top: 3em;
+    font-size: 1.5em;
+    text-align: center;
+}
+#games{
+    display: inline-block;
+    text-align: left;
+}
+
+#games a {
+    color: white;
+}
+#games .link-letter{
+    color: yellow;
+}
+#games a:hover {
+    text-decoration: none;
+    color: yellow;
+}
