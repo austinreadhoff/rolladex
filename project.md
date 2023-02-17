@@ -3,8 +3,9 @@
     - [X] RPGUI on sheets
     - [X] Pixelate money images
     - [ ] Custom progress bar component
-    - [ ] Do something with the startup page
+    - [X] Do something with the startup page
     - [ ] print.css
+    - [ ] update icon for windows/linux
 
 ## 0.3.0
 - [X] MacOS Compatilibity
