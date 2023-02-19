@@ -9,7 +9,7 @@
     - [ ] print.css
     - [ ] update icon for windows/linux
 - [ ] pf2e Spells missing property? Check acidic burst area
-- [ ] autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
+- [X] autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
 
 ## 0.3.0
 - [X] MacOS Compatilibity

@@ -27,7 +27,7 @@ export function initSpellAutoComplete(input: Node, spellOptions: string[], obser
                 b.innerHTML += "<strong>" + spellOptions[i].substr(matchIndex, val.length) + "</strong>";
                 b.innerHTML += "<span>" + spellOptions[i].substr(matchIndex + val.length) + "</span>";
                 /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + spellOptions[i] + "'>";
+                b.innerHTML += `<input type='hidden' value="${spellOptions[i]}">`;
                 /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function (e) {
                     /*insert the value for the autocomplete text field:*/
