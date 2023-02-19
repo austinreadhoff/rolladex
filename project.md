@@ -8,8 +8,8 @@
     - [X] Do something with the startup page
     - [ ] print.css
     - [ ] update icon for windows/linux
-- [ ] pf2e Spells missing property? Check acidic burst area
-- [X] autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
+- [X] pf2e missing area property
+- [X] autocomplete doesn't work with apostrophes
 
 ## 0.3.0
 - [X] MacOS Compatilibity

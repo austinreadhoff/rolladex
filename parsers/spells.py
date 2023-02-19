@@ -6,8 +6,8 @@ def del_if_exists(obj, prop):
         del obj[prop]
 
 def extract_from_system(obj, prop):
-    if prop in obj["system"]:
-        if "value" in obj["system"][prop] and prop != "traits" and prop != "save":
+    if prop in obj["system"] and obj["system"][prop] is not None:
+        if "value" in obj["system"][prop] and prop != "traits" and prop != "save" and prop != "area":
             obj[prop] = obj["system"][prop]["value"]
         else:
             obj[prop] = obj["system"][prop]
@@ -28,6 +28,7 @@ for filename in os.listdir(input_dir):
     del_if_exists(spell,"img")
     del_if_exists(spell,"type")
 
+    extract_from_system(spell, "area")
     extract_from_system(spell, "category")
     extract_from_system(spell, "cost")
     extract_from_system(spell, "components")

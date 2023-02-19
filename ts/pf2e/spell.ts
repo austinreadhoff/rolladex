@@ -3,6 +3,7 @@ import { CatalogObject, CatalogTraits } from "../shared/catalog";
 
 export class Spell extends CatalogObject {
     name: string;
+    area: SpellArea;
     category: string;
     components: SpellComponentProperties;
     cost: string;
@@ -68,6 +69,10 @@ export class Spell extends CatalogObject {
 
         return s;
     });
+
+    areaFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        return "Area: " + this.area.value + "ft " + this.area.type;
+    });
     
     costFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
         return "Cost: " + this.cost;
@@ -131,6 +136,7 @@ export class Spell extends CatalogObject {
         + (this.secondaryCasters.length > 0 ? this.secondaryCastersFormatted() + "\n" : "")
         + (this.primaryCheck.length > 0 ? this.primaryCheckFormatted() + "\n" : "")
         + (this.secondaryCheck.length > 0 ? this.secondaryCheckFormatted() + "\n" : "")
+        + (this.area.type.length > 0 ? this.areaFormatted() + "\n" : "")
         + (this.savingThrow.value.length > 0 ? this.saveFormatted() + "\n" : "")
         + (this.range.length > 0 ? this.rangeFormatted() + "\n" : "")
         + (this.target.length > 0 ? this.targetFormatted() + "\n" : "")
@@ -146,6 +152,11 @@ export class Spell extends CatalogObject {
 
         if(json === undefined){
             this.name = "";
+
+            this.area = new SpellArea;
+            this.area.type = "";
+            this.area.value = "";
+
             this.category = "";
                 
             this.components = new SpellComponentProperties;
@@ -153,7 +164,7 @@ export class Spell extends CatalogObject {
             this.components.material = false;
             this.components.somatic = false;
             this.components.verbal = false;
-            
+
             this.cost = "";
             this.description = "";
             this.duration = "";
@@ -180,6 +191,17 @@ export class Spell extends CatalogObject {
         }
         else{
             this.name = json["name"];
+
+            this.area = new SpellArea;
+            if (json["area"] == undefined){
+                this.area.type = "";
+                this.area.value = "";
+            }
+            else{
+                this.area.type = json["area"]["type"];
+                this.area.value = json["area"]["value"];
+            }
+
             this.category = json["category"];
             
             this.components = new SpellComponentProperties;
@@ -235,6 +257,11 @@ export class SpellComponentProperties {
 
 	return output;
     }
+}
+
+export class SpellArea{
+    type: string;
+    value: string;
 }
 
 export class SpellSave {
