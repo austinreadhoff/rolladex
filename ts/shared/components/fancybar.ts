@@ -21,10 +21,27 @@ export class FancyBarViewModel {
         let max: number;
 
         if (this.currentValue().indexOf('d') > -1){
-            current = +this.currentValue().substring(0, this.currentValue().indexOf('d'));
-            max = +this.maxValue().substring(0, this.maxValue().indexOf('d'));
+            //Multiple types of dice: xda,ydb
+            if (this.currentValue().indexOf(',') > -1){
+                current = 0;
+                max = 0;
+
+                this.currentValue()
+                    .split(',')
+                    .map(d => current += +d.substring(0, this.currentValue().indexOf('d')));
+
+                this.maxValue()
+                    .split(',')
+                    .map(d => max += +d.substring(0, this.maxValue().indexOf('d')));
+            }
+            //Single dice: xda
+            else{
+                current = +this.currentValue().substring(0, this.currentValue().indexOf('d'));
+                max = +this.maxValue().substring(0, this.maxValue().indexOf('d'));
+            }
         }
         else{
+            //Just numbers
             current = +this.currentValue();
             max = +this.maxValue();
         }
@@ -42,11 +59,40 @@ export class FancyBarViewModel {
             return percent + "%";
     }
 
-    //assumes current value is already a number, or xdx format
+    //assumes current value is already a number, or in dice format
     adjust(amt: number){
         let current: number;
         let max: number;
         let isDFormat: boolean = this.currentValue().indexOf('d') > -1;
+        let isMultiD: boolean = this.currentValue().indexOf(',') > -1 && isDFormat;
+
+        if (isMultiD){
+            let dIndex: number;
+            let currentValues = this.currentValue()
+                .split(',')
+                .map(d => +d.substring(0, this.currentValue().indexOf('d')));
+
+            let maxValues = this.maxValue()
+                .split(',')
+                .map(d => +d.substring(0, this.maxValue().indexOf('d')));
+
+            if (amt > 0){
+                dIndex = currentValues.findIndex((v, i) => v + amt <= maxValues[i]);
+            }
+            else{
+                dIndex = currentValues.findIndex(v => v + amt >= 0);
+            }
+
+            if (dIndex > -1){
+                let dice = this.currentValue().split(',');
+                current = +(dice[dIndex].substring(0,this.currentValue().indexOf('d')));
+                let suffix = dice[dIndex].substring(this.currentValue().indexOf('d'));
+                dice[dIndex] = ((current + amt).toString() + suffix);
+                this.currentValue(dice.join(','));
+            }
+
+            return;
+        }
 
         if (isDFormat){
             current = +this.currentValue().substring(0, this.currentValue().indexOf('d'));

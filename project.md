@@ -2,9 +2,9 @@
 - [ ] Visual Overhaul
     - [X] RPGUI on sheets
     - [X] Pixelate money images
-    - [ ] Custom progress bar component
+    - [X] Custom progress bar component
         - [X] Base implementation
-        - [ ] Support multiple types of hit dice
+        - [X] Support multiple types of hit dice
     - [X] Do something with the startup page
     - [ ] print.css
     - [ ] update icon for windows/linux
