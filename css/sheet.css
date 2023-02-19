@@ -76,7 +76,7 @@ input {
 .full-width-label{
     width: 100%;
 }
-.form-control[readonly]{
+input[readonly]{
     background-color: #444 !important;
 }
 

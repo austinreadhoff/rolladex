@@ -23,7 +23,7 @@ input, textarea{
     display: block !important;
 }
 
-.form-control[readonly]{
+input[readonly]{
     color: black !important;
 }
 

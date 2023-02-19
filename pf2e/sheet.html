@@ -39,55 +39,55 @@
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="character-name">Character Name</label>
-                                    <input data-bind="textInput: characterName" id="character-name" class="form-control">
+                                    <input data-bind="textInput: characterName" id="character-name" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="player-name">Player Name</label>
-                                    <input data-bind="textInput: playerName" id="player-name" class="form-control">
+                                    <input data-bind="textInput: playerName" id="player-name" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="xp">Experience Points (XP)</label>
-                                    <input data-bind="textInput: xp" id="xp" class="form-control">
+                                    <input data-bind="textInput: xp" id="xp" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="level">Level</label>
-                                    <input data-bind="textInput: level" id="level" class="form-control">
+                                    <input data-bind="textInput: level" id="level" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="ancestry-heritage">Ancestry and Heritage</label>
-                                    <input data-bind="textInput: ancestryHeritage" id="ancestry-heritage" class="form-control">
+                                    <input data-bind="textInput: ancestryHeritage" id="ancestry-heritage" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="background">Background</label>
-                                    <input data-bind="textInput: background"id="background" class="form-control">
+                                    <input data-bind="textInput: background"id="background" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="character-class">Class</label>
-                                    <input data-bind="textInput: characterClass" id="character-class" class="form-control">
+                                    <input data-bind="textInput: characterClass" id="character-class" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="hero-points">Hero Points</label>
-                                    <input data-bind="textInput: heroPoints" id="hero-points" class="form-control">
+                                    <input data-bind="textInput: heroPoints" id="hero-points" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="size">Size</label>
-                                    <input data-bind="textInput: size" id="size" class="form-control">
+                                    <input data-bind="textInput: size" id="size" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="alignment">Alignment</label>
-                                    <input data-bind="textInput: alignment"id="alignment" class="form-control">
+                                    <input data-bind="textInput: alignment"id="alignment" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="traits">Traits</label>
-                                    <input data-bind="textInput: traits" id="traits" class="form-control">
+                                    <input data-bind="textInput: traits" id="traits" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="diety">Diety</label>
-                                    <input data-bind="textInput: diety" id="diety" class="form-control">
+                                    <input data-bind="textInput: diety" id="diety" >
                                 </div>
                             </div>
                         </div>
@@ -101,32 +101,32 @@
                                         <div class="ability-score-container form-group">
                                             <label>Strength</label>
                                             <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: str" id="str" class="form-control ability-input">
+                                            <input data-bind="textInput: str" id="str" class=" ability-input">
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Dexterity</label>
                                             <span data-bind="text: abilityMod(dex())" id="dex-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: dex" id="dex" class="form-control ability-input">
+                                            <input data-bind="textInput: dex" id="dex" class=" ability-input">
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Constitution</label>
                                             <span data-bind="text: abilityMod(con())" id="con-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: con" id="con" class="form-control ability-input">
+                                            <input data-bind="textInput: con" id="con" class=" ability-input">
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Intelligence</label>
                                             <span data-bind="text: abilityMod(int())" id="int-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: int" id="int" class="form-control ability-input">
+                                            <input data-bind="textInput: int" id="int" class=" ability-input">
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Wisdom</label>
                                             <span data-bind="text: abilityMod(wis())" id="wis-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: wis" id="wis" class="form-control ability-input">
+                                            <input data-bind="textInput: wis" id="wis" class=" ability-input">
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Charisma</label>
                                             <span data-bind="text: abilityMod(char())" id="char-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: char" id="char" class="form-control ability-input">
+                                            <input data-bind="textInput: char" id="char" class=" ability-input">
                                         </div>
                                     </div>
                                     <div id="skills-etc" class="rpgui-container framed">
@@ -277,7 +277,7 @@
                                                     <button data-bind="click: $parent.removeLoreSkill" type="button" id="btn-remove-lore" class="rpgui-button btn-small">-</button>
                                                     <div data-bind="skillbox: proficiency" class="skillbox lore-field"></div>
                                                     <span data-bind="text: $parent.abilityMod($parent.int(), proficiency())" ></span>
-                                                    <input data-bind="textInput: name" class="form-control lore-field">
+                                                    <input data-bind="textInput: name" class=" lore-field">
                                                 </div>
                                             </div>
                                         </div>
@@ -300,22 +300,22 @@
                                         <div class="row">
                                             <div class="col print-hidden">
                                                 <label>Temp HP</label>
-                                                <input data-bind="textInput: tempHP" id="temp-hp" class="form-control">
+                                                <input data-bind="textInput: tempHP" id="temp-hp" >
                                             </div>
                                             <div class="col">
                                                 <label>Dying</label>
-                                                <input data-bind="textInput: dying" id="dying" class="form-control">
+                                                <input data-bind="textInput: dying" id="dying" >
                                             </div>
                                             <div class="col">
                                                 <label>Wounded</label>
-                                                <input data-bind="textInput: wounded" id="wounded" class="form-control">
+                                                <input data-bind="textInput: wounded" id="wounded" >
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="form-group col textarea-col">
                                                 <label for="conditions">Conditions</label>
-                                                <textarea data-bind="textInput: conditions" class="form-control" id="conditions" rows="5"></textarea>
+                                                <textarea data-bind="textInput: conditions"  id="conditions" rows="5"></textarea>
                                             </div>
                                         </div>
                                         <hr>
@@ -326,11 +326,11 @@
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="armor-class">Armor Class</label>
-                                                <input data-bind="textInput: armorClass" id="armor-class" class="form-control">
+                                                <input data-bind="textInput: armorClass" id="armor-class" >
                                             </div>
                                             <div class="form-group col">
                                                 <label for="speed">Speed</label>
-                                                <input data-bind="textInput: speed" id="speed" class="form-control">
+                                                <input data-bind="textInput: speed" id="speed" >
                                             </div>
                                         </div>
                                         <div class="row">
@@ -380,7 +380,7 @@
                                         <div class="row">
                                             <div class="form-group col textarea-col">
                                                 <label for="languages">Languages</label>
-                                                <textarea data-bind="textInput: languages" class="form-control" id="languages" rows="5"></textarea>
+                                                <textarea data-bind="textInput: languages"  id="languages" rows="5"></textarea>
                                             </div>
                                             <div class="col">
                                                 <label>Other Weapons</label>
@@ -390,7 +390,7 @@
                                                         <button data-bind="click: $parent.removeOtherWeapon" type="button" id="btn-remove-other-weapon" class="rpgui-button btn-small">-</button>
                                                         <div data-bind="skillbox: proficiency" class="skillbox other-weapon-field"></div>
                                                         <span data-bind="text: $parent.simpleProficiency(proficiency())"></span>
-                                                        <input data-bind="textInput: name" class="form-control other-weapon-field">
+                                                        <input data-bind="textInput: name" class=" other-weapon-field">
                                                     </div>
                                                 </div>
                                             </div>
@@ -409,24 +409,24 @@
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label for="shield-bonus">Bonus</label>
-                                                <input data-bind="textInput: shieldBonus" id="shield-bonus" class="form-control">
+                                                <input data-bind="textInput: shieldBonus" id="shield-bonus" >
                                             </div>
                                             <div class="form-group col">
                                                 <label for="shield-hardness">Hardness</label>
-                                                <input data-bind="textInput: shieldHardness" id="shield-hardness" class="form-control">
+                                                <input data-bind="textInput: shieldHardness" id="shield-hardness" >
                                             </div>
                                             <div class="form-group col">
                                                 <label for="shield-bt">BT</label>
-                                                <input data-bind="textInput: shieldBT" id="shield-bt" class="form-control">
+                                                <input data-bind="textInput: shieldBT" id="shield-bt" >
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col container">
                                                 <label class="row">HP</label>
                                                 <div class="row">
-                                                    <input data-bind="textInput: shieldCurrentHP" id="shield-current-hp" class="form-control col-5 print-hidden">
+                                                    <input data-bind="textInput: shieldCurrentHP" id="shield-current-hp" class=" col-5 print-hidden">
                                                     <span class="col-1 print-hidden">/</span>
-                                                    <input data-bind="textInput: shieldMaxHP" id="shield-max-hp" class="form-control col-5">
+                                                    <input data-bind="textInput: shieldMaxHP" id="shield-max-hp" class=" col-5">
                                                 </div>
                                             </div>
                                         </div>
@@ -446,12 +446,12 @@
                                         <div data-bind="foreach: attackStats" id="attack-stats">
                                             <div class="attack-stat-row row">
                                                 <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="rpgui-button btn-small">-</button>
-                                                <input data-bind="textInput: name" class="form-control col-4 attack-stat attack-stat-name">
-                                                <input data-bind="textInput: bonus" class="form-control col-2 attack-stat attack-stat-bonus">
-                                                <input data-bind="textInput: dmg" class="form-control col-4 attack-stat attack-stat-dmg">
+                                                <input data-bind="textInput: name" class=" col-4 attack-stat attack-stat-name">
+                                                <input data-bind="textInput: bonus" class=" col-2 attack-stat attack-stat-bonus">
+                                                <input data-bind="textInput: dmg" class=" col-4 attack-stat attack-stat-dmg">
                                             </div>
                                             <div class="attack-stat-row row">
-                                                <input data-bind="textInput: traits" class="form-control col-12 attack-stat attack-stat-traits">
+                                                <input data-bind="textInput: traits" class=" col-12 attack-stat attack-stat-traits">
                                             </div>
                                         </div>
                                     </div>
@@ -470,7 +470,7 @@
                                 <button data-bind="click: $parent.removeMiscCounter" type="button" id="btn-remove-counter" class="rpgui-button btn-small">-</button>
                                 <input data-bind="checked: rest, attr: { id: 'misc-counter-reset-'+$index() }" type="checkbox" class="misc-counter rpgui-checkbox">
                                 <label data-bind="attr: { for: 'misc-counter-reset-'+$index() }">Reset Daily</label>
-                                <input data-bind="textInput: name" class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
+                                <input data-bind="textInput: name" class=" misc-counter counter-name" placeholder="Custom Counter Name">
                                 <div>
                                     <fancy-bar params="currentValue: current, maxValue: max, color: null"></fancy-bar>
                                 </div>
@@ -484,7 +484,7 @@
                 <div id="feats-container" class="container-fluid">
                     <div class="form-group col textarea-col rpgui-container framed-golden-2">
                         <label for="featsFeatures">Feats & Features</label>
-                        <textarea data-bind="textInput: featsFeatures" class="form-control" id="feats-features" rows="25"></textarea>
+                        <textarea data-bind="textInput: featsFeatures"  id="feats-features" rows="25"></textarea>
                     </div>
                 </div>
             </div>
@@ -494,36 +494,36 @@
                     <div class="header row block ">
                         <div class="col-6 form-group">
                             <label for="appearance">Appearance</label>
-                            <textarea data-bind="textInput: appearance" id="appearance" class="form-control" rows="5"></textarea>
+                            <textarea data-bind="textInput: appearance" id="appearance"  rows="5"></textarea>
                         </div>
     
                         <div class="col-6 container">
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="ethnicity">Ethnicity</label>
-                                    <input data-bind="textInput: ethnicity" id="ethnicity" class="form-control">
+                                    <input data-bind="textInput: ethnicity" id="ethnicity" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="nationality">Nationality</label>
-                                    <input data-bind="textInput: nationality" id="nationality" class="form-control">
+                                    <input data-bind="textInput: nationality" id="nationality" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="birthplace">Birthplace</label>
-                                    <input data-bind="textInput: birthplace" id="birthplace" class="form-control">
+                                    <input data-bind="textInput: birthplace" id="birthplace" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="age">Age</label>
-                                    <input data-bind="textInput: age" id="age" class="form-control">
+                                    <input data-bind="textInput: age" id="age" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="ht-wt">HT/WT</label>
-                                    <input data-bind="textInput: heightWeight" id="ht-wt" class="form-control">
+                                    <input data-bind="textInput: heightWeight" id="ht-wt" >
                                 </div>
                                 <div class="form-group col">
                                     <label for="gender">Gender/Pronouns</label>
-                                    <input data-bind="textInput: gender" id="gender" class="form-control">
+                                    <input data-bind="textInput: gender" id="gender" >
                                 </div>
                             </div>
                         </div>
@@ -531,33 +531,33 @@
                     <div class="row">
                         <div class="col-3 form-group">
                             <label for="attitude">Attitude</label>
-                            <textarea data-bind="textInput: attitude" class="form-control" id="attitude" rows="4"></textarea>
+                            <textarea data-bind="textInput: attitude"  id="attitude" rows="4"></textarea>
                         </div>
                         <div class="col-3 form-group">
                             <label for="beliefs">Beliefs</label>
-                            <textarea data-bind="textInput: beliefs" class="form-control" id="beliefs" rows="4"></textarea>
+                            <textarea data-bind="textInput: beliefs"  id="beliefs" rows="4"></textarea>
                         </div>
                         <div class="col-2 form-group">
                             <label for="likes">Likes</label>
-                            <textarea data-bind="textInput: likes" class="form-control" id="likes" rows="4"></textarea>
+                            <textarea data-bind="textInput: likes"  id="likes" rows="4"></textarea>
                         </div>
                         <div class="col-2 form-group">
                             <label for="dislikes">Dislikes</label>
-                            <textarea data-bind="textInput: dislikes" class="form-control" id="dislikes" rows="4"></textarea>
+                            <textarea data-bind="textInput: dislikes"  id="dislikes" rows="4"></textarea>
                         </div>
                         <div class="col-2 form-group">
                             <label for="catchphrases">Catchphrases</label>
-                            <textarea data-bind="textInput: catchphrases" class="form-control" id="catchphrases" rows="4"></textarea>
+                            <textarea data-bind="textInput: catchphrases"  id="catchphrases" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 form-group">
                             <label for="backstory">Backstory</label>
-                            <textarea data-bind="textInput: backstory" class="form-control" id="backstory" rows="10"></textarea>
+                            <textarea data-bind="textInput: backstory"  id="backstory" rows="10"></textarea>
                         </div>
                         <div class="col-6 form-group">
                             <label for="party">Party</label>
-                            <textarea data-bind="textInput: party" class="form-control" id="party" rows="10"></textarea>
+                            <textarea data-bind="textInput: party"  id="party" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
@@ -570,7 +570,7 @@
                             <div class="row ">
                                 <div class="col-2 form-group">
                                     <label for="bulk">Bulk</label>
-                                    <input data-bind="textInput: bulk" id="bulk" class="form-control">
+                                    <input data-bind="textInput: bulk" id="bulk" >
                                 </div>
                                 <div class="col-5 form-group">
                                     <p>Encumberance Over: <span data-bind="text: encumberanceLimit()"></span></p>
@@ -588,53 +588,53 @@
                                     <div class="col form-group">
                                         <img class="currency" src="../img/pixelated/cp.png">
                                         <label for="copper">CP</label>
-                                        <input data-bind="textInput: copper" id="copper" class="form-control">
+                                        <input data-bind="textInput: copper" id="copper" >
                                     </div>
                                     <div class="col form-group">
                                         <img class="currency" src="../img/pixelated/sp.png">
                                         <label for="silver">SP</label>
-                                        <input data-bind="textInput: silver" id="silver" class="form-control">
+                                        <input data-bind="textInput: silver" id="silver" >
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
                                         <img class="currency" src="../img/pixelated/gp.png">
                                         <label for="gold">GP</label>
-                                        <input data-bind="textInput: gold" id="gold" class="form-control">
+                                        <input data-bind="textInput: gold" id="gold" >
                                     </div>
                                     <div class="col form-group">
                                         <img class="currency" src="../img/pixelated/pp.png">
                                         <label for="platinum">PP</label>
-                                        <input data-bind="textInput: platinum" id="platinum" class="form-control">
+                                        <input data-bind="textInput: platinum" id="platinum" >
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3 form-group">
                             <label for="stored-money">Stored Money</label>
-                            <textarea data-bind="textInput: storedMoney" class="form-control" id="stored-money" rows="6"></textarea>
+                            <textarea data-bind="textInput: storedMoney"  id="stored-money" rows="6"></textarea>
                         </div>
                         <div class="col-3 form-group">
                             <label for="gems">Gems and Valuables</label>
-                            <textarea data-bind="textInput: gems" class="form-control" id="gems" rows="6"></textarea>
+                            <textarea data-bind="textInput: gems"  id="gems" rows="6"></textarea>
                         </div>
                         <div class="col-3 form-group">
                             <label for="assets">Holdings and Assets</label>
-                            <textarea data-bind="textInput: assets" class="form-control" id="assets" rows="6"></textarea>
+                            <textarea data-bind="textInput: assets"  id="assets" rows="6"></textarea>
                         </div>
                     </div>
                     <div class="row rpgui-container framed">
                         <div class="col-4 form-group">
                             <label for="items-equipped">Equipped</label>
-                            <textarea data-bind="textInput: itemsEquipped" class="form-control" id="items-equipped" rows="14"></textarea>
+                            <textarea data-bind="textInput: itemsEquipped"  id="items-equipped" rows="14"></textarea>
                         </div>
                         <div class="col-4 form-group">
                             <label for="items-permanent">Permanent Items</label>
-                            <textarea data-bind="textInput: itemsPermanent" class="form-control" id="items-permanent" rows="14"></textarea>
+                            <textarea data-bind="textInput: itemsPermanent"  id="items-permanent" rows="14"></textarea>
                         </div>
                         <div class="col-4 form-group">
                             <label for="items-consumable">Consumables</label>
-                            <textarea data-bind="textInput: itemsConsumable" class="form-control" id="items-consumable" rows="14"></textarea>
+                            <textarea data-bind="textInput: itemsConsumable"  id="items-consumable" rows="14"></textarea>
                         </div>
                     </div>
                 </div>
@@ -699,7 +699,7 @@
                                 <div class="spell-row row">
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="rpgui-button btn-small">-</button>
                                     <div class="autocomplete col">
-                                        <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class="form-control spell-input spell-name">
+                                        <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class=" spell-input spell-name">
                                     </div>
                                     <!-- ko if: ($parent.level() < 11 || $parent.level() == 12)-->
                                     <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-input spell-prepared rpgui-checkbox print-hidden" type="checkbox">
@@ -707,9 +707,9 @@
                                     <!-- /ko -->
                                     <!-- ko if: ($parent.level() == 11)-->
 
-                                    <input data-bind="textInput: innateCurrent" class="col-2 form-control spell-input innate-current" value="0">
+                                    <input data-bind="textInput: innateCurrent" class="col-2  spell-input innate-current" value="0">
                                     <span>/</span>
-                                    <input data-bind="textInput: innateMax" class="col-2 form-control spell-input innate-max" value="0">
+                                    <input data-bind="textInput: innateMax" class="col-2  spell-input innate-max" value="0">
                                     <!-- /ko -->
                                 </div>
                                 <!-- /ko -->
@@ -733,11 +733,11 @@
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
-                            <input id="filter-name" class="form-control ignore">
+                            <input id="filter-name" class=" ignore">
                         </div>
                         <div class="form-group">
                             <label for="filter-tags">Tags (; delimted)</label>
-                            <input id="filter-tags" class="form-control ignore">
+                            <input id="filter-tags" class=" ignore">
                         </div>
                         <div class="form-group">
                             <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
@@ -823,11 +823,11 @@
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
-                            <input id="filter-name" class="form-control ignore">
+                            <input id="filter-name" class=" ignore">
                         </div>
                         <div class="form-group">
                             <label for="filter-tags">Tags (; delimted)</label>
-                            <input id="filter-tags" class="form-control ignore">
+                            <input id="filter-tags" class=" ignore">
                         </div>
                         <div class="form-group">
                             <div class="filter-toggle" id="category-filter-toggle"><label for="category-filters">Category    </label><span class="filter-toggle-icon">‣</span></div>
@@ -968,11 +968,11 @@
                         </div>
                         <div class="form-group">
                             <label for="filter-name">Name</label>
-                            <input id="filter-name" class="form-control ignore">
+                            <input id="filter-name" class=" ignore">
                         </div>
                         <div class="form-group">
                             <label for="filter-tags">Tags (; delimted)</label>
-                            <input id="filter-tags" class="form-control ignore">
+                            <input id="filter-tags" class=" ignore">
                         </div>
                         <div class="form-group">
                             <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>
