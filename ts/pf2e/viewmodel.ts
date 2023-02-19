@@ -5,6 +5,7 @@ import { Feat } from "./feat";
 import { Gear } from "./gear";
 import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
+import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -37,6 +38,11 @@ export var viewModel = new ViewModel(new Character,
 
 //to be executed on document ready
 export function applyDataBinding(){
+    ko.components.register("fancy-bar", {
+        viewModel: FancyBarViewModel,
+        template: FancyBarTemplate
+    });
+
     //valueAccessor: { the spellBookLevel (1-14), spell name }
     ko.bindingHandlers.bindSpell = {
         init: function(element: Node, valueAccessor: any){

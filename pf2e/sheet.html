@@ -293,24 +293,22 @@
                                             <div class="col container">
                                                 <label class="row">Hit Points</label>
                                                 <div class="row">
-                                                    <input data-bind="textInput: currentHP" id="current-hp" class="form-control col-5 print-hidden">
-                                                    <span class="col-1 print-hidden">/</span>
-                                                    <input data-bind="textInput: maxHP" id="max-hp" class="form-control col-5">
+                                                    <fancy-bar params="currentValue: currentHP, maxValue: maxHP, color: 'red'"></fancy-bar>
                                                 </div>
-                                            </div>
-                                            <div class="col print-hidden">
-                                                <label class="col">Temporary HP</label>
-                                                <input data-bind="textInput: tempHP" id="temp-hp" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col container">
-                                                <label class="row">Dying</label>
-                                                <input data-bind="textInput: dying" id="dying" class="form-control row">
+                                            <div class="col print-hidden">
+                                                <label>Temp HP</label>
+                                                <input data-bind="textInput: tempHP" id="temp-hp" class="form-control">
                                             </div>
-                                            <div class="col container">
-                                                <label class="row">Wounded</label>
-                                                <input data-bind="textInput: wounded" id="wounded" class="form-control row">
+                                            <div class="col">
+                                                <label>Dying</label>
+                                                <input data-bind="textInput: dying" id="dying" class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                <label>Wounded</label>
+                                                <input data-bind="textInput: wounded" id="wounded" class="form-control">
                                             </div>
                                         </div>
                                         <hr>
@@ -473,10 +471,8 @@
                                 <input data-bind="checked: rest, attr: { id: 'misc-counter-reset-'+$index() }" type="checkbox" class="misc-counter rpgui-checkbox">
                                 <label data-bind="attr: { for: 'misc-counter-reset-'+$index() }">Reset Daily</label>
                                 <input data-bind="textInput: name" class="form-control misc-counter counter-name" placeholder="Custom Counter Name">
-                                <div class="counter-container">
-                                    <input data-bind="textInput: current" class="form-control misc-counter counter-current" placeholder="Current">
-                                    <span>/</span>
-                                    <input data-bind="textInput: max" class="form-control misc-counter counter-max" placeholder="Max">
+                                <div>
+                                    <fancy-bar params="currentValue: current, maxValue: max, color: null"></fancy-bar>
                                 </div>
                             </div>
                         </div>
@@ -691,16 +687,12 @@
                             <div id="spells">
                                 <!--ko if: (level() < 11)-->
                                 <div class="spell-slot-container">
-                                    <input data-bind="textInput: slotsRemaining" class="form-control spell-input spell-slots-remaining" value="0">
-                                    <span>/</span>
-                                    <input data-bind="textInput: slotsTotal" class="form-control spell-input spell-slots-total" value="0">
+                                    <fancy-bar params="currentValue: slotsRemaining, maxValue: slotsTotal, color: 'blue'"></fancy-bar>
                                 </div>
                                 <!-- /ko -->
                                 <!--ko if: (level() == 13)-->
                                 <div class="spell-slot-container">
-                                    <input data-bind="textInput: focusPointsRemaining" class="form-control spell-input focus-points-remaining" value="0">
-                                    <span>/</span>
-                                    <input data-bind="textInput: focusPointsTotal" class="form-control spell-input focus-points-total" value="0">
+                                    <fancy-bar params="currentValue: focusPointsRemaining, maxValue: focusPointsTotal, color: 'blue'"></fancy-bar>
                                 </div>
                                 <!-- /ko -->
                                 <!-- ko foreach: spells -->
@@ -714,9 +706,10 @@
                                     <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }"></label>
                                     <!-- /ko -->
                                     <!-- ko if: ($parent.level() == 11)-->
-                                    <input data-bind="textInput: innateCurrent" class="col-1 form-control spell-input innate-current" value="0">
+
+                                    <input data-bind="textInput: innateCurrent" class="col-2 form-control spell-input innate-current" value="0">
                                     <span>/</span>
-                                    <input data-bind="textInput: innateMax" class="col-1 form-control spell-input innate-max" value="0">
+                                    <input data-bind="textInput: innateMax" class="col-2 form-control spell-input innate-max" value="0">
                                     <!-- /ko -->
                                 </div>
                                 <!-- /ko -->

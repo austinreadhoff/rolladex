@@ -137,14 +137,11 @@ img.currency{
     margin: 0 5px;
 }
 .misc-counter-block{
+    width: 30%;
     margin: 0 5px;
 }
 .counter-name{
     margin: 5px 0;
-}
-.counter-container *, .spell-slot-container *{
-    display: inline-block;
-    width: auto;
 }
 
 .spell-row {
@@ -225,4 +222,32 @@ img.currency{
 }
 #btn-learn-spell{
     margin-top: 1em;
+}
+
+fancy-bar{
+    display: contents;
+}
+fancy-bar button{
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+}
+fancy-bar .fancy-minus{
+    left: 6px;
+}
+fancy-bar .fancy-plus{
+    right: 5px;
+}
+.fancy-bar-inputs{
+    position: absolute;
+    z-index: 1;
+    margin-top: 10px;
+    color: white;
+    font-size: 1.25em;
+    text-align: center;
+}
+.fancy-bar-inputs input{
+    width: 25%;
+    border: none;
+    background: none;
 }

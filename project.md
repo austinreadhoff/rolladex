@@ -3,9 +3,12 @@
     - [X] RPGUI on sheets
     - [X] Pixelate money images
     - [ ] Custom progress bar component
+        - [X] Base implementation
+        - [ ] Support multiple types of hit dice
     - [X] Do something with the startup page
     - [ ] print.css
     - [ ] update icon for windows/linux
+- [ ] pf2e Spells missing property? Check acidic burst area
 
 ## 0.3.0
 - [X] MacOS Compatilibity
@@ -44,14 +47,16 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
+- fancy bars don't always trigger unsafe save
+- fancy bars slight text offset
+- autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
 - Figure out a way to update content w/o version update
-- Dock Tabs
-- Rich Text for text areas
+- Dock Tabs?
+- Rich Text for text areas?
 - Long Rest Should give half hit dice
 - Character Pictures
 - pf2e Action icons 
 - Uppercase the goddamn name (windows and linux)
-- datalist tag for typeaheads
 - Inconsistent 5e spell description formatting
 - Alternate search titles for certain spells srd vs 5e phb
 - Remove link text from pf2e spells 

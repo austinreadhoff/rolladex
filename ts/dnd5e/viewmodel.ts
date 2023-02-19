@@ -3,6 +3,7 @@ import { Spell } from "./spell";
 import * as ko from "knockout";
 import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
+import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -20,6 +21,11 @@ export var viewModel = new ViewModel(new Character, [], new Spell());
 
 //to be executed on document ready
 export function applyDataBinding(){
+    ko.components.register("fancy-bar", {
+        viewModel: FancyBarViewModel,
+        template: FancyBarTemplate
+    });
+    
     //valueAccessor: { the spell level, spell name }
     ko.bindingHandlers.bindSpell = {
         init: function(element: Node, valueAccessor: any){
