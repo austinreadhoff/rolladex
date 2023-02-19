@@ -138,7 +138,7 @@ export const FancyBarTemplate: string = `
     </div>
     <div class=" rpgui-progress-left-edge"></div>
     <div class=" rpgui-progress-right-edge"></div>
-    <button data-bind="click: adjust(-1)" type="button" class="rpgui-button fancy-minus btn-small">-</button>
-    <button data-bind="click: adjust(1)" type="button" class="rpgui-button fancy-plus btn-small">+</button>
+    <button data-bind="click: function(){adjust(-1)}" type="button" class="rpgui-button fancy-minus btn-small">-</button>
+    <button data-bind="click: function(){adjust(1)}" type="button" class="rpgui-button fancy-plus btn-small">+</button>
 </div>
 `;

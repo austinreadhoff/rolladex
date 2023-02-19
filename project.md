@@ -9,6 +9,7 @@
     - [ ] print.css
     - [ ] update icon for windows/linux
 - [ ] pf2e Spells missing property? Check acidic burst area
+- [ ] autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
 
 ## 0.3.0
 - [X] MacOS Compatilibity
@@ -49,8 +50,8 @@
 ## Low Priority Backlog and Stray Thoughts, in no particular order
 - fancy bars don't always trigger unsafe save
 - fancy bars slight text offset
-- autocomplete doesn't work with some text strings? example: Achaekek's Clutch in pf2e
 - Figure out a way to update content w/o version update
+- tooltips to show work for calcualted fields, like ability checks
 - Dock Tabs?
 - Rich Text for text areas?
 - Long Rest Should give half hit dice
