@@ -7,7 +7,7 @@
         - [X] Support multiple types of hit dice
     - [X] Do something with the startup page
     - [ ] print.css
-    - [ ] update icon for windows/linux
+    - [X] update icon for windows/linux
 - [X] pf2e missing area property
 - [X] autocomplete doesn't work with apostrophes
 
