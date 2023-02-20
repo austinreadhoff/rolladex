@@ -703,7 +703,7 @@
                                     </div>
                                     <!-- ko if: ($parent.level() < 11 || $parent.level() == 12)-->
                                     <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-input spell-prepared rpgui-checkbox print-hidden" type="checkbox">
-                                    <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }"></label>
+                                    <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }" class="prepared-label"></label>
                                     <!-- /ko -->
                                     <!-- ko if: ($parent.level() == 11)-->
 

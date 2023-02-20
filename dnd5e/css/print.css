@@ -1,11 +1,11 @@
 #proficiencies-languages{
-    height: 50em;
+    height: 30em;
 }
 #equipment{
     height: 40em;
 }
 #features{
-    height: 100em;
+    height: 70em;
 }
 #physical-description{
     height: 15em;
@@ -14,5 +14,5 @@
     height: 10em;
 }
 #backstory, #allies, #additional-features, #treasure{
-    height: 40em;
+    height: 30em;
 }

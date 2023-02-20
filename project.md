@@ -1,12 +1,12 @@
 ## 0.3.1
-- [ ] Visual Overhaul
+- [X] Visual Overhaul
     - [X] RPGUI on sheets
     - [X] Pixelate money images
     - [X] Custom progress bar component
         - [X] Base implementation
         - [X] Support multiple types of hit dice
     - [X] Do something with the startup page
-    - [ ] print.css
+    - [X] print.css
     - [X] update icon for windows/linux
 - [X] pf2e missing area property
 - [X] autocomplete doesn't work with apostrophes

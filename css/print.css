@@ -1,17 +1,61 @@
-body{
-    color: black;
-    width: 1240px;
+body {
+    background-color: white;
+    width: 1000px !important;
+}
+
+hr, button, 
+.rpgui-progress-track, .rpgui-progress-left-edge, .rpgui-progress-right-edge,
+.prepared-label{
+    display: none !important;
+}
+
+.rpgui-content *{
+    color: black !important;
+    background-color: white !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    text-shadow: none !important;
+}
+
+.rpgui-container {
+    border-width: 2px !important;
+    border-image: none !important;
+    background: none !important
 }
 
 input, textarea{
     color: black !important;
 }
 
+input[readonly]{
+    background-color: white !important;
+}
+
+.rpgui-content input[type=checkbox].rpgui-checkbox{
+    display: inline-block;
+    width: 1em;
+}
+.rpgui-content input[type=radio].rpgui-radio{
+    display: block;
+    width: 1em;
+}
+.rpgui-content input[type=checkbox].rpgui-checkbox+label
+,.rpgui-content input[type=checkbox].rpgui-checkbox:checked+label,
+.rpgui-content input[type=radio].rpgui-radio+label,
+.rpgui-content input[type=radio].rpgui-radio:checked+label{
+    background: none;
+    padding-left: 0;
+}
+.rpgui-dropdown {
+    border: 1px solid black !important;
+    background: none;
+}
+
 .tab-pane{
     page-break-after: always;
 }
 
-.print-hidden, .btn, img, #autocomplete-list{
+.print-hidden, img, #autocomplete-list{
     display: none !important;
 }
 
@@ -29,6 +73,7 @@ input[readonly]{
 
 .skillbox{
     color: black !important;
+    border-color: black;
 }
 
 .prepared{
