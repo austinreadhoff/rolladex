@@ -1,5 +1,6 @@
-# 🎲 RollaDex 🎲
-Desktop app for RPG character sheets.  Written with ElectronJS, Knockout, and Bootstrap CSS.
+<img src="/img/rolladex_title.png" width=500px/>
+Desktop app for RPG character sheets.  Fully offline and saves characters as simple JSON files.  Also allows export to PDF.
+
 Supported Games:
 - DnD 5e
 - Pathfinder 2e
