@@ -10,6 +10,7 @@
     - [X] update icon for windows/linux
 - [X] pf2e missing area property
 - [X] autocomplete doesn't work with apostrophes
+- [ ] DM Tools
 
 ## 0.3.0
 - [X] MacOS Compatilibity
