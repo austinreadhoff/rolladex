@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>RollaDex</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+
+        <link rel="stylesheet" href="../css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="../css/rpgui.min.css">
+        <link rel="stylesheet" href="../css/sheet.css">
+        <link rel="stylesheet" href="./css/gm.css">
+
+        <script>require("../src/gm/gm.js")</script>
+    </head>
+    
+    <body class="rpgui-content">
+        <div class="nav">
+            <button class="nav-link rpgui-button active down" id="dice-tab"><p>Dice Roller</p></button>
+            <button class="nav-link rpgui-button" id="initiative-tab"><p>Initiative Tracker</p></button>
+            <button class="nav-link rpgui-button" id="soundtrack-tab"><p>Soundtrack</p></button>
+        </div>
+        <hr class="golden">
+        <div class="tab-content">
+            <div class="tab-pane active" id="dice" role="tabpanel" aria-labelledby="dice-tab">
+                <div id="dice-container" class="container-fluid">
+                    <div id="dice-container">
+                        <div>
+                            <input data-bind="event: {keypress: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" autoFocus />
+                        </div>
+                        <ul data-bind="foreach: previousRolls">
+                            <li class="previous-roll">
+                                <span data-bind="text: raw" class="raw"></span>
+                                <br/>
+                                <span data-bind="text: math" class="math">6</span> = <span data-bind="text: sum" class="sum">6</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane" id="initiative" role="tabpanel" aria-labelledby="initiative-tab">
+                <div id="initiative-container" class="container-fluid">
+                    <p>initative</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane" id="soundtrack" role="tabpanel" aria-labelledby="soundtrack-tab">
+                <div id="soundtrack-container" class="container-fluid">
+                    <p>soundtrack</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -10,7 +10,12 @@
     - [X] update icon for windows/linux
 - [X] pf2e missing area property
 - [X] autocomplete doesn't work with apostrophes
-- [ ] DM Tools
+- [ ] GM Tools
+    - [X] Dice Roller
+        - [ ] terminal-like "up" functionality
+    - [ ] Initiative Tracker
+    - [ ] Soundtrack
+    - [ ] Save/Load, Character/Game Nomenclature
 
 ## 0.3.0
 - [X] MacOS Compatilibity

@@ -392,6 +392,29 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
+    else if (game == "gm"){
+        tabMenu.submenu.append(new MenuItem({
+            label: 'Dice Roller',
+            accelerator: 'F1',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchToTab("dice");
+            }
+        }));
+        tabMenu.submenu.append(new MenuItem({
+            label: 'Iniatitive Tracker',
+            accelerator: 'F2',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchToTab("initiative");
+            }
+        }));
+        tabMenu.submenu.append(new MenuItem({
+            label: 'Soundtrack',
+            accelerator: 'F3',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchToTab("soundtrack");
+            }
+        }));
+    }
 
     Menu.setApplicationMenu(menu);
 });

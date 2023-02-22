@@ -11,5 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
         else if(event.code == 'KeyP') {
             document.getElementById("pf2e").click();
         }
+        else if(event.code == 'KeyG') {
+            document.getElementById("gm").click();
+        }
     });
 });
