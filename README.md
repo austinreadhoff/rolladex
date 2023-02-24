@@ -4,6 +4,7 @@ Desktop app for RPG character sheets.  Fully offline and saves characters as sim
 Supported Games:
 - DnD 5e
 - Pathfinder 2e
+- Simple GM Tools: dice roller, iniatitive tracker, youtube-powered soundboard
 
 ## Usage
 If it exists, grab the latest package for your OS and install.  Otherwise, you can always...

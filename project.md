@@ -10,7 +10,7 @@
     - [X] update icon for windows/linux
 - [X] pf2e missing area property
 - [X] autocomplete doesn't work with apostrophes
-- [ ] GM Tools
+- [X] GM Tools
     - [X] Dice Roller
     - [X] Initiative Tracker
     - [X] Soundtrack
