@@ -31,6 +31,12 @@ ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
 document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "gm");
     applyDataBinding();
+
+    document.querySelectorAll('.nav-link').forEach(tab => {
+        tab.addEventListener('click', event => {
+            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+        });
+    });
 });
 
 //#region Menu Actions

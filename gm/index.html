@@ -40,7 +40,35 @@
         <div class="tab-content">
             <div class="tab-pane" id="initiative" role="tabpanel" aria-labelledby="initiative-tab">
                 <div id="initiative-container" class="container-fluid">
-                    <p>initative</p>
+                    <p data-bind="text: initiativeOrder()"></p>
+                    <hr>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-5 container">
+                                <label>PCs</label>
+                                <button data-bind="click: addPC" type="button" class="rpgui-button btn-small">+</button>
+                                <div data-bind="foreach: initiativePCs" class="row">
+                                    <button data-bind="click: $parent.removePC" type="button" class="col-1 btn-small rpgui-button">-</button>
+                                    <input data-bind="textInput: name" class=" col-9">
+                                    <input data-bind="textInput: initiative" class=" col-2">
+                                </div>
+                            </div>
+                            <div class="col-5 container">
+                                <label>Mobs</label>
+                                <button data-bind="click: addMob" type="button" class="rpgui-button btn-small">+</button>
+                                <div data-bind="foreach: initiativeMobs">
+                                    <div class="row">
+                                        <button data-bind="click: $parent.removeMob" type="button" class="col-1 btn-small rpgui-button">-</button>
+                                        <input data-bind="textInput: name" class=" col-9">
+                                        <input data-bind="textInput: initiative" class=" col-2">
+                                    </div>
+                                    <div class="row">
+                                        <fancy-bar params="currentValue: currentHP, maxValue: maxHP, color: 'red'"></fancy-bar>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

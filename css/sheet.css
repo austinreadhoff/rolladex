@@ -117,7 +117,7 @@ input[readonly]{
     font-family: "Bittypix";
     font-size: .75em;
 
-    cursor: url("../node_modules/rpgui/img/cursor/point.png") 10 0,auto;
+    cursor: url("./img/cursor/point.png") 10 0,auto;
     user-select: none;
 }
 
