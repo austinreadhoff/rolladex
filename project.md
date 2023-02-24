@@ -14,7 +14,7 @@
     - [X] Dice Roller
     - [X] Initiative Tracker
     - [X] Soundtrack
-    - [ ] Save/Load, Character/Game Nomenclature
+    - [X] Save/Load
 
 ## 0.3.0
 - [X] MacOS Compatilibity
@@ -53,6 +53,9 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
+- gm: implement safe save tracking (it was bugged and I couldn't be arsed to fix it)
+- Game/Character nomenclature in menus and save/load flows
+- Grey out Save menu options on landing page
 - gm: soundtrack categories
 - gm: soundtrack reordering
 - gm: dice roller terminal-like "up" functionality

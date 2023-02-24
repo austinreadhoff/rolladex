@@ -146,6 +146,9 @@ function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolea
         else if (game == "pf2e" && currentUrl.indexOf("pf2e") == -1)
             window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json, delay) });
 
+        else if (game == "gm" && currentUrl.indexOf("gm") == -1)
+            window.loadFile("gm/index.html").then(() => { sendJSONToPage(window, json, delay) });
+
         else{
             sendJSONToPage(window, json);
         }
