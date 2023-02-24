@@ -12,9 +12,8 @@
 - [X] autocomplete doesn't work with apostrophes
 - [ ] GM Tools
     - [X] Dice Roller
-        - [ ] terminal-like "up" functionality
-    - [ ] Initiative Tracker
-    - [ ] Soundtrack
+    - [X] Initiative Tracker
+    - [X] Soundtrack
     - [ ] Save/Load, Character/Game Nomenclature
 
 ## 0.3.0
@@ -54,15 +53,18 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
+- gm: soundtrack categories
+- gm: soundtrack reordering
+- gm: dice roller terminal-like "up" functionality
 - fancy bars don't always trigger unsafe save
 - fancy bars slight text offset
 - Figure out a way to update content w/o version update
-- tooltips to show work for calcualted fields, like ability checks
+- tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?
 - Rich Text for text areas?
-- Long Rest Should give half hit dice
+- 5e: Long Rest Should give half hit dice
 - Character Pictures
-- pf2e Action icons 
+- pf2e: Action icons 
 - Uppercase the goddamn name (windows and linux)
 - Inconsistent 5e spell description formatting
 - Alternate search titles for certain spells srd vs 5e phb

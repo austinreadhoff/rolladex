@@ -75,7 +75,22 @@
         <div class="tab-content">
             <div class="tab-pane" id="soundtrack" role="tabpanel" aria-labelledby="soundtrack-tab">
                 <div id="soundtrack-container" class="container-fluid">
-                    <p>soundtrack</p>
+                    <div style="display:flex;">
+                        <div class="rpgui-container framed-grey" style="max-width:500px;">
+                            <input data-bind="textInput: tuneName" placeholder="Name" />
+                            <input data-bind="textInput: tuneURL" placeholder="Youtube ID" />
+                            <button data-bind="click: addTune" type="button" class="rpgui-button">Add to Soundtrack</button>
+                        </div>
+                        <div>
+                            <iframe data-bind="attr: { src: tuneSrc }" width="200" height="112" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div data-bind="foreach: tunes">
+                        <div>
+                            <button data-bind="click: $parent.removeTune" class="rpgui-button btn-small" type="button">-</button>
+                            <button data-bind="text: name, click: $parent.playTune" type="button" class="rpgui-button"></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

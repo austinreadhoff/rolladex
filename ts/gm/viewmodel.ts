@@ -2,16 +2,29 @@ import * as ko from "knockout";
 import { DiceRoll } from "./dice-roll";
 import { InitiativeCreature } from "./initiative-creature";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
+import { Tune } from "./tune";
 
 export class ViewModel {
     previousRolls: KnockoutObservableArray<DiceRoll>;
+
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
 
-    constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>){
+    tuneName: KnockoutObservable<string>;
+    tuneURL: KnockoutObservable<string>;
+    tuneSrc: KnockoutObservable<string>;
+    tunes: KnockoutObservableArray<Tune>;
+
+    constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<Tune>){
         this.previousRolls = ko.observableArray(previousRolls);
+
         this.initiativePCs = ko.observableArray(pcs);
         this.initiativeMobs = ko.observableArray(mobs);
+
+        this.tuneName = ko.observable("");
+        this.tuneURL = ko.observable("");
+        this.tuneSrc = ko.observable("https://www.youtube.com/embed/DKP16d_WdZM");
+        this.tunes = ko.observableArray(tunes);
     }
 
     rollDice(d: string, e: KeyboardEvent) {
@@ -55,9 +68,23 @@ export class ViewModel {
     removeMob(row: InitiativeCreature){
         viewModel.initiativeMobs.remove(row);
     }
+
+    addTune(){
+        if (this.tuneName().trim() !== "" && this.tuneURL().trim() !== ""){
+            this.tunes.push(new Tune(this.tuneName(),this.tuneURL()));
+            this.tuneName("");
+            this.tuneURL("");
+        }
+    }
+    removeTune(row: Tune){
+        viewModel.tunes.remove(row);
+    }
+    playTune(tune: Tune){
+        viewModel.tuneSrc("https://www.youtube.com/embed/" + tune.url());
+    }
 }
 
-export var viewModel = new ViewModel([], [], []);
+export var viewModel = new ViewModel([], [], [], []);
 
 //to be executed on document ready
 export function applyDataBinding(){
