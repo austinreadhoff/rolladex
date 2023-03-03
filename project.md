@@ -1,3 +1,10 @@
+## V.Next
+- [ ] Remove manual safe save tracking, replace with a simple JSON comparison
+- [ ] Move screen down when creating custom counter
+- [ ] gm: soundtrack categories
+- [ ] gm: soundtrack reordering
+- [ ] Game/Character nomenclature in menus and save/load flows
+
 ## 0.3.1
 - [X] Visual Overhaul
 - [X] GM Tools
@@ -28,20 +35,14 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
-- Remove manual safe save tracking, replace with a simple JSON comparison
-- gm: implement safe save tracking (it was bugged and I couldn't be arsed to fix it)
-- Game/Character nomenclature in menus and save/load flows
 - Grey out Save menu options on landing page
-- gm: soundtrack categories
-- gm: soundtrack reordering
 - gm: dice roller terminal-like "up" functionality
-- fancy bars don't always trigger unsafe save
 - fancy bars slight text offset
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?
 - Rich Text for text areas?
-- 5e: Long Rest Should give half hit dice
+- 5e: Long Rest Should give half hit dice (is this even possible to do automatically with multiclassing?)
 - Character Pictures
 - pf2e: Action icons 
 - Uppercase the goddamn name (windows and linux)
