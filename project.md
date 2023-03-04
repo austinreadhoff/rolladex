@@ -4,6 +4,7 @@
 - [ ] gm: soundtrack categories
 - [ ] gm: soundtrack reordering
 - [ ] Game/Character nomenclature in menus and save/load flows
+- [ ] Initiative probably shouldn't be calculated, since there's a bunch of random things that affect it
 
 ## 0.3.1
 - [X] Visual Overhaul
