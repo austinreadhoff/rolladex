@@ -28,10 +28,10 @@ function createWindow() {
 	win.on('close', function (e: any) {
 		if (!SafeToSave()){
 			var messageBoxOptions = {
-				buttons: ["Quit Without Saving", "Save Character", "Cancel"],
+				buttons: ["Quit Without Saving", "Save", "Cancel"],
 				defaultId: 0,
 				title: "Unsaved Changes",
-				message: "There are unsaved changes to this character.  Would you like to quit and lose all unsaved data?",
+				message: "There are unsaved changes.  Would you like to quit and lose all unsaved data?",
 				cancelId: 2
 			}
 			var quitWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)

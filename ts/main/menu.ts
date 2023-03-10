@@ -8,7 +8,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
         label: 'File',
         submenu: [
             {
-                label: 'New Character',
+                label: 'New',
                 accelerator: 'CmdOrCtrl+N',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     newCharacter(focusedWindow);
@@ -18,7 +18,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 type: 'separator'
             },
             {
-                label: 'Open Character',
+                label: 'Open',
                 accelerator: 'CmdOrCtrl+O',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     loadFromJSON(focusedWindow, null);
@@ -33,6 +33,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 type: 'separator'
             },
             {
+                id: 'save',
                 label: 'Save',
                 accelerator: 'CmdOrCtrl+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
@@ -41,6 +42,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 }
             },
             {
+                id: 'saveAs',
                 label: 'Save As...',
                 accelerator: 'CmdOrCtrl+Shift+S',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
@@ -280,6 +282,10 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
     (tabMenu.submenu as any).clear();
     tabMenu.submenu.items = [];
 
+    let enableSave = game != "";    //landing
+    menu.getMenuItemById("save").enabled = enableSave;
+    menu.getMenuItemById("saveAs").enabled = enableSave;
+
     if (game == "dnd5e"){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Short Rest',
@@ -392,6 +398,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
+
     else if (game == "gm"){
         tabMenu.submenu.append(new MenuItem({
             label: 'Dice Roller',

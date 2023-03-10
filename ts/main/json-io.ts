@@ -33,10 +33,10 @@ function updateSavePath(path: string){
 export function newCharacter(window: Electron.BrowserWindow){
     if (!SafeToSave()){
         var messageBoxOptions = {
-            buttons: ["Clear Without Saving", "Save Character", "Cancel"],
+            buttons: ["Leave Without Saving", "Save", "Cancel"],
             defaultId: 0,
             title: "Unsaved Changes",
-            message: "There are unsaved changes to this character.  Would you like to create a new one and lose all unsaved data?",
+            message: "There are unsaved changes.  Would you like to discard all unsaved data?",
             cancelId: 2
         }
         var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
@@ -69,7 +69,7 @@ export function saveToJSON(window: Electron.BrowserWindow){
 
 export function saveAsToJSON(window: Electron.BrowserWindow){
     var saveDialogOptions: SaveDialogOptions = {
-        title: "Save Character",
+        title: "Save",
         defaultPath: "Untitled.json",
         filters: [
             {
@@ -91,10 +91,10 @@ export function saveAsToJSON(window: Electron.BrowserWindow){
 export function loadFromJSON(window: Electron.BrowserWindow, path: string){
     if (!SafeToSave()){
         var messageBoxOptions = {
-            buttons: ["Load Without Saving", "Save Character", "Cancel"],
+            buttons: ["Load Without Saving", "Save", "Cancel"],
             defaultId: 0,
             title: "Unsaved Changes",
-            message: "There are unsaved changes to this character.  Would you like to load a different one and lose all unsaved data?",
+            message: "There are unsaved changes.  Would you like to discard all unsaved data?",
             cancelId: 2
         }
         var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
@@ -116,7 +116,7 @@ export function loadFromJSON(window: Electron.BrowserWindow, path: string){
     }
     else{
         var openDialogOptions: OpenDialogOptions = { 
-            title: "Load Character", 
+            title: "Load", 
             filters: [
                 {
                     name: 'JSON',

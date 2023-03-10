@@ -1,10 +1,12 @@
-## V.Next
+## 0.3.2
 - [ ] Remove manual safe save tracking, replace with a simple JSON comparison
 - [ ] Move screen down when creating custom counter
 - [ ] gm: soundtrack categories
 - [ ] gm: soundtrack reordering
-- [ ] Game/Character nomenclature in menus and save/load flows
-- [ ] Initiative probably shouldn't be calculated, since there's a bunch of random things that affect it
+- [X] Game/Character nomenclature in menus and save/load flows
+- [X] Grey out Save menu options on landing page
+- [ ] Mouse isn't always styled correctly when hovering over words (ex: filter categories)
+- [ ] 5e Spellbook: Handle multiclass casters
 
 ## 0.3.1
 - [X] Visual Overhaul
@@ -15,14 +17,11 @@
 ## 0.3.0
 - [X] MacOS Compatilibity
 - [X] Added Support for pf2e
-- [X] Survival is Wisdom in 5e
+- [X] Survival is Wisdom in 5e 🤦‍♂️
 - [X] Track spell attack/dc by choosing ability in 5e
 
 ## 0.2.1
-- [X] Fix loading of spell rest type
-- [X] Fix safe save triggering issues
-- [X] 3rd, not 2rd level spells
-- [X] Actually mark rituals
+- [X] Small bug fixes
 
 ## 0.2.0
 - [X] Data Binding
@@ -36,7 +35,6 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
-- Grey out Save menu options on landing page
 - gm: dice roller terminal-like "up" functionality
 - fancy bars slight text offset
 - Figure out a way to update content w/o version update
