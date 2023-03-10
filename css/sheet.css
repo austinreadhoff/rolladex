@@ -198,11 +198,11 @@ img.currency{
 }
 .catalog-filters label{
     white-space: pre;
-    cursor: url("../node_modules/rpgui/img/cursor/point.png") 10 0,auto;
+    cursor: url("./img/cursor/point.png") 10 0,auto;
     user-select: none;
 }
 .filter-toggle{
-    cursor: url("../node_modules/rpgui/img/cursor/point.png") 10 0,auto;
+    cursor: url("./img/cursor/point.png") 10 0,auto;
 }
 .filter-toggle-icon{
     display: inline-block;

@@ -5,7 +5,7 @@
 - [ ] gm: soundtrack reordering
 - [X] Game/Character nomenclature in menus and save/load flows
 - [X] Grey out Save menu options on landing page
-- [ ] Mouse isn't always styled correctly when hovering over words (ex: filter categories)
+- [X] Mouse isn't always styled correctly when hovering over words (ex: filter categories)
 - [ ] 5e Spellbook: Handle multiclass casters
 
 ## 0.3.1
