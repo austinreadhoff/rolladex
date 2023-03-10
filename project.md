@@ -1,12 +1,9 @@
 ## 0.3.2
 - [ ] Remove manual safe save tracking, replace with a simple JSON comparison
-- [ ] Move screen down when creating custom counter
 - [ ] gm: soundtrack categories
 - [ ] gm: soundtrack reordering
-- [X] Game/Character nomenclature in menus and save/load flows
-- [X] Grey out Save menu options on landing page
-- [X] Mouse isn't always styled correctly when hovering over words (ex: filter categories)
 - [ ] 5e Spellbook: Handle multiclass casters
+- [X] Misc bug fixes
 
 ## 0.3.1
 - [X] Visual Overhaul

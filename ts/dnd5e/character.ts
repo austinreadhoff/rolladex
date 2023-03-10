@@ -278,7 +278,10 @@ export class Character {
     }
 
     addMiscCounter(){
-        this.miscCounters.push(new Counter())
+        this.miscCounters.push(new Counter());
+        setTimeout(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+        }, (50));
     }
     removeMiscCounter(counter: Counter){
         viewModel.character().miscCounters.remove(counter);
