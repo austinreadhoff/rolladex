@@ -6,6 +6,7 @@ import { Tune } from "./tune";
 
 export class ViewModel {
     previousRolls: KnockoutObservableArray<DiceRoll>;
+    historyIndex: number;
 
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
@@ -17,6 +18,7 @@ export class ViewModel {
 
     constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<Tune>){
         this.previousRolls = ko.observableArray(previousRolls);
+        this.historyIndex = -1;
 
         this.initiativePCs = ko.observableArray(pcs);
         this.initiativeMobs = ko.observableArray(mobs);
@@ -35,8 +37,22 @@ export class ViewModel {
 
             this.previousRolls.unshift(new DiceRoll(input.value));
             input.value = "";
+            this.historyIndex = -1;
             if (this.previousRolls().length > 10)
                 this.previousRolls.pop();
+        }
+        else if (e.key == 'ArrowUp' && this.historyIndex < this.previousRolls().length-1){
+            this.historyIndex++;
+            (e.currentTarget as HTMLInputElement).value = this.previousRolls()[this.historyIndex].raw();
+        }
+        else if (e.key == 'ArrowDown' && this.historyIndex > -1){
+            let input = e.currentTarget as HTMLInputElement;
+
+            this.historyIndex--;
+            if (this.historyIndex == -1)
+                input.value = "";
+            else
+                input.value = this.previousRolls()[this.historyIndex].raw();
         }
         return true;
     }

@@ -1,7 +1,8 @@
 ## 0.3.2
-- [ ] Remove manual safe save tracking, replace with a simple JSON comparison
+- [X] Remove manual safe save tracking, replace with a simple JSON comparison
 - [ ] gm: soundtrack categories
 - [ ] gm: soundtrack reordering
+- [X] gm: dice roller terminal-like "up" functionality
 - [ ] 5e Spellbook: Handle multiclass casters
 - [X] Misc bug fixes
 
@@ -32,7 +33,6 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
-- gm: dice roller terminal-like "up" functionality
 - fancy bars slight text offset
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks

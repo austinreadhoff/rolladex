@@ -25,7 +25,7 @@
                 <div id="dice-container" class="container-fluid">
                     <div id="dice-container">
                         <div>
-                            <input data-bind="event: {keypress: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" autoFocus />
+                            <input data-bind="event: {keydown: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" autoFocus />
                         </div>
                         <ul data-bind="foreach: previousRolls">
                             <li class="previous-roll">
