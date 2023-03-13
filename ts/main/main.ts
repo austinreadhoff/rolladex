@@ -41,7 +41,7 @@ function createWindow() {
 		let exit = function(){
 			forceClose = true;
 			if (exitAction == "quit")
-				app.quit();
+				app.exit();
 			else
 				win.close();
 		}
