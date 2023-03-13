@@ -1,14 +1,11 @@
 import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog } from "electron";
-import { resetSafeSave, SafeToSave } from './save-tracker';
 import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
 const fs = require('fs');
 
 var savePath: string = "";
 
 ipcMain.on('send-save-json', (event: any, json: any) => {
-    fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
-        resetSafeSave();
-    });
+    fs.writeFile(savePath, JSON.stringify(json), (err: any) => {});
 });
 
 ipcMain.on('check-recent-load', (event: any, arg: any) => {
@@ -30,37 +27,64 @@ function updateSavePath(path: string){
         .then((recentsArray: any) => { updateRecentsMenu(recentsArray) });
 }
 
-export function newCharacter(window: Electron.BrowserWindow){
-    if (!SafeToSave()){
-        var messageBoxOptions = {
-            buttons: ["Leave Without Saving", "Save", "Cancel"],
-            defaultId: 0,
-            title: "Unsaved Changes",
-            message: "There are unsaved changes.  Would you like to discard all unsaved data?",
-            cancelId: 2
+//returns false if leaving the current window is unsafe, and a warning should be shown
+export function compareToSaved(window: Electron.BrowserWindow): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+        let currentUrl = window.webContents.getURL();
+        if (currentUrl.indexOf("landing") != -1){
+            resolve(true);
+            return;
         }
-        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
-        switch(loadWithoutSavingDialogResponse){
-            case 0:
-                break;
-            case 1:
-                saveToJSON(window);
-                return;
-            case 2:
-                return;
-            default:
-                //shouldn't reach this anyway
+    
+        if (!savePath){
+            resolve(false);
+            return;
         }
-    }
+        
+        fs.readFile(savePath, 'utf-8', (error: any, sourceData: any) => {
+            window.webContents.send('request-save-json', 'send-save-json-to-check');
+            
+            ipcMain.removeAllListeners('send-save-json-to-check');
+            ipcMain.on('send-save-json-to-check', (event: any, jsonForCompare: any) => { 
+                resolve(sourceData === JSON.stringify(jsonForCompare));
+                return;
+            });
+        });
+    });
+}
 
-    updateSavePath("");
-    resetSafeSave();
-    window.loadFile("landing.html");
+export function newCharacter(window: Electron.BrowserWindow){
+    compareToSaved(window).then((safe) => {
+        if (!safe){
+            var messageBoxOptions = {
+                buttons: ["Leave Without Saving", "Save", "Cancel"],
+                defaultId: 0,
+                title: "Unsaved Changes",
+                message: "There are unsaved changes.  Would you like to discard all unsaved data?",
+                cancelId: 2
+            }
+            var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+            switch(loadWithoutSavingDialogResponse){
+                case 0:
+                    break;
+                case 1:
+                    saveToJSON(window);
+                    return;
+                case 2:
+                    return;
+                default:
+                    //shouldn't reach this anyway
+            }
+        }
+    
+        updateSavePath("");
+        window.loadFile("landing.html");
+    })
 }
 
 export function saveToJSON(window: Electron.BrowserWindow){
     if (savePath) {
-        window.webContents.send('request-save-json');
+        window.webContents.send('request-save-json', 'send-save-json');
     }
     else{
         saveAsToJSON(window);
@@ -83,53 +107,55 @@ export function saveAsToJSON(window: Electron.BrowserWindow){
     dialog.showSaveDialog(saveDialogOptions).then((result: any) => {
         if (!result.canceled){
             updateSavePath(result.filePath);
-            window.webContents.send('request-save-json');
+            window.webContents.send('request-save-json', 'send-save-json');
         }
     });
 }
 
 export function loadFromJSON(window: Electron.BrowserWindow, path: string){
-    if (!SafeToSave()){
-        var messageBoxOptions = {
-            buttons: ["Load Without Saving", "Save", "Cancel"],
-            defaultId: 0,
-            title: "Unsaved Changes",
-            message: "There are unsaved changes.  Would you like to discard all unsaved data?",
-            cancelId: 2
-        }
-        var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
-        switch(loadWithoutSavingDialogResponse){
-            case 0:
-                break;
-            case 1:
-                saveToJSON(window);
-                return;
-            case 2:
-                return;
-            default:
-                //shouldn't reach this anyway
-        }
-    }
-
-    if(path){
-        executeLoad(window, path);
-    }
-    else{
-        var openDialogOptions: OpenDialogOptions = { 
-            title: "Load", 
-            filters: [
-                {
-                    name: 'JSON',
-                    extensions: ['json']
-                }
-            ],
-            properties: ["openFile"] 
+    compareToSaved(window).then((safe) => {
+        if (!safe){
+            var messageBoxOptions = {
+                buttons: ["Load Without Saving", "Save", "Cancel"],
+                defaultId: 0,
+                title: "Unsaved Changes",
+                message: "There are unsaved changes.  Would you like to discard all unsaved data?",
+                cancelId: 2
+            }
+            var loadWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+            switch(loadWithoutSavingDialogResponse){
+                case 0:
+                    break;
+                case 1:
+                    saveToJSON(window);
+                    return;
+                case 2:
+                    return;
+                default:
+                    //shouldn't reach this anyway
+            }
         }
     
-        dialog.showOpenDialog(openDialogOptions).then((result: any) => {
-            executeLoad(window, result.filePaths[0]);
-        });
-    }
+        if(path){
+            executeLoad(window, path);
+        }
+        else{
+            var openDialogOptions: OpenDialogOptions = { 
+                title: "Load", 
+                filters: [
+                    {
+                        name: 'JSON',
+                        extensions: ['json']
+                    }
+                ],
+                properties: ["openFile"] 
+            }
+        
+            dialog.showOpenDialog(openDialogOptions).then((result: any) => {
+                executeLoad(window, result.filePaths[0]);
+            });
+        }
+    });
 }
 
 function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolean = false){
@@ -161,11 +187,9 @@ function sendJSONToPage(window: Electron.BrowserWindow, json: any, delay: boolea
     if (delay){
         setTimeout(() => {
             window.webContents.send('send-loaded-json', json);
-            resetSafeSave();
         }, 500);
     }
     else{
         window.webContents.send('send-loaded-json', json);
-        resetSafeSave();
     }
 }

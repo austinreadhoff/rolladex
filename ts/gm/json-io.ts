@@ -5,7 +5,7 @@ import { switchTab } from "./gm";
 import { gameName, jsonSchemaVersion, UpgradeSchema } from "./game-schema";
 import { viewModel } from "./viewmodel";
 
-ipcRenderer.on('request-save-json', (event: any, arg: any) => {
+ipcRenderer.on('request-save-json', (event: any, responseChannel: string) => {
     var json: any = {
         version: jsonSchemaVersion,
         game: gameName
@@ -15,7 +15,7 @@ ipcRenderer.on('request-save-json', (event: any, arg: any) => {
     json["initiativeMobs"] = JSON.parse(ko.toJSON(viewModel.initiativeMobs()));
     json["tunes"] = JSON.parse(ko.toJSON(viewModel.tunes()));
 
-    ipcRenderer.send('send-save-json', json);
+    ipcRenderer.send(responseChannel, json);
 });
 
 ipcRenderer.on('send-loaded-json', (event: any, json: any) => {

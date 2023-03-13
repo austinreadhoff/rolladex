@@ -1,7 +1,6 @@
 import { app, dialog, BrowserWindow, nativeImage } from 'electron';
 import { initMenu } from './menu';
-import { SafeToSave } from './save-tracker';
-import { saveToJSON } from './json-io';
+import { saveToJSON, compareToSaved } from './json-io';
 
 function createWindow() {
 	app.setAboutPanelOptions({
@@ -25,29 +24,57 @@ function createWindow() {
 
 	win.loadFile('landing.html');
 
+	//Capture whether the user closed the window (x) or quit the app (cmd+q)
+	//ensures that the right thing happens after our below async check for a save dialog
+	var exitAction: string = null;
+	win.on('close', function(e: any){
+		if (!exitAction)
+			exitAction = "close";
+	});
+	app.on('before-quit', function(e: any){
+		if (!exitAction)
+			exitAction = "quit";
+	});
+
+	var forceClose = false;
 	win.on('close', function (e: any) {
-		if (!SafeToSave()){
-			var messageBoxOptions = {
-				buttons: ["Quit Without Saving", "Save", "Cancel"],
-				defaultId: 0,
-				title: "Unsaved Changes",
-				message: "There are unsaved changes.  Would you like to quit and lose all unsaved data?",
-				cancelId: 2
-			}
-			var quitWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
-			switch(quitWithoutSavingDialogResponse){
-				case 0:
-					break;
-				case 1:
-					e.preventDefault();
-					saveToJSON(win);
-					break;
-				case 2:
-					e.preventDefault();
-					break;
-				default:
-					//shouldn't reach this anyway
-			}
+		let exit = function(){
+			forceClose = true;
+			if (exitAction == "quit")
+				app.quit();
+			else
+				win.close();
+		}
+
+		if (!forceClose){
+			e.preventDefault();
+			compareToSaved(win).then((safe) => {
+				if (!safe){
+					var messageBoxOptions = {
+						buttons: ["Quit Without Saving", "Save", "Cancel"],
+						defaultId: 0,
+						title: "Unsaved Changes",
+						message: "There are unsaved changes.  Would you like to quit and lose all unsaved data?",
+						cancelId: 2
+					}
+					var quitWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+					switch(quitWithoutSavingDialogResponse){
+						case 0:
+							exit();	
+							break;
+						case 1:
+							saveToJSON(win);
+							break;
+						case 2:
+							break;
+						default:
+							//shouldn't reach this anyway
+					}
+				}
+				else{
+					exit();	
+				}
+			});
 		}
 	});
 }

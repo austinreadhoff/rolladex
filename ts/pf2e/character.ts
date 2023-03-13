@@ -1,10 +1,7 @@
 import * as ko from "knockout";
-import { triggerUnsafeSave } from "../shared/save-tracker";
 import { viewModel } from "./viewmodel";
 import { jsonSchemaVersion, gameName } from "./character-schema";
-import { CharacterProperty } from "../shared/character-property";
 import { SpellcastingType } from "./spellcasting-type";
-import { Spell } from "./spell";
 
 export class Character {
     version: KnockoutObservable<number>;
@@ -231,29 +228,7 @@ export class Character {
             this.spellLevels.push(new SpellLevel(i));
         }
 
-
-        let savedProperties: string[] = ['characterName', 'playerName', 'xp', 'ancestryHeritage', 'background', 'characterClass',
-         'size', 'alignment', 'traits', 'diety', 'level', 'heroPoints', 'str', 'dex', 'con', 'int', 'wis', 'char',
-         'perception', 'acrobatics', 'arcana', 'athletics', 'crafting', 'deception', 'diplomacy', 'intimidation', 'medicine',
-         'nature', 'occultism', 'performance', 'religion', 'society', 'stealth', 'survival', 'thievery', 
-         'classDCAbility', 'classDCProficiency', 'spellDCProficiency', 'spellAttackProficiency',
-         'savingReflex', 'savingFort', 'savingWill', 'armorClass', 'speed', 'currentHP', 'maxHP', 'tempHP',
-         'dying', 'wounded', 'conditions', 'armorUnarmored', 'armorLight', 'armorMedium', 'armorHeavy',
-         'weaponsSimple', 'weaponsMartial', 'weaponsUnarmed', 'languages', 'shieldBonus', 'shieldHardness',
-         'shieldCurrentHP', 'shieldCurrentHP', 'shieldMaxHP', 'shieldBT', 'featsFeatures',
-         'spellcastingTradition', 'spellcastingType', 'spellcastingAbility', 'appearance', 'ethnicity', 'nationality', 'birthplace',
-         'age', 'gender', 'heightWeight', 'attitude', 'beliefs', 'likes', 'dislikes', 'catchphrases', 'party',
-         'backstory', 'bulk', 'copper', 'silver', 'gold', 'platinum', 'storedMoney', 'gems', 'assets',
-         'itemsEquipped', 'itemsPermanent', 'itemsConsumable', 'attackStats', 'loreSkills', 'otherWeapons', 'miscCounters', 'spellLevels'];
-        for(var p in savedProperties)
-        {
-            let propStr = savedProperties[p];
-            let propName = propStr as Extract<keyof this, string>;
-            if(this.hasOwnProperty(propStr)) {
-                (this[propName] as any).extend({notify: "always"});
-                (this[propName] as any).subscribe(function(){triggerUnsafeSave(viewModel.character().characterName());});
-            }
-        }
+        this.characterName.subscribe(function(){document.title = viewModel.character().characterName() + " - Rolladex"});
     }
 
     //Returns string modifier for a given ability and prof level
@@ -411,11 +386,9 @@ export class Character {
     //unsure why unsafe save needs to be triggered in these manually
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel-1].spells.push(new CharacterSpell(name));
-        triggerUnsafeSave(this.characterName());
     }
     removeSpell(spell: CharacterSpell, spellLevel: any){
         this.spellLevels()[spellLevel()].spells.remove(spell);
-        triggerUnsafeSave(this.characterName());
     }
     hasSpell(name: string){
         for (let level of this.spellLevels()){
@@ -427,17 +400,13 @@ export class Character {
     }
 }
 
-class Attack extends CharacterProperty{
+class Attack{
     name: KnockoutObservable<string>;
     bonus: KnockoutObservable<string>;
     dmg: KnockoutObservable<string>;
     traits: KnockoutObservable<string>;
 
     constructor(){
-        super(() => viewModel.character().characterName(), ["name", "bonus", "dmg", "traits"]);
-    }
-    
-    initProps(){
         this.name = ko.observable("");
         this.bonus = ko.observable("");
         this.dmg = ko.observable("");
@@ -445,31 +414,23 @@ class Attack extends CharacterProperty{
     }
 }
 
-class Proficiency extends CharacterProperty{
+class Proficiency{
     name: KnockoutObservable<string>;
     proficiency: KnockoutObservable<string>;
 
     constructor(){
-        super(() => viewModel.character().characterName(), ["name", "proficiency"]);
-    }
-    
-    initProps(){
         this.name = ko.observable("");
         this.proficiency = ko.observable("");
     }
 }
 
-export class Counter extends CharacterProperty {
+export class Counter {
     name: KnockoutObservable<string>;
     current: KnockoutObservable<string>;
     max: KnockoutObservable<string>;
     rest: KnockoutObservable<boolean>;
 
     constructor(){
-        super(() => viewModel.character().characterName(), ["name", "current", "max", "rest"]);
-    }
-
-    initProps(){
         this.name = ko.observable("");
         this.current = ko.observable("");
         this.max = ko.observable("");
@@ -477,7 +438,7 @@ export class Counter extends CharacterProperty {
     }
 }
 
-export class SpellLevel extends CharacterProperty {
+export class SpellLevel {
     level: KnockoutObservable<number>;
     slotsRemaining: KnockoutObservable<string>;
     slotsTotal: KnockoutObservable<string>;
@@ -486,12 +447,7 @@ export class SpellLevel extends CharacterProperty {
     spells: KnockoutObservableArray<CharacterSpell>;
 
     constructor(level: number){
-        super(() => viewModel.character().characterName(), ["slotsRemaining", "slotsTotal", "focusPointsRemaining", "focusPointsTotal", "spells"]);
-        this.level(level);
-    }
-
-    initProps(){
-        this.level = ko.observable(0);
+        this.level = ko.observable(level);
         this.slotsRemaining = ko.observable("0");
         this.slotsTotal = ko.observable("0");
         this.focusPointsRemaining = ko.observable("0");
@@ -530,19 +486,14 @@ export class SpellLevel extends CharacterProperty {
     });
 }
 
-export class CharacterSpell extends CharacterProperty {
+export class CharacterSpell {
     name: KnockoutObservable<string>;
     prepared: KnockoutObservable<boolean>;
     innateCurrent: KnockoutObservable<string>;
     innateMax: KnockoutObservable<string>;
 
-    constructor(name: string = ""){
-        super(() => viewModel.character().characterName(), ["name", "prepared", "innateCurrent", "innateMax"]);
-        this.name(name);
-    }
-
-    initProps(){
-        this.name = ko.observable("");
+    constructor(name: string){
+        this.name = ko.observable(name);
         this.prepared = ko.observable(false);
         this.innateCurrent = ko.observable("0");
         this.innateMax = ko.observable("0");
