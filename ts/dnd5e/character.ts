@@ -321,7 +321,7 @@ export class SpellLevel {
     spells: KnockoutObservableArray<CharacterSpell>;
 
     constructor(level: number){
-        this.level = ko.observable(0);
+        this.level = ko.observable(level);
         this.slotsRemaining = ko.observable("0");
         this.slotsTotal = ko.observable("0");
         this.spells = ko.observableArray([]);

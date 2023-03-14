@@ -1,7 +1,7 @@
 ## 0.3.2
 - [X] Remove manual safe save tracking, replace with a simple JSON comparison
 - [X] GM Tools UI Improvements
-- [ ] gray out pdf export on gm and landing
+- [X] Prevent pdf export on gm and landing pages
 - [ ] 5e Spellbook: Handle multiclass casters
 - [X] Misc bug fixes
 
