@@ -36,6 +36,9 @@ summary{
 .rpgui-dropdown{
     cursor: url("./img/cursor/default.png") 10 0,auto;
 }
+.rpgui-content input, .rpgui-content textarea, .rpgui-cursor-select {
+    cursor: url("./img/cursor/select.png") 10 15,auto;  /* Fix y-offset */
+}
 
 .rpgui-content textarea{
     height: auto;
