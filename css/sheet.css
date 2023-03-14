@@ -26,6 +26,17 @@
     font-size: 1.3em;
 }
 
+summary::marker{
+    color: #fff;
+    text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+summary{
+    cursor: url("./img/cursor/point.png") 10 0,auto;
+}
+.rpgui-dropdown{
+    cursor: url("./img/cursor/default.png") 10 0,auto;
+}
+
 .rpgui-content textarea{
     height: auto;
 }

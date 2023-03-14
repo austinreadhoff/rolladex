@@ -80,17 +80,37 @@
                         <div class="rpgui-container framed-grey" style="max-width:500px;">
                             <input data-bind="textInput: tuneName" placeholder="Name" />
                             <input data-bind="textInput: tuneURL" placeholder="Youtube ID" />
-                            <button data-bind="click: addTune" type="button" class="rpgui-button">Add to Soundtrack</button>
+                            <select data-bind="value: tuneCategory, options: tunes, optionsText: 'name', optionsValue: 'name'" 
+                                class="rpgui-dropdown" style="width: 100%;">
+                            </select>
+                            <button data-bind="click: function() { addTune(tuneCategory()) }" type="button" class="rpgui-button">Add to Soundtrack</button>
+                            <button data-bind="click: addTuneCategory" type="button" class="rpgui-button">Add Category</button>
                         </div>
                         <div>
                             <iframe data-bind="attr: { src: tuneSrc }" width="200" height="112" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div data-bind="foreach: tunes">
-                        <div>
-                            <button data-bind="click: $parent.removeTune" class="rpgui-button btn-small" type="button">-</button>
-                            <button data-bind="text: name, click: $parent.playTune" type="button" class="rpgui-button"></button>
-                        </div>
+                        <hr>
+                        <details open> 
+                            <summary>
+                                <button data-bind="click: $parent.removeTuneCategory, visible: $parent.tunes().length > 1" 
+                                    type="button" class="rpgui-button btn-small" type="button">-</button>
+                                <input data-bind="textInput: name" placeholder="Category Name" style="max-width: 250px;"/>
+                            </summary>
+                            <div data-bind="foreach: tunes">
+                                <div>
+                                    <button data-bind="click: function(data, event) {$parentContext.$parent.removeTune(data, $parentContext.$index)}" 
+                                        class="rpgui-button btn-small">-</button>
+                                    <button data-bind="text: name, click: $parentContext.$parent.playTune" type="button" class="rpgui-button"></button>
+
+                                    <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, -1)}"
+                                        class="rpgui-button btn-small">^</button>
+                                    <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, 1)}"
+                                        class="rpgui-button btn-small">v</button>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>

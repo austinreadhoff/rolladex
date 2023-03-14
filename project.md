@@ -1,8 +1,7 @@
 ## 0.3.2
 - [X] Remove manual safe save tracking, replace with a simple JSON comparison
-- [ ] gm: soundtrack categories
-- [ ] gm: soundtrack reordering
-- [X] gm: dice roller terminal-like "up" functionality
+- [X] GM Tools UI Improvements
+- [ ] gray out pdf export on gm and landing
 - [ ] 5e Spellbook: Handle multiclass casters
 - [X] Misc bug fixes
 

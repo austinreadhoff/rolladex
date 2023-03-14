@@ -2,7 +2,7 @@ import * as ko from "knockout";
 import { DiceRoll } from "./dice-roll";
 import { InitiativeCreature } from "./initiative-creature";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
-import { Tune } from "./tune";
+import { Tune, TuneCategory } from "./tune";
 
 export class ViewModel {
     previousRolls: KnockoutObservableArray<DiceRoll>;
@@ -13,10 +13,11 @@ export class ViewModel {
 
     tuneName: KnockoutObservable<string>;
     tuneURL: KnockoutObservable<string>;
+    tuneCategory: KnockoutObservable<string>;
     tuneSrc: KnockoutObservable<string>;
-    tunes: KnockoutObservableArray<Tune>;
+    tunes: KnockoutObservableArray<TuneCategory>;
 
-    constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<Tune>){
+    constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
         this.previousRolls = ko.observableArray(previousRolls);
         this.historyIndex = -1;
 
@@ -25,8 +26,9 @@ export class ViewModel {
 
         this.tuneName = ko.observable("");
         this.tuneURL = ko.observable("");
+        this.tuneCategory = ko.observable("");
         this.tuneSrc = ko.observable("https://www.youtube.com/embed/DKP16d_WdZM");
-        this.tunes = ko.observableArray(tunes);
+        this.tunes = ko.observableArray([new TuneCategory()]);
     }
 
     rollDice(d: string, e: KeyboardEvent) {
@@ -85,15 +87,34 @@ export class ViewModel {
         viewModel.initiativeMobs.remove(row);
     }
 
-    addTune(){
+    addTuneCategory(){
+        this.tunes.push(new TuneCategory());
+    }
+    removeTuneCategory(row: TuneCategory){
+        viewModel.tunes.remove(row);
+    }
+
+    addTune(categoryName: string){
+        let category = this.tunes().find(c => c.name() === categoryName);
+
         if (this.tuneName().trim() !== "" && this.tuneURL().trim() !== ""){
-            this.tunes.push(new Tune(this.tuneName(),this.tuneURL()));
+            category.tunes.push(new Tune(this.tuneName(),this.tuneURL()));
             this.tuneName("");
             this.tuneURL("");
         }
     }
-    removeTune(row: Tune){
-        viewModel.tunes.remove(row);
+    sortTune(tune: Tune, category: any, shiftValue: number){
+        let arr = viewModel.tunes()[category()].tunes;
+        let from = arr.indexOf(tune);
+        let to = from + shiftValue;
+
+        if (to >= 0 && to < arr().length){
+            arr.splice(from, 1);
+            arr.splice(to, 0, tune)
+        }
+    }
+    removeTune(row: Tune, category: any){
+        viewModel.tunes()[category()].tunes.remove(row);
     }
     playTune(tune: Tune){
         viewModel.tuneSrc("https://www.youtube.com/embed/" + tune.url());
