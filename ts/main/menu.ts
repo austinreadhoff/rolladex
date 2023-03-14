@@ -54,6 +54,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 type: 'separator'
             },
             {
+                id: 'print',
                 label: 'Export To PDF',
                 accelerator: 'CmdOrCtrl+P',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
@@ -282,9 +283,11 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
     (tabMenu.submenu as any).clear();
     tabMenu.submenu.items = [];
 
-    let enableSave = game != "";    //landing
+    let enableSave = game != "";
     menu.getMenuItemById("save").enabled = enableSave;
     menu.getMenuItemById("saveAs").enabled = enableSave;
+
+    menu.getMenuItemById("print").enabled = (game != "" && game != "gm");
 
     if (game == "dnd5e"){
         actionsMenu.submenu.append(new MenuItem({
