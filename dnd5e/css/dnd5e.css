@@ -8,8 +8,8 @@
     color: gold;
 }
 
-#spell-save-dc, #spell-attack-bonus{
-    font-size: 2em;
+.spell-save-dc, .spell-attack-bonus{
+    font-size: 2em !important;
 }
 
 #catalog-source, #catalog-classes{

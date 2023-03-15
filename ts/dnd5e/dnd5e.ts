@@ -47,16 +47,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
             });
         });
-
-        (document.getElementById("spell-rest-long") as HTMLInputElement).checked = true;
-
-        document.getElementById("btn-reset-prepared").addEventListener('click', event => {
-            viewModel.character().spellLevels().forEach((level: SpellLevel) => {
-                level.spells().forEach((spell: CharacterSpell) => {
-                    spell.prepared(false);
-                })
-            });
-        });
     });
 });
 
@@ -77,12 +67,16 @@ export function switchTab(tabId: string){
 }
 
 function takeRest(restType: number){
-    if (restType >= viewModel.character().spellRest()){ //Long rests refresh Warlocks too
+    let characterSpellRestType: RestType = RestType.Long;
+    if (viewModel.character().spellcastingClasses().every(c => c.restType() == RestType.Short))
+        characterSpellRestType = RestType.Short;
+
+    if (restType >= characterSpellRestType){ //Long rests refresh Warlocks too
         viewModel.character().spellLevels().forEach((level: SpellLevel) => {
             level.slotsRemaining(level.slotsTotal());
         });
     }
-
+    
     viewModel.character().miscCounters().forEach((counter: Counter) => {
         if ((counter.shortRest() && restType == RestType.Short) || (counter.longRest() && restType == RestType.Long)){
             counter.current(counter.max());

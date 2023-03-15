@@ -502,14 +502,18 @@
         <div data-bind="with: character" class="tab-pane" id="spellbook" role="tabpanel" aria-labelledby="spellbook-tab">
             <div id="spellbook-container" class="container-fluid">
                 <div class="header container-fluid block rpgui-container framed-golden">
+                    <!-- ko foreach: spellcastingClasses -->
+                    <!-- ko if: $index() > 0 -->
+                    <hr>
+                    <!-- /ko -->
                     <div class="row">
                         <div class="col-2 form-group">
-                            <label for="spellcasting-class">Spellcasting Class</label>
-                            <input data-bind="textInput: spellcastingClass" id="spellcasting-class" >
+                            <label data-bind="text: labelFormatted($index())"></label>
+                            <input data-bind="textInput: name">
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spellcasting-ability">Spellcasting Ability</label>
-                            <select id="spellcasting-ability" data-bind="value: spellcastingAbility" class="rpgui-dropdown" style="width:50%;">
+                            <select data-bind="value: ability" class="rpgui-dropdown" style="width:50%;">
                             <option value="STR">STR</option>
                             <option value="DEX">DEX</option>
                             <option value="CON">CON</option>
@@ -520,23 +524,29 @@
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spell-save-dc">Spell Save DC</label><br/><br/>
-                            <span data-bind="text: spellSaveDC(spellcastingAbility())" id="spell-save-dc"></span>
+                            <span data-bind="text: $parent.spellSaveDC(ability())" class="spell-save-dc"></span>
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spell-attack-bonus">Spell Attack Bonus</label><br/><br/>
-                            <span data-bind="text: spellAttackBonus(spellcastingAbility())" id="spell-attack-bonus"></span>
+                            <span data-bind="text: $parent.spellAttackBonus(ability())" class="spell-attack-bonus"></span>
                         </div>
                         <div class="col-2">
                             <span>Spell Slots Refresh on:</span>
-                            <input data-bind="checked: spellRest" type="radio" name="spell-rest" id="spell-rest-short" class="rpgui-radio" value="1">
-                            <label for="spell-rest-short">Short Rest</label>
-                            <input data-bind="checked: spellRest" type="radio" name="spell-rest" id="spell-rest-long" class="rpgui-radio" value="2">
-                            <label for="spell-rest-long">Long Rest</label>
+                            <input data-bind="checked: restType, attr: { id: 'spell-rest-short-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="1">
+                            <label data-bind="attr: { for: 'spell-rest-short-'+$index() }">Short Rest</label>
+                            <input data-bind="checked: restType, attr: { id: 'spell-rest-long-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="2">
+                            <label data-bind="attr: { for: 'spell-rest-long-'+$index() }">Long Rest</label>
                         </div>
                         <div class="col-2">
-                            <button type="button" id="btn-reset-prepared" class="rpgui-button">Reset Prepared Spells</button>
+                            <!-- ko if: $index() === 0 -->
+                            <button data-bind="click: $parent.addSpellcastingClass" class="rpgui-button">Add Another Spellcasting Class</button>
+                            <!-- /ko -->
+                            <!-- ko if: $index() > 0 -->
+                            <button data-bind="click: $parent.removeSpellcastingClass" class="rpgui-button btn-small">-</button>
+                            <!-- /ko -->
                         </div>
                     </div>
+                    <!-- /ko -->
                 </div>
 
                 <div data-bind="foreach: spellLevels" class="row">

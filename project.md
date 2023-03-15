@@ -1,8 +1,11 @@
 ## 0.3.2
-- [X] Remove manual safe save tracking, replace with a simple JSON comparison
+- [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
-- [X] Prevent pdf export on gm and landing pages
+- [X] Prevent erroneous pdf export on GM and landing pages
 - [ ] 5e Spellbook: Handle multiclass casters
+    - [X] Multiple classes UI
+    - [ ] Assign spells to a specific class
+    - [ ] Character schema upgrade function
 - [X] Misc bug fixes
 
 ## 0.3.1
@@ -32,12 +35,13 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
+- 5e: Long Rest Should give half hit dice 
+    - how to handle multiclassing?
 - fancy bars slight text offset
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?
 - Rich Text for text areas?
-- 5e: Long Rest Should give half hit dice (is this even possible to do automatically with multiclassing?)
 - Character Pictures
 - pf2e: Action icons 
 - Uppercase the goddamn name (windows and linux)

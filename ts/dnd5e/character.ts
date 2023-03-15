@@ -52,8 +52,6 @@ export class Character {
     eyes: KnockoutObservable<string>;
     skin: KnockoutObservable<string>;
     hair: KnockoutObservable<string>;
-    spellcastingClass: KnockoutObservable<string>;
-    spellcastingAbility: KnockoutObservable<string>;
     proficienciesLanguages: KnockoutObservable<string>;
     equipment: KnockoutObservable<string>;
     features: KnockoutObservable<string>;
@@ -86,7 +84,7 @@ export class Character {
     survival: KnockoutObservable<string>;
     attackStats: KnockoutObservableArray<Attack>;
     miscCounters: KnockoutObservableArray<Counter>;
-    spellRest: KnockoutObservable<RestType>;
+    spellcastingClasses: KnockoutObservableArray<SpellcastingClass>;
     spellLevels: KnockoutObservableArray<SpellLevel>;
 
     constructor(){
@@ -138,8 +136,6 @@ export class Character {
         this.eyes = ko.observable("");
         this.skin = ko.observable("");
         this.hair = ko.observable("");
-        this.spellcastingClass = ko.observable("");
-        this.spellcastingAbility = ko.observable("STR");
         this.proficienciesLanguages = ko.observable("");
         this.equipment = ko.observable("");
         this.features = ko.observable("");
@@ -172,7 +168,7 @@ export class Character {
         this.survival = ko.observable("&nbsp");
         this.attackStats = ko.observableArray([new Attack()]);
         this.miscCounters = ko.observableArray([]);
-        this.spellRest = ko.observable(RestType.Long);
+        this.spellcastingClasses = ko.observableArray([new SpellcastingClass()]);
         this.spellLevels = ko.observableArray([]);
 
         for (var i = 0; i <= 9; i++){
@@ -265,6 +261,13 @@ export class Character {
         viewModel.character().miscCounters.remove(counter);
     }
 
+    addSpellcastingClass(){
+        viewModel.character().spellcastingClasses.push(new SpellcastingClass())
+    }
+    removeSpellcastingClass(row: SpellcastingClass){
+        viewModel.character().spellcastingClasses.remove(row);
+    }
+
     //these have to be here, otherwise the fromJS model update would bork
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
@@ -311,6 +314,28 @@ export class Counter {
         this.shortRest.subscribe((newValue: boolean) => {
             this.longRest(newValue);
         }, this);
+    }
+}
+
+class SpellcastingClass {
+    name: KnockoutObservable<string>;
+    ability: KnockoutObservable<string>;
+    restType: KnockoutObservable<RestType>;
+
+    constructor(){
+        this.name = ko.observable("");
+        this.ability = ko.observable("STR");
+        this.restType = ko.observable(RestType.Long);
+    }
+
+    labelFormatted(i: number){
+        return ko.pureComputed(() => {
+            let label = "Spellcasting Class";
+            if (viewModel.character().spellcastingClasses().length < 2)
+                return label;
+    
+            return label + " " + ["A", "B", "C", "D", "E", "F"][i];
+        });
     }
 }
 
