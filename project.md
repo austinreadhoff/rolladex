@@ -1,10 +1,10 @@
-## 0.3.2
+## V.Next
 - [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
 - [X] Prevent erroneous pdf export on GM and landing pages
 - [ ] 5e Spellbook: Handle multiclass casters
     - [X] Multiple classes UI
-    - [ ] Assign spells to a specific class
+    - [X] Assign spells to a specific class
     - [ ] Character schema upgrade function
 - [X] Misc bug fixes
 

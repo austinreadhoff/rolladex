@@ -538,7 +538,7 @@
                             <label data-bind="attr: { for: 'spell-rest-long-'+$index() }">Long Rest</label>
                         </div>
                         <div class="col-2">
-                            <!-- ko if: $index() === 0 -->
+                            <!-- ko if: $index() === 0 && $parent.spellcastingClasses().length < 6 -->
                             <button data-bind="click: $parent.addSpellcastingClass" class="rpgui-button">Add Another Spellcasting Class</button>
                             <!-- /ko -->
                             <!-- ko if: $index() > 0 -->
@@ -563,10 +563,13 @@
                             <div class="spell-row row">
                                 <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="col-1 rpgui-button btn-small">-</button>
                                 <div class="autocomplete col">
-                                    <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class=" spell-input spell-name">
+                                    <input data-bind="textInput: name, class: classCalculated, bindSpell: { level: $parent.level, name: name } " class="spell-input spell-name">
                                 </div>
                                 <!-- ko if: $parent.level -->
-                                <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-input spell-prepared print-hidden rpgui-checkbox" type="checkbox">
+                                <!-- ko if: $parentContext.$parent.spellcastingClasses().length > 1 -->
+                                <div data-bind="spellclassbox: casterClass" class="spellclassbox"></div>
+                                <!-- /ko -->
+                                <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-prepared print-hidden rpgui-checkbox" type="checkbox">
                                 <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }" class="prepared-label"></label>
                                 <!-- /ko -->
                             </div>

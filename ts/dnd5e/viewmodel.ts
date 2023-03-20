@@ -53,8 +53,6 @@ export function applyDataBinding(){
             let profString = valueAccessor();
             let value = ko.unwrap(profString());
 
-            
-
             element.addEventListener("click", event => {
                 if (element.classList.contains("skillbox-null")){
                     element.classList.remove("skillbox-null");
@@ -93,6 +91,87 @@ export function applyDataBinding(){
                 default:
                     element.innerHTML = "&nbsp";
                     element.className = "skillbox skillbox-null";
+                    break;
+            }
+        }
+    }
+
+    //valueAccessor: class string A-F
+    ko.bindingHandlers.spellclassbox = {
+        init: function(element: HTMLElement, valueAccessor: any){
+            let profString = valueAccessor();
+            let value = ko.unwrap(profString());
+
+            element.addEventListener("click", event => {
+                let classes = viewModel.character().spellcastingClasses().length;
+                let set = function(oldValue: string, newValue: string){
+                    element.classList.remove("spellclassbox-"+oldValue);
+                    element.classList.add("spellclassbox-"+newValue);
+                    element.innerHTML = newValue.toUpperCase();
+                    profString(newValue.toUpperCase());
+                }
+
+                if (element.classList.contains("spellclassbox-a")){
+                    set("a","b");
+                }
+                else if (element.classList.contains("spellclassbox-b")){
+                    if (classes > 2)
+                        set("b","c");
+                    else
+                        set("b","a");
+                }
+                else if (element.classList.contains("spellclassbox-c")){
+                    if (classes > 3)
+                        set("c","d");
+                    else
+                        set("c","a");
+                }
+                else if (element.classList.contains("spellclassbox-d")){
+                    if (classes > 4)
+                        set("d","e");
+                    else
+                        set("d","a");
+                }
+                else if (element.classList.contains("spellclassbox-e")){
+                    if (classes > 5)
+                        set("e","f");
+                    else
+                        set("e","a");
+                }
+                else if (element.classList.contains("spellclassbox-f")){
+                    set("f","a");
+                }
+            }, true);
+        },
+        update(element: HTMLElement, valueAccessor: any){
+            let profString = valueAccessor();
+            let value = ko.unwrap(profString());
+
+            switch(value){
+                case "B":
+                    element.innerHTML = "B";
+                    element.className = "spellclassbox spellclassbox-b";
+                    break;
+                case "C":
+                    element.innerHTML = "C";
+                    element.className = "spellclassbox spellclassbox-c";
+                    break;
+                case "D":
+                    element.innerHTML = "D";
+                    element.className = "spellclassbox spellclassbox-d";
+                    break;
+                case "E":
+                    element.innerHTML = "E";
+                    element.className = "spellclassbox spellclassbox-e";
+                    break;
+                case "F":
+                    element.innerHTML = "F";
+                    element.className = "spellclassbox spellclassbox-f";
+                    break;
+                case "A":
+                default:
+                    element.innerHTML = "A";
+                    element.className = "spellclassbox spellclassbox-a";
                     break;
             }
         }

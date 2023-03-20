@@ -8,6 +8,25 @@
     color: gold;
 }
 
+.spellclassbox-a{
+    color: pink !important;
+}
+.spellclassbox-b{
+    color: coral !important;
+}
+.spellclassbox-c{
+    color: yellow !important;
+}
+.spellclassbox-d{
+    color: lightgreen !important;
+}
+.spellclassbox-e{
+    color: lightblue !important;
+}
+.spellclassbox-f{
+    color: violet !important;
+}
+
 .spell-save-dc, .spell-attack-bonus{
     font-size: 2em !important;
 }

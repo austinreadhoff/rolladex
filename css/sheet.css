@@ -120,7 +120,7 @@ input[readonly]{
     margin-bottom: 0;
 }
 
-.skillbox{
+.skillbox, .spellclassbox{
     display: inline-block;
     border: 2px inset #d27d2c;
     border-radius: 2px;

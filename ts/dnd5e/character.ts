@@ -362,9 +362,22 @@ export class SpellLevel {
 export class CharacterSpell {
     name: KnockoutObservable<string>;
     prepared: KnockoutObservable<boolean>;
+    casterClass: KnockoutObservable<string>;
 
     constructor(name: string){
         this.name = ko.observable(name);
         this.prepared = ko.observable(false);
+        this.casterClass = ko.observable("A");
     }
+
+    classCalculated: ko.PureComputed<string> = ko.pureComputed(() => {
+        let classList = ["spell-input","spell-name"];
+        if (this.prepared())
+            classList.push("prepared");
+
+        if (viewModel.character().spellcastingClasses().length > 1)
+            classList.push("spellclassbox-" + this.casterClass().toLowerCase());
+
+        return classList.join(" ");
+    });
 }
