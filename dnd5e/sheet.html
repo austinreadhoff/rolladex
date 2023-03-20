@@ -565,10 +565,10 @@
                                 <div class="autocomplete col">
                                     <input data-bind="textInput: name, class: $parentContext.$parent.spellCssClass($parentContext.$index(), $index()), bindSpell: { level: $parent.level, name: name } " class="spell-input spell-name">
                                 </div>
-                                <!-- ko if: $parent.level -->
                                 <!-- ko if: $parentContext.$parent.spellcastingClasses().length > 1 -->
                                 <div data-bind="spellclassbox: casterClass" class="spellclassbox"></div>
                                 <!-- /ko -->
+                                <!-- ko if: $parent.level -->
                                 <input data-bind="checked: prepared, attr: { id: 'prepared-'+$parent.level()+'-'+$index() }" class="col-1 spell-prepared print-hidden rpgui-checkbox" type="checkbox">
                                 <label data-bind="attr: { for: 'prepared-'+$parent.level()+'-'+$index() }" class="prepared-label"></label>
                                 <!-- /ko -->
