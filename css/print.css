@@ -5,7 +5,7 @@ body {
 
 hr, button, 
 .rpgui-progress-track, .rpgui-progress-left-edge, .rpgui-progress-right-edge,
-.prepared-label{
+.prepared-label, .spellclassbox{
     display: none !important;
 }
 
@@ -77,6 +77,5 @@ input[readonly]{
 }
 
 .prepared{
-    border: 1px solid #222 !important;
-    border-radius: 0.25rem !important;
+    border-color: rgb(118, 118, 118) !important;
 }

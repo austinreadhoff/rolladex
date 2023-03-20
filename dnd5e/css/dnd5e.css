@@ -8,23 +8,29 @@
     color: gold;
 }
 
-.spellclassbox-a{
-    color: pink !important;
+input.spell-name.spellclassbox-a,
+.spellclassbox.spellclassbox-a{
+    color: pink;
 }
-.spellclassbox-b{
-    color: coral !important;
+input.spell-name.spellclassbox-b,
+.spellclassbox.spellclassbox-b{
+    color: coral;
 }
-.spellclassbox-c{
-    color: yellow !important;
+input.spell-name.spellclassbox-c,
+.spellclassbox.spellclassbox-c{
+    color: yellow;
 }
-.spellclassbox-d{
-    color: lightgreen !important;
+input.spell-name.spellclassbox-d,
+.spellclassbox.spellclassbox-d{
+    color: lightgreen;
 }
-.spellclassbox-e{
-    color: lightblue !important;
+input.spell-name.spellclassbox-e,
+.spellclassbox.spellclassbox-e{
+    color: lightblue;
 }
-.spellclassbox-f{
-    color: violet !important;
+input.spell-name.spellclassbox-f,
+.spellclassbox.spellclassbox-f{
+    color: violet;
 }
 
 .spell-save-dc, .spell-attack-bonus{
