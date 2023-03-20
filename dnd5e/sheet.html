@@ -508,7 +508,7 @@
                     <!-- /ko -->
                     <div class="row">
                         <div class="col-2 form-group">
-                            <label data-bind="text: labelFormatted($index())"></label>
+                            <label data-bind="text: $parent.spellcastingClassLabel($index())"></label>
                             <input data-bind="textInput: name">
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
@@ -551,7 +551,7 @@
 
                 <div data-bind="foreach: spellLevels" class="row">
                     <div data-bind="attr: { 'data-level': level }" class="container spell-block rpgui-container framed">
-                        <label data-bind="text: levelFormatted" class="full-width-label"></label>
+                        <label data-bind="text: $parent.spellLevelFormatted($index())" class="full-width-label"></label>
                         <button data-bind="click: function(){$parent.addSpell(level())}" type="button" id="btn-add-spell" class="rpgui-button btn-small">+</button>
                         <div id="spells">
                             <!--ko if: level-->
@@ -561,9 +561,9 @@
                             <!-- /ko -->
                             <!-- ko foreach: spells -->
                             <div class="spell-row row">
-                                <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="col-1 rpgui-button btn-small">-</button>
+                                <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index())}" type="button" id="btn-remove-spell" class="col-1 rpgui-button btn-small">-</button>
                                 <div class="autocomplete col">
-                                    <input data-bind="textInput: name, class: classCalculated, bindSpell: { level: $parent.level, name: name } " class="spell-input spell-name">
+                                    <input data-bind="textInput: name, class: $parentContext.$parent.spellCssClass($parentContext.$index(), $index()), bindSpell: { level: $parent.level, name: name } " class="spell-input spell-name">
                                 </div>
                                 <!-- ko if: $parent.level -->
                                 <!-- ko if: $parentContext.$parent.spellcastingClasses().length > 1 -->

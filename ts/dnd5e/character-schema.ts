@@ -1,5 +1,5 @@
 //Whenever this verison is increased, add a conversion method to the switch statement that increments the version from the previous
-export var jsonSchemaVersion = 0.5;
+export var jsonSchemaVersion = 0.6;
 export var gameName = "dnd5e";
 
 export function UpgradeSchema(json: any){
@@ -10,8 +10,10 @@ export function UpgradeSchema(json: any){
             json = ConvertToViewModelSchema(json);
         case 0.3:
             json = AddGameProperty(json);
-	case 0.4:
-	    json = RemoveSpellStats(json);
+        case 0.4:
+            json = RemoveSpellStats(json);
+        case 0.5:
+            json = MultiClassCasting(json);
     }
 
     return json;
@@ -129,5 +131,31 @@ function RemoveSpellStats(json: any){
     delete json["spellAttackBonus"];
 
     json["version"] = 0.5;
+    return json;
+}
+
+function MultiClassCasting(json: any){
+    //create single-item array from existing spellcasting class properties
+    json["spellcastingClasses"] = [{
+        name: json["spellcastingClass"],
+        ability: json["spellcastingAbility"],
+        restType: json["spellRest"],
+    }];
+
+    delete json["spellcastingClass"];
+    delete json["spellcastingAbility"];
+    delete json["spellRest"];
+
+    //add caster class property to existing spells
+    for (let i = 0; i < json["spellLevels"].length; i++) {
+        const currentLevel = json["spellLevels"][i];
+        delete currentLevel["levelFormatted"];  //unrelated fix, this should be computed, not saved
+
+        for (let i = 0; i < currentLevel["spells"].length; i++) {
+            currentLevel["spells"][i]["casterClass"] = "A";
+        }
+    }
+
+    json["version"] = 0.6;
     return json;
 }

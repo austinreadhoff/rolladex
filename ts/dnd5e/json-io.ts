@@ -8,7 +8,10 @@ import { viewModel } from "./viewmodel";
 ipcRenderer.on('request-save-json', (event: any, responseChannel: string) => {
     viewModel.character().version(jsonSchemaVersion);
     var json: any = JSON.parse(ko.toJSON(viewModel.character()));   //the extra .parse ensures functions are excluded
-    json["spellRest"] = json["spellRest"].toString();   //workaround, ensures enum saves as string
+
+    for (let i = 0; i < json["spellcastingClasses"].length; i++) {
+        json["spellcastingClasses"][i]["restType"] = json["spellcastingClasses"][i]["restType"].toString();   //workaround, ensures enum saves as string
+    }
 
     ipcRenderer.send(responseChannel, json);
 });

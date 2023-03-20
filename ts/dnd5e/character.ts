@@ -268,12 +268,13 @@ export class Character {
         viewModel.character().spellcastingClasses.remove(row);
     }
 
-    //these have to be here, otherwise the fromJS model update would bork
+    //the following functions would be in child objects, but are here instead, to prevent functions from messing with save/load operations
+    //#region
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
     }
-    removeSpell(spell: CharacterSpell, spellLevel: any){
-        this.spellLevels()[spellLevel()].spells.remove(spell);
+    removeSpell(spell: CharacterSpell, spellLevelIndex: number){
+        this.spellLevels()[spellLevelIndex].spells.remove(spell);
     }
     hasSpell(name: string){
         for (let level of this.spellLevels()){
@@ -283,6 +284,38 @@ export class Character {
         }
         return false;
     }
+
+    spellLevelFormatted(i: number){
+        return ko.pureComputed(() => {
+            var num = this.spellLevels()[i].level();
+    
+            return num == 0 ? "Cantrips" : "Level " + num;
+        });
+    }
+    spellcastingClassLabel(i: number){
+        return ko.pureComputed(() => {
+            let label = "Spellcasting Class";
+            if (viewModel.character().spellcastingClasses().length < 2)
+                return label;
+    
+            return label + " " + ["A", "B", "C", "D", "E", "F"][i];
+        });
+    }
+    spellCssClass(spellLevelIndex:number, i: number){
+        return ko.pureComputed(() => {
+            let spell = viewModel.character().spellLevels()[spellLevelIndex].spells()[i];
+
+            let classList = ["spell-name"];
+            if (spell.prepared())
+                classList.push("prepared");
+    
+            if (viewModel.character().spellcastingClasses().length > 1)
+                classList.push("spellclassbox-" + spell.casterClass().toLowerCase());
+    
+            return classList.join(" ");
+        });
+    } 
+    //#endregion
 }
 
 class Attack {
@@ -327,16 +360,6 @@ class SpellcastingClass {
         this.ability = ko.observable("STR");
         this.restType = ko.observable(RestType.Long);
     }
-
-    labelFormatted(i: number){
-        return ko.pureComputed(() => {
-            let label = "Spellcasting Class";
-            if (viewModel.character().spellcastingClasses().length < 2)
-                return label;
-    
-            return label + " " + ["A", "B", "C", "D", "E", "F"][i];
-        });
-    }
 }
 
 export class SpellLevel {
@@ -351,12 +374,6 @@ export class SpellLevel {
         this.slotsTotal = ko.observable("0");
         this.spells = ko.observableArray([]);
     }
-
-    levelFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
-        var num = this.level();
-
-        return num == 0 ? "Cantrips" : "Level " + num;
-    });
 }
 
 export class CharacterSpell {
@@ -369,15 +386,4 @@ export class CharacterSpell {
         this.prepared = ko.observable(false);
         this.casterClass = ko.observable("A");
     }
-
-    classCalculated: ko.PureComputed<string> = ko.pureComputed(() => {
-        let classList = ["spell-input","spell-name"];
-        if (this.prepared())
-            classList.push("prepared");
-
-        if (viewModel.character().spellcastingClasses().length > 1)
-            classList.push("spellclassbox-" + this.casterClass().toLowerCase());
-
-        return classList.join(" ");
-    });
 }
