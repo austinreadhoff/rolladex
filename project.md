@@ -35,6 +35,9 @@
 - 5e: Long Rest Should give half hit dice 
     - how to handle multiclassing?
 - fancy bars slight text offset
+- Enhance spellbook description display
+    - Custom solution (modal?) that shows the entire descrption
+    - Also, actually discoverable in the UI
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?
@@ -45,7 +48,6 @@
 - Inconsistent 5e spell description formatting
 - Alternate search titles for certain spells srd vs 5e phb
 - Remove link text from pf2e spells 
-- pf2e spell descriptions, strip out html in tooltip
 - Remove from spellbook button in catalog
 - Signify spellbook spells using icon in catalog list
 - Custom undo stack

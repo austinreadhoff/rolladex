@@ -123,6 +123,10 @@ export class Spell extends CatalogObject {
     });
 
     fullTextFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        let descriptionEl = document.createElement("div");
+        descriptionEl.innerHTML = this.description;
+        let descriptionStr = descriptionEl.innerText;
+
         let tags = this.tags()
             .map(t => "[" + t + "]")
             .join("");
@@ -142,7 +146,7 @@ export class Spell extends CatalogObject {
         + (this.target.length > 0 ? this.targetFormatted() + "\n" : "")
         + (this.duration.length > 0 ? this.durationFormatted() + "\n" : "")
         + "\n"
-        + this.description;
+        + descriptionStr;
 
         return text;
     });
