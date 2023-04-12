@@ -86,6 +86,21 @@ function takeRest(restType: number){
     if (restType == RestType.Long){
         viewModel.character().currentHP(viewModel.character().maxHP());
         viewModel.character().tempHP("");
+
+        let maxHitDice = viewModel.character().maxHitDice();
+        if (maxHitDice.indexOf(",") == -1       //on multiclass, let the user decide on their own which dice to regain
+            && maxHitDice.indexOf("d") != -1){  //we assume the user is using xdy notation for this to work
+                let max = +maxHitDice.substring(0, maxHitDice.indexOf('d'));
+                let regained = Math.floor(max/2);
+                if (regained < 1) regained = 1;
+
+                let currentHitDice = viewModel.character().currentHitDice();
+                let suffix = currentHitDice.substring(currentHitDice.indexOf('d'));
+                let newCurrent = +currentHitDice.substring(0, currentHitDice.indexOf('d')) + regained;
+                if (newCurrent > max) newCurrent = max;
+                
+                viewModel.character().currentHitDice(newCurrent + suffix);
+        }
     }
 }
 

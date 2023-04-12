@@ -3,6 +3,7 @@
 - [X] GM Tools UI Improvements
 - [X] Prevent erroneous pdf export on GM and landing pages
 - [X] 5e Spellbook: Handle multiclass casters
+- [X] 5e: Regain half hit dice on long rest
 - [X] Misc bug fixes
 
 ## 0.3.1
@@ -32,8 +33,6 @@
 ---
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
-- 5e: Long Rest Should give half hit dice 
-    - how to handle multiclassing?
 - fancy bars slight text offset
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
