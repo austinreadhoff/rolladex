@@ -4,6 +4,7 @@
 - [X] Prevent erroneous pdf export on GM and landing pages
 - [X] 5e Spellbook: Handle multiclass casters
 - [X] 5e: Regain half hit dice on long rest
+- [X] Ignore bracketed text in spellbook rows
 - [X] Misc bug fixes
 
 ## 0.3.1
