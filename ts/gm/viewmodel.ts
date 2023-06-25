@@ -1,13 +1,10 @@
 import * as ko from "knockout";
-import { DiceRoll } from "./dice-roll";
 import { InitiativeCreature } from "./initiative-creature";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 import { Tune, TuneCategory } from "./tune";
+import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 
 export class ViewModel {
-    previousRolls: KnockoutObservableArray<DiceRoll>;
-    historyIndex: number;
-
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
 
@@ -17,10 +14,7 @@ export class ViewModel {
     tuneSrc: KnockoutObservable<string>;
     tunes: KnockoutObservableArray<TuneCategory>;
 
-    constructor(previousRolls: Array<DiceRoll>, pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
-        this.previousRolls = ko.observableArray(previousRolls);
-        this.historyIndex = -1;
-
+    constructor(pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
         this.initiativePCs = ko.observableArray(pcs);
         this.initiativeMobs = ko.observableArray(mobs);
 
@@ -29,34 +23,6 @@ export class ViewModel {
         this.tuneCategory = ko.observable("");
         this.tuneSrc = ko.observable("https://www.youtube.com/embed/DKP16d_WdZM");
         this.tunes = ko.observableArray([new TuneCategory()]);
-    }
-
-    rollDice(d: string, e: KeyboardEvent) {
-        if (e.key == 'Enter'){
-            let input = e.currentTarget as HTMLInputElement;
-            if (input.value.trim() === "")
-                return true;
-
-            this.previousRolls.unshift(new DiceRoll(input.value));
-            input.value = "";
-            this.historyIndex = -1;
-            if (this.previousRolls().length > 10)
-                this.previousRolls.pop();
-        }
-        else if (e.key == 'ArrowUp' && this.historyIndex < this.previousRolls().length-1){
-            this.historyIndex++;
-            (e.currentTarget as HTMLInputElement).value = this.previousRolls()[this.historyIndex].raw();
-        }
-        else if (e.key == 'ArrowDown' && this.historyIndex > -1){
-            let input = e.currentTarget as HTMLInputElement;
-
-            this.historyIndex--;
-            if (this.historyIndex == -1)
-                input.value = "";
-            else
-                input.value = this.previousRolls()[this.historyIndex].raw();
-        }
-        return true;
     }
 
     initiativeOrder(){
@@ -121,13 +87,17 @@ export class ViewModel {
     }
 }
 
-export var viewModel = new ViewModel([], [], [], []);
+export var viewModel = new ViewModel([], [], []);
 
 //to be executed on document ready
 export function applyDataBinding(){
     ko.components.register("fancy-bar", {
         viewModel: FancyBarViewModel,
         template: FancyBarTemplate
+    });
+    ko.components.register("dice-roller", {
+        viewModel: DiceRollerViewModel,
+        template: DiceRollerTemplate
     });
 
     ko.applyBindings(viewModel)

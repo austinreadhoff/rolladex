@@ -5,6 +5,7 @@
 - [X] 5e Spellbook: Handle multiclass casters
 - [X] 5e: Regain half hit dice on long rest
 - [X] Ignore bracketed text in spellbook rows
+- [ ] Dice Roller available on all pages
 - [X] Misc bug fixes
 
 ## 0.3.1
@@ -35,6 +36,8 @@
 
 ## Low Priority Backlog and Stray Thoughts, in no particular order
 - fancy bars slight text offset
+- Advanced calculation for attacks
+- Extract catalogs to components so they can be referenced from gm tools as well
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI

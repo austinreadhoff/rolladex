@@ -238,6 +238,7 @@ img.currency{
     margin-top: 1em;
 }
 
+/*fancy bar*/
 fancy-bar{
     display: contents;
 }
@@ -264,4 +265,23 @@ fancy-bar .fancy-plus{
     width: 25%;
     border: none;
     background: none;
+}
+
+/* dice roller */
+#dice-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    padding-left: 0;
+}
+li.previous-roll{
+    list-style: none;
+    padding-bottom: 15px;
+}
+li.previous-roll > span.sum{
+    color: lightgreen;
 }

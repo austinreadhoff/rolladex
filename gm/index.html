@@ -22,20 +22,7 @@
         <hr class="golden">
         <div class="tab-content">
             <div class="tab-pane active" id="dice" role="tabpanel" aria-labelledby="dice-tab">
-                <div id="dice-container" class="container-fluid">
-                    <div id="dice-container">
-                        <div>
-                            <input data-bind="event: {keydown: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" autoFocus />
-                        </div>
-                        <ul data-bind="foreach: previousRolls">
-                            <li class="previous-roll">
-                                <span data-bind="text: raw" class="raw"></span>
-                                <br/>
-                                <span data-bind="text: math" class="math">6</span> = <span data-bind="text: sum" class="sum">6</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <dice-roller></dice-roller>
             </div>
         </div>
         <div class="tab-content">
