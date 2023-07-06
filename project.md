@@ -34,7 +34,7 @@
 
 ---
 
-## Low Priority Backlog and Stray Thoughts, in no particular order
+## Backlog, low-priority items, and Stray Thoughts, in no particular order
 - fancy bars slight text offset
 - Advanced calculation for attacks
 - Extract catalogs to components so they can be referenced from gm tools as well
@@ -45,7 +45,7 @@
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?
 - Rich Text for text areas?
-- Character Pictures
+- Character Pictures (how to store?)
 - pf2e: Action icons 
 - Uppercase the goddamn name (windows and linux)
 - Inconsistent 5e spell description formatting
@@ -53,4 +53,5 @@
 - Remove link text from pf2e spells 
 - Remove from spellbook button in catalog
 - Signify spellbook spells using icon in catalog list
+- Non-PITA method of showing unsaved status in title bar
 - Custom undo stack

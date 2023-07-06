@@ -285,3 +285,8 @@ li.previous-roll{
 li.previous-roll > span.sum{
     color: lightgreen;
 }
+
+/* modal */
+.modal-x{
+    cursor: url("./img/cursor/point.png") 10 0,auto; 
+}
