@@ -5,7 +5,7 @@
 - [X] 5e Spellbook: Handle multiclass casters
 - [X] 5e: Regain half hit dice on long rest
 - [X] Ignore bracketed text in spellbook rows
-- [ ] Dice Roller available on all pages
+- [X] Dice Roller available on all pages
 - [X] Misc bug fixes
 
 ## 0.3.1
