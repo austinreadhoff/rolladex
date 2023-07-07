@@ -28,6 +28,12 @@ ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
     switchTab(tabId);
 });
 
+ipcRenderer.on('send-open-dice-roller', (event) => {
+    let modal = document.getElementById("dice-modal");
+    modal.hidden = false;
+    (modal.querySelector("#txt-roller") as HTMLElement).focus();
+});
+
 document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "gm");
     applyDataBinding();

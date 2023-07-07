@@ -1,6 +1,6 @@
 import { app, ipcMain, Menu, MenuItem } from 'electron'
 import { RestType } from '../shared/rest-type';
-import { takeRest, printToPDF, switchTab, switchToTab } from './menu-actions'
+import { takeRest, printToPDF, switchTab, switchToTab, openDiceRoller } from './menu-actions'
 import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
 
 const template: Electron.MenuItemConstructorOptions[] = [
@@ -147,7 +147,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
         submenu: [
             {
                 label: 'Short Rest',
-                accelerator: 'CmdOrCtrl+R',
+                accelerator: 'CmdOrCtrl+K',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                     takeRest(focusedWindow, RestType.Short);
                 }
@@ -289,10 +289,20 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
 
     menu.getMenuItemById("print").enabled = (game != "" && game != "gm");
 
+    if (game != ""){
+        actionsMenu.submenu.append(new MenuItem({
+            label: 'Roll Dice',
+            accelerator: 'CmdOrCtrl+R',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                openDiceRoller(focusedWindow);
+            }
+        }));
+    }
+
     if (game == "dnd5e"){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Short Rest',
-            accelerator: 'CmdOrCtrl+R',
+            accelerator: 'CmdOrCtrl+K',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                 takeRest(focusedWindow, RestType.Short);
             }
@@ -338,7 +348,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
     else if (game == "pf2e"){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Take Rest',
-            accelerator: 'CmdOrCtrl+R',
+            accelerator: 'CmdOrCtrl+K',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                 takeRest(focusedWindow, 0);
             }

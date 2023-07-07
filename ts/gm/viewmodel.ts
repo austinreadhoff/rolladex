@@ -3,6 +3,7 @@ import { InitiativeCreature } from "./initiative-creature";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 import { Tune, TuneCategory } from "./tune";
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
+import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 
 export class ViewModel {
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
@@ -99,6 +100,11 @@ export function applyDataBinding(){
         viewModel: DiceRollerViewModel,
         template: DiceRollerTemplate
     });
+    ko.components.register("modal", {
+        viewModel: ModalViewModel,
+        template: ModalTemplate
+    });
+    registerModalHandlers();
 
     ko.applyBindings(viewModel)
 }

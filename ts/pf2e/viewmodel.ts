@@ -6,6 +6,8 @@ import { Gear } from "./gear";
 import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
+import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
+import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -42,6 +44,15 @@ export function applyDataBinding(){
         viewModel: FancyBarViewModel,
         template: FancyBarTemplate
     });
+    ko.components.register("dice-roller", {
+        viewModel: DiceRollerViewModel,
+        template: DiceRollerTemplate
+    });
+    ko.components.register("modal", {
+        viewModel: ModalViewModel,
+        template: ModalTemplate
+    });
+    registerModalHandlers();
 
     //valueAccessor: { the spellBookLevel (1-14), spell name }
     ko.bindingHandlers.bindSpell = {

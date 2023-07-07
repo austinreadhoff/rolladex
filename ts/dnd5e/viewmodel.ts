@@ -4,6 +4,8 @@ import * as ko from "knockout";
 import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
+import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
+import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -24,6 +26,15 @@ export function applyDataBinding(){
     ko.components.register("fancy-bar", {
         viewModel: FancyBarViewModel,
         template: FancyBarTemplate
+    });
+    ko.components.register("modal", {
+        viewModel: ModalViewModel,
+        template: ModalTemplate
+    });
+    registerModalHandlers();
+    ko.components.register("dice-roller", {
+        viewModel: DiceRollerViewModel,
+        template: DiceRollerTemplate
     });
     
     //valueAccessor: { the spell level, spell name }

@@ -35,6 +35,12 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
     takeRest(restType);
 });
 
+ipcRenderer.on('send-open-dice-roller', (event) => {
+    let modal = document.getElementById("dice-modal");
+    modal.hidden = false;
+    (modal.querySelector("#txt-roller") as HTMLElement).focus();
+});
+
 document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "dnd5e");
     applyDataBinding();

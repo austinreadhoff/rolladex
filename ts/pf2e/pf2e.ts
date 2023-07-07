@@ -36,6 +36,12 @@ ipcRenderer.on('send-take-rest', (event, restType) => {
     takeRest(); //only one type of rest, doesn't matter which is sent
 });
 
+ipcRenderer.on('send-open-dice-roller', (event) => {
+    let modal = document.getElementById("dice-modal");
+    modal.hidden = false;
+    (modal.querySelector("#txt-roller") as HTMLElement).focus();
+});
+
 document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "pf2e");
     applyDataBinding();

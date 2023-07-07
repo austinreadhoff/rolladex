@@ -33,5 +33,9 @@ export function printToPDF(window: Electron.BrowserWindow){
 }
 
 export function takeRest(window: Electron.BrowserWindow, restType: number){
-    window.webContents.send('send-take-rest', restType)
+    window.webContents.send('send-take-rest', restType);
+}
+
+export function openDiceRoller(window: Electron.BrowserWindow){
+    window.webContents.send('send-open-dice-roller');
 }

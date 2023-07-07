@@ -41,6 +41,7 @@
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI
+- Show individual dice in dice roller
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?

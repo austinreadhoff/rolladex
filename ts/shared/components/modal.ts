@@ -7,6 +7,7 @@ import * as ko from "knockout";
 //     viewModel: ModalViewModel,
 //     template: ModalTemplate
 // });
+// registerModalHandlers();
 
 // <modal params="name: 'info-popup'">
 //  <something>...Modal contents go here...</something>
@@ -24,7 +25,7 @@ export class ModalViewModel {
 }
 
 export const ModalTemplate: string = `
-<div class="modal" data-bind="attr: {id: name}" >
+<div hidden class="modal" data-bind="attr: {id: name}" >
     <div class="modal-content rpgui-container framed-golden container" 
         style="position: fixed; z-index: 99; margin:auto; display: flex; flex-direction: column;
         left:0;right:0;top:0;bottom:0;
@@ -42,3 +43,22 @@ export const ModalTemplate: string = `
     </div>
 </div>
 `;
+
+export function registerModalHandlers(){
+    let hideAllModals = function(){
+        var modals = Array.from(document.getElementsByClassName("modal"));
+        modals.forEach((modal) => {
+            (modal as HTMLElement).hidden = true;
+        });
+    }
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key == 'Escape')
+            hideAllModals();
+    });
+
+    document.addEventListener('click', (e: MouseEvent) => {
+        if (!(e.target as HTMLElement).closest(".modal"))
+            hideAllModals();
+    });
+}
