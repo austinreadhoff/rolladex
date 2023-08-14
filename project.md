@@ -6,11 +6,7 @@
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
 - [ ] Catalogs available for viewing in gm tools
-- [ ] 5e: Attack calculations
-    - [X] Feature
-    - [X] Printing
-    - [X] Check Printing for modals in general
-    - [ ] Migration
+- [X] 5e: Attack calculations
 - [ ] Mouse pointer on catalog list
 - [X] Misc bug fixes
 
