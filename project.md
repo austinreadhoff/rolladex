@@ -7,7 +7,6 @@
 - [X] Dice Roller available on all pages
 - [ ] Catalogs available for viewing in gm tools
 - [X] 5e: Attack calculations
-- [ ] Mouse pointer on catalog list
 - [X] Misc bug fixes
 
 ## 0.3.1

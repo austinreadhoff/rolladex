@@ -30,7 +30,12 @@ summary::marker{
     color: #fff;
     text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
 }
-summary{
+summary
+,.catalog-listbox
+,.skillbox, .spellclassbox
+,.catalog-filters label
+,.filter-toggle
+,.modal-x{
     cursor: url("./img/cursor/point.png") 10 0,auto;
 }
 .rpgui-dropdown{
@@ -131,7 +136,6 @@ input[readonly]{
     font-family: "Bittypix";
     font-size: .75em;
 
-    cursor: url("./img/cursor/point.png") 10 0,auto;
     user-select: none;
 }
 
@@ -209,11 +213,7 @@ img.currency{
 }
 .catalog-filters label{
     white-space: pre;
-    cursor: url("./img/cursor/point.png") 10 0,auto;
     user-select: none;
-}
-.filter-toggle{
-    cursor: url("./img/cursor/point.png") 10 0,auto;
 }
 .filter-toggle-icon{
     display: inline-block;
@@ -281,9 +281,4 @@ li.previous-roll{
 }
 li.previous-roll > span.sum{
     color: lightgreen;
-}
-
-/* modal */
-.modal-x{
-    cursor: url("./img/cursor/point.png") 10 0,auto; 
 }
