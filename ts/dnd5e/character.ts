@@ -205,43 +205,49 @@ export class Character {
     }
 
     //because calculated properties can't be math'd
-    private calculateSpellAttackBonus(ability: string) : number {
-	let abilityScore;
-	switch(ability){
-	    case "STR":
-		abilityScore = this.str();
-		break;
-	    case "DEX":
-		abilityScore = this.dex();
-		break;
-	    case "CON":
-		abilityScore = this.con();
-		break;
-	    case "INT":
-		abilityScore = this.int();
-		break;
-	    case "WIS":
-		abilityScore = this.wis();
-		break;
-	    case "CHAR":
-		abilityScore = this.char();
-		break;
-	}
+    private calculateAbilityBonus(ability: string, proficient: boolean) : number {
+        let abilityScore;
+        switch(ability){
+            case "STR":
+            abilityScore = this.str();
+            break;
+            case "DEX":
+            abilityScore = this.dex();
+            break;
+            case "CON":
+            abilityScore = this.con();
+            break;
+            case "INT":
+            abilityScore = this.int();
+            break;
+            case "WIS":
+            abilityScore = this.wis();
+            break;
+            case "CHAR":
+            abilityScore = this.char();
+            break;
+        }
 
-	return (Math.floor(+abilityScore / 2) - 5)
-	    + +(this.proficiency().replace(/\D/g,''));
+        if (!abilityScore)
+            return +0;
+
+        let total = (Math.floor(+abilityScore / 2) - 5);
+        if (proficient)
+            return total + +(this.proficiency().replace(/\D/g,''));
+        else
+            return total;
     }
     
     spellAttackBonus(ability: string){
-	return ko.computed(() => {
-	    return this.calculateSpellAttackBonus(ability);
-	}, this);
+        return ko.computed(() => {
+            return this.calculateAbilityBonus(ability, true);
+        }, this);
     }
 
     spellSaveDC(ability: string){
-	return ko.computed(() => {
-	    return 8 + this.calculateSpellAttackBonus(ability);
-	}, this);
+        return ko.computed(() => {
+            return 8 + this.calculateAbilityBonus(ability, true);
+        }, this);
     }
 
     addAttackRow(){
@@ -249,6 +255,19 @@ export class Character {
     }
     removeAttackRow(row: Attack){
         viewModel.character().attackStats.remove(row);
+    }
+
+    attackBonus(ability: string, proficient: boolean, bonus: string){
+        return ko.computed(() => {
+            let total: number = this.calculateAbilityBonus(ability, proficient) + +(bonus.replace(/\D/g,''));
+            return total >= 0 ? "+" + total : total;
+        }, this);
+    }
+    attackDamage(ability: string, bonus: string, dice: string, type: string){
+        return ko.computed(() => {
+            let total = this.calculateAbilityBonus(ability, false) + +(bonus.replace(/\D/g,''));
+            return dice + (total >= 0 ? "+" : "") + total + " " + type;
+        }, this);
     }
 
     addMiscCounter(){
@@ -320,13 +339,23 @@ export class Character {
 
 class Attack {
     name: KnockoutObservable<string>;
-    bonus: KnockoutObservable<string>;
-    dmg: KnockoutObservable<string>;
+    proficient: KnockoutObservable<boolean>;
+    ability: KnockoutObservable<string>;
+    dmgDice: KnockoutObservable<string>;
+    dmgType: KnockoutObservable<string>;
+    bonusAttk: KnockoutObservable<string>;
+    bonusDmg: KnockoutObservable<string>;
+    notes: KnockoutObservable<string>;
 
     constructor(){
         this.name = ko.observable("");
-        this.bonus = ko.observable("");
-        this.dmg = ko.observable("");
+        this.proficient = ko.observable(false);
+        this.ability = ko.observable("STR");
+        this.dmgDice = ko.observable("");
+        this.dmgType = ko.observable("");
+        this.bonusAttk = ko.observable("0");
+        this.bonusDmg = ko.observable("0");
+        this.notes = ko.observable("");
     }
 }
 

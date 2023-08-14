@@ -1,11 +1,17 @@
 ## V.Next
 - [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
-- [X] Prevent erroneous pdf export on GM and landing pages
 - [X] 5e Spellbook: Handle multiclass casters
 - [X] 5e: Regain half hit dice on long rest
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
+- [ ] Catalogs available for viewing in gm tools
+- [ ] 5e: Attack calculations
+    - [X] Feature
+    - [ ] Printing
+    - [ ] Check Printing for modals in general
+    - [ ] Migration
+- [ ] Mouse pointer on catalog list
 - [X] Misc bug fixes
 
 ## 0.3.1
@@ -36,12 +42,12 @@
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
 - fancy bars slight text offset
-- Advanced calculation for attacks
-- Extract catalogs to components so they can be referenced from gm tools as well
+- Less ugly pdf export (including not showing the cursor)
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI
 - Show individual dice in dice roller
+- Roll dice from sheet
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?

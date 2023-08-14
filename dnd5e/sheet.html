@@ -286,7 +286,7 @@
                                         </div>
                                         <div class="form-group col">
                                             <label for="armor-class">Initiative</label>
-                                            <input data-bind="value: abilityMod(dex(), true)" id="initiative" class=" ignore" readonly>
+                                            <input data-bind="value: abilityMod(dex(), true)" id="initiative" readonly>
                                         </div>
                                         <div class="form-group col">
                                             <label for="speed">Speed</label>
@@ -338,10 +338,62 @@
                                     <div data-bind="foreach: attackStats" id="attack-stats">
                                         <div class="attack-stat-row row">
                                             <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="col-1 btn-small rpgui-button">-</button>
-                                            <input data-bind="textInput: name" class=" col-4 attack-stat attack-stat-name">
-                                            <input data-bind="textInput: bonus" class=" col-2 attack-stat attack-stat-bonus">
-                                            <input data-bind="textInput: dmg" class=" col-4 attack-stat attack-stat-dmg">
+                                            <input data-bind="value: name" class=" col-4 attack-stat" readonly>
+                                            <input data-bind="value: $parent.attackBonus(ability(), proficient(), bonusAttk())" class=" col-2 attack-stat" readonly>
+                                            <input data-bind="value: $parent.attackDamage(ability(), bonusDmg(), dmgDice(), dmgType())" class=" col-4 attack-stat" readonly>
+                                            <button data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }" type="button" class="col-1 btn-small rpgui-button modal-opener">✎</button>
                                         </div>
+                                        <modal params="name: 'attack-modal-'+$index()">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="form-group col-6">
+                                                        <label>Name</label>
+                                                        <input data-bind="textInput: $parent.name">
+                                                    </div>
+                                                    <div class="form-group col-3">
+                                                        <label for="spellcasting-ability">Ability</label>
+                                                        <select data-bind="value: $parent.ability" class="rpgui-dropdown">
+                                                        <option value="STR">STR</option>
+                                                        <option value="DEX">DEX</option>
+                                                        <option value="CON">CON</option>
+                                                        <option value="INT">INT</option>
+                                                        <option value="WIS">WIS</option>
+                                                        <option value="CHAR">CHA</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-3">
+                                                        <input data-bind="checked: $parent.proficient, attr: { id: 'attack-prof-'+$index() }" type="checkbox" class="rpgui-checkbox">
+                                                        <label data-bind="attr: { for: 'attack-prof-'+$index() }">Proficient</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label>Damage Dice</label>
+                                                        <input data-bind="textInput: $parent.dmgDice">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label>Damage Type</label>
+                                                        <input data-bind="textInput: $parent.dmgType">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col">
+                                                        <label>Additional To-Hit</label>
+                                                        <input data-bind="textInput: $parent.bonusAttk">
+                                                    </div>
+                                                    <div class="form-group col">
+                                                        <label>Additional Damage</label>
+                                                        <input data-bind="textInput: $parent.bonusDmg">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col textarea-col">
+                                                        <label>Notes</label>
+                                                        <textarea data-bind="textInput: $parent.notes" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </modal>
                                     </div>
                                 </div>
                             </div>
@@ -601,7 +653,7 @@
                     </div>
                     <div class="form-group">
                         <label for="filter-name">Name</label>
-                        <input id="filter-name" class=" ignore">
+                        <input id="filter-name">
                     </div>
                     <div class="form-group">
                         <div class="filter-toggle" id="level-filter-toggle"><label for="level-filters">Level    </label><span class="filter-toggle-icon">‣</span></div>

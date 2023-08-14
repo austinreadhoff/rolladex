@@ -138,9 +138,6 @@ input[readonly]{
 .attack-stat-row {
     margin: 5px 0;
 }
-.attack-stat-row input {
-    margin-right: 5px;
-}
 
 img.currency{
     height: 1.5em;

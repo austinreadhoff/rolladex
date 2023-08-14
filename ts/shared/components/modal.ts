@@ -34,7 +34,7 @@ export const ModalTemplate: string = `
         <div class="row">
             <div class="col-10"></div>
             <div class="col-2 modal-x" style="color:gold"
-                data-bind="click: function(data, e){ document.getElementById(data.name).hidden = true; }">X</div>
+                data-bind="click: function(data, e){ e.target.closest('.modal').hidden = true; }">X</div>
         </div>
         <hr style="width:100%"></hr>
         <div style="overflow-y: scroll;">
@@ -58,7 +58,12 @@ export function registerModalHandlers(){
     });
 
     document.addEventListener('click', (e: MouseEvent) => {
-        if (!(e.target as HTMLElement).closest(".modal"))
+        let target = e.target as HTMLElement;
+
+        if (target.hasAttribute("data-modal"))
+            document.getElementById(target.dataset.modal).hidden = false;
+
+        else if (!target.closest(".modal") && !target.classList.contains("modal-opener"))
             hideAllModals();
     });
 }
