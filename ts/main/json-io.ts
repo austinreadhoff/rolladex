@@ -163,7 +163,7 @@ function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolea
         updateSavePath(path);
         let json = JSON.parse(data);
 
-        let game = json.game;
+        let game = json.hasOwnProperty("game") ? json.game : "dnd5e";
         let currentUrl = window.webContents.getURL();
 
         if (game == "dnd5e" && currentUrl.indexOf("dnd5e") == -1)
