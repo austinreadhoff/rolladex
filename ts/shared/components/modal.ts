@@ -26,7 +26,7 @@ export class ModalViewModel {
 
 export const ModalTemplate: string = `
 <div hidden class="modal" data-bind="attr: {id: name}" >
-    <div class="modal-content rpgui-container framed-golden container" 
+    <div class="modal-content rpgui-container framed-golden container print-hidden" 
         style="position: fixed; z-index: 99; margin:auto; display: flex; flex-direction: column;
         left:0;right:0;top:0;bottom:0;
         width:fit-content;height:fit-content; max-width: 50%; max-height: 50%">

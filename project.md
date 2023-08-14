@@ -8,8 +8,8 @@
 - [ ] Catalogs available for viewing in gm tools
 - [ ] 5e: Attack calculations
     - [X] Feature
-    - [ ] Printing
-    - [ ] Check Printing for modals in general
+    - [X] Printing
+    - [X] Check Printing for modals in general
     - [ ] Migration
 - [ ] Mouse pointer on catalog list
 - [X] Misc bug fixes
