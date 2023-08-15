@@ -4,8 +4,11 @@ import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancyb
 import { Tune, TuneCategory } from "./tune";
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
+import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "../dnd5e/components/spell-catalog";
+import { SpellViewModel5e } from "../dnd5e/viewmodel";
+import { Spell } from "../dnd5e/spell";
 
-export class ViewModel {
+export class ViewModel implements SpellViewModel5e {
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
 
@@ -14,6 +17,9 @@ export class ViewModel {
     tuneCategory: KnockoutObservable<string>;
     tuneSrc: KnockoutObservable<string>;
     tunes: KnockoutObservableArray<TuneCategory>;
+
+    spellCatalog: KnockoutObservableArray<Spell>;
+    spell: KnockoutObservable<Spell>;
 
     constructor(pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
         this.initiativePCs = ko.observableArray(pcs);
@@ -24,6 +30,9 @@ export class ViewModel {
         this.tuneCategory = ko.observable("");
         this.tuneSrc = ko.observable("https://www.youtube.com/embed/DKP16d_WdZM");
         this.tunes = ko.observableArray([new TuneCategory()]);
+
+        this.spellCatalog = ko.observableArray([]);
+        this.spell = ko.observable(new Spell());
     }
 
     initiativeOrder(){
@@ -103,6 +112,10 @@ export function applyDataBinding(){
     ko.components.register("modal", {
         viewModel: ModalViewModel,
         template: ModalTemplate
+    });
+    ko.components.register("spell-catalog-dnd5e", {
+        viewModel: SpellCatalogDND5eViewModel,
+        template: SpellCatalogDND5eTemplate
     });
     registerModalHandlers();
 

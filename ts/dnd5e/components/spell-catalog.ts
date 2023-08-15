@@ -9,7 +9,9 @@ import { Spell } from "../spell";
 //     template: SpellCatalogDND5eTemplate
 // });
 
-// <spell-catalog-dnd5e params="catalog: spellCatalog, spell: spell, addFunc: function() {...}, disableFunc: function() {...}"></spell-catalog-dnd5e>
+// <div id="spellcatalog">
+//     <spell-catalog-dnd5e params="catalog: spellCatalog, spell: spell, addFunc: function() {...}, disableFunc: function() {...}"></spell-catalog-dnd5e>
+// </div>
 // ---
 
 export class SpellCatalogDND5eViewModel {
@@ -82,7 +84,7 @@ export const SpellCatalogDND5eTemplate: string = `
                 <p data-bind="text: fullTextFormatted" id="catalog-text"></p>
             </div>
         </div>
-        <div class="row">
+        <div data-bind="if: $parent.addFunc" class="row">
             <div class="col">
                 <button data-bind="click: function() { $parent.addFunc(level, name) }, disable: $parent.disableFunc(name)" type="button" id="btn-learn-spell" class="rpgui-button golden"><p>+ Add to Spellbook</p></button>
             </div>

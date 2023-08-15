@@ -8,7 +8,12 @@ import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "./components/spell-catalog";
 
-export class ViewModel {
+export interface SpellViewModel5e{
+    spellCatalog: KnockoutObservableArray<Spell>;
+    spell: KnockoutObservable<Spell>;
+}
+
+export class ViewModel implements SpellViewModel5e {
     character: KnockoutObservable<Character>;
     spellCatalog: KnockoutObservableArray<Spell>;
     spell: KnockoutObservable<Spell>;

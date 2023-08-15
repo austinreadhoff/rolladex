@@ -22,14 +22,13 @@
             <button class="nav-link rpgui-button active down" id="dice-tab"><p>Dice Roller</p></button>
             <button class="nav-link rpgui-button" id="initiative-tab"><p>Initiative Tracker</p></button>
             <button class="nav-link rpgui-button" id="soundtrack-tab"><p>Soundtrack</p></button>
+            <button class="nav-link rpgui-button" id="reference-tab"><p>Reference</p></button>
         </div>
         <hr class="golden">
         <div class="tab-content">
             <div class="tab-pane active" id="dice" role="tabpanel" aria-labelledby="dice-tab">
                 <dice-roller></dice-roller>
             </div>
-        </div>
-        <div class="tab-content">
             <div class="tab-pane" id="initiative" role="tabpanel" aria-labelledby="initiative-tab">
                 <div id="initiative-container" class="container-fluid">
                     <p data-bind="text: initiativeOrder()"></p>
@@ -63,8 +62,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-content">
             <div class="tab-pane" id="soundtrack" role="tabpanel" aria-labelledby="soundtrack-tab">
                 <div id="soundtrack-container" class="container-fluid">
                     <div style="display:flex;">
@@ -94,7 +91,7 @@
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.removeTune(data, $parentContext.$index)}" 
                                         class="rpgui-button btn-small">-</button>
                                     <button data-bind="text: name, click: $parentContext.$parent.playTune" type="button" class="rpgui-button"></button>
-
+    
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, -1)}"
                                         class="rpgui-button btn-small">^</button>
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, 1)}"
@@ -103,6 +100,11 @@
                             </div>
                         </details>
                     </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="reference" role="tabpanel" aria-labelledby="reference-tab">
+                <div id="spellcatalog">
+                    <spell-catalog-dnd5e params="catalog: spellCatalog, spell: spell, addFunc: null, disableFunc: null"></spell-catalog-dnd5e>
                 </div>
             </div>
         </div>

@@ -1,18 +1,18 @@
 import { CatalogController, getJSON, populateFilterDropDown, setupFilterToggle } from "../shared/catalog";
 import { Spell } from "./spell";
-import { viewModel } from "./viewmodel";
+import { SpellViewModel5e } from "./viewmodel";
 
 class SpellCatalogController implements CatalogController<Spell> {
     fullCatalog: Spell[] = [];
     baseElement: HTMLElement;
 
-    loadData() {
+    loadData(viewModel: SpellViewModel5e) {
         return new Promise((resolve, reject) => {
             var spellFilePromises = [
-                getJSON("./spells/srd.json"),
-                getJSON("./spells/phb.json"),
-                getJSON("./spells/xanathars.json"),
-                getJSON("./spells/tashas.json")
+                getJSON("../dnd5e/spells/srd.json"),
+                getJSON("../dnd5e/spells/phb.json"),
+                getJSON("../dnd5e/spells/xanathars.json"),
+                getJSON("../dnd5e/spells/tashas.json")
             ];
     
             Promise.all(spellFilePromises).then((jsonCollections) => {
@@ -33,23 +33,23 @@ class SpellCatalogController implements CatalogController<Spell> {
                 });
     
                 //setup catalog filters
-                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(viewModel); });
     
                 setupFilterToggle(this.baseElement.querySelector("#level-filter-toggle"), this.baseElement.querySelector("#level-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#class-filter-toggle"), this.baseElement.querySelector("#class-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#school-filter-toggle"), this.baseElement.querySelector("#school-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#source-filter-toggle"), this.baseElement.querySelector("#source-filters"));
     
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog() }, true);
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#class-filters"), "classes", "spells", () => { this.filterCatalog() });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog() });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog() });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog(viewModel) }, true);
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#class-filters"), "classes", "spells", () => { this.filterCatalog(viewModel) });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog(viewModel) });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(viewModel) });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
                     nameEl.value = "";
                     (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
-                    this.filterCatalog();
+                    this.filterCatalog(viewModel);
                 });
     
                 resolve(null);
@@ -57,7 +57,7 @@ class SpellCatalogController implements CatalogController<Spell> {
         });
     }
 
-    filterCatalog() {
+    filterCatalog(viewModel: SpellViewModel5e) {
         let nameEl = this.baseElement.querySelector("#filter-name") as HTMLInputElement
         var name = nameEl.value;
         var levels = Array.from(this.baseElement.querySelector("#level-filters").querySelectorAll(":checked")).map(el => el.getAttribute("data-filterval").replace(/\W/g, '').toUpperCase());

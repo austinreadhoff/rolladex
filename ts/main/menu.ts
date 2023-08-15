@@ -434,6 +434,13 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
                 switchToTab("soundtrack");
             }
         }));
+        tabMenu.submenu.append(new MenuItem({
+            label: 'Reference',
+            accelerator: 'F4',
+            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
+                switchToTab("reference");
+            }
+        }));
     }
 
     Menu.setApplicationMenu(menu);

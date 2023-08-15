@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
-import { applyDataBinding } from "./viewmodel";
+import { applyDataBinding, viewModel } from "./viewmodel";
+import { spellCatalogController } from "../dnd5e/spells";
 
 var currentTab = "dice";
 
@@ -38,9 +39,13 @@ document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "gm");
     applyDataBinding();
 
-    document.querySelectorAll('.nav-link').forEach(tab => {
-        tab.addEventListener('click', event => {
-            switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+    spellCatalogController.loadData(viewModel).then(() => {
+        document.body.scrollTop = 0;
+
+        document.querySelectorAll('.nav-link').forEach(tab => {
+            tab.addEventListener('click', event => {
+                switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
+            });
         });
     });
 });

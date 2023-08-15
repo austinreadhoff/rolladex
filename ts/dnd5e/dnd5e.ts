@@ -2,7 +2,7 @@ import { ipcRenderer } from "electron";
 import { RestType } from "../shared/rest-type";
 import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
-import { CharacterSpell, Counter, SpellLevel } from './character';
+import { Counter, SpellLevel } from './character';
 
 var currentTab = "stats";
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "dnd5e");
     applyDataBinding();
 
-    spellCatalogController.loadData().then(() => {
+    spellCatalogController.loadData(viewModel).then(() => {
         document.body.scrollTop = 0;
 
         document.querySelectorAll('.nav-link').forEach(tab => {
