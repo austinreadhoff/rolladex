@@ -38,6 +38,7 @@
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
+- 5e: monster reference
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI

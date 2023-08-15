@@ -6,6 +6,7 @@ import { spellCatalogController } from "./spells";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
+import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "./components/spell-catalog";
 
 export class ViewModel {
     character: KnockoutObservable<Character>;
@@ -35,6 +36,10 @@ export function applyDataBinding(){
     ko.components.register("dice-roller", {
         viewModel: DiceRollerViewModel,
         template: DiceRollerTemplate
+    });
+    ko.components.register("spell-catalog-dnd5e", {
+        viewModel: SpellCatalogDND5eViewModel,
+        template: SpellCatalogDND5eTemplate
     });
     
     //valueAccessor: { the spell level, spell name }
