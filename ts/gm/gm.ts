@@ -1,6 +1,7 @@
 import { ipcRenderer } from "electron";
 import { applyDataBinding, viewModel } from "./viewmodel";
-import { spellCatalogController } from "../dnd5e/spells";
+import { spellCatalogController as spellCatalogController5e } from "../dnd5e/spells";
+import { spellCatalogController as spellCatalogController2e } from "../pf2e/spells";
 
 var currentTab = "dice";
 
@@ -39,7 +40,11 @@ document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('set-game-menu', "gm");
     applyDataBinding();
 
-    spellCatalogController.loadData(viewModel).then(() => {
+    let dataLoadingPromises = [
+        spellCatalogController5e.loadData(viewModel),
+        spellCatalogController2e.loadData(viewModel)
+    ]
+    Promise.all(dataLoadingPromises).then(() => {
         document.body.scrollTop = 0;
 
         document.querySelectorAll('.nav-link').forEach(tab => {

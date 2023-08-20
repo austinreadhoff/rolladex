@@ -340,7 +340,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             label: 'Spell Catalog',
             accelerator: 'F4',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                switchToTab("spellcatalog");
+                switchToTab("spellcatalog5e");
             }
         }));
     }
@@ -400,7 +400,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             label: 'Spell Catalog',
             accelerator: 'F7',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                switchToTab("spellcatalog");
+                switchToTab("spellcatalog2e");
             }
         }));
         tabMenu.submenu.append(new MenuItem({

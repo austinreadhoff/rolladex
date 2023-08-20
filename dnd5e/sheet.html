@@ -28,7 +28,7 @@
         <button class="nav-link rpgui-button active down" id="stats-tab"><p>Stats</p></button>
         <button class="nav-link rpgui-button" id="bio-tab"><p>Bio</p></button>
         <button class="nav-link rpgui-button" id="spellbook-tab"><p>Spellbook</p></button>
-        <button class="nav-link rpgui-button" id="spellcatalog-tab"><p>Spell Catalog</p></button>
+        <button class="nav-link rpgui-button" id="spellcatalog5e-tab"><p>Spell Catalog</p></button>
     </div>
     <hr class="golden">
     <div class="tab-content">
@@ -639,8 +639,8 @@
             </div>
         </div>
 
-        <div class="tab-pane" id="spellcatalog" role="tabpanel" aria-labelledby="spellcatalog-tab">
-            <spell-catalog-dnd5e params="catalog: spellCatalog, spell: spell, addFunc: function(l,n){$root.character().addSpell(l, n)}, disableFunc: function(n) { return character().hasSpell(n) }"></spell-catalog-dnd5e>
+        <div class="tab-pane" id="spellcatalog5e" role="tabpanel" aria-labelledby="spellcatalog5e-tab">
+            <spell-catalog-dnd5e params="catalog: spellCatalog5e, spell: spell5e, addFunc: function(l,n){$root.character().addSpell(l, n)}, disableFunc: function(n) { return character().hasSpell(n) }"></spell-catalog-dnd5e>
         </div>
     </div>
 </body>

@@ -17,7 +17,6 @@ import { Spell } from "../spell";
 export class SpellCatalogDND5eViewModel {
     catalog = ko.observableArray<Spell>();
     spell = ko.observable<Spell>();
-    showAddBttn = ko.observable<boolean>();
     addFunc = ko.observable<Function>();
     disableFunc = ko.observable<Function>();
 

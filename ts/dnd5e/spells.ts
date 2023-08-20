@@ -20,16 +20,16 @@ class SpellCatalogController implements CatalogController<Spell> {
                 this.fullCatalog = this.fullCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
     
                 //setup catalog selection
-                viewModel.spellCatalog(this.fullCatalog);
+                viewModel.spellCatalog5e(this.fullCatalog);
     
                 var spellListBox: HTMLInputElement = this.baseElement.querySelector("#spell-listbox") as HTMLInputElement;
                 spellListBox.value = this.fullCatalog[0].name;
-                viewModel.spell(this.fullCatalog[0]);
+                viewModel.spell5e(this.fullCatalog[0]);
     
                 spellListBox.addEventListener("change", event => {
                     let listBox: HTMLInputElement = event.target as HTMLInputElement
                     var spell = this.fullCatalog.find(spell => spell.name == listBox.value);
-                    viewModel.spell(spell);
+                    viewModel.spell5e(spell);
                 });
     
                 //setup catalog filters
@@ -72,7 +72,7 @@ class SpellCatalogController implements CatalogController<Spell> {
             .filter(spell => schools.length < 1 || schools.indexOf(spell.school.replace(/\W/g, '').toUpperCase()) != -1)
             .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1);
 
-        viewModel.spellCatalog(filteredCatalog);
+        viewModel.spellCatalog5e(filteredCatalog);
     }
 
     applyToolTip(el: HTMLInputElement) {
@@ -86,5 +86,5 @@ class SpellCatalogController implements CatalogController<Spell> {
 
 export var spellCatalogController: SpellCatalogController = new SpellCatalogController();
 document.addEventListener("DOMContentLoaded", function(){
-    spellCatalogController.baseElement = document.getElementById("spellcatalog");
+    spellCatalogController.baseElement = document.getElementById("spellcatalog5e");
 });

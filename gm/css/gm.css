@@ -1,10 +1,10 @@
-#catalog-source, #catalog-classes{
+#spellcatalog5e #catalog-source, #spellcatalog5e #catalog-classes{
     color: lightgray;
 }
-#catalog-classes-col{
+#spellcatalog5e #catalog-classes-col{
     text-align: end;
 }
-#catalog-text{
+#spellcatalog5e  #catalog-text{
     border: 1px solid white;
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
@@ -12,4 +12,38 @@
     height:100%;
     white-space: pre-line;
     overflow-y: auto;
+}
+
+#spellcatalog2e #catalog-text-col{
+    border: 1px solid white;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    overflow-y: auto;
+}
+#spellcatalog2e .catalog-tag{
+    background-color: #522e2c;
+    border-color: #d8c483;
+    border-style: double;
+    border-width: 2px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0 5px;
+    display: inline-block;
+    margin: 0.1em 0;
+}
+#spellcatalog2e .catalog-tag.rarity-common{
+    display: none;
+}
+#spellcatalog2e .catalog-tag.rarity-uncommon{
+    background-color: #c45500;
+}
+#spellcatalog2e .catalog-tag.rarity-rare{
+    background-color: #0c1466;
+}
+#spellcatalog2e .catalog-tag.rarity-unique{
+    background-color: #800080;
+}
+#catalog-text-col #type-level{
+    float: right;
 }

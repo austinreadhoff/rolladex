@@ -9,19 +9,19 @@ import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/di
 import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "./components/spell-catalog";
 
 export interface SpellViewModel5e{
-    spellCatalog: KnockoutObservableArray<Spell>;
-    spell: KnockoutObservable<Spell>;
+    spellCatalog5e: KnockoutObservableArray<Spell>;
+    spell5e: KnockoutObservable<Spell>;
 }
 
 export class ViewModel implements SpellViewModel5e {
     character: KnockoutObservable<Character>;
-    spellCatalog: KnockoutObservableArray<Spell>;
-    spell: KnockoutObservable<Spell>;
+    spellCatalog5e: KnockoutObservableArray<Spell>;
+    spell5e: KnockoutObservable<Spell>;
 
     constructor(character: Character, spells: Array<Spell>, spell: Spell){
         this.character = ko.observable(character);
-        this.spellCatalog = ko.observableArray(spells);
-        this.spell = ko.observable(spell);
+        this.spellCatalog5e = ko.observableArray(spells);
+        this.spell5e = ko.observable(spell);
     }
 }
 

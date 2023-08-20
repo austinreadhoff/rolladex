@@ -1,15 +1,15 @@
 import { CatalogController, getJSON, populateFilterDropDown, setupFilterToggle } from "../shared/catalog";
 import { Spell } from "./spell";
-import { viewModel } from "./viewmodel";
+import { SpellViewModel2e } from "./viewmodel";
 
 class SpellCatalogController implements CatalogController<Spell>{
     fullCatalog: Spell[] = [];
     baseElement: HTMLElement;
 
-    loadData() {
+    loadData(viewModel: SpellViewModel2e) {
         return new Promise((resolve, reject) => {
             var spellFilePromises = [
-                getJSON("./collections/spells.json")
+                getJSON("../pf2e/collections/spells.json")
             ];
     
             Promise.all(spellFilePromises).then((jsonCollections) => {
@@ -17,21 +17,21 @@ class SpellCatalogController implements CatalogController<Spell>{
                 this.fullCatalog = this.fullCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
     
                 //setup catalog selection
-                viewModel.spellCatalog(this.fullCatalog);
+                viewModel.spellCatalog2e(this.fullCatalog);
     
                 var spellListBox: HTMLInputElement = this.baseElement.querySelector("#spell-listbox") as HTMLInputElement;
                 spellListBox.value = this.fullCatalog[0].name;
-                viewModel.spell(this.fullCatalog[0]);
+                viewModel.spell2e(this.fullCatalog[0]);
     
                 spellListBox.addEventListener("change", event => {
                     let listBox: HTMLInputElement = event.target as HTMLInputElement
                     var spell = this.fullCatalog.find(spell => spell.name == listBox.value);
-                    viewModel.spell(spell);
+                    viewModel.spell2e(spell);
                 });
     
                 //setup catalog filters
-                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(); });
-                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(viewModel); });
+                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(viewModel); });
     
                 setupFilterToggle(this.baseElement.querySelector("#category-filter-toggle"), this.baseElement.querySelector("#category-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#cantrip-filter-toggle"), this.baseElement.querySelector("#cantrip-filters"));
@@ -43,21 +43,21 @@ class SpellCatalogController implements CatalogController<Spell>{
     
                 this.baseElement.querySelectorAll('input[name="cantrip-filter"]').forEach(el => {
                     el.addEventListener('change', event =>{
-                        this.filterCatalog();
+                        this.filterCatalog(viewModel);
                     });
                 });
     
                 this.baseElement.querySelectorAll('.rarity-filter').forEach(el => {
                     el.addEventListener('input', event =>{
-                        this.filterCatalog();
+                        this.filterCatalog(viewModel);
                     });
                 });
     
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#category-filters"), "category", "spells", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog(); }, true);
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#tradition-filters"), "traditions", "spells", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#category-filters"), "category", "spells", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog(viewModel); }, true);
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#tradition-filters"), "traditions", "spells", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#school-filters"), "school", "spells", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(viewModel); });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
@@ -70,7 +70,7 @@ class SpellCatalogController implements CatalogController<Spell>{
                     cantripUnfiltered.checked = true; 
     
                     (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
-                    this.filterCatalog();
+                    this.filterCatalog(viewModel);
                 });
     
                 resolve(null);
@@ -78,7 +78,7 @@ class SpellCatalogController implements CatalogController<Spell>{
         });
     }
 
-    filterCatalog() {
+    filterCatalog(viewModel: SpellViewModel2e) {
         let nameEl = this.baseElement.querySelector("#filter-name") as HTMLInputElement
         var name = nameEl.value;
         let tagsEl = this.baseElement.querySelector("#filter-tags") as HTMLInputElement
@@ -105,7 +105,7 @@ class SpellCatalogController implements CatalogController<Spell>{
             .filter(spell => sources.length < 1 || sources.indexOf(spell.source.replace(/\W/g, '').toUpperCase()) != -1)
             .filter(spell => rarities.length < 1 || rarities.indexOf(spell.traits.rarity.replace(/\W/g, '').toUpperCase()) != -1);
     
-        viewModel.spellCatalog(filteredCatalog);
+        viewModel.spellCatalog2e(filteredCatalog);
     }
 
     applyToolTip(el: HTMLInputElement) {
@@ -119,5 +119,5 @@ class SpellCatalogController implements CatalogController<Spell>{
 
 export var spellCatalogController: SpellCatalogController = new SpellCatalogController();
 document.addEventListener("DOMContentLoaded", function(){
-    spellCatalogController.baseElement = document.getElementById("spellcatalog");
+    spellCatalogController.baseElement = document.getElementById("spellcatalog2e");
 });

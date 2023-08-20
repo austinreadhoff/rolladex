@@ -6,9 +6,12 @@ import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/di
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "../dnd5e/components/spell-catalog";
 import { SpellViewModel5e } from "../dnd5e/viewmodel";
-import { Spell } from "../dnd5e/spell";
+import { Spell as Spell5e } from "../dnd5e/spell";
+import { SpellCatalogPF2eTemplate, SpellCatalogPF2eViewModel } from "../pf2e/components/spell-catalog";
+import { SpellViewModel2e } from "../pf2e/viewmodel";
+import { Spell as Spell2e } from "../pf2e/spell";
 
-export class ViewModel implements SpellViewModel5e {
+export class ViewModel implements SpellViewModel5e, SpellViewModel2e {
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
 
@@ -18,8 +21,11 @@ export class ViewModel implements SpellViewModel5e {
     tuneSrc: KnockoutObservable<string>;
     tunes: KnockoutObservableArray<TuneCategory>;
 
-    spellCatalog: KnockoutObservableArray<Spell>;
-    spell: KnockoutObservable<Spell>;
+    spellCatalog5e: KnockoutObservableArray<Spell5e>;
+    spell5e: KnockoutObservable<Spell5e>;
+
+    spellCatalog2e: KnockoutObservableArray<Spell2e>;
+    spell2e: KnockoutObservable<Spell2e>;
 
     constructor(pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
         this.initiativePCs = ko.observableArray(pcs);
@@ -31,8 +37,11 @@ export class ViewModel implements SpellViewModel5e {
         this.tuneSrc = ko.observable("https://www.youtube.com/embed/DKP16d_WdZM");
         this.tunes = ko.observableArray([new TuneCategory()]);
 
-        this.spellCatalog = ko.observableArray([]);
-        this.spell = ko.observable(new Spell());
+        this.spellCatalog5e = ko.observableArray([]);
+        this.spell5e = ko.observable(new Spell5e());
+
+        this.spellCatalog2e = ko.observableArray([]);
+        this.spell2e = ko.observable(new Spell2e());
     }
 
     initiativeOrder(){
@@ -116,6 +125,10 @@ export function applyDataBinding(){
     ko.components.register("spell-catalog-dnd5e", {
         viewModel: SpellCatalogDND5eViewModel,
         template: SpellCatalogDND5eTemplate
+    });
+    ko.components.register("spell-catalog-pf2e", {
+        viewModel: SpellCatalogPF2eViewModel,
+        template: SpellCatalogPF2eTemplate
     });
     registerModalHandlers();
 

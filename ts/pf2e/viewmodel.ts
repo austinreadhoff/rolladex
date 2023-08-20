@@ -8,11 +8,17 @@ import { spellCatalogController } from "./spells";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
+import { SpellCatalogPF2eTemplate, SpellCatalogPF2eViewModel } from "./components/spell-catalog";
 
-export class ViewModel {
+export interface SpellViewModel2e{
+    spellCatalog2e: KnockoutObservableArray<Spell>;
+    spell2e: KnockoutObservable<Spell>;
+}
+
+export class ViewModel implements SpellViewModel2e {
     character: KnockoutObservable<Character>;
-    spellCatalog: KnockoutObservableArray<Spell>;
-    spell: KnockoutObservable<Spell>;
+    spellCatalog2e: KnockoutObservableArray<Spell>;
+    spell2e: KnockoutObservable<Spell>;
     featCatalog: KnockoutObservableArray<Feat>;
     feat: KnockoutObservable<Feat>;
     gearCatalog: KnockoutObservableArray<Gear>;
@@ -24,8 +30,8 @@ export class ViewModel {
         equipment: Array<Gear>, gear: Gear) 
     {
         this.character = ko.observable(character);
-        this.spellCatalog = ko.observableArray(spells);
-	    this.spell = ko.observable(spell);
+        this.spellCatalog2e = ko.observableArray(spells);
+	    this.spell2e = ko.observable(spell);
         this.featCatalog = ko.observableArray(feats);
         this.feat = ko.observable(feat);
         this.gearCatalog = ko.observableArray(equipment);
@@ -51,6 +57,10 @@ export function applyDataBinding(){
     ko.components.register("modal", {
         viewModel: ModalViewModel,
         template: ModalTemplate
+    });
+    ko.components.register("spell-catalog-pf2e", {
+        viewModel: SpellCatalogPF2eViewModel,
+        template: SpellCatalogPF2eTemplate
     });
     registerModalHandlers();
 

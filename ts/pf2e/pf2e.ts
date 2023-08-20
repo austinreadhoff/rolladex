@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
 
     let dataLoadingPromises = [
-        spellCatalogController.loadData(),
+        spellCatalogController.loadData(viewModel),
         featCatalogController.loadData(),
         gearCatalogController.loadData()
     ];

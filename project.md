@@ -5,6 +5,7 @@
 - [X] 5e: Regain half hit dice on long rest
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
+- [ ] Show Individual dice in dice roller
 - [ ] Catalogs available for viewing in gm tools
 - [X] 5e: Attack calculations
 - [X] Misc bug fixes
@@ -38,11 +39,11 @@
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
-- 5e: monster reference
+- gm tools: monster reference
+    - integrate with turn tracker
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI
-- Show individual dice in dice roller
 - Roll dice from sheet
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
