@@ -9,13 +9,23 @@ import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancyb
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 import { SpellCatalogPF2eTemplate, SpellCatalogPF2eViewModel } from "./components/spell-catalog";
+import { FeatCatalogTemplate, FeatCatalogViewModel } from "./components/feat-catalog";
+import { GearCatalogTemplate, GearCatalogViewModel } from "./components/gear-catalog";
 
 export interface SpellViewModel2e{
     spellCatalog2e: KnockoutObservableArray<Spell>;
     spell2e: KnockoutObservable<Spell>;
 }
+export interface FeatViewModel{
+    featCatalog: KnockoutObservableArray<Feat>;
+    feat: KnockoutObservable<Feat>;
+}
+export interface GearViewModel{
+    gearCatalog: KnockoutObservableArray<Gear>;
+    gear: KnockoutObservable<Gear>;
+}
 
-export class ViewModel implements SpellViewModel2e {
+export class ViewModel implements SpellViewModel2e, FeatViewModel, GearViewModel {
     character: KnockoutObservable<Character>;
     spellCatalog2e: KnockoutObservableArray<Spell>;
     spell2e: KnockoutObservable<Spell>;
@@ -58,9 +68,17 @@ export function applyDataBinding(){
         viewModel: ModalViewModel,
         template: ModalTemplate
     });
+    ko.components.register("feat-catalog", {
+        viewModel: FeatCatalogViewModel,
+        template: FeatCatalogTemplate
+    });
     ko.components.register("spell-catalog-pf2e", {
         viewModel: SpellCatalogPF2eViewModel,
         template: SpellCatalogPF2eTemplate
+    });
+    ko.components.register("gear-catalog", {
+        viewModel: GearCatalogViewModel,
+        template: GearCatalogTemplate
     });
     registerModalHandlers();
 

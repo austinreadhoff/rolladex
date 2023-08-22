@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     let dataLoadingPromises = [
         spellCatalogController.loadData(viewModel),
-        featCatalogController.loadData(),
-        gearCatalogController.loadData()
+        featCatalogController.loadData(viewModel),
+        gearCatalogController.loadData(viewModel)
     ];
     Promise.all(dataLoadingPromises).then(() => {
         document.querySelectorAll('.nav-link').forEach(tab => {

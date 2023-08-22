@@ -1,15 +1,15 @@
 import { CatalogController, getJSON, populateFilterDropDown, setupFilterToggle } from "../shared/catalog";
 import { Gear } from "./gear";
-import { viewModel } from "./viewmodel";
+import { GearViewModel } from "./viewmodel";
 
 class GearCatalogController implements CatalogController<Gear>{
     fullCatalog: Gear[] = [];
     baseElement: HTMLElement;
 
-    loadData(){
+    loadData(viewModel: GearViewModel){
         return new Promise((resolve, reject) => {
             var gearFilePromises = [
-                getJSON("./collections/gear.json")
+                getJSON("../pf2e/collections/gear.json")
             ];
     
             Promise.all(gearFilePromises).then((jsonCollections) => {
@@ -30,8 +30,8 @@ class GearCatalogController implements CatalogController<Gear>{
                 });
     
                 //setup catalog filters
-                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(); });
-                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(viewModel); });
+                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(viewModel); });
     
                 setupFilterToggle(this.baseElement.querySelector("#level-filter-toggle"), this.baseElement.querySelector("#level-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#source-filter-toggle"), this.baseElement.querySelector("#source-filters"));
@@ -39,12 +39,12 @@ class GearCatalogController implements CatalogController<Gear>{
     
                 this.baseElement.querySelectorAll('.rarity-filter').forEach(el => {
                     el.addEventListener('input', event =>{
-                        this.filterCatalog();
+                        this.filterCatalog(viewModel);
                     });
                 });
 
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "equipment", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "equipment", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "equipment", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "equipment", () => { this.filterCatalog(viewModel); });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
@@ -54,7 +54,7 @@ class GearCatalogController implements CatalogController<Gear>{
                     tagsEl.value = "";
     
                     (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
-                    this.filterCatalog();
+                    this.filterCatalog(viewModel);
                 });
     
                 resolve(null);
@@ -62,7 +62,7 @@ class GearCatalogController implements CatalogController<Gear>{
         });
     }
 
-    filterCatalog(){
+    filterCatalog(viewModel: GearViewModel){
         let nameEl = this.baseElement.querySelector("#filter-name") as HTMLInputElement
         var name = nameEl.value;
         let tagsEl = this.baseElement.querySelector("#filter-tags") as HTMLInputElement

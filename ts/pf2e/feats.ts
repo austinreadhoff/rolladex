@@ -1,15 +1,15 @@
 import { CatalogController, getJSON, populateFilterDropDown, setupFilterToggle } from "../shared/catalog";
 import { Feat } from "./feat";
-import { viewModel } from "./viewmodel";
+import { FeatViewModel } from "./viewmodel";
 
 class FeatCatalogController implements CatalogController<Feat>{
     fullCatalog: Feat[] = [];
     baseElement: HTMLElement;
 
-    loadData(){
+    loadData(viewModel: FeatViewModel){
         return new Promise((resolve, reject) => {
             var featFilePromises = [
-                getJSON("./collections/feats.json")
+                getJSON("../pf2e/collections/feats.json")
             ];
     
             Promise.all(featFilePromises).then((jsonCollections) => {
@@ -30,8 +30,8 @@ class FeatCatalogController implements CatalogController<Feat>{
                 });
     
                 //setup catalog filters
-                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(); });
-                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(); });
+                this.baseElement.querySelector("#filter-name").addEventListener('input', event => { this.filterCatalog(viewModel); });
+                this.baseElement.querySelector("#filter-tags").addEventListener('input', event => { this.filterCatalog(viewModel); });
     
                 setupFilterToggle(this.baseElement.querySelector("#level-filter-toggle"), this.baseElement.querySelector("#level-filters"));
                 setupFilterToggle(this.baseElement.querySelector("#type-filter-toggle"), this.baseElement.querySelector("#type-filters"));
@@ -40,13 +40,13 @@ class FeatCatalogController implements CatalogController<Feat>{
     
                 this.baseElement.querySelectorAll('.rarity-filter').forEach(el => {
                     el.addEventListener('input', event =>{
-                        this.filterCatalog();
+                        this.filterCatalog(viewModel);
                     });
                 });
     
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "feats", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#type-filters"), "featType", "feats", () => { this.filterCatalog(); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "feats", () => { this.filterCatalog(); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "feats", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#type-filters"), "featType", "feats", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "feats", () => { this.filterCatalog(viewModel); });
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
@@ -56,7 +56,7 @@ class FeatCatalogController implements CatalogController<Feat>{
                     tagsEl.value = "";
     
                     (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
-                    this.filterCatalog();
+                    this.filterCatalog(viewModel);
                 });
     
                 resolve(null);
@@ -64,7 +64,7 @@ class FeatCatalogController implements CatalogController<Feat>{
         });
     }
 
-    filterCatalog(){
+    filterCatalog(viewModel: FeatViewModel){
         let nameEl = this.baseElement.querySelector("#filter-name") as HTMLInputElement
         var name = nameEl.value;
         let tagsEl = this.baseElement.querySelector("#filter-tags") as HTMLInputElement
