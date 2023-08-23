@@ -1,14 +1,14 @@
 ## V.Next
 - [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
+- [X] Catalogs available for reference in GM Tools
 - [X] 5e Spellbook: Handle multiclass casters
 - [X] 5e: Regain half hit dice on long rest
+- [X] 5e: Attack calculations
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
-- [ ] Show Individual dice in dice roller
-- [X] Catalogs available for viewing in gm tools
+- [X] Show Individual dice in dice roller
 - [ ] Recently opened viewable on landing page
-- [X] 5e: Attack calculations
 - [X] Misc bug fixes
 
 ## 0.3.1

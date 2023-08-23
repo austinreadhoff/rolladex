@@ -72,29 +72,35 @@ export class DiceRoll{
     constructor(raw: string){
         let dice = raw.split("+");
         let terms: Array<number> = [];
+        let explodedTerms: Array<string> = [];
 
         dice.forEach(die => {
             let vals = die.split("d");
             if(vals.length === 1){
                 //single addition (+4)
-                terms.push(+vals[0])
+                explodedTerms.push(vals[0]);
+                terms.push(+vals[0]);
             }
             else{
                 //dice addition (+2d4)
                 let term = 0;
+                let subTerms = [];
                 let dieCount = +vals[0];
                 let dieSize = +vals[1];
 
                 for (let i = 0; i < dieCount; i++){
-                    term += Math.floor(Math.random() * dieSize) + 1;
+                    let roll = Math.floor(Math.random() * dieSize) + 1;
+                    subTerms.push(roll);
+                    term += roll;
                 }
 
+                explodedTerms.push("( " + subTerms.map((x) => x.toString()).join(" + ") + " )");
                 terms.push(term);
             }
         });
 
         this.raw = ko.observable(raw);
-        this.math = ko.observable(terms.map((x) => x.toString()).join(" + "));
+        this.math = ko.observable(explodedTerms.join(" + "));
         this.sum = ko.observable(terms.reduce((partialSum, x) => partialSum + x, 0));
     }
 }
