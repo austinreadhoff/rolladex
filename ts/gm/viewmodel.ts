@@ -65,6 +65,8 @@ implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
 
         this.gearCatalog = ko.observableArray([]);
         this.gear = ko.observable(new Gear());
+
+        this.name.subscribe(function(){document.title = viewModel.name() + " - Rolladex"});
     }
 
     initiativeOrder(){
