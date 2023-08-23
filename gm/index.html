@@ -103,16 +103,22 @@
                 </div>
             </div>
             <div class="tab-pane" id="reference" role="tabpanel" aria-labelledby="reference-tab">
-                <div id="spellcatalog5e">
+                <div class="nav-sub">
+                    <button class="nav-link-sub rpgui-button active down" id="spellcatalog5e-tab"><p>Spells</p></button>
+                    <button class="nav-link-sub rpgui-button" id="featcatalog-tab"><p>Feats</p></button>
+                    <button class="nav-link-sub rpgui-button" id="spellcatalog2e-tab"><p>Spells</p></button>
+                    <button class="nav-link-sub rpgui-button" id="craftingcatalog-tab"><p>Equipment</p></button>
+                </div>
+                <div id="spellcatalog5e" class="tab-pane-sub active">
                     <spell-catalog-dnd5e params="catalog: spellCatalog5e, spell: spell5e, addFunc: null, disableFunc: null"></spell-catalog-dnd5e>
                 </div>
-                <div id="featcatalog">
+                <div id="featcatalog" class="tab-pane-sub">
                     <feat-catalog params="catalog: featCatalog, feat: feat"></feat-catalog>
                 </div>
-                <div id="spellcatalog2e">
+                <div id="spellcatalog2e" class="tab-pane-sub">
                     <spell-catalog-pf2e params="catalog: spellCatalog2e, spell: spell2e, addFunc: null, disableFunc: null"></spell-catalog-pf2e>
                 </div>
-                <div id="craftingcatalog">
+                <div id="craftingcatalog" class="tab-pane-sub">
                     <gear-catalog params="catalog: gearCatalog, gear: gear"></gear-catalog>
                 </div>
             </div>

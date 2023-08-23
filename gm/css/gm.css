@@ -1,3 +1,13 @@
+.tab-pane-sub {
+    display: none;
+}
+.tab-pane-sub.active {
+    display: block;
+}
+
+.catalog-container{
+    height: 80% !important;
+}
 #spellcatalog5e #catalog-source, #spellcatalog5e #catalog-classes{
     color: lightgray;
 }

@@ -56,21 +56,26 @@ document.addEventListener("DOMContentLoaded", function(){
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
             });
         });
+        document.querySelectorAll('.nav-link-sub').forEach(tab => {
+            tab.addEventListener('click', event => {
+                switchTab(tab.id.substring(0, tab.id.indexOf("-tab")), "-sub");
+            });
+        });
     });
 });
 
 //#region Menu Actions
 
-export function switchTab(tabId: string){
-    document.querySelectorAll('.nav-link').forEach(t => { 
+export function switchTab(tabId: string, suffix: string = ""){
+    document.querySelectorAll('.nav-link' + suffix).forEach(t => { 
         t.classList.remove("active");
         t.classList.remove("down"); 
     });
     document.getElementById(tabId + "-tab").classList.add("active");
     document.getElementById(tabId + "-tab").classList.add("down");
 
-    document.querySelectorAll('.tab-pane').forEach(t => { t.className = "tab-pane"; });
-    document.querySelector("#" + tabId).className = "tab-pane active";
+    document.querySelectorAll('.tab-pane' + suffix).forEach(t => { t.className = "tab-pane" + suffix; });
+    document.querySelector("#" + tabId).className = "tab-pane" + suffix + " active";
 
     document.body.scrollTop = 0;
 }
