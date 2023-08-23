@@ -6,7 +6,7 @@
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
 - [ ] Show Individual dice in dice roller
-- [ ] Catalogs available for viewing in gm tools
+- [X] Catalogs available for viewing in gm tools
 - [ ] Recently opened viewable on landing page
 - [X] 5e: Attack calculations
 - [X] Misc bug fixes
