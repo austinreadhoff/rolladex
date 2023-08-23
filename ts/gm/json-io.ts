@@ -1,7 +1,7 @@
 import * as ko from "knockout";
 const koMapping = require('knockout-mapping');
 import { ipcRenderer } from "electron";
-import { switchTab } from "./gm";
+import { switchGame, switchTab } from "./gm";
 import { gameName, jsonSchemaVersion, UpgradeSchema } from "./game-schema";
 import { viewModel } from "./viewmodel";
 
@@ -31,5 +31,6 @@ ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
     koMapping.fromJS(json["initiativeMobs"], {}, viewModel.initiativeMobs);
     koMapping.fromJS(json["tunes"], {}, viewModel.tunes);
 
+    switchGame(viewModel.gameType());
     switchTab("game");
 });

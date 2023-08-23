@@ -61,8 +61,31 @@ document.addEventListener("DOMContentLoaded", function(){
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")), "-sub");
             });
         });
+        document.getElementById('gameType').addEventListener('change', function() {
+            let game = (document.getElementById("gameType") as HTMLInputElement).value;
+            switchGame(game);
+        });
     });
 });
+
+export function switchGame(game: string){
+    document.querySelectorAll('.nav-link-sub').forEach(t => { 
+        t.classList.remove("active");
+        t.classList.remove("down"); 
+        (t as HTMLElement).style.display = "none";
+    });
+    document.querySelectorAll('.tab-pane-sub').forEach(t => { 
+        t.classList.remove("active");
+    });
+
+    document.querySelector('.nav-link-sub.game-' + game).classList.add("active");
+    document.querySelector('.nav-link-sub.game-' + game).classList.add("down");
+    document.querySelectorAll('.nav-link-sub.game-' + game).forEach(t => {
+        (t as HTMLElement).style.display = "inline-block";
+    });
+
+    document.querySelector('.tab-pane-sub.game-' + game).classList.add("active");
+}
 
 //#region Menu Actions
 
@@ -74,8 +97,8 @@ export function switchTab(tabId: string, suffix: string = ""){
     document.getElementById(tabId + "-tab").classList.add("active");
     document.getElementById(tabId + "-tab").classList.add("down");
 
-    document.querySelectorAll('.tab-pane' + suffix).forEach(t => { t.className = "tab-pane" + suffix; });
-    document.querySelector("#" + tabId).className = "tab-pane" + suffix + " active";
+    document.querySelectorAll('.tab-pane' + suffix).forEach(t => { t.classList.remove("active"); });
+    document.querySelector("#" + tabId).classList.add("active");
 
     document.body.scrollTop = 0;
 }
