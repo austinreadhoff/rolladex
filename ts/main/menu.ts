@@ -414,10 +414,10 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
 
     else if (game == "gm"){
         tabMenu.submenu.append(new MenuItem({
-            label: 'Dice Roller',
+            label: 'Game Info',
             accelerator: 'F1',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                switchToTab("dice");
+                switchToTab("game");
             }
         }));
         tabMenu.submenu.append(new MenuItem({

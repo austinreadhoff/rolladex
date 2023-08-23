@@ -19,15 +19,31 @@
         </modal>
         
         <div class="nav">
-            <button class="nav-link rpgui-button active down" id="dice-tab"><p>Dice Roller</p></button>
+            <button class="nav-link rpgui-button active down" id="game-tab"><p>Game Info</p></button>
             <button class="nav-link rpgui-button" id="initiative-tab"><p>Initiative Tracker</p></button>
             <button class="nav-link rpgui-button" id="soundtrack-tab"><p>Soundtrack</p></button>
             <button class="nav-link rpgui-button" id="reference-tab"><p>Reference</p></button>
         </div>
         <hr class="golden">
         <div class="tab-content">
-            <div class="tab-pane active" id="dice" role="tabpanel" aria-labelledby="dice-tab">
-                <dice-roller></dice-roller>
+            <div class="tab-pane active" id="game" role="tabpanel" aria-labelledby="game-tab">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="name">Game Name</label>
+                            <input data-bind="textInput: name" id="name" style="min-width: 33%; max-width: 300px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="game">Game</label>
+                            <select data-bind="value: gameType" class="rpgui-dropdown">
+                            <option value="dnd5e">Dungeons & Dragons 5e</option>
+                            <option value="pf2e">Pathfinder 2e</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane" id="initiative" role="tabpanel" aria-labelledby="initiative-tab">
                 <div id="initiative-container" class="container-fluid">

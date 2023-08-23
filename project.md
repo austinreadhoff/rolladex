@@ -7,6 +7,7 @@
 - [X] Dice Roller available on all pages
 - [ ] Show Individual dice in dice roller
 - [ ] Catalogs available for viewing in gm tools
+- [ ] Recently opened viewable on landing page
 - [X] 5e: Attack calculations
 - [X] Misc bug fixes
 
@@ -45,6 +46,12 @@
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI
 - Roll dice from sheet
+- Command Palatte
+    - Roll abilities/skills/saves
+    - Rests
+    - Cast Spells
+    - Make attacks
+    - etc?
 - Figure out a way to update content w/o version update
 - tooltips to show work for calculated fields, like ability checks
 - Dock Tabs?

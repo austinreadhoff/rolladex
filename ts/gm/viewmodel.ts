@@ -17,6 +17,9 @@ import { GearCatalogTemplate, GearCatalogViewModel } from "../pf2e/components/ge
 
 export class ViewModel 
 implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
+    name: KnockoutObservable<string>;
+    gameType: KnockoutObservable<string>;
+
     initiativePCs: KnockoutObservableArray<InitiativeCreature>;
     initiativeMobs: KnockoutObservableArray<InitiativeCreature>;
 
@@ -39,6 +42,9 @@ implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
     gear: KnockoutObservable<Gear>;
 
     constructor(pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
+        this.name = ko.observable("");
+        this.gameType = ko.observable("");
+
         this.initiativePCs = ko.observableArray(pcs);
         this.initiativeMobs = ko.observableArray(mobs);
 
