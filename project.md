@@ -1,4 +1,4 @@
-## V.Next
+## 0.3.2
 - [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
 - [X] Catalogs available for reference in GM Tools
@@ -8,7 +8,6 @@
 - [X] Ignore bracketed text in spellbook rows
 - [X] Dice Roller available on all pages
 - [X] Show Individual dice in dice roller
-- [ ] Recently opened viewable on landing page
 - [X] Misc bug fixes
 
 ## 0.3.1
@@ -38,6 +37,7 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
+- Recently opened viewable on landing page
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
 - gm tools: monster reference
