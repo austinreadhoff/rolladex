@@ -1,3 +1,10 @@
+## V.Next
+- [ ] Bestow Curse is missing part of its description
+- [ ] Focus cursor on newly added inputs
+- [ ] Allow modifiers to spell attack/dc
+- [ ] fancybar math (like roll20) - how UI?
+- [ ] "special rules" menu for stuff like joat and other class-specific calculations
+
 ## 0.3.2
 - [X] Simplify save warning dialog logic
 - [X] GM Tools UI Improvements
@@ -37,15 +44,17 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
-- Recently opened viewable on landing page
+- roll20 iframe?
+- Recently opened viewable on landing page - replace auto-open?
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
 - gm tools: monster reference
     - integrate with turn tracker
+- Signify spellbook spells using icon in catalog list
 - Enhance spellbook description display
     - Custom solution (modal?) that shows the entire descrption
     - Also, actually discoverable in the UI
-- Roll dice from sheet
+- Roll dice from sheet by clicking on things
 - Command Palatte
     - Roll abilities/skills/saves
     - Rests
@@ -63,6 +72,5 @@
 - Alternate search titles for certain spells srd vs 5e phb
 - Remove link text from pf2e spells 
 - Remove from spellbook button in catalog
-- Signify spellbook spells using icon in catalog list
 - Non-PITA method of showing unsaved status in title bar
 - Custom undo stack
