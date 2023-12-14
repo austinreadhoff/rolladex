@@ -294,6 +294,10 @@ export class Character {
     //#region
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel].spells.push(new CharacterSpell(name));
+        var childInputs = document
+            .querySelector(".spell-block[data-level='"+spellLevel+"']")
+            .querySelectorAll(".spell-name");
+        (childInputs[childInputs.length - 1] as HTMLElement).focus();
     }
     removeSpell(spell: CharacterSpell, spellLevelIndex: number){
         this.spellLevels()[spellLevelIndex].spells.remove(spell);
