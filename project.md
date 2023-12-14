@@ -1,6 +1,6 @@
 ## V.Next
 - [ ] Bestow Curse is missing part of its description
-- [ ] Focus cursor on newly added inputs
+- [-] Focus cursor on newly added inputs
 - [ ] Allow modifiers to spell attack/dc
 - [ ] fancybar math (like roll20) - how UI?
 - [ ] "special rules" menu for stuff like joat and other class-specific calculations

@@ -252,6 +252,9 @@ export class Character {
 
     addAttackRow(){
         this.attackStats.push(new Attack())
+        setTimeout(() => {
+            document.getElementById("attack-modal-" + (this.attackStats().length-1).toString()).hidden = false
+        }, 10); //small period to create modal
     }
     removeAttackRow(row: Attack){
         viewModel.character().attackStats.remove(row);
