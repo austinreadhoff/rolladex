@@ -1,7 +1,7 @@
 ## V.Next
-- [-] 5e: Focus cursor on newly added inputs
 - [X] 5e: Fix Bestow Curse description
-- [ ] Allow modifiers to spell attack/dc
+- [X] 5e: Allow modifiers to spell attack/dc
+- [X] 5e: Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
 - [ ] "special rules" menu for stuff like joat and other class-specific calculations
 

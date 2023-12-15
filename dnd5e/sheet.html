@@ -563,35 +563,23 @@
                     <hr>
                     <!-- /ko -->
                     <div class="row">
+                        <div class="col-1">
+                            <button data-bind="attr: { 'data-modal': 'spellcastingClass-modal-'+$index() }" type="button" class="btn-small rpgui-button modal-opener">✎</button>
+                        </div>
                         <div class="col-2 form-group">
                             <label data-bind="text: $parent.spellcastingClassLabel($index())"></label>
-                            <input data-bind="textInput: name">
-                        </div>
-                        <div class="form-group col-2" style="text-align:center;">
-                            <label for="spellcasting-ability">Spellcasting Ability</label>
-                            <select data-bind="value: ability" class="rpgui-dropdown" style="width:50%;">
-                            <option value="STR">STR</option>
-                            <option value="DEX">DEX</option>
-                            <option value="CON">CON</option>
-                            <option value="INT">INT</option>
-                            <option value="WIS">WIS</option>
-                            <option value="CHAR">CHA</option>
-                            </select>
+                            <input data-bind="textInput: name" readonly>
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spell-save-dc">Spell Save DC</label><br/><br/>
-                            <span data-bind="text: $parent.spellSaveDC(ability())" class="spell-save-dc"></span>
+                            <span data-bind="text: $parent.spellSaveDC(ability(), bonusDC())" class="spell-save-dc"></span>
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spell-attack-bonus">Spell Attack Bonus</label><br/><br/>
-                            <span data-bind="text: $parent.spellAttackBonus(ability())" class="spell-attack-bonus"></span>
+                            <span data-bind="text: $parent.spellAttackBonus(ability(), bonusAttack())" class="spell-attack-bonus"></span>
                         </div>
-                        <div class="col-2">
-                            <span>Spell Slots Refresh on:</span>
-                            <input data-bind="checked: restType, attr: { id: 'spell-rest-short-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="1">
-                            <label data-bind="attr: { for: 'spell-rest-short-'+$index() }">Short Rest</label>
-                            <input data-bind="checked: restType, attr: { id: 'spell-rest-long-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="2">
-                            <label data-bind="attr: { for: 'spell-rest-long-'+$index() }">Long Rest</label>
+                        <div class="col-3">
+                            
                         </div>
                         <div class="col-2">
                             <!-- ko if: $index() === 0 && $parent.spellcastingClasses().length < 6 -->
@@ -602,6 +590,47 @@
                             <!-- /ko -->
                         </div>
                     </div>
+                    <modal params="name: 'spellcastingClass-modal-'+$index()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>Class Name</label>
+                                    <input data-bind="textInput: $parent.name">
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="spellcasting-ability">Ability</label>
+                                    <select data-bind="value: $parent.ability" class="rpgui-dropdown">
+                                    <option value="STR">STR</option>
+                                    <option value="DEX">DEX</option>
+                                    <option value="CON">CON</option>
+                                    <option value="INT">INT</option>
+                                    <option value="WIS">WIS</option>
+                                    <option value="CHAR">CHA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Bonus to Save DC</label>
+                                    <input data-bind="textInput: $parent.bonusDC">
+                                </div>
+                                <div class="form-group col">
+                                    <label>Bonus to Attacks</label>
+                                    <input data-bind="textInput: $parent.bonusAttack">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Spell Slots Refresh on:</span>
+                                    <input data-bind="checked: $parent.restType, attr: { id: 'spell-rest-short-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="1">
+                                    <label data-bind="attr: { for: 'spell-rest-short-'+$index() }">Short Rest</label>
+                                    <input data-bind="checked: $parent.restType, attr: { id: 'spell-rest-long-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="2">
+                                    <label data-bind="attr: { for: 'spell-rest-long-'+$index() }">Long Rest</label>
+                                </div>
+                            </div>
+                        </div>
+                    </modal>
                     <!-- /ko -->
                 </div>
 

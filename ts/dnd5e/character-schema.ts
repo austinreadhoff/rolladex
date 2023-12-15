@@ -1,5 +1,5 @@
 //Whenever this verison is increased, add a conversion method to the switch statement that increments the version from the previous
-export var jsonSchemaVersion = 0.7;
+export var jsonSchemaVersion = 0.8;
 export var gameName = "dnd5e";
 
 export function UpgradeSchema(json: any){
@@ -16,6 +16,8 @@ export function UpgradeSchema(json: any){
             json = MultiClassCasting(json);
         case 0.6:
             json = AttackStats(json);
+        case 0.7:
+            json = SpellBonuses(json);
     }
 
     return json;
@@ -176,5 +178,15 @@ function AttackStats(json: any){
     });
 
     json["version"] = 0.7;
+    return json;
+}
+
+function SpellBonuses(json: any){
+    json["spellcastingClasses"].forEach((spellcastingClass: any) => {
+        spellcastingClass["bonusDC"] = "0";
+        spellcastingClass["bonusAttack"] = "0";
+    });
+
+    json["version"] = 0.8;
     return json;
 }

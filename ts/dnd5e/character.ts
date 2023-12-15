@@ -238,15 +238,17 @@ export class Character {
             return total;
     }
     
-    spellAttackBonus(ability: string){
+    spellAttackBonus(ability: string, bonus: string){
         return ko.computed(() => {
-            return this.calculateAbilityBonus(ability, true);
+            let total: number = this.calculateAbilityBonus(ability, true) + +(bonus.replace(/\D/g,''));
+            return total >= 0 ? "+" + total : total;
         }, this);
     }
 
-    spellSaveDC(ability: string){
+    spellSaveDC(ability: string, bonus: string){
         return ko.computed(() => {
-            return 8 + this.calculateAbilityBonus(ability, true);
+            let total: number = 8 + this.calculateAbilityBonus(ability, true) + +(bonus.replace(/\D/g,''));
+            return total >= 0 ? "+" + total : total;
         }, this);
     }
 
@@ -285,6 +287,9 @@ export class Character {
 
     addSpellcastingClass(){
         viewModel.character().spellcastingClasses.push(new SpellcastingClass())
+        setTimeout(() => {
+            document.getElementById("spellcastingClass-modal-" + (viewModel.character().spellcastingClasses().length-1).toString()).hidden = false
+        }, 10); //small period to create modal
     }
     removeSpellcastingClass(row: SpellcastingClass){
         viewModel.character().spellcastingClasses.remove(row);
@@ -389,11 +394,15 @@ export class Counter {
 class SpellcastingClass {
     name: KnockoutObservable<string>;
     ability: KnockoutObservable<string>;
+    bonusDC: KnockoutObservable<string>;
+    bonusAttack: KnockoutObservable<string>;
     restType: KnockoutObservable<RestType>;
 
     constructor(){
         this.name = ko.observable("");
         this.ability = ko.observable("STR");
+        this.bonusDC = ko.observable("0");
+        this.bonusAttack = ko.observable("0");
         this.restType = ko.observable(RestType.Long);
     }
 }
