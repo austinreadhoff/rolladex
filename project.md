@@ -1,9 +1,17 @@
 ## V.Next
-- [X] 5e: Fix Bestow Curse description
-- [X] 5e: Allow modifiers to spell attack/dc
-- [X] 5e: Focus cursor on newly added inputs
+- [X] Fix Bestow Curse description
+- [X] Allow modifiers to spell attack/dc
+- [X] Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
-- [ ] "special rules" menu for stuff like joat and other class-specific calculations
+- [ ] "special rules" menu
+    - [ ] jack of all trades
+
+- [ ] replace edit/delete buttons (click control to open modal, delete button in modal)
+- [ ] draggy droppy
+    - [ ] attacks
+    - [ ] spells
+    - [ ] spellcasting classes
+- [ ] Recently opened viewable on landing page - replace auto-open?
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
@@ -44,16 +52,14 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
+- pf2e has been ignored since 0.3.1,  Update and bring up to speed with improvements
 - roll20 iframe?
-- Recently opened viewable on landing page - replace auto-open?
+- spell rest type doesn't look selected by default (it functionally is tho)
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
 - gm tools: monster reference
     - integrate with turn tracker
 - Signify spellbook spells using icon in catalog list
-- Enhance spellbook description display
-    - Custom solution (modal?) that shows the entire descrption
-    - Also, actually discoverable in the UI
 - Roll dice from sheet by clicking on things
 - Command Palatte
     - Roll abilities/skills/saves
