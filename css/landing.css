@@ -21,7 +21,7 @@ body{
 
 #content{
     position: relative;
-    top: 40%;
+    top: 45%;
     transform: translateY(-50%);
 }
 #title-container{
@@ -44,23 +44,38 @@ body{
                     , 0 0 50px 100px #fefbe090;
     border-radius: 50%;
 }
-#games-container{
-    margin-top: 3em;
-    font-size: 1.5em;
+#menu-container{
     text-align: center;
+    margin-top:3em;
+    display: flex;
+    justify-content: space-evenly;
 }
 #games{
-    display: inline-block;
+    font-size: 1.5em;
+}
+.menu-list{
     text-align: left;
 }
 
-#games a {
+.menu-list a {
     color: white;
 }
-#games .link-letter{
+.menu-list .link-letter{
     color: yellow;
 }
-#games a:hover {
+.menu-list a:hover, .menu-list a:hover * {
     text-decoration: none;
     color: yellow;
+}
+
+.recent-link{
+    padding: 5px;
+}
+.recent-path {
+    visibility: hidden;
+    color: lightgray !important;
+    font-size: .75em !important;
+}
+.menu-list a:hover .recent-path{
+    visibility: visible;
 }

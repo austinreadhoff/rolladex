@@ -46,9 +46,7 @@ export function updateRecents(path: string){
     
                 recents.sort((a: any,b: any) => { return new Date(b.datetime).getTime() - new Date(a.datetime).getTime() });
                 if (recents.length > 10){
-                    for(let i = recents.length-1; i > 9; i--){
-                        recents.splice(i,1);
-                    }
+                    json.recents = recents.slice(0,10);
                 }
             }
         
@@ -79,8 +77,6 @@ export function updateRecentsMenu(recentsArray: Array<any>){
 
     if (recentsArray.length == 0){
         recentMenu.submenu.append(new MenuItem({ label: 'No Recent Characters', enabled: false }));
-        recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
-        recentMenu.submenu.append(clearItem);
     }
     else{
         recentsArray.forEach(character => {
@@ -94,9 +90,10 @@ export function updateRecentsMenu(recentsArray: Array<any>){
             );
         });
 
-        recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
-        recentMenu.submenu.append(clearItem);
     }
+
+    recentMenu.submenu.append(new MenuItem({ type: 'separator' }));
+    recentMenu.submenu.append(clearItem);
 
     Menu.setApplicationMenu(menu);
 }

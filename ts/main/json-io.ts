@@ -13,10 +13,12 @@ ipcMain.on('check-recent-load', (event: any, arg: any) => {
 
     getRecentsJSON()
         .then((json: any) => {
-            if (json.lastOpen){
-                executeLoad(win, json.lastOpen, true);
-            }
-            
+            //leaving commented out in case I change my mind and want this back
+            // if (json.lastOpen){
+            //     executeLoad(win, json.lastOpen, true);
+            // }
+
+            win.webContents.send('send-recents-json', json.recents);
             updateRecentsMenu(json.recents)
         });
 });

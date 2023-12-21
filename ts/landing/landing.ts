@@ -1,4 +1,9 @@
 import { ipcRenderer } from "electron";
+import { applyDataBinding } from "./viewmodel";
+
+ipcRenderer.on('send-recents-json', (_, json: any) => {
+    applyDataBinding(json);
+});
 
 document.addEventListener("DOMContentLoaded", function(){
     ipcRenderer.send('check-recent-load');

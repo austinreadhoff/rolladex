@@ -21,13 +21,26 @@
                 </div>
                 <img class="img-torch" src="./img/torch.gif" />
             </div>
-            <div id="games-container">
-                <div id="games">
+            <div id="menu-container">
+                <div id="games" class="menu-list">
+                    <p>New:</p>
                     <a href="dnd5e/sheet.html" id="dnd5e"><span class="link-letter">D</span>ungeons & Dragons 5e</a><br/><br/>
                     <a href="pf2e/sheet.html" id="pf2e"><span class="link-letter">P</span>athfinder 2e</a>
                     <hr></hr>
                     <a href="gm/index.html" id="gm"><span class="link-letter">G</span>ame Master Tools</a>
                 </div>
+                <!-- ko if: (recents().some(r => r.populated())) -->
+                <div id="recents" class="menu-list">
+                    <p>Recently Opened:</p>
+                    <div data-bind="foreach: recents" class="rpgui-container framed-grey">
+                        <a class="recent-link">
+                            <span data-bind="text: $index()+1+')'" class="link-letter">1)</span> 
+                            <span data-bind="text: path"></span><br/>
+                            <span data-bind="text: path" class="recent-path"></span>
+                        </a><br/>
+                    </div>
+                </div>
+                <!-- /ko -->
             </div>
         </div>
     </body>

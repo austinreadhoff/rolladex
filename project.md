@@ -11,7 +11,11 @@
     - [ ] attacks
     - [ ] spells
     - [ ] spellcasting classes
-- [ ] Recently opened viewable on landing page - replace auto-open?
+    - [ ] gm tools: soundtrack
+- [-] Recently opened viewable on landing page - replace auto-open?
+    - friendly name
+    - wrangle length
+    - keyboard shortcuts
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
