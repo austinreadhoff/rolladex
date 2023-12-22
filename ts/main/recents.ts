@@ -23,35 +23,51 @@ export function getRecentsJSON(){
 
 export function updateRecents(path: string){
     return new Promise((resolve, reject) => {
-        fs.readFile(recentsFilePath, 'utf-8', (error: any, data: any) => {
-            var json = JSON.parse(data);
+        fs.readFile(path, 'utf-8', (error: any, data: any) => {
+            let name: string = "?";
+            if (data){
+                let json = JSON.parse(data);
+                let game = json.game;
+    
+                if (game == "dnd5e" || game == "pf2e")
+                    name = json.characterName;
+                else if (game == "gm")
+                    name = json.name;
+    
+                if (name == null || name.trim() === "")
+                    name = "?";
+            }
+
+            fs.readFile(recentsFilePath, 'utf-8', (error: any, data: any) => {
+                var json = JSON.parse(data);
+                
+                json.lastOpen = path;
+        
+                if (path){
+                    var recents = json.recents;
+                    var repeat = false;
+        
+                    for (let i in recents){
+                        if (path == recents[i].path){
+                            repeat = true;
+                            recents[i].datetime = new Date().toISOString();
+                            break;
+                        }
+                    }
             
-            json.lastOpen = path;
-    
-            if (path){
-                var recents = json.recents;
-                var repeat = false;
-    
-                for (let i in recents){
-                    if (path == recents[i].path){
-                        repeat = true;
-                        recents[i].datetime = new Date().toISOString();
-                        break;
+                    if(!repeat){
+                        recents.push({ "path": path, "name": name, "datetime": new Date().toISOString() });
+                    }
+        
+                    recents.sort((a: any,b: any) => { return new Date(b.datetime).getTime() - new Date(a.datetime).getTime() });
+                    if (recents.length > 10){
+                        json.recents = recents.slice(0,10);
                     }
                 }
-        
-                if(!repeat){
-                    recents.push({ "path": path, "datetime": new Date().toISOString() });
-                }
-    
-                recents.sort((a: any,b: any) => { return new Date(b.datetime).getTime() - new Date(a.datetime).getTime() });
-                if (recents.length > 10){
-                    json.recents = recents.slice(0,10);
-                }
-            }
-        
-            fs.writeFile(recentsFilePath, JSON.stringify(json), (err: any) => {
-                return resolve(json.recents);
+            
+                fs.writeFile(recentsFilePath, JSON.stringify(json), (err: any) => {
+                    return resolve(json.recents);
+                });
             });
         });
     });

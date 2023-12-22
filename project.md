@@ -1,4 +1,4 @@
-## V.Next
+## 0.3.3
 - [X] Fix Bestow Curse description
 - [X] Allow modifiers to spell attack/dc
 - [X] Focus cursor on newly added inputs
@@ -13,9 +13,9 @@
     - [ ] spellcasting classes
     - [ ] gm tools: soundtrack
 - [-] Recently opened viewable on landing page - replace auto-open?
-    - friendly name
-    - wrangle length
+    - css: max length and fix vertical fuckery
     - keyboard shortcuts
+    - update if cleared while on page
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
