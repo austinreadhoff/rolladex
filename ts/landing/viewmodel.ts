@@ -1,6 +1,6 @@
 import * as ko from "knockout";
 
-class RecentFile {
+export class RecentFile {
     populated: KnockoutObservable<boolean>;
     name: KnockoutObservable<string>;
     path: KnockoutObservable<string>;
@@ -17,6 +17,16 @@ export class ViewModel {
 
     constructor(){
         this.recents = ko.observableArray([]);
+    }
+
+    clearRecents(): void{
+        this.recents([
+            new RecentFile(),
+            new RecentFile(),
+            new RecentFile(),
+            new RecentFile(),
+            new RecentFile(),
+        ]);
     }
 }
 

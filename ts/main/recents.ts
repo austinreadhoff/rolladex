@@ -83,6 +83,7 @@ export function updateRecentsMenu(recentsArray: Array<any>){
             label: 'Clear Recently Opened',
             click(item: any, focusedWindow: Electron.BrowserWindow){
                 clearRecents().then(() => { updateRecentsMenu([])});
+                focusedWindow.webContents.send("send-recents-clear");
             }
         }
     );

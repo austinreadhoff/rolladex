@@ -1,8 +1,11 @@
 import { ipcRenderer } from "electron";
-import { applyDataBinding } from "./viewmodel";
+import { applyDataBinding, viewModel } from "./viewmodel";
 
 ipcRenderer.on('send-recents-json', (_, json: any) => {
     applyDataBinding(json);
+});
+ipcRenderer.on('send-recents-clear', () => {
+    viewModel.clearRecents();
 });
 
 document.addEventListener("DOMContentLoaded", function(){

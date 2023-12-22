@@ -15,7 +15,6 @@
 - [-] Recently opened viewable on landing page - replace auto-open?
     - css: max length and fix vertical fuckery
     - keyboard shortcuts
-    - update if cleared while on page
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
