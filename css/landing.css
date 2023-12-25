@@ -21,8 +21,7 @@ body{
 
 #content{
     position: relative;
-    top: 45%;
-    transform: translateY(-50%);
+    top: 120px;
 }
 #title-container{
     display: flex;
@@ -70,6 +69,12 @@ body{
 
 .recent-link{
     padding: 5px;
+
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
 }
 .recent-path {
     visibility: hidden;
