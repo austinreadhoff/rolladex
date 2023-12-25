@@ -1,14 +1,22 @@
+import { ipcRenderer } from "electron";
 import * as ko from "knockout";
 
-export class RecentFile {
+class RecentFile {
     populated: KnockoutObservable<boolean>;
     name: KnockoutObservable<string>;
     path: KnockoutObservable<string>;
+    shortPath: KnockoutObservable<string>;
 
     constructor(){
         this.populated = ko.observable(false);
         this.name = ko.observable("---");
-        this.path = ko.observable("---");
+        this.path = ko.observable("");
+        this.shortPath = ko.observable("---");
+    }
+
+    load(){
+        if (this.path().trim() !== '')
+            ipcRenderer.send('load-recent', this.path());
     }
 }
 
@@ -39,7 +47,8 @@ export function applyDataBinding(recentsJson: any){
         if (recentsJson.length > i){
             let json = recentsJson[i];
             recent.populated(true);
-            recent.path(/[^/]*$/.exec(json.path)[0]);
+            recent.path(json.path);
+            recent.shortPath(/[^/]*$/.exec(json.path)[0]);
 
             if (json.hasOwnProperty("name")){    //backwards compatibility < 0.3.3
                 recent.name(json.name);

@@ -22,5 +22,16 @@ document.addEventListener("DOMContentLoaded", function(){
         else if(event.code == 'KeyG') {
             document.getElementById("gm").click();
         }
+        else{
+            for(let i=0; i < 5; i++){
+                if (event.code == ('Digit' + (i+1)) || event.code == ('Numpad' + (i+1))){
+                    let recent = viewModel.recents()[i];
+                    if (recent.populated())
+                        recent.load();
+
+                    break;
+                }
+            }
+        }
     });
 });

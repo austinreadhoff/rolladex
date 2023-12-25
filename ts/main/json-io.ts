@@ -23,6 +23,11 @@ ipcMain.on('check-recent-load', (event: any, arg: any) => {
         });
 });
 
+ipcMain.on('load-recent', (event: any, path: string) => {
+    var win = event.sender.getOwnerBrowserWindow();
+    executeLoad(win, path);
+});
+
 function updateSavePath(path: string){
     savePath = path;
     updateRecents(path)

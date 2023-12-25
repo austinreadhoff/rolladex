@@ -4,17 +4,18 @@
 - [X] Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
 - [ ] "special rules" menu
-    - [ ] jack of all trades
-
+    - jack of all trades
+    - ???
 - [ ] replace edit/delete buttons (click control to open modal, delete button in modal)
+    - attacks
+    - spells
+    - spellcasting classes
 - [ ] draggy droppy
-    - [ ] attacks
-    - [ ] spells
-    - [ ] spellcasting classes
-    - [ ] gm tools: soundtrack
-- [-] Recently opened viewable on landing page - replace auto-open?
-    - css: max length and fix vertical fuckery
-    - keyboard shortcuts
+    - attacks
+    - spells
+    - spellcasting classes
+    - gm tools: soundtrack
+- [X] Recently opened viewable on landing page - replaces auto-open
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
