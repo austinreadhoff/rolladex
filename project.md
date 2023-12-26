@@ -3,9 +3,12 @@
 - [X] Allow modifiers to spell attack/dc
 - [X] Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
-- [ ] "special rules" menu
-    - jack of all trades
-    - ???
+- [-] "special rules" menu
+    - bard: jack of all trades
+    - fighter/champion: remarkable athlete
+    - fighter/samurai: elegant courtier
+    - ranger/fey wanderer: otherworldly glamour
+    - rogue/swashbuckler: rackish audacity
 - [ ] replace edit/delete buttons (click control to open modal, delete button in modal)
     - attacks
     - spells

@@ -118,39 +118,39 @@
                                         <input data-bind="textInput: proficiency" id="proficiency" >
                                     </div>
                                     <div class="form-check print-hidden">
-                                        <input data-bind="checked: joat" class="rpgui-checkbox joat-check" type="checkbox" id="joat">
+                                        <input data-bind="checked: rules().jackOfAllTrades" class="rpgui-checkbox joat-check" type="checkbox" id="joat">
                                         <label class="form-check-label" for="joat">Jack of All Trades</label>
                                     </div>
                                     <div id="saving-throws" >
                                         <label>Saving Throws</label>
                                         <div class="form-check">
                                             <input data-bind="checked: savingStr" class="rpgui-checkbox" type="checkbox" id="saving-str">
-                                            <label data-bind="text: abilityModCheckbox(str(), savingStr())" id="saving-str-mod" for="saving-str"></label>
+                                            <label data-bind="text: savingThrowCheckbox(str(), savingStr())" id="saving-str-mod" for="saving-str"></label>
                                             <label class="form-check-label" for="saving-str">Strength</label>
                                         </div>
                                         <div class="form-check">
                                             <input data-bind="checked: savingDex" class="rpgui-checkbox" type="checkbox" id="saving-dex">
-                                            <label data-bind="text: abilityModCheckbox(dex(), savingDex())" id="saving-dex-mod" for="saving-dex"></label>
+                                            <label data-bind="text: savingThrowCheckbox(dex(), savingDex())" id="saving-dex-mod" for="saving-dex"></label>
                                             <label class="form-check-label" for="saving-dex">Dexterity</label>
                                         </div>
                                         <div class="form-check">
                                             <input data-bind="checked: savingCon" class="rpgui-checkbox" type="checkbox" id="saving-con">
-                                            <label data-bind="text: abilityModCheckbox(con(), savingCon())" id="saving-con-mod" for="saving-con"></label>
+                                            <label data-bind="text: savingThrowCheckbox(con(), savingCon())" id="saving-con-mod" for="saving-con"></label>
                                             <label class="form-check-label" for="saving-con">Constitution</label>
                                         </div>
                                         <div class="form-check">
                                             <input data-bind="checked: savingInt" class="rpgui-checkbox" type="checkbox" id="saving-int">
-                                            <label data-bind="text: abilityModCheckbox(int(), savingInt())" id="saving-int-mod" for="saving-int"></label>
+                                            <label data-bind="text: savingThrowCheckbox(int(), savingInt())" id="saving-int-mod" for="saving-int"></label>
                                             <label class="form-check-label" for="saving-int">Intelligence</label>
                                         </div>
                                         <div class="form-check">
                                             <input data-bind="checked: savingWis" class="rpgui-checkbox" type="checkbox" id="saving-wis">
-                                            <label data-bind="text: abilityModCheckbox(wis(), savingWis())" id="saving-wis-mod" for="saving-wis"></label>
+                                            <label data-bind="text: savingThrowCheckbox(wis(), savingWis())" id="saving-wis-mod" for="saving-wis"></label>
                                             <label class="form-check-label" for="saving-wis">Wisdom</label>
                                         </div>
                                         <div class="form-check">
                                             <input data-bind="checked: savingChar" class="rpgui-checkbox" type="checkbox" id="saving-char">
-                                            <label data-bind="text: abilityModCheckbox(char(), savingChar())" id="saving-char-mod" for="saving-char"></label>
+                                            <label data-bind="text: savingThrowCheckbox(char(), savingChar())" id="saving-char-mod" for="saving-char"></label>
                                             <label class="form-check-label" for="saving-char">Charisma</label>
                                         </div>
                                     </div>

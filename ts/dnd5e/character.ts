@@ -21,7 +21,7 @@ export class Character {
     char: KnockoutObservable<string>;
     inspiration: KnockoutObservable<boolean>;
     proficiency: KnockoutObservable<string>;
-    joat: KnockoutObservable<boolean>;
+    rules: KnockoutObservable<Rules>;
     savingStr: KnockoutObservable<boolean>;
     savingDex: KnockoutObservable<boolean>;
     savingCon: KnockoutObservable<boolean>;
@@ -105,7 +105,7 @@ export class Character {
         this.char = ko.observable("");
         this.inspiration = ko.observable(false);
         this.proficiency = ko.observable("");
-        this.joat = ko.observable(false);
+        this.rules = ko.observable(new Rules());
         this.savingStr = ko.observable(false);
         this.savingDex = ko.observable(false);
         this.savingCon = ko.observable(false);
@@ -178,9 +178,9 @@ export class Character {
         this.characterName.subscribe(function(){document.title = viewModel.character().characterName() + " - Rolladex"});
     }
 
-    abilityModCheckbox(ability: number, hasProf: Boolean, usesJoat = false){
+    savingThrowCheckbox(ability: number, hasProf: Boolean){
         let profString = hasProf ? "P" : "&nbsp";
-        return this.abilityMod(ability, usesJoat, profString);
+        return this.abilityMod(ability, false, profString);
     }
 
     abilityMod(ability: number, usesJoat = false, profString = "&nbsp"){
@@ -198,7 +198,7 @@ export class Character {
 
             let mod = Math.floor(+ability / 2) - 5
                 + (profLevel * +profBonus) 
-                + (usesJoat ? (this.joat() && profString == "&nbsp" ? Math.floor(+profBonus/2) : 0) : 0);
+                + (usesJoat ? (this.rules().jackOfAllTrades() && profString == "&nbsp" ? Math.floor(+profBonus/2) : 0) : 0);
             if (!mod) return "+0";
             return mod < 0 ? mod.toString() : ("+" + mod);
         }, this);
@@ -347,6 +347,22 @@ export class Character {
         });
     } 
     //#endregion
+}
+
+class Rules {
+    jackOfAllTrades: KnockoutObservable<boolean>;
+    remarkableAthlete: KnockoutObservable<boolean>;
+    elegantCourtier: KnockoutObservable<boolean>;
+    otherworldlyGlamour: KnockoutObservable<boolean>;
+    rakishAudacity: KnockoutObservable<boolean>;
+
+    constructor(){
+        this.jackOfAllTrades = ko.observable(false);
+        this.remarkableAthlete = ko.observable(false);
+        this.elegantCourtier = ko.observable(false);
+        this.otherworldlyGlamour = ko.observable(false);
+        this.rakishAudacity = ko.observable(false);
+    }
 }
 
 class Attack {

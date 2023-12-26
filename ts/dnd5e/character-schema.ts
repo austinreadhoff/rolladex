@@ -1,5 +1,5 @@
 //Whenever this verison is increased, add a conversion method to the switch statement that increments the version from the previous
-export var jsonSchemaVersion = 0.8;
+export var jsonSchemaVersion = 0.9;
 export var gameName = "dnd5e";
 
 export function UpgradeSchema(json: any){
@@ -18,6 +18,8 @@ export function UpgradeSchema(json: any){
             json = AttackStats(json);
         case 0.7:
             json = SpellBonuses(json);
+        case 0.8:
+            json = SpecialRules(json);
     }
 
     return json;
@@ -188,5 +190,19 @@ function SpellBonuses(json: any){
     });
 
     json["version"] = 0.8;
+    return json;
+}
+
+function SpecialRules(json: any){
+    json["rules"] = {};
+    json["rules"]["jackOfAllTrades"] = json["joat"];
+    json["rules"]["remarkableAthlete"] = false;
+    json["rules"]["elegantCourtier"] = false;
+    json["rules"]["otherworldlyGlamour"] = false;
+    json["rules"]["rakishAudacity"] = false;
+    
+    delete json["joat"];
+
+    json["version"] = 0.9;
     return json;
 }
