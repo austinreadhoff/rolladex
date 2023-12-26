@@ -144,22 +144,7 @@ const template: Electron.MenuItemConstructorOptions[] = [
     {
         id: 'actions',
         label: 'Actions',
-        submenu: [
-            {
-                label: 'Short Rest',
-                accelerator: 'CmdOrCtrl+K',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    takeRest(focusedWindow, RestType.Short);
-                }
-            },
-            {
-                label: 'Long Rest',
-                accelerator: 'CmdOrCtrl+L',
-                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                    takeRest(focusedWindow, RestType.Long);
-                }
-            }
-        ]
+        submenu: []
     },
     {
         role: 'window',
