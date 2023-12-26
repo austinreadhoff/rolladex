@@ -63,6 +63,9 @@ export function registerModalHandlers(){
         if (target.hasAttribute("data-modal"))
             document.getElementById(target.dataset.modal).hidden = false;
 
+        else if (target.closest(".modal-opener"))
+            document.getElementById((target.closest(".modal-opener") as HTMLElement).dataset.modal).hidden = false;
+
         else if (!target.closest(".modal") && !target.classList.contains("modal-opener"))
             hideAllModals();
     });

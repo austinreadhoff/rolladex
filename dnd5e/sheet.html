@@ -33,6 +33,19 @@
     <hr class="golden">
     <div class="tab-content">
         <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+            <modal params="name: 'rules-modal'">
+                <input data-bind="checked: $parent.rules().jackOfAllTrades" class="rpgui-checkbox joat-check" type="checkbox" id="rules-joat">
+                <label class="form-check-label" for="rules-joat">Jack of All Trades (Bard)</label><br/>
+                <input data-bind="checked: $parent.rules().remarkableAthlete" class="rpgui-checkbox joat-check" type="checkbox" id="rules-ra">
+                <label class="form-check-label" for="rules-ra">Remarkable Athlete (Fighter - Champion)</label><br/>
+                <input data-bind="checked: $parent.rules().elegantCourtier" class="rpgui-checkbox joat-check" type="checkbox" id="rules-ec">
+                <label class="form-check-label" for="rules-ec">Elegant Courtier (Fighter - Samuarai)</label><br/>
+                <input data-bind="checked: $parent.rules().otherworldlyGlamour" class="rpgui-checkbox joat-check" type="checkbox" id="rules-og">
+                <label class="form-check-label" for="rules-og">Otherworldly Glamour (Ranger - Fey Wanderer)</label><br/>
+                <input data-bind="checked: $parent.rules().rakishAudacity" class="rpgui-checkbox joat-check" type="checkbox" id="rules-rakish">
+                <label class="form-check-label" for="rules-rakish">Rakish Audacity (Rogue - Swashbuckler)</label><br/>
+            </modal>
+
             <div id="stats-container" class="container-fluid">
                 <div class="header row rpgui-container framed-golden">
                     <div class="col-4 form-group">
@@ -116,10 +129,6 @@
                                     <div class="form-group">
                                         <label for="proficiency">Proficiency Bonus</label><br/>
                                         <input data-bind="textInput: proficiency" id="proficiency" >
-                                    </div>
-                                    <div class="form-check print-hidden">
-                                        <input data-bind="checked: rules().jackOfAllTrades" class="rpgui-checkbox joat-check" type="checkbox" id="joat">
-                                        <label class="form-check-label" for="joat">Jack of All Trades</label>
                                     </div>
                                     <div id="saving-throws" >
                                         <label>Saving Throws</label>
@@ -270,7 +279,7 @@
                             <div class="row">
                                 <div class="form-group col textarea-col">
                                     <label for="proficiencies-languages">Proficiencies & Languages</label>
-                                    <textarea data-bind="textInput: proficienciesLanguages"  id="proficiencies-languages" rows="7"></textarea>
+                                    <textarea data-bind="textInput: proficienciesLanguages"  id="proficiencies-languages" rows="9"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -446,6 +455,9 @@
                                     <label for="features">Features & Traits</label>
                                     <textarea data-bind="textInput: features"  id="features" rows="40"></textarea>
                                 </div>
+                            </div>
+                            <div class="row print-hidden">
+                                <button data-bind="attr: { 'data-modal': 'rules-modal' }" type="button" class="col-6 rpgui-button golden modal-opener"><p>Special Rules</p></button>
                             </div>
                         </div>
                     </div>
