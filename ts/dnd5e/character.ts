@@ -180,14 +180,26 @@ export class Character {
 
     savingThrowCheckbox(ability: number, hasProf: Boolean){
         let profString = hasProf ? "P" : "&nbsp";
-        return this.abilityMod(ability, false, profString);
+        return this.abilityMod(ability, false, false, false, false, false, profString);
     }
 
-    abilityMod(ability: number, usesJoat = false, profString = "&nbsp"){
+    //I apologize for the number of parameters in this function
+    abilityMod(ability: number, 
+        joatApplies = false, 
+        remarkableAthleteApplies = false,
+        elegantCourtierApplies = false,
+        otherworldlyGlamourApplies = false,
+        rakishAudacityApplies = false,
+        profString = "&nbsp"){
         return ko.computed(() =>{
             if (!ability) return "+0";
 
-            let profBonus = this.proficiency().replace(/\D/g,'');
+            let profBonus = this.proficiency();
+            if (profBonus.length == 0 || (profBonus.length > 0 && profBonus[0] == '-'))
+                profBonus = "0";
+            else
+                profBonus = this.proficiency().replace(/\D/g,'');
+            
             let profLevel: number;
             if (profString == "&nbsp")
                 profLevel = 0;
@@ -197,8 +209,26 @@ export class Character {
                 profLevel = 2;
 
             let mod = Math.floor(+ability / 2) - 5
-                + (profLevel * +profBonus) 
-                + (usesJoat ? (this.rules().jackOfAllTrades() && profString == "&nbsp" ? Math.floor(+profBonus/2) : 0) : 0);
+                + (profLevel * +profBonus);
+
+            if (joatApplies && this.rules().jackOfAllTrades() && profString == "&nbsp"){
+                mod += Math.floor(+profBonus/2);
+            }
+            else if (remarkableAthleteApplies && this.rules().remarkableAthlete() && profString == "&nbsp"){
+                mod += Math.floor(+profBonus/2);
+            }
+
+            if ((elegantCourtierApplies && this.rules().elegantCourtier()) 
+                || (otherworldlyGlamourApplies && this.rules().otherworldlyGlamour())){
+                let wis = this.calculateAbilityBonus("WIS", false);
+                mod += wis < 0 ? 0 : wis;
+            }
+
+            if (rakishAudacityApplies && this.rules().rakishAudacity()){
+                let cha = this.calculateAbilityBonus("CHAR", false);
+                mod += cha < 0 ? 0 : cha;
+            }
+
             if (!mod) return "+0";
             return mod < 0 ? mod.toString() : ("+" + mod);
         }, this);

@@ -3,7 +3,7 @@
 - [X] Allow modifiers to spell attack/dc
 - [X] Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
-- [-] "special rules" menu
+- [X] "special rules" menu
 - [ ] replace edit/delete buttons (click control to open modal, delete button in modal)
     - attacks
     - spells
