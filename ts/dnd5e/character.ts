@@ -362,6 +362,14 @@ export class Character {
             return label + " " + ["A", "B", "C", "D", "E", "F"][i];
         });
     }
+    spellcastingClassCssClass(i: number){
+        return ko.pureComputed(() => {
+            if (viewModel.character().spellcastingClasses().length < 2)
+                return "";
+
+            return "spellclassbox-" + ["a", "b", "c", "d", "e", "f"][i];
+        });
+    }
     spellCssClass(spellLevelIndex:number, i: number){
         return ko.pureComputed(() => {
             let spell = viewModel.character().spellLevels()[spellLevelIndex].spells()[i];

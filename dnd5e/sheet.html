@@ -338,19 +338,17 @@
                                 <div class="container">
                                     <label class="full-width-label">Attacks</label>
                                     <button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="rpgui-button btn-small">+</button>
-                                    <div class="row" style="text-align: center">
+                                    <div class="row" style="text-align: center; margin-top:5px;">
                                         <label class="col-1 print-hidden"></label>
                                         <label class="col-4">Name</label>
                                         <label class="col-2">Bonus</label>
                                         <label class="col-4">Damage</label>
                                     </div>
                                     <div data-bind="foreach: attackStats" id="attack-stats">
-                                        <div class="attack-stat-row row">
-                                            <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="col-1 btn-small rpgui-button">-</button>
-                                            <input data-bind="value: name" class=" col-4 attack-stat" readonly>
+                                        <div data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }" class="attack-stat-row row modal-opener">
+                                            <input data-bind="value: name" class=" col-5 attack-stat" readonly>
                                             <input data-bind="value: $parent.attackBonus(ability(), proficient(), bonusAttk())" class=" col-2 attack-stat" readonly>
-                                            <input data-bind="value: $parent.attackDamage(ability(), bonusDmg(), dmgDice(), dmgType())" class=" col-4 attack-stat" readonly>
-                                            <button data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }" type="button" class="col-1 btn-small rpgui-button modal-opener">✎</button>
+                                            <input data-bind="value: $parent.attackDamage(ability(), bonusDmg(), dmgDice(), dmgType())" class=" col-5 attack-stat" readonly>
                                         </div>
                                         <modal params="name: 'attack-modal-'+$index()">
                                             <div class="container">
@@ -399,6 +397,11 @@
                                                     <div class="form-group col textarea-col">
                                                         <label>Notes</label>
                                                         <textarea data-bind="textInput: $parent.notes" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button data-bind="click: function(data, event) { $parentContext.$parent.removeAttackRow($parent) }" class="rpgui-button">Delete Attack</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -575,12 +578,9 @@
                     <hr>
                     <!-- /ko -->
                     <div class="row">
-                        <div class="col-1">
-                            <button data-bind="attr: { 'data-modal': 'spellcastingClass-modal-'+$index() }" type="button" class="btn-small rpgui-button modal-opener">✎</button>
-                        </div>
-                        <div class="col-2 form-group">
+                        <div data-bind="attr: { 'data-modal': 'spellcastingClass-modal-'+$index() }" class="col-2 form-group modal-opener">
                             <label data-bind="text: $parent.spellcastingClassLabel($index())"></label>
-                            <input data-bind="textInput: name" readonly>
+                            <input data-bind="textInput: name, class: $parent.spellcastingClassCssClass($index())" readonly>
                         </div>
                         <div class="form-group col-2" style="text-align:center;">
                             <label for="spell-save-dc">Spell Save DC</label><br/><br/>
@@ -590,15 +590,12 @@
                             <label for="spell-attack-bonus">Spell Attack Bonus</label><br/><br/>
                             <span data-bind="text: $parent.spellAttackBonus(ability(), bonusAttack())" class="spell-attack-bonus"></span>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4">
                             
                         </div>
                         <div class="col-2">
                             <!-- ko if: $index() === 0 && $parent.spellcastingClasses().length < 6 -->
                             <button data-bind="click: $parent.addSpellcastingClass" class="rpgui-button">Add Another Spellcasting Class</button>
-                            <!-- /ko -->
-                            <!-- ko if: $index() > 0 -->
-                            <button data-bind="click: $parent.removeSpellcastingClass" class="rpgui-button btn-small">-</button>
                             <!-- /ko -->
                         </div>
                     </div>
@@ -639,6 +636,13 @@
                                     <label data-bind="attr: { for: 'spell-rest-short-'+$index() }">Short Rest</label>
                                     <input data-bind="checked: $parent.restType, attr: { id: 'spell-rest-long-'+$index(), name:'spell-rest-'+$index() }" type="radio" class="rpgui-radio" value="2">
                                     <label data-bind="attr: { for: 'spell-rest-long-'+$index() }">Long Rest</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- ko if: $index() > 0 -->
+                                    <button data-bind="click: function(data, event) { $parentContext.$parent.removeSpellcastingClass($parent) }" class="rpgui-button">Delete Class</button>
+                                    <!-- /ko -->
                                 </div>
                             </div>
                         </div>

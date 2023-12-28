@@ -35,8 +35,9 @@ summary
 ,.skillbox, .spellclassbox
 ,.catalog-filters label
 ,.filter-toggle
-,.modal-x{
-    cursor: url("./img/cursor/point.png") 10 0,auto;
+,.modal-x
+,.modal-opener * {
+    cursor: url("./img/cursor/point.png") 10 0,auto !important;
 }
 .rpgui-dropdown{
     cursor: url("./img/cursor/default.png") 10 0,auto;

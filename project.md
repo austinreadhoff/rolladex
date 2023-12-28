@@ -4,10 +4,8 @@
 - [X] Focus cursor on newly added inputs
 - [ ] fancybar math (like roll20) - how UI?
 - [X] "special rules" menu
-- [ ] replace edit/delete buttons (click control to open modal, delete button in modal)
-    - attacks
+- [-] replace edit/delete buttons (click control to open modal, delete button in modal)
     - spells
-    - spellcasting classes
 - [ ] draggy droppy
     - attacks
     - spells

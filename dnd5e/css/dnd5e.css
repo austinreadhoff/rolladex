@@ -8,27 +8,27 @@
     color: gold;
 }
 
-input.spell-name.spellclassbox-a,
+input.spellclassbox-a,
 .spellclassbox.spellclassbox-a{
     color: pink;
 }
-input.spell-name.spellclassbox-b,
+input.spellclassbox-b,
 .spellclassbox.spellclassbox-b{
     color: coral;
 }
-input.spell-name.spellclassbox-c,
+input.spellclassbox-c,
 .spellclassbox.spellclassbox-c{
     color: yellow;
 }
-input.spell-name.spellclassbox-d,
+input.spellclassbox-d,
 .spellclassbox.spellclassbox-d{
     color: lightgreen;
 }
-input.spell-name.spellclassbox-e,
+input.spellclassbox-e,
 .spellclassbox.spellclassbox-e{
     color: lightblue;
 }
-input.spell-name.spellclassbox-f,
+input.spellclassbox-f,
 .spellclassbox.spellclassbox-f{
     color: violet;
 }
