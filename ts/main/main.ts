@@ -5,7 +5,7 @@ import { saveToJSON, compareToSaved } from './json-io';
 function createWindow() {
 	app.setAboutPanelOptions({
 		applicationName: "RollaDex",
-		applicationVersion: "0.3.2",
+		applicationVersion: "0.3.3",
 		iconPath: "./img/icon.png"	//Win/Linux only
 	})
 
