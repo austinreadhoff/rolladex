@@ -5,6 +5,8 @@ import { applyDataBinding, viewModel } from "./viewmodel";
 import { Counter, SpellLevel } from './character';
 
 var currentTab = "stats";
+var draggedAttack = null;
+var draggedSpell = null;
 
 ipcRenderer.on('send-switch-to-tab', (event, tabId: string) => {
     switchTab(tabId);

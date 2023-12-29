@@ -113,16 +113,6 @@ implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
             this.tuneURL("");
         }
     }
-    sortTune(tune: Tune, category: any, shiftValue: number){
-        let arr = viewModel.tunes()[category()].tunes;
-        let from = arr.indexOf(tune);
-        let to = from + shiftValue;
-
-        if (to >= 0 && to < arr().length){
-            arr.splice(from, 1);
-            arr.splice(to, 0, tune)
-        }
-    }
     removeTune(row: Tune, category: any){
         viewModel.tunes()[category()].tunes.remove(row);
     }

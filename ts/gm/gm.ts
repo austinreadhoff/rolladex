@@ -6,6 +6,7 @@ import { featCatalogController } from "../pf2e/feats";
 import { gearCatalogController } from "../pf2e/equipment";
 
 var currentTab = "dice";
+var draggedTune = null;
 
 ipcRenderer.on('send-switch-to-tab', (event, tabId: string) => {
     switchTab(tabId);

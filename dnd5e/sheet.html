@@ -345,7 +345,15 @@
                                         <label class="col-4">Damage</label>
                                     </div>
                                     <div data-bind="foreach: attackStats" id="attack-stats">
-                                        <div data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }" class="attack-stat-row row modal-opener">
+                                        <div data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }
+                                            , event: { drop: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent'; $root.character().removeAttackRow(draggedAttack); $root.character().attackStats.splice($index(),0,draggedAttack) },
+                                                dragstart: function(data, e) { draggedAttack = $data; e.target.style.opacity = .5; return true; },
+                                                dragend: function(data, e) { draggedAttack = null; e.target.style.opacity = 1; },
+                                                dragenter: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid #d27d2b' },
+                                                dragleave: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent' },
+                                                dragover: function(data, e) { }}" 
+                                            class="attack-stat-row row modal-opener"
+                                            draggable="true">
                                             <input data-bind="value: name" class=" col-5 attack-stat" readonly>
                                             <input data-bind="value: $parent.attackBonus(ability(), proficient(), bonusAttk())" class=" col-2 attack-stat" readonly>
                                             <input data-bind="value: $parent.attackDamage(ability(), bonusDmg(), dmgDice(), dmgType())" class=" col-5 attack-stat" readonly>
@@ -661,7 +669,13 @@
                             </div>
                             <!-- /ko -->
                             <!-- ko foreach: spells -->
-                            <div class="spell-row row">
+                            <div class="spell-row row" data-bind="event: { drop: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent'; $root.character().removeSpell(draggedSpell, $parentContext.$index()); $root.character().spellLevels()[$parentContext.$index()].spells.splice($index(),0,draggedSpell) },
+                            dragstart: function(data, e) { draggedSpell = $data; e.target.style.opacity = .5; return true; },
+                            dragend: function(data, e) { draggedSpell = null; e.target.style.opacity = 1; },
+                            dragenter: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid #d27d2b' },
+                            dragleave: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent' },
+                            dragover: function(data, e) { }}"
+                            draggable="true">
                                 <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index())}" type="button" id="btn-remove-spell" class="col-1 rpgui-button btn-small">-</button>
                                 <div class="autocomplete col">
                                     <input data-bind="textInput: name, class: $parentContext.$parent.spellCssClass($parentContext.$index(), $index()), bindSpell: { level: $parent.level, name: name } ">

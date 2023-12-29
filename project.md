@@ -1,17 +1,9 @@
 ## 0.3.3
 - [X] Fix Bestow Curse description
 - [X] Allow modifiers to spell attack/dc
-- [X] Focus cursor on newly added inputs
-- [ ] fancybar math (like roll20) - how UI?
-- [X] "special rules" menu
-- [-] replace edit/delete buttons (click control to open modal, delete button in modal)
-    - spells
-- [ ] draggy droppy
-    - attacks
-    - spells
-    - spellcasting classes
-    - gm tools: soundtrack
+- [X] "Special Rules" menu
 - [X] Recently opened viewable on landing page - replaces auto-open
+- [X] Misc UI Improvements
 
 ## 0.3.2
 - [X] Simplify save warning dialog logic
@@ -52,7 +44,10 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
+- fancybar math (like roll20) - how UI?
+- Rething spellbook UI for viewing descrptions
 - pf2e has been ignored since 0.3.1,  Update and bring up to speed with improvements
+- opening a modal by any means should close all others
 - roll20 iframe?
 - spell rest type doesn't look selected by default (it functionally is tho)
 - fancy bars slight text offset

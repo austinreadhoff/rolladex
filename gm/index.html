@@ -98,20 +98,21 @@
                         <hr>
                         <details open> 
                             <summary>
+                                <input data-bind="textInput: name" placeholder="Category Name" style="max-width: 250px;"/>
                                 <button data-bind="click: $parent.removeTuneCategory, visible: $parent.tunes().length > 1" 
                                     type="button" class="rpgui-button btn-small" type="button">-</button>
-                                <input data-bind="textInput: name" placeholder="Category Name" style="max-width: 250px;"/>
                             </summary>
                             <div data-bind="foreach: tunes">
-                                <div>
+                                <div data-bind="event: { drop: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent'; $parentContext.$parent.removeTune(draggedTune, $parentContext.$index); $root.tunes()[$parentContext.$index()].tunes.splice($index(),0,draggedTune) },
+                                    dragstart: function(data, e) { draggedTune = $data; e.target.style.opacity = .5; return true; },
+                                    dragend: function(data, e) { draggedTune = null; e.target.style.opacity = 1; },
+                                    dragenter: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid #d27d2b' },
+                                    dragleave: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent' },
+                                    dragover: function(data, e) { }}"
+                                    draggable="true">
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.removeTune(data, $parentContext.$index)}" 
                                         class="rpgui-button btn-small">-</button>
                                     <button data-bind="text: name, click: $parentContext.$parent.playTune" type="button" class="rpgui-button"></button>
-    
-                                    <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, -1)}"
-                                        class="rpgui-button btn-small">^</button>
-                                    <button data-bind="click: function(data, event) {$parentContext.$parent.sortTune(data, $parentContext.$index, 1)}"
-                                        class="rpgui-button btn-small">v</button>
                                 </div>
                             </div>
                         </details>

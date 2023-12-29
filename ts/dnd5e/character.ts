@@ -374,14 +374,16 @@ export class Character {
         return ko.pureComputed(() => {
             let spell = viewModel.character().spellLevels()[spellLevelIndex].spells()[i];
 
-            let classList = ["spell-name"];
-            if (spell.prepared())
-                classList.push("prepared");
-    
-            if (viewModel.character().spellcastingClasses().length > 1)
-                classList.push("spellclassbox-" + spell.casterClass().toLowerCase());
-    
-            return classList.join(" ");
+            if (spell){
+                let classList = ["spell-name"];
+                if (spell.prepared())
+                    classList.push("prepared");
+        
+                if (viewModel.character().spellcastingClasses().length > 1)
+                    classList.push("spellclassbox-" + spell.casterClass().toLowerCase());
+        
+                return classList.join(" ");
+            }
         });
     } 
     //#endregion

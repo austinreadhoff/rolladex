@@ -19,6 +19,10 @@
     font-family: "Runescape";
     font-size: 20px;
 }
+.rpgui-content *[draggable=true]{
+    -webkit-user-drag: element;
+    border-top: 2px solid transparent
+}
 
 .rpgui-content strong {
     color: #fff;
