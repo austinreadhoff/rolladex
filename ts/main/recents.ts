@@ -51,6 +51,7 @@ export function updateRecents(path: string){
                         if (path == recents[i].path){
                             repeat = true;
                             recents[i].datetime = new Date().toISOString();
+                            recents[i].name = name;
                             break;
                         }
                     }

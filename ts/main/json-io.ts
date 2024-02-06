@@ -5,7 +5,9 @@ const fs = require('fs');
 var savePath: string = "";
 
 ipcMain.on('send-save-json', (event: any, json: any) => {
-    fs.writeFile(savePath, JSON.stringify(json), (err: any) => {});
+    fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
+        updateSavePath(savePath);
+    })
 });
 
 ipcMain.on('check-recent-load', (event: any, arg: any) => {

@@ -1,3 +1,11 @@
+## 0.3.4
+- [X] Handle changing of character names in recents list
+- [ ] Special rules from feats and races (examples: alert and harengon)
+- [ ] Add to Spellbook grey-out doesn't account for brackets
+- [ ] Dragon' Breath, Enemies abound
+- [ ] opening a modal by any means should close all others
+- [ ] spell rest type doesn't look selected by default (it functionally is tho)
+
 ## 0.3.3
 - [X] Fix Bestow Curse description
 - [X] Allow modifiers to spell attack/dc
@@ -44,12 +52,12 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
+- Show a count of how many spells are currently prepared
+- Spell catalog filter out already added spells
 - fancybar math (like roll20) - how UI?
-- Rething spellbook UI for viewing descrptions
+- Rethink spellbook UI for viewing descrptions
 - pf2e has been ignored since 0.3.1,  Update and bring up to speed with improvements
-- opening a modal by any means should close all others
 - roll20 iframe?
-- spell rest type doesn't look selected by default (it functionally is tho)
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
 - gm tools: monster reference
