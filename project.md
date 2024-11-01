@@ -1,7 +1,10 @@
 ## 0.3.4
 - [X] Handle changing of character names in recents list
 - [ ] Special rules from feats and races (examples: alert and harengon)
+- [ ] Additional Special rules: Base Paladin aura of Protection, Watcher Paladin aura, Oathbreaker Paladin aura
 - [ ] Add to Spellbook grey-out doesn't account for brackets
+- [ ] Why did I decide only brackets count?  Why not parens?
+- [ ] Multiclassing xdx fancybar is broken
 - [ ] Dragon' Breath, Enemies abound
 - [ ] opening a modal by any means should close all others
 - [ ] spell rest type doesn't look selected by default (it functionally is tho)
@@ -53,7 +56,7 @@
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
 - Show a count of how many spells are currently prepared
-- Spell catalog filter out already added spells
+- Spell catalog mark already added spells
 - fancybar math (like roll20) - how UI?
 - Rethink spellbook UI for viewing descrptions
 - pf2e has been ignored since 0.3.1,  Update and bring up to speed with improvements
