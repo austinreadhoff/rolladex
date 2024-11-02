@@ -181,11 +181,14 @@ export class Character {
 
     savingThrowCheckbox(ability: number, hasProf: Boolean){
         let profString = hasProf ? "P" : "&nbsp";
-        return this.abilityMod(ability, [], profString);
+        return this.abilityMod(ability, [7], profString);
     }
 
-    abilityMod(ability: number, rulesApplied: number[] = [], profString = "&nbsp"){
+    abilityMod(ability: number, rulesApplied: number[] = [], p = "&nbsp"){
         return ko.computed(() =>{
+            //there's some strange behavior w/ ko.computed functions, need this to be declared inside here, so it can be modified by Rules
+            var profString = p;
+
             if (!ability) return "+0";
 
             let profBonus = this.proficiency();
@@ -193,6 +196,11 @@ export class Character {
                 profBonus = "0";
             else
                 profBonus = this.proficiency().replace(/\D/g,'');
+
+            if (rulesApplied.includes(Rule.Harengon) && this.rules().harengon() && profString == "&nbsp")
+                profString = "P"
+            if (rulesApplied.includes(Rule.AuraSentinel) && this.rules().auraSentinel() && profString == "&nbsp")
+                profString = "P"
             
             let profLevel: number;
             if (profString == "&nbsp")
@@ -218,9 +226,14 @@ export class Character {
                 mod += wis < 0 ? 0 : wis;
             }
 
-            if (rulesApplied.includes(Rule.RakishAudacity) && this.rules().rakishAudacity()){
+            if ((rulesApplied.includes(Rule.RakishAudacity) && this.rules().rakishAudacity()) ||
+                (rulesApplied.includes(Rule.AuraProtection) && this.rules().auraProtection())){
                 let cha = this.calculateAbilityBonus("CHAR", false);
                 mod += cha < 0 ? 0 : cha;
+            }
+
+            if (rulesApplied.includes(Rule.Alert) && this.rules().alert()){
+                mod += 5;
             }
 
             if (!mod) return "+0";
@@ -384,18 +397,26 @@ export class Character {
 }
 
 class Rules {
+    alert: KnockoutObservable<boolean>;
+    harengon: KnockoutObservable<boolean>;
+    rakishAudacity: KnockoutObservable<boolean>;
     jackOfAllTrades: KnockoutObservable<boolean>;
     remarkableAthlete: KnockoutObservable<boolean>;
     elegantCourtier: KnockoutObservable<boolean>;
     otherworldlyGlamour: KnockoutObservable<boolean>;
-    rakishAudacity: KnockoutObservable<boolean>;
+    auraProtection: KnockoutObservable<boolean>;
+    auraSentinel: KnockoutObservable<boolean>;
 
     constructor(){
+        this.alert = ko.observable(false);
+        this.harengon = ko.observable(false);
         this.jackOfAllTrades = ko.observable(false);
         this.remarkableAthlete = ko.observable(false);
         this.elegantCourtier = ko.observable(false);
         this.otherworldlyGlamour = ko.observable(false);
         this.rakishAudacity = ko.observable(false);
+        this.auraProtection = ko.observable(false);
+        this.auraSentinel = ko.observable(false);
     }
 }
 

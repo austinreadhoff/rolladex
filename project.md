@@ -1,7 +1,6 @@
 ## 0.3.4
 - [X] Handle changing of character names in recents list
-- [ ] Special rules from feats and races (examples: alert and harengon)
-- [ ] Additional Special rules: Base Paladin aura of Protection, Watcher Paladin aura, Oathbreaker Paladin aura
+- [X] Additional Special rules: Alert feat, Harenon race, Paladin aura of Protection, Watcher Paladin aura of the Sentinel
 - [ ] Add to Spellbook grey-out doesn't account for brackets
 - [ ] Why did I decide only brackets count?  Why not parens?
 - [ ] Multiclassing xdx fancybar is broken

@@ -34,12 +34,20 @@
     <div class="tab-content">
         <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
             <modal params="name: 'rules-modal'">
+                <input data-bind="checked: $parent.rules().alert" class="rpgui-checkbox alert-check" type="checkbox" id="rules-alert">
+                <label class="form-check-label" for="rules-alert">Alert (Feat)</label><br/>
+                <input data-bind="checked: $parent.rules().harengon" class="rpgui-checkbox harengon-check" type="checkbox" id="rules-harengon">
+                <label class="form-check-label" for="rules-harengon">Harengon (Race)</label><br/>
                 <input data-bind="checked: $parent.rules().jackOfAllTrades" class="rpgui-checkbox joat-check" type="checkbox" id="rules-joat">
                 <label class="form-check-label" for="rules-joat">Jack of All Trades (Bard)</label><br/>
                 <input data-bind="checked: $parent.rules().remarkableAthlete" class="rpgui-checkbox joat-check" type="checkbox" id="rules-ra">
                 <label class="form-check-label" for="rules-ra">Remarkable Athlete (Fighter - Champion)</label><br/>
                 <input data-bind="checked: $parent.rules().elegantCourtier" class="rpgui-checkbox joat-check" type="checkbox" id="rules-ec">
                 <label class="form-check-label" for="rules-ec">Elegant Courtier (Fighter - Samuarai)</label><br/>
+                <input data-bind="checked: $parent.rules().auraProtection" class="rpgui-checkbox auraProtection-check" type="checkbox" id="rules-auraProtection">
+                <label class="form-check-label" for="rules-auraProtection">Aura of Protection (Paladin)</label><br/>
+                <input data-bind="checked: $parent.rules().auraSentinel" class="rpgui-checkbox auraSentinel-check" type="checkbox" id="rules-auraSentinel">
+                <label class="form-check-label" for="rules-auraSentinel">Aura of the Sentinel (Paladin - Watchers)</label><br/>
                 <input data-bind="checked: $parent.rules().otherworldlyGlamour" class="rpgui-checkbox joat-check" type="checkbox" id="rules-og">
                 <label class="form-check-label" for="rules-og">Otherworldly Glamour (Ranger - Fey Wanderer)</label><br/>
                 <input data-bind="checked: $parent.rules().rakishAudacity" class="rpgui-checkbox joat-check" type="checkbox" id="rules-rakish">
@@ -295,7 +303,7 @@
                                         </div>
                                         <div class="form-group col">
                                             <label for="armor-class">Initiative</label>
-                                            <input data-bind="value: abilityMod(dex(), [0,1,4])" id="initiative" readonly>
+                                            <input data-bind="value: abilityMod(dex(), [0,1,4,5,6,8])" id="initiative" readonly>
                                         </div>
                                         <div class="form-group col">
                                             <label for="speed">Speed</label>
