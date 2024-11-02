@@ -60,11 +60,14 @@ export function registerModalHandlers(){
     document.addEventListener('click', (e: MouseEvent) => {
         let target = e.target as HTMLElement;
 
-        if (target.hasAttribute("data-modal"))
+        if (target.hasAttribute("data-modal")) {
+            hideAllModals();
             document.getElementById(target.dataset.modal).hidden = false;
-
-        else if (target.closest(".modal-opener"))
+        }
+        else if (target.closest(".modal-opener")) {
+            hideAllModals();
             document.getElementById((target.closest(".modal-opener") as HTMLElement).dataset.modal).hidden = false;
+        }
 
         else if (!target.closest(".modal") && !target.classList.contains("modal-opener"))
             hideAllModals();

@@ -4,8 +4,8 @@
 - [ ] Add to Spellbook grey-out doesn't account for brackets
 - [ ] Why did I decide only brackets count?  Why not parens?
 - [ ] Multiclassing xdx fancybar is broken
-- [ ] Dragon' Breath, Enemies abound
-- [ ] opening a modal by any means should close all others
+- [X] Fix a few spell names
+- [X] Opening a modal now closes all others
 - [ ] spell rest type doesn't look selected by default (it functionally is tho)
 
 ## 0.3.3
