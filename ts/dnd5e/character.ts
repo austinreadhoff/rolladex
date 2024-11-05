@@ -347,7 +347,7 @@ export class Character {
     hasSpell(name: string){
         for (let level of this.spellLevels()){
             for (let spell of level.spells()){
-                if (spell.name() == name) return true;
+                if (spell.name().replace(/\[(.*?)\]|\((.*?)\)|\{(.*?)\}|\W/g, '').toUpperCase() == name.replace(/\W/g, '').toUpperCase()) return true;
             }
         }
         return false;

@@ -1,12 +1,10 @@
 ## 0.3.4
 - [X] Handle changing of character names in recents list
 - [X] Additional Special rules: Alert feat, Harenon race, Paladin aura of Protection, Watcher Paladin aura of the Sentinel
-- [ ] Add to Spellbook grey-out doesn't account for brackets
-- [ ] Why did I decide only brackets count?  Why not parens?
-- [ ] Multiclassing xdx fancybar is broken
+- [X] Add to Spellbook grey-out doesn't account for spell note delimiters
+- [X] Allow more spell note delimiters in 5e
 - [X] Fix a few spell names
 - [X] Opening a modal now closes all others
-- [ ] spell rest type doesn't look selected by default (it functionally is tho)
 
 ## 0.3.3
 - [X] Fix Bestow Curse description
@@ -54,6 +52,7 @@
 ---
 
 ## Backlog, low-priority items, and Stray Thoughts, in no particular order
+- Replace parens in pf2e spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell)
 - Show a count of how many spells are currently prepared
 - Spell catalog mark already added spells
 - fancybar math (like roll20) - how UI?
