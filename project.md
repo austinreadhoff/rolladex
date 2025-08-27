@@ -1,10 +1,17 @@
-## 0.3.4
+## 2025.?.?
+- [ ] Switch to CalVer
 - [X] Handle changing of character names in recents list
 - [X] Additional Special rules: Alert feat, Harenon race, Paladin aura of Protection, Watcher Paladin aura of the Sentinel
 - [X] Add to Spellbook grey-out doesn't account for spell note delimiters
 - [X] Allow more spell note delimiters in 5e
 - [X] Fix a few spell names
 - [X] Opening a modal now closes all others
+- [X] Multiple Window Support
+- [ ] BUG: when force quitting and saving multiple windows at once, recents file gets corrupted json
+- [ ] Dev: constants for game values, used for both menu and saved files.  Also ipc message name magic strings.
+- [ ] Dev: get rid of load delay, it was only useful for loading on launch apparently
+- [ ] New landing page logo?
+- [ ] Automatic update support?
 
 ## 0.3.3
 - [X] Fix Bestow Curse description

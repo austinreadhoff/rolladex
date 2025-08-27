@@ -1,12 +1,12 @@
-import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog } from "electron";
+import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog, BrowserWindow } from "electron";
 import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
+import { getSavePathForWindow, updateSavePathForWindow } from "./window-mgmt";
 const fs = require('fs');
 
-var savePath: string = "";
-
 ipcMain.on('send-save-json', (event: any, json: any) => {
+    var savePath = getSavePathForWindow(event.sender.getOwnerBrowserWindow());
     fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
-        updateSavePath(savePath);
+        updateSavePath(event.sender.getOwnerBrowserWindow(), savePath);
     })
 });
 
@@ -30,8 +30,8 @@ ipcMain.on('load-recent', (event: any, path: string) => {
     executeLoad(win, path);
 });
 
-function updateSavePath(path: string){
-    savePath = path;
+function updateSavePath(win: BrowserWindow, path: string){
+    updateSavePathForWindow(win, path);
     updateRecents(path)
         .then((recentsArray: any) => { updateRecentsMenu(recentsArray) });
 }
@@ -45,20 +45,22 @@ export function compareToSaved(window: Electron.BrowserWindow): Promise<boolean>
             return;
         }
     
+        let savePath = getSavePathForWindow(window);
         if (!savePath){
             resolve(false);
             return;
         }
         
-        fs.readFile(savePath, 'utf-8', (error: any, sourceData: any) => {
-            window.webContents.send('request-save-json', 'send-save-json-to-check');
-            
-            ipcMain.removeAllListeners('send-save-json-to-check');
-            ipcMain.on('send-save-json-to-check', (event: any, jsonForCompare: any) => { 
+        var responseChannel = 'send-save-json-to-check-' + window.id;
+        ipcMain.once(responseChannel, (event: any, jsonForCompare: any) => { 
+            let savePath = getSavePathForWindow(event.sender.getOwnerBrowserWindow());
+            fs.readFile(savePath, 'utf-8', (error: any, sourceData: any) => {
                 resolve(sourceData === JSON.stringify(jsonForCompare));
                 return;
             });
         });
+
+        window.webContents.send('request-save-json', responseChannel);
     });
 }
 
@@ -86,13 +88,13 @@ export function newCharacter(window: Electron.BrowserWindow){
             }
         }
     
-        updateSavePath("");
+        updateSavePath(window, "");
         window.loadFile("landing.html");
     })
 }
 
 export function saveToJSON(window: Electron.BrowserWindow){
-    if (savePath) {
+    if (getSavePathForWindow(window)){
         window.webContents.send('request-save-json', 'send-save-json');
     }
     else{
@@ -115,7 +117,7 @@ export function saveAsToJSON(window: Electron.BrowserWindow){
 
     dialog.showSaveDialog(saveDialogOptions).then((result: any) => {
         if (!result.canceled){
-            updateSavePath(result.filePath);
+            updateSavePath(window, result.filePath);
             window.webContents.send('request-save-json', 'send-save-json');
         }
     });
@@ -169,7 +171,7 @@ export function loadFromJSON(window: Electron.BrowserWindow, path: string){
 
 function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolean = false){
     fs.readFile(path, 'utf-8', (error: any, data: any) => {
-        updateSavePath(path);
+        updateSavePath(window, path);
         let json = JSON.parse(data);
 
         let game = json.hasOwnProperty("game") ? json.game : "dnd5e";

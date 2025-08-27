@@ -1,7 +1,9 @@
-import { app, ipcMain, Menu, MenuItem } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu, MenuItem } from 'electron'
+import { createWindow } from './main';
 import { RestType } from '../shared/rest-type';
 import { takeRest, printToPDF, switchTab, switchToTab, openDiceRoller } from './menu-actions'
 import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
+import { updateMenuModeForWindow } from './window-mgmt';
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
@@ -12,6 +14,13 @@ const template: Electron.MenuItemConstructorOptions[] = [
                 accelerator: 'CmdOrCtrl+N',
                 click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
                     newCharacter(focusedWindow);
+                }
+            },
+            {
+                label: 'New Window',
+                accelerator: 'CmdOrCtrl+Shift+N',
+                click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow) {
+                    createWindow();
                 }
             },
             {
@@ -257,23 +266,51 @@ export function initMenu(){
     Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }
 
-ipcMain.on('set-game-menu', (event: any, game: string) => {
-    let menu = Menu.getApplicationMenu();
+export function createDockMenu() {
+    if (process.platform === 'darwin') {
+        app.dock.setMenu(Menu.buildFromTemplate([
+        {
+            label: 'New Window',
+                click() {
+                createWindow();
+            },
+        },
+    ]));
+    }
+}
 
+export function setUserTasks() {
+    if (process.platform === 'win32') {
+        app.setUserTasks([
+            {
+                program: process.execPath, // Path to the executable
+                arguments: '--new-window', // Custom argument to identify the action
+                iconPath: process.execPath, // Path to the icon
+                iconIndex: 0,
+                title: 'New Window',
+                description: 'Create a new app window',
+            },
+        ]);
+    }
+}
+
+export function setMenuMode(game: string) {
+    let menu = Menu.getApplicationMenu();
+    
     let actionsMenu = menu.getMenuItemById("actions");
     (actionsMenu.submenu as any).clear();
     actionsMenu.submenu.items = [];
-
+    
     let tabMenu = menu.getMenuItemById("viewtabs");
     (tabMenu.submenu as any).clear();
     tabMenu.submenu.items = [];
-
+    
     let enableSave = game != "";
     menu.getMenuItemById("save").enabled = enableSave;
     menu.getMenuItemById("saveAs").enabled = enableSave;
-
+    
     menu.getMenuItemById("print").enabled = (game != "" && game != "gm");
-
+    
     if (game != ""){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Roll Dice',
@@ -283,7 +320,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
-
+    
     if (game == "dnd5e"){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Short Rest',
@@ -299,7 +336,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
                 takeRest(focusedWindow, RestType.Long);
             }
         }));
-
+    
         tabMenu.submenu.append(new MenuItem({
             label: 'Stats',
             accelerator: 'F1',
@@ -329,7 +366,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
-
+    
     else if (game == "pf2e"){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Take Rest',
@@ -338,7 +375,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
                 takeRest(focusedWindow, 0);
             }
         }));
-
+    
         tabMenu.submenu.append(new MenuItem({
             label: 'Stats',
             accelerator: 'F1',
@@ -396,7 +433,7 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
-
+    
     else if (game == "gm"){
         tabMenu.submenu.append(new MenuItem({
             label: 'Game Info',
@@ -427,6 +464,11 @@ ipcMain.on('set-game-menu', (event: any, game: string) => {
             }
         }));
     }
-
+    
     Menu.setApplicationMenu(menu);
+}
+
+ipcMain.on('set-game-menu', (event: any, game: string) => {
+    updateMenuModeForWindow(event.sender.getOwnerBrowserWindow(), game);
+    setMenuMode(game);
 });

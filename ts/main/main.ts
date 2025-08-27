@@ -1,14 +1,9 @@
 import { app, dialog, BrowserWindow, nativeImage } from 'electron';
-import { initMenu } from './menu';
+import { createDockMenu, initMenu, setMenuMode, setUserTasks } from './menu';
 import { saveToJSON, compareToSaved } from './json-io';
+import { addWindow, getAllWindows, getMenuModeForWindow, removeWindow } from './window-mgmt';
 
-function createWindow() {
-	app.setAboutPanelOptions({
-		applicationName: "RollaDex",
-		applicationVersion: "0.3.3",
-		iconPath: "./img/icon.png"	//Win/Linux only
-	})
-
+export function createWindow() {
 	const win = new BrowserWindow({
 		width: 800,
 		height: 600,
@@ -20,34 +15,20 @@ function createWindow() {
 	});
 	win.maximize();
 
-	initMenu();
-
 	win.loadFile('landing.html');
-
-	//Capture whether the user closed the window (x) or quit the app (cmd+q)
-	//ensures that the right thing happens after our below async check for a save dialog
-	var exitAction: string = null;
-	win.on('close', function(e: any){
-		if (!exitAction)
-			exitAction = "close";
-	});
-	app.on('before-quit', function(e: any){
-		if (!exitAction)
-			exitAction = "quit";
-	});
+	addWindow(win);
 
 	var forceClose = false;
 	win.on('close', function (e: any) {
 		let exit = function(){
 			forceClose = true;
-			if (exitAction == "quit")
-				app.exit();
-			else
-				win.close();
+			removeWindow(win);
+			win.close();
 		}
 
 		if (!forceClose){
 			e.preventDefault();
+
 			compareToSaved(win).then((safe) => {
 				if (!safe){
 					var messageBoxOptions = {
@@ -66,6 +47,7 @@ function createWindow() {
 							saveToJSON(win);
 							break;
 						case 2:
+							//cancel
 							break;
 						default:
 							//shouldn't reach this anyway
@@ -82,7 +64,71 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+	app.setAboutPanelOptions({
+		applicationName: "RollaDex",
+		applicationVersion: "0.3.3",
+		iconPath: "./img/icon.png"	//Win/Linux only
+	});
+
+	createWindow();
+	initMenu();			//top menu
+	createDockMenu();	//macos dock menu
+	setUserTasks();		//windows/linux taskbar menu
+
+	//necessary boilerplate for handling multiple windows on WindowsOS
+	const gotTheLock = app.requestSingleInstanceLock();
+	if (!gotTheLock) {
+		app.quit();
+	} 
+	else {
+		app.on('second-instance', (_event, commandLine, _workingDirectory) => {
+			const newWindowArg = '--new-window';
+			if (commandLine.includes(newWindowArg)) {
+				createWindow();
+			}
+		});
+	}
+
+	app.on('browser-window-focus', (event, focusedWindow) => {
+		setMenuMode(getMenuModeForWindow(focusedWindow));
+	});
+});
+
+app.on('before-quit', function(e: any){
+	e.preventDefault();
+	var windows = Array.from(getAllWindows()).map(w => w.window);
+	Promise.all(windows.map(w => compareToSaved(w)))
+	.then((results) => {
+		if (results.some(safeToQuit => !safeToQuit)) {
+			var messageBoxOptions = {
+				buttons: ["Quit Without Saving", "Save", "Cancel"],
+				defaultId: 0,
+				title: "Unsaved Changes",
+				message: "There are unsaved changes.  Would you like to quit and lose all unsaved data?",
+				cancelId: 2
+			}
+			var quitWithoutSavingDialogResponse = dialog.showMessageBoxSync(messageBoxOptions)
+			switch (quitWithoutSavingDialogResponse) {
+				case 0:
+					app.exit();
+					break;
+				case 1:
+					windows.forEach((w, i) => {
+						if (!results[i]) saveToJSON(w);
+					});
+					break;
+				case 2:
+					//cancel
+					break;
+				default:
+					// shouldn't reach this anyway
+			}
+		} else {
+			app.exit();
+		}
+	});
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
