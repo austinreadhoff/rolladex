@@ -15,11 +15,6 @@ ipcMain.on('check-recent-load', (event: any, arg: any) => {
 
     getRecentsJSON()
         .then((json: any) => {
-            //leaving commented out in case I change my mind and want this back
-            // if (json.lastOpen){
-            //     executeLoad(win, json.lastOpen, true);
-            // }
-
             win.webContents.send('send-recents-json', json.recents);
             updateRecentsMenu(json.recents)
         });
@@ -169,7 +164,7 @@ export function loadFromJSON(window: Electron.BrowserWindow, path: string){
     });
 }
 
-function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolean = false){
+function executeLoad(window: Electron.BrowserWindow, path: string){
     fs.readFile(path, 'utf-8', (error: any, data: any) => {
         updateSavePath(window, path);
         let json = JSON.parse(data);
@@ -178,13 +173,13 @@ function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolea
         let currentUrl = window.webContents.getURL();
 
         if (game == "dnd5e" && currentUrl.indexOf("dnd5e") == -1)
-            window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json, delay) });
+            window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json) });
 
         else if (game == "pf2e" && currentUrl.indexOf("pf2e") == -1)
-            window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json, delay) });
+            window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json) });
 
         else if (game == "gm" && currentUrl.indexOf("gm") == -1)
-            window.loadFile("gm/index.html").then(() => { sendJSONToPage(window, json, delay) });
+            window.loadFile("gm/index.html").then(() => { sendJSONToPage(window, json) });
 
         else{
             sendJSONToPage(window, json);
@@ -192,15 +187,6 @@ function executeLoad(window: Electron.BrowserWindow, path: string, delay: boolea
     });
 }
 
-//The delay is necessary for loading the most recent file on launch.
-//I gave up figuring out why and I hate it as much as you do.
-function sendJSONToPage(window: Electron.BrowserWindow, json: any, delay: boolean = false){
-    if (delay){
-        setTimeout(() => {
-            window.webContents.send('send-loaded-json', json);
-        }, 500);
-    }
-    else{
-        window.webContents.send('send-loaded-json', json);
-    }
+function sendJSONToPage(window: Electron.BrowserWindow, json: any){
+    window.webContents.send('send-loaded-json', json);
 }
