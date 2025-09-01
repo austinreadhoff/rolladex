@@ -474,7 +474,7 @@ class SpellcastingClass {
         this.ability = ko.observable("STR");
         this.bonusDC = ko.observable("0");
         this.bonusAttack = ko.observable("0");
-        this.restType = ko.observable(RestType.Long);
+        this.restType = ko.observable(RestType.Long as RestType);
     }
 }
 

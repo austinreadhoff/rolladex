@@ -218,7 +218,7 @@ export class Character {
         this.featsFeatures = ko.observable("");
 
         this.spellcastingTradition = ko.observable("arcane");
-        this.spellcastingType = ko.observable(SpellcastingType.Prepared);
+        this.spellcastingType = ko.observable(SpellcastingType.Prepared as SpellcastingType);
         this.spellcastingAbility = ko.observable("STR");
         this.spellDCProficiency = ko.observable("U");
         this.spellAttackProficiency = ko.observable("U");
@@ -455,7 +455,7 @@ export class SpellLevel {
         this.spells = ko.observableArray([]);
     }
 
-    levelFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+    levelFormatted = ko.pureComputed(() => {
         var num = this.level();
 
         var display: string;
