@@ -285,7 +285,7 @@ export class Character {
     spellSaveDC(ability: string, bonus: string){
         return ko.computed(() => {
             let total: number = 8 + this.calculateAbilityBonus(ability, true) + +(bonus.replace(/\D/g,''));
-            return total >= 0 ? "+" + total : total;
+            return total;
         }, this);
     }
 
