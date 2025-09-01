@@ -1,5 +1,6 @@
 import { app, Menu, MenuItem } from 'electron';
 import { loadFromJSON } from './json-io';
+import { Game } from '../shared/game-type';
 const fs = require('fs');
 
 var recentsFilePath = app.getPath('userData') + "/recents.json";
@@ -29,12 +30,12 @@ export function updateRecents(path: string){
                 let json = JSON.parse(data);
                 let game = json.game;
     
-                if (game == "dnd5e" || game == "pf2e")
+                if (game == Game.Dnd5e || game == Game.Pf2e)
                     name = json.characterName;
-                else if (game == "gm")
+                else if (game == Game.GM)
                     name = json.name;
     
-                if (name == null || name.trim() === "")
+                if (name == null || name.trim() === Game.None)
                     name = "?";
             }
 

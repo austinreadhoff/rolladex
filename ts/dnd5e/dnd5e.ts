@@ -3,6 +3,7 @@ import { RestType } from "../shared/rest-type";
 import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { Counter, SpellLevel } from './character';
+import { Game } from "../shared/game-type";
 
 var currentTab = "stats";
 var draggedAttack = null;
@@ -44,7 +45,7 @@ ipcRenderer.on('send-open-dice-roller', (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    ipcRenderer.send('set-game-menu', "dnd5e");
+    ipcRenderer.send('set-game-menu', Game.Dnd5e);
     applyDataBinding();
 
     spellCatalogController.loadData(viewModel).then(() => {

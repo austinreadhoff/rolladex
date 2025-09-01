@@ -1,6 +1,7 @@
 import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog, BrowserWindow } from "electron";
 import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
 import { getSavePathForWindow, updateSavePathForWindow } from "./window-mgmt";
+import { Game } from "../shared/game-type";
 const fs = require('fs');
 
 ipcMain.on('send-save-json', (event: any, json: any) => {
@@ -169,16 +170,16 @@ function executeLoad(window: Electron.BrowserWindow, path: string){
         updateSavePath(window, path);
         let json = JSON.parse(data);
 
-        let game = json.hasOwnProperty("game") ? json.game : "dnd5e";
+        let game = json.hasOwnProperty("game") ? json.game : Game.Dnd5e;
         let currentUrl = window.webContents.getURL();
 
-        if (game == "dnd5e" && currentUrl.indexOf("dnd5e") == -1)
+        if (game == Game.Dnd5e && currentUrl.indexOf(Game.Dnd5e) == -1)
             window.loadFile("dnd5e/sheet.html").then(() => { sendJSONToPage(window, json) });
 
-        else if (game == "pf2e" && currentUrl.indexOf("pf2e") == -1)
+        else if (game == Game.Pf2e && currentUrl.indexOf(Game.Pf2e) == -1)
             window.loadFile("pf2e/sheet.html").then(() => { sendJSONToPage(window, json) });
 
-        else if (game == "gm" && currentUrl.indexOf("gm") == -1)
+        else if (game == Game.GM && currentUrl.indexOf(Game.GM) == -1)
             window.loadFile("gm/index.html").then(() => { sendJSONToPage(window, json) });
 
         else{

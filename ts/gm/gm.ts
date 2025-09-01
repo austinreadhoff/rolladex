@@ -4,6 +4,7 @@ import { spellCatalogController as spellCatalogController5e } from "../dnd5e/spe
 import { spellCatalogController as spellCatalogController2e } from "../pf2e/spells";
 import { featCatalogController } from "../pf2e/feats";
 import { gearCatalogController } from "../pf2e/equipment";
+import { Game } from "../shared/game-type";
 
 var currentTab = "dice";
 var draggedTune = null;
@@ -40,7 +41,7 @@ ipcRenderer.on('send-open-dice-roller', (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    ipcRenderer.send('set-game-menu', "gm");
+    ipcRenderer.send('set-game-menu', Game.GM);
     applyDataBinding();
 
     let dataLoadingPromises = [

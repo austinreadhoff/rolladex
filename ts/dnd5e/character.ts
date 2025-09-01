@@ -90,7 +90,7 @@ export class Character {
 
     constructor(){
         this.version = ko.observable(jsonSchemaVersion);
-        this.game = ko.observable(gameName);
+        this.game = ko.observable(gameName.toString());
         this.characterName = ko.observable("");
         this.classLevel = ko.observable("");
         this.background = ko.observable("");

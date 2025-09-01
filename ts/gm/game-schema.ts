@@ -1,6 +1,8 @@
+import { Game } from "../shared/game-type";
+
 //Whenever this verison is increased, add a conversion method to the switch statement that increments the version from the previous
 export var jsonSchemaVersion = 0.2;
-export var gameName = "gm";
+export var gameName = Game.GM;
 
 export function UpgradeSchema(json: any){
     switch (json["version"]){
@@ -13,7 +15,7 @@ export function UpgradeSchema(json: any){
 
 function addNameAndGame(json: any){
     json["name"] = "";
-    json["gameType"] = "dnd5e";
+    json["gameType"] = Game.Dnd5e;
 
     json["version"] = "0.2"
     return json;

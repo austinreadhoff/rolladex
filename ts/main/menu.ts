@@ -4,6 +4,7 @@ import { RestType } from '../shared/rest-type';
 import { takeRest, printToPDF, switchTab, switchToTab, openDiceRoller } from './menu-actions'
 import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
 import { updateMenuModeForWindow } from './window-mgmt';
+import { Game } from '../shared/game-type';
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
@@ -309,7 +310,7 @@ export function setMenuMode(game: string) {
     menu.getMenuItemById("save").enabled = enableSave;
     menu.getMenuItemById("saveAs").enabled = enableSave;
     
-    menu.getMenuItemById("print").enabled = (game != "" && game != "gm");
+    menu.getMenuItemById("print").enabled = (game != Game.None && game != Game.GM);
     
     if (game != ""){
         actionsMenu.submenu.append(new MenuItem({
@@ -321,7 +322,7 @@ export function setMenuMode(game: string) {
         }));
     }
     
-    if (game == "dnd5e"){
+    if (game == Game.Dnd5e){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Short Rest',
             accelerator: 'CmdOrCtrl+K',
@@ -367,7 +368,7 @@ export function setMenuMode(game: string) {
         }));
     }
     
-    else if (game == "pf2e"){
+    else if (game == Game.Pf2e){
         actionsMenu.submenu.append(new MenuItem({
             label: 'Take Rest',
             accelerator: 'CmdOrCtrl+K',
@@ -434,7 +435,7 @@ export function setMenuMode(game: string) {
         }));
     }
     
-    else if (game == "gm"){
+    else if (game == Game.GM){
         tabMenu.submenu.append(new MenuItem({
             label: 'Game Info',
             accelerator: 'F1',

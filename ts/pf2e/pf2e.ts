@@ -4,6 +4,7 @@ import { gearCatalogController } from "./equipment";
 import { featCatalogController } from "./feats";
 import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
+import { Game } from "../shared/game-type";
 
 var currentTab = "stats";
 
@@ -43,7 +44,7 @@ ipcRenderer.on('send-open-dice-roller', (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    ipcRenderer.send('set-game-menu', "pf2e");
+    ipcRenderer.send('set-game-menu', Game.Pf2e);
     applyDataBinding();
 
     let dataLoadingPromises = [
