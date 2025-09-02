@@ -4,16 +4,17 @@ import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { Counter, SpellLevel } from './character';
 import { Game } from "../shared/game-type";
+import { IPCMessage } from "../shared/ipc-message";
 
 var currentTab = "stats";
 var draggedAttack = null;
 var draggedSpell = null;
 
-ipcRenderer.on('send-switch-to-tab', (event, tabId: string) => {
+ipcRenderer.on(IPCMessage.SendSwitchToTab, (event, tabId: string) => {
     switchTab(tabId);
 });
 
-ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
+ipcRenderer.on(IPCMessage.SendSwitchTab, (event, direction: boolean) => {
     let tabs = ["stats", "bio", "spellbook", "spellcatalog"];
     let i = tabs.indexOf(currentTab);
     let tabId;
@@ -34,18 +35,18 @@ ipcRenderer.on('send-switch-tab', (event, direction: boolean) => {
     switchTab(tabId);
 });
 
-ipcRenderer.on('send-take-rest', (event, restType) => {
+ipcRenderer.on(IPCMessage.SendTakeRest, (event, restType) => {
     takeRest(restType);
 });
 
-ipcRenderer.on('send-open-dice-roller', (event) => {
+ipcRenderer.on(IPCMessage.SendOpenDiceRoller, (event) => {
     let modal = document.getElementById("dice-modal");
     modal.hidden = false;
     (modal.querySelector("#txt-roller") as HTMLElement).focus();
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    ipcRenderer.send('set-game-menu', Game.Dnd5e);
+    ipcRenderer.send(IPCMessage.SetGameMenu, Game.Dnd5e);
     applyDataBinding();
 
     spellCatalogController.loadData(viewModel).then(() => {

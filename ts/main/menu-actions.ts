@@ -1,13 +1,14 @@
-import { SaveDialogOptions, BrowserWindow, dialog, shell } from "electron";
+import { SaveDialogOptions, BrowserWindow, dialog } from "electron";
+import { IPCMessage } from "../shared/ipc-message";
 const fs = require('fs');
 
 //true: forward, false: back
 export function switchTab(direction: boolean){
-    BrowserWindow.getFocusedWindow().webContents.send('send-switch-tab', direction);
+    BrowserWindow.getFocusedWindow().webContents.send(IPCMessage.SendSwitchTab, direction);
 }
 
 export function switchToTab(tabId: string){
-    BrowserWindow.getFocusedWindow().webContents.send('send-switch-to-tab', tabId);
+    BrowserWindow.getFocusedWindow().webContents.send(IPCMessage.SendSwitchToTab, tabId);
 }
 
 export function printToPDF(window: Electron.BrowserWindow){
@@ -33,9 +34,9 @@ export function printToPDF(window: Electron.BrowserWindow){
 }
 
 export function takeRest(window: Electron.BrowserWindow, restType: number){
-    window.webContents.send('send-take-rest', restType);
+    window.webContents.send(IPCMessage.SendTakeRest, restType);
 }
 
 export function openDiceRoller(window: Electron.BrowserWindow){
-    window.webContents.send('send-open-dice-roller');
+    window.webContents.send(IPCMessage.SendOpenDiceRoller);
 }

@@ -1,17 +1,18 @@
 import { ipcRenderer } from "electron";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { Game } from "../shared/game-type";
+import { IPCMessage } from "../shared/ipc-message";
 
-ipcRenderer.on('send-recents-json', (_, json: any) => {
+ipcRenderer.on(IPCMessage.SendRecentsJson, (_, json: any) => {
     applyDataBinding(json);
 });
-ipcRenderer.on('send-recents-clear', () => {
+ipcRenderer.on(IPCMessage.SendRecentsClear, () => {
     viewModel.clearRecents();
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    ipcRenderer.send('check-recent-load');
-    ipcRenderer.send('set-game-menu', Game.None);
+    ipcRenderer.send(IPCMessage.CheckRecentLoad);
+    ipcRenderer.send(IPCMessage.SetGameMenu, Game.None);
 
     document.addEventListener('keydown', function(event) {
         if(event.code == 'KeyD') {

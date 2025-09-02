@@ -9,7 +9,6 @@
 - [X] Multiple Window Support
 - [X] Spell Save DC shouldn't have a "+"
 - [ ] BUG: when force quitting and saving multiple windows at once, recents file gets corrupted json
-- [ ] Dev: constants for game values, used for both menu and saved files.  Also ipc message name magic strings.
 - [ ] New landing page logo?
 - [ ] Automatic update support?
 

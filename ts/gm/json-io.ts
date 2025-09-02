@@ -4,8 +4,9 @@ import { ipcRenderer } from "electron";
 import { switchGame, switchTab } from "./gm";
 import { gameName, jsonSchemaVersion, UpgradeSchema } from "./game-schema";
 import { viewModel } from "./viewmodel";
+import { IPCMessage } from "../shared/ipc-message";
 
-ipcRenderer.on('request-save-json', (event: any, responseChannel: string) => {
+ipcRenderer.on(IPCMessage.RequestSaveJson, (event: any, responseChannel: string) => {
     var json: any = {
         version: jsonSchemaVersion,
         game: gameName,
@@ -20,7 +21,7 @@ ipcRenderer.on('request-save-json', (event: any, responseChannel: string) => {
     ipcRenderer.send(responseChannel, json);
 });
 
-ipcRenderer.on('send-loaded-json', (event: any, json: any) => {
+ipcRenderer.on(IPCMessage.SendLoadedJson, (event: any, json: any) => {
     if (json["version"] < jsonSchemaVersion){
         json = UpgradeSchema(json);
     }

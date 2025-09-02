@@ -1,5 +1,6 @@
 import { ipcRenderer } from "electron";
 import * as ko from "knockout";
+import { IPCMessage } from "../shared/ipc-message";
 
 class RecentFile {
     populated: KnockoutObservable<boolean>;
@@ -16,7 +17,7 @@ class RecentFile {
 
     load(){
         if (this.path().trim() !== '')
-            ipcRenderer.send('load-recent', this.path());
+            ipcRenderer.send(IPCMessage.LoadRecent, this.path());
     }
 }
 

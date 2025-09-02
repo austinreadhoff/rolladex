@@ -2,26 +2,27 @@ import { ipcMain, OpenDialogOptions, SaveDialogOptions, dialog, BrowserWindow } 
 import { getRecentsJSON, updateRecents, updateRecentsMenu } from './recents';
 import { getSavePathForWindow, updateSavePathForWindow } from "./window-mgmt";
 import { Game } from "../shared/game-type";
+import { IPCMessage } from "../shared/ipc-message";
 const fs = require('fs');
 
-ipcMain.on('send-save-json', (event: any, json: any) => {
+ipcMain.on(IPCMessage.SendSaveJson, (event: any, json: any) => {
     var savePath = getSavePathForWindow(event.sender.getOwnerBrowserWindow());
     fs.writeFile(savePath, JSON.stringify(json), (err: any) => {
         updateSavePath(event.sender.getOwnerBrowserWindow(), savePath);
     })
 });
 
-ipcMain.on('check-recent-load', (event: any, arg: any) => {
+ipcMain.on(IPCMessage.CheckRecentLoad, (event: any, arg: any) => {
     var win = event.sender.getOwnerBrowserWindow();
 
     getRecentsJSON()
         .then((json: any) => {
-            win.webContents.send('send-recents-json', json.recents);
+            win.webContents.send(IPCMessage.SendRecentsJson, json.recents);
             updateRecentsMenu(json.recents)
         });
 });
 
-ipcMain.on('load-recent', (event: any, path: string) => {
+ipcMain.on(IPCMessage.LoadRecent, (event: any, path: string) => {
     var win = event.sender.getOwnerBrowserWindow();
     executeLoad(win, path);
 });
@@ -47,7 +48,7 @@ export function compareToSaved(window: Electron.BrowserWindow): Promise<boolean>
             return;
         }
         
-        var responseChannel = 'send-save-json-to-check-' + window.id;
+        var responseChannel = IPCMessage.SendSaveJsonToCheck + '-' + window.id;
         ipcMain.once(responseChannel, (event: any, jsonForCompare: any) => { 
             let savePath = getSavePathForWindow(event.sender.getOwnerBrowserWindow());
             fs.readFile(savePath, 'utf-8', (error: any, sourceData: any) => {
@@ -56,7 +57,7 @@ export function compareToSaved(window: Electron.BrowserWindow): Promise<boolean>
             });
         });
 
-        window.webContents.send('request-save-json', responseChannel);
+        window.webContents.send(IPCMessage.RequestSaveJson, responseChannel);
     });
 }
 
@@ -91,7 +92,7 @@ export function newCharacter(window: Electron.BrowserWindow){
 
 export function saveToJSON(window: Electron.BrowserWindow){
     if (getSavePathForWindow(window)){
-        window.webContents.send('request-save-json', 'send-save-json');
+        window.webContents.send(IPCMessage.RequestSaveJson, IPCMessage.SendSaveJson);
     }
     else{
         saveAsToJSON(window);
@@ -114,7 +115,7 @@ export function saveAsToJSON(window: Electron.BrowserWindow){
     dialog.showSaveDialog(saveDialogOptions).then((result: any) => {
         if (!result.canceled){
             updateSavePath(window, result.filePath);
-            window.webContents.send('request-save-json', 'send-save-json');
+            window.webContents.send(IPCMessage.RequestSaveJson, IPCMessage.SendSaveJson);
         }
     });
 }
@@ -189,5 +190,5 @@ function executeLoad(window: Electron.BrowserWindow, path: string){
 }
 
 function sendJSONToPage(window: Electron.BrowserWindow, json: any){
-    window.webContents.send('send-loaded-json', json);
+    window.webContents.send(IPCMessage.SendLoadedJson, json);
 }

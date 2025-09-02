@@ -5,6 +5,7 @@ import { takeRest, printToPDF, switchTab, switchToTab, openDiceRoller } from './
 import { newCharacter, loadFromJSON, saveAsToJSON, saveToJSON } from './json-io'
 import { updateMenuModeForWindow } from './window-mgmt';
 import { Game } from '../shared/game-type';
+import { IPCMessage } from '../shared/ipc-message';
 
 const template: Electron.MenuItemConstructorOptions[] = [
     {
@@ -469,7 +470,7 @@ export function setMenuMode(game: string) {
     Menu.setApplicationMenu(menu);
 }
 
-ipcMain.on('set-game-menu', (event: any, game: string) => {
+ipcMain.on(IPCMessage.SetGameMenu, (event: any, game: string) => {
     updateMenuModeForWindow(event.sender.getOwnerBrowserWindow(), game);
     setMenuMode(game);
 });

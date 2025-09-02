@@ -1,6 +1,7 @@
 import { app, Menu, MenuItem } from 'electron';
 import { loadFromJSON } from './json-io';
 import { Game } from '../shared/game-type';
+import { IPCMessage } from '../shared/ipc-message';
 const fs = require('fs');
 
 var recentsFilePath = app.getPath('userData') + "/recents.json";
@@ -85,7 +86,7 @@ export function updateRecentsMenu(recentsArray: Array<any>){
             label: 'Clear Recently Opened',
             click(item: any, focusedWindow: Electron.BrowserWindow){
                 clearRecents().then(() => { updateRecentsMenu([])});
-                focusedWindow.webContents.send("send-recents-clear");
+                focusedWindow.webContents.send(IPCMessage.SendRecentsClear);
             }
         }
     );
