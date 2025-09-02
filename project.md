@@ -10,7 +10,6 @@
 - [X] Spell Save DC shouldn't have a "+"
 - [ ] BUG: when force quitting and saving multiple windows at once, recents file gets corrupted json
 - [ ] New landing page logo?
-- [ ] Automatic update support?
 
 ## 0.3.3
 - [X] Fix Bestow Curse description
@@ -57,36 +56,48 @@
 
 ---
 
-## Backlog, low-priority items, and Stray Thoughts, in no particular order
-- Replace parens in pf2e spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell)
+## Backlog
+
+### PF2E
+- pf2e has been ignored since 0.3.1, Generally update and bring up to speed with improvements
+- Do feats and equipment need to be full catalogs?
+- Spellbook logic should be different from 5e to account for duplicate prepped spells in slots.  Maybe even separate spontaneous/prepared UX
+- Replace parens in spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell, see 5e)
+- Action icons 
+- Remove link text from spells 
+
+### 5E
 - Show a count of how many spells are currently prepared
-- Spell catalog mark already added spells
-- fancybar math (like roll20) - how UI?
-- Rethink spellbook UI for viewing descrptions
-- pf2e has been ignored since 0.3.1,  Update and bring up to speed with improvements
-- roll20 iframe?
+- Signify spellbook spells using icon in catalog list
+- Remove from spellbook button in catalog
+
+### Both Games
+- Rethink viewing descriptions in spellbook
+- fancybar addition/subtraction - how UX?
+
+### Nitpicks/Tweaks/Visuals
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
+- tooltips to show work for calculated fields, like ability checks
+- Dock Tabs?
+- Inconsistent 5e spell description formatting
+
+### App Mgmt
+- Automatic updates
+- Is it possible to update content w/o version update?
+- Uppercase the app name (windows and linux)
+
+### High Effort, Low Demand
 - gm tools: monster reference
     - integrate with turn tracker
-- Signify spellbook spells using icon in catalog list
+- Character Pictures (how to store?)
+- Non-PITA method of showing unsaved status in title bar
+- Custom undo stack
 - Roll dice from sheet by clicking on things
+    - Abilities, save, skills, attacks, spells(?)
 - Command Palatte
     - Roll abilities/skills/saves
     - Rests
     - Cast Spells
     - Make attacks
     - etc?
-- Figure out a way to update content w/o version update
-- tooltips to show work for calculated fields, like ability checks
-- Dock Tabs?
-- Rich Text for text areas?
-- Character Pictures (how to store?)
-- pf2e: Action icons 
-- Uppercase the goddamn name (windows and linux)
-- Inconsistent 5e spell description formatting
-- Alternate search titles for certain spells srd vs 5e phb
-- Remove link text from pf2e spells 
-- Remove from spellbook button in catalog
-- Non-PITA method of showing unsaved status in title bar
-- Custom undo stack
