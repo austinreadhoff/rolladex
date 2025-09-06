@@ -23,8 +23,15 @@ export function getRecentsJSON(){
     });
 }
 
+let recentsLock: Promise<void> = Promise.resolve();
 export function updateRecents(path: string){
-    return new Promise((resolve, reject) => {
+    // Chain all calls to updateRecents, so only one runs at a time
+    recentsLock = recentsLock.then(() => _updateRecentsInternal(path));
+    return recentsLock;
+}
+
+function _updateRecentsInternal(path: string){
+    return new Promise<void>((resolve, reject) => {
         fs.readFile(path, 'utf-8', (error: any, data: any) => {
             let name: string = "?";
             if (data){
