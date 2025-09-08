@@ -8,7 +8,6 @@
 - [X] Opening a modal now closes all others
 - [X] Multiple Window Support
 - [X] Spell Save DC shouldn't have a "+"
-- [ ] New landing page logo?
 
 ## 0.3.3
 - [X] Fix Bestow Curse description

@@ -10,12 +10,12 @@
         <script>require("./src/landing/landing.js")</script>
     </head>
     
-    <body class="rpgui-content rpgui-container framed">
+    <body class="rpgui-content rpgui-container">
         <div id="content">
             <div id="title-container">
                 <img class="img-torch" src="./img/torch.gif" />
                 <div>
-                    <div id="title" class="rpgui-container framed-golden">
+                    <div id="title">
                         <img id="img-title" src="./img/rolladex_title.png"/>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <!-- ko if: (recents().some(r => r.populated())) -->
                 <div id="recents" class="menu-list">
                     <p>Recently Opened:</p>
-                    <div data-bind="foreach: recents" class="rpgui-container framed-grey">
+                    <div data-bind="foreach: recents" class="rpgui-container">
                         <a data-bind="click: load" class="recent-link">
                             <span data-bind="text: $index()+1+')'" class="link-letter">1)</span> 
                             <span data-bind="text: name"></span><br/>
