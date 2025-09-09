@@ -1,13 +1,11 @@
 ## 2025.?.?
 - [ ] Switch to CalVer
+- [X] Multiple Window Support
+- [X] Fancybar +/- Math
 - [X] Handle changing of character names in recents list
 - [X] Additional Special rules: Alert feat, Harenon race, Paladin aura of Protection, Watcher Paladin aura of the Sentinel
-- [X] Add to Spellbook grey-out doesn't account for spell note delimiters
 - [X] Allow more spell note delimiters in 5e
-- [X] Fix a few spell names
-- [X] Opening a modal now closes all others
-- [X] Multiple Window Support
-- [X] Spell Save DC shouldn't have a "+"
+- [X] UI Bug Fixes
 
 ## 0.3.3
 - [X] Fix Bestow Curse description
@@ -71,7 +69,6 @@
 
 ### Both Games
 - Rethink viewing descriptions in spellbook
-- fancybar addition/subtraction - how UX?
 
 ### Nitpicks/Tweaks/Visuals
 - fancy bars slight text offset

@@ -16,9 +16,44 @@ export class FancyBarViewModel {
     maxValue = ko.observable<string>();
     color = ko.observable<string>(); //red, green, blue, or null (purple)
 
+    //holds value while doing math
+    private tempValue: string;
+
+    storeTempValue = () => {
+        this.tempValue = this.currentValue();
+    }
+    checkForMath = () => {
+        if (this.currentValue().indexOf('+') == 0){
+            let adjustment = +this.currentValue().substring(1);
+            this.currentValue(this.tempValue);
+            this.adjust(adjustment);
+            return;
+        }
+        else if (this.currentValue().indexOf('-') == 0){
+            let adjustment = +this.currentValue().substring(1);
+            this.currentValue(this.tempValue);
+            this.adjust(-adjustment);
+            return;
+        }
+    }
+    checkForEnter = (data: any, event: KeyboardEvent) => {
+        if (event.key == "Enter"){
+            (event.target as HTMLInputElement).blur();
+            return false;
+        }
+        return true;
+    }
+
     boundValue = () => {
         let current: number;
         let max: number;
+
+        if (this.currentValue().indexOf('+') == 0 || this.currentValue().indexOf('-') == 0){
+            //don't change the bar while typing math
+            //this works because for some reason NaN causes the css to remain unchanged
+            //easier than handling both numbers and dice using tempValue
+            return NaN;
+        }
 
         if (this.currentValue().indexOf('d') > -1){
             //Multiple types of dice: xda,ydb
@@ -124,12 +159,14 @@ export class FancyBarViewModel {
         this.currentValue = params.currentValue;
         this.maxValue = params.maxValue;
         this.color = params.color;
+
+        this.tempValue = "0";
     }
 }
 
 export const FancyBarTemplate: string = `
 <div class="fancy-bar-inputs">
-    <input data-bind="textInput: currentValue"/>/
+    <input data-bind="textInput: currentValue, event: { focus: storeTempValue, blur: checkForMath, keypress: checkForEnter }"/>/
     <input data-bind="textInput: maxValue"/>
 </div>
 <div class="rpgui-progress">
