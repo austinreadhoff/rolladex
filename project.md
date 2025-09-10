@@ -74,7 +74,6 @@
 - fancy bars slight text offset
 - Less ugly pdf export (including not showing the cursor)
 - tooltips to show work for calculated fields, like ability checks
-- Dock Tabs?
 - Inconsistent 5e spell description formatting
 
 ### App Mgmt

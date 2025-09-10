@@ -25,16 +25,21 @@
         </modal>
 
         <div class="nav print-hidden">
-            <button class="nav-link rpgui-button active down" id="stats-tab"><p>Stats</p></button>
-            <button class="nav-link rpgui-button" id="feats-tab"><p>Feats</p></button>
-            <button class="nav-link rpgui-button" id="bio-tab"><p>Bio</p></button>
-            <button class="nav-link rpgui-button" id="gear-tab"><p>Gear</p></button>
-            <button class="nav-link rpgui-button" id="spellbook-tab"><p>Spellbook</p></button>
-            <button class="nav-link rpgui-button" id="featcatalog-tab"><p>Feat Catalog</p></button>
-            <button class="nav-link rpgui-button" id="spellcatalog2e-tab"><p>Spell Catalog</p></button>
-            <button class="nav-link rpgui-button" id="craftingcatalog-tab"><p>Gear Catalog</p></button>
+            <div>
+                <button class="nav-link rpgui-button active down" id="stats-tab"><p>Stats</p></button>
+                <button class="nav-link rpgui-button" id="feats-tab"><p>Feats</p></button>
+                <button class="nav-link rpgui-button" id="bio-tab"><p>Bio</p></button>
+                <button class="nav-link rpgui-button" id="gear-tab"><p>Gear</p></button>
+                <button class="nav-link rpgui-button" id="spellbook-tab"><p>Spellbook</p></button>
+                <!-- <button class="nav-link rpgui-button" id="featcatalog-tab"><p>Feat Catalog</p></button> -->
+                <button class="nav-link rpgui-button" id="spellcatalog2e-tab"><p>Spell Catalog</p></button>
+                <!-- <button class="nav-link rpgui-button" id="craftingcatalog-tab"><p>Gear Catalog</p></button> -->
+            </div>
+            <div>
+            <button class="short-button modal-opener" data-bind="attr: { 'data-modal': 'dice-modal' }">⚄ Roll Dice</button>
+            <button class="short-button" id="bttn-rest">💤 Take Rest</button>
         </div>
-        <hr class="golden">
+        </div>
         <div class="tab-content">
             <div data-bind="with: character" class="tab-pane show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
                 <div id="stats-container" class="container-fluid">

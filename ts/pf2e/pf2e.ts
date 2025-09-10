@@ -59,6 +59,10 @@ document.addEventListener("DOMContentLoaded", function(){
             switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
             });
         });
+
+        document.getElementById("bttn-rest").addEventListener('click', event => {
+            takeRest();
+        });
     });
 });
 

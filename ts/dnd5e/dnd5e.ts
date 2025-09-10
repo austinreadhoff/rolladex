@@ -57,6 +57,14 @@ document.addEventListener("DOMContentLoaded", function(){
                 switchTab(tab.id.substring(0, tab.id.indexOf("-tab")));
             });
         });
+
+        document.getElementById("bttn-short-rest").addEventListener('click', event => {
+            takeRest(RestType.Short);
+        });
+
+        document.getElementById("bttn-long-rest").addEventListener('click', event => {
+            takeRest(RestType.Long);
+        });
     });
 });
 
@@ -88,7 +96,7 @@ function takeRest(restType: number){
     }
     
     viewModel.character().miscCounters().forEach((counter: Counter) => {
-        if ((counter.shortRest() && restType == RestType.Short) || (counter.longRest() && restType == RestType.Long)){
+        if (counter.shortRest() || (counter.longRest() && restType == RestType.Long)){
             counter.current(counter.max());
         }
     });
