@@ -42,7 +42,6 @@ ipcRenderer.on(IPCMessage.SendTakeRest, (event, restType) => {
 ipcRenderer.on(IPCMessage.SendOpenDiceRoller, (event) => {
     let modal = document.getElementById("dice-modal");
     modal.hidden = false;
-    (modal.querySelector("#txt-roller") as HTMLElement).focus();
 });
 
 document.addEventListener("DOMContentLoaded", function(){

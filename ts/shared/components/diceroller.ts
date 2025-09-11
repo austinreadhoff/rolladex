@@ -46,13 +46,23 @@ export class DiceRollerViewModel {
     constructor(params: any){
         this.previousRolls = ko.observableArray([]);
         this.historyIndex = ko.observable(-1);
+
+        // Focus on open
+        // Assumes only one of these per page.  A safe assumption, but should be noted
+        new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.intersectionRatio > 0) {
+                    (document.getElementById("txt-roller") as HTMLElement).focus();
+                }
+            });
+        }).observe(document.getElementById("dice-container"));
     }
 }
 
 export const DiceRollerTemplate: string = `
 <div id="dice-container" class="container-fluid">
     <div>
-        <input data-bind="event: {keydown: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" autoFocus />
+        <input data-bind="event: {keydown: rollDice}" id="txt-roller" type="text" placeholder="ex: 1d12+2d4+6" />
     </div>
     <ul data-bind="foreach: previousRolls">
         <li class="previous-roll">
