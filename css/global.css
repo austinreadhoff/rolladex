@@ -110,6 +110,11 @@ input[readonly]{
     background-color: #444 !important;
 }
 
+.game-icon {
+    height: 2.5em;
+    vertical-align: middle;;
+}
+
 .nav {
     position: fixed;
     width: 100%;

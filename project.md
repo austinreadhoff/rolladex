@@ -5,6 +5,7 @@
 - [X] Handle changing of character names in recents list
 - [X] Additional Special rules: Alert feat, Harenon race, Paladin aura of Protection, Watcher Paladin aura of the Sentinel
 - [X] Allow more spell note delimiters in 5e
+- [X] Actions in the Header
 - [X] UI Bug Fixes
 
 ## 0.3.3
