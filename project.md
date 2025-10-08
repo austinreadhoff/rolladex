@@ -7,6 +7,13 @@
 - [X] Allow more spell note delimiters in 5e
 - [X] Actions in the Header
 - [X] UI Bug Fixes
+- [ ] Bring PF2e up to speed with 5e UI improvements
+    - attack dialogs
+    - dialogs for other weapons and lore skills?
+    - drag/drop attacks, spells
+    - fancybar for sheild hp
+    - remaster ability scores
+    - remaster-only filter for spells?
 
 ## 0.3.3
 - [X] Fix Bestow Curse description
@@ -56,12 +63,10 @@
 ## Backlog
 
 ### PF2E
-- pf2e has been ignored since 0.3.1, Generally update and bring up to speed with improvements
-- Do feats and equipment need to be full catalogs?
-- Spellbook logic should be different from 5e to account for duplicate prepped spells in slots.  Maybe even separate spontaneous/prepared UX
+- "Add to Spellbook" logic should be different from 5e to account for duplicate prepped spells in slots.  Maybe even separate spontaneous/prepared UX?  Whole spell list should be probably be rethought
 - Replace parens in spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell, see 5e)
+    - Remove link text from spells as well
 - Action icons 
-- Remove link text from spells 
 
 ### 5E
 - Show a count of how many spells are currently prepared

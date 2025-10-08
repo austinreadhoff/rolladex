@@ -2,8 +2,6 @@ import { ipcRenderer } from "electron";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { spellCatalogController as spellCatalogController5e } from "../dnd5e/spells";
 import { spellCatalogController as spellCatalogController2e } from "../pf2e/spells";
-import { featCatalogController } from "../pf2e/feats";
-import { gearCatalogController } from "../pf2e/equipment";
 import { Game } from "../shared/game-type";
 import { IPCMessage } from "../shared/ipc-message";
 
@@ -46,9 +44,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     let dataLoadingPromises = [
         spellCatalogController5e.loadData(viewModel),
-        featCatalogController.loadData(viewModel),
         spellCatalogController2e.loadData(viewModel),
-        gearCatalogController.loadData(viewModel)
     ]
     Promise.all(dataLoadingPromises).then(() => {
         document.body.scrollTop = 0;

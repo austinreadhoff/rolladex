@@ -1,58 +1,33 @@
 import { Character } from "./character";
 import { Spell } from "./spell";
 import * as ko from "knockout";
-import { Feat } from "./feat";
-import { Gear } from "./gear";
 import { initSpellAutoComplete } from "../shared/autocomplete";
 import { spellCatalogController } from "./spells";
 import { FancyBarTemplate, FancyBarViewModel } from "../shared/components/fancybar";
 import { DiceRollerTemplate, DiceRollerViewModel } from "../shared/components/diceroller";
 import { ModalTemplate, ModalViewModel, registerModalHandlers } from "../shared/components/modal";
 import { SpellCatalogPF2eTemplate, SpellCatalogPF2eViewModel } from "./components/spell-catalog";
-import { FeatCatalogTemplate, FeatCatalogViewModel } from "./components/feat-catalog";
-import { GearCatalogTemplate, GearCatalogViewModel } from "./components/gear-catalog";
 
 export interface SpellViewModel2e{
     spellCatalog2e: KnockoutObservableArray<Spell>;
     spell2e: KnockoutObservable<Spell>;
 }
-export interface FeatViewModel{
-    featCatalog: KnockoutObservableArray<Feat>;
-    feat: KnockoutObservable<Feat>;
-}
-export interface GearViewModel{
-    gearCatalog: KnockoutObservableArray<Gear>;
-    gear: KnockoutObservable<Gear>;
-}
 
-export class ViewModel implements SpellViewModel2e, FeatViewModel, GearViewModel {
+export class ViewModel implements SpellViewModel2e {
     character: KnockoutObservable<Character>;
     spellCatalog2e: KnockoutObservableArray<Spell>;
     spell2e: KnockoutObservable<Spell>;
-    featCatalog: KnockoutObservableArray<Feat>;
-    feat: KnockoutObservable<Feat>;
-    gearCatalog: KnockoutObservableArray<Gear>;
-    gear: KnockoutObservable<Gear>;
 
     constructor(character: Character, 
-        spells: Array<Spell>, spell: Spell, 
-        feats: Array<Feat>, feat: Feat,
-        equipment: Array<Gear>, gear: Gear) 
+        spells: Array<Spell>, spell: Spell) 
     {
         this.character = ko.observable(character);
         this.spellCatalog2e = ko.observableArray(spells);
 	    this.spell2e = ko.observable(spell);
-        this.featCatalog = ko.observableArray(feats);
-        this.feat = ko.observable(feat);
-        this.gearCatalog = ko.observableArray(equipment);
-        this.gear = ko.observable(gear);
     }
 }
 
-export var viewModel = new ViewModel(new Character, 
-    [], new Spell(), 
-    [], new Feat(),
-    [], new Gear());
+export var viewModel = new ViewModel(new Character, [], new Spell());
 
 //to be executed on document ready
 export function applyDataBinding(){
@@ -68,17 +43,9 @@ export function applyDataBinding(){
         viewModel: ModalViewModel,
         template: ModalTemplate
     });
-    ko.components.register("feat-catalog", {
-        viewModel: FeatCatalogViewModel,
-        template: FeatCatalogTemplate
-    });
     ko.components.register("spell-catalog-pf2e", {
         viewModel: SpellCatalogPF2eViewModel,
         template: SpellCatalogPF2eTemplate
-    });
-    ko.components.register("gear-catalog", {
-        viewModel: GearCatalogViewModel,
-        template: GearCatalogTemplate
     });
     registerModalHandlers();
 

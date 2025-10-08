@@ -5,14 +5,12 @@ export class Spell extends CatalogObject {
     name: string;
     area: SpellArea;
     category: string;
-    components: SpellComponentProperties;
     cost: string;
     description: string;
     duration: string;
     level: number;
     materials: string;
     range: string;
-    school: string;
     source: string;
     target: string;
     time: number;
@@ -33,7 +31,6 @@ export class Spell extends CatalogObject {
     tags: ko.PureComputed<string[]> = ko.pureComputed(() => {
 	    return this.traits.value
             .map(x => this.capitalize(x))
-            .concat(this.capitalize(this.school))
             .sort();
     });
 
@@ -91,9 +88,9 @@ export class Spell extends CatalogObject {
     });
 
     saveFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
-        return "Saving Thow: " 
-            + (this.savingThrow.basic.length > 0 ? this.capitalize(this.savingThrow.basic + " ") : "") 
-            + this.capitalize(this.savingThrow.value);
+        return "Defense: " 
+            + (this.savingThrow.basic ? this.capitalize(this.savingThrow.basic + " ") : "") 
+            + this.capitalize(this.savingThrow.statistic);
     });
 
     durationFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
@@ -112,8 +109,8 @@ export class Spell extends CatalogObject {
         return "Target(s): " + this.target;
     });
 
-    timeAndComponents: ko.PureComputed<string> = ko.pureComputed(() => {
-        return "Cast: " + this.time + ", " + this.components.toString();
+    timeFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
+        return "Cast: " + this.time;
     });
     
     traditionsFormatted: ko.PureComputed<string> = ko.pureComputed(() => {
@@ -135,13 +132,13 @@ export class Spell extends CatalogObject {
         "[" + this.rarityFormatted() + "]" + tags +"\n"
         + (this.source.length > 0 ? this.sourceFormatted() + "\n" : "")
         + (this.traditions.length > 0 ? this.traditionsFormatted() + "\n" : "")
-        + (this.timeAndComponents() + "\n")
+        + (this.timeFormatted() + "\n")
         + (this.cost.length > 0 ? this.costFormatted() + "\n" : "")
         + (this.secondaryCasters.length > 0 ? this.secondaryCastersFormatted() + "\n" : "")
         + (this.primaryCheck.length > 0 ? this.primaryCheckFormatted() + "\n" : "")
         + (this.secondaryCheck.length > 0 ? this.secondaryCheckFormatted() + "\n" : "")
         + (this.area.type.length > 0 ? this.areaFormatted() + "\n" : "")
-        + (this.savingThrow.value.length > 0 ? this.saveFormatted() + "\n" : "")
+        + (this.savingThrow.statistic.length > 0 ? this.saveFormatted() + "\n" : "")
         + (this.range.length > 0 ? this.rangeFormatted() + "\n" : "")
         + (this.target.length > 0 ? this.targetFormatted() + "\n" : "")
         + (this.duration.length > 0 ? this.durationFormatted() + "\n" : "")
@@ -162,12 +159,6 @@ export class Spell extends CatalogObject {
             this.area.value = "";
 
             this.category = "";
-                
-            this.components = new SpellComponentProperties;
-            this.components.focus = false;
-            this.components.material = false;
-            this.components.somatic = false;
-            this.components.verbal = false;
 
             this.cost = "";
             this.description = "";
@@ -175,7 +166,6 @@ export class Spell extends CatalogObject {
             this.level = 1;
             this.materials = "";
             this.range = "";
-            this.school = "";
             this.source = "";
             this.target = "";
             this.time = 1;
@@ -190,8 +180,8 @@ export class Spell extends CatalogObject {
             this.secondaryCheck = "";
             this.secondaryCasters = "";
             this.savingThrow = new SpellSave;
-            this.savingThrow.basic = "";
-            this.savingThrow.value = "";
+            this.savingThrow.basic = false;
+            this.savingThrow.statistic = "";
         }
         else{
             this.name = json["name"];
@@ -207,12 +197,6 @@ export class Spell extends CatalogObject {
             }
 
             this.category = json["category"];
-            
-            this.components = new SpellComponentProperties;
-	        this.components.focus = json["components"]["focus"];
-            this.components.material = json["components"]["material"];
-            this.components.somatic = json["components"]["somatic"];
-            this.components.verbal = json["components"]["verbal"];
 
             this.cost = json["cost"];
             this.description = json["description"];
@@ -220,7 +204,6 @@ export class Spell extends CatalogObject {
             this.level = +json["level"];
 	        this.materials = json["materials"];
             this.range = json["range"];
-            this.school = json["school"];
             this.source = json["source"];
             this.target = json["target"];
             this.time = json["time"];
@@ -236,30 +219,15 @@ export class Spell extends CatalogObject {
             this.secondaryCasters = json["secondarycasters"] == undefined ? "" : json["secondarycasters"];
 
             this.savingThrow = new SpellSave;
-            this.savingThrow.basic = json["save"]["basic"];
-            this.savingThrow.value = json["save"]["value"];
+            if (json["save"] == undefined){
+                this.savingThrow.basic = false;
+                this.savingThrow.statistic = "";
+            }
+            else {
+                this.savingThrow.basic = json["save"]["basic"];
+                this.savingThrow.statistic = json["save"]["statistic"];
+            }
         }
-    }
-}
-
-export class SpellComponentProperties {
-    focus: boolean;
-    material: boolean;
-    somatic: boolean;
-    verbal: boolean;
-
-    toString(): string{
-	let output = "";
-	if (this.material)
-    output += "Material";
-	if (this.somatic)
-	    output += (output == "" ? "" : ", ") + "Somatic"
-	if (this.verbal)
-	    output += (output == "" ? "" : ", ") + "Verbal"
-	if (this.focus)
-	    output += (output == "" ? "" : ", ") + "Focus"
-
-	return output;
     }
 }
 
@@ -269,6 +237,6 @@ export class SpellArea{
 }
 
 export class SpellSave {
-    basic: string;
-    value: string;
+    basic: boolean;
+    statistic: string;
 }

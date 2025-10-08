@@ -414,24 +414,10 @@ export function setMenuMode(game: string) {
             }
         }));
         tabMenu.submenu.append(new MenuItem({
-            label: 'Feat Catalog',
-            accelerator: 'F6',
-            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                switchToTab("featcatalog");
-            }
-        }));
-        tabMenu.submenu.append(new MenuItem({
             label: 'Spell Catalog',
             accelerator: 'F7',
             click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
                 switchToTab("spellcatalog2e");
-            }
-        }));
-        tabMenu.submenu.append(new MenuItem({
-            label: 'Equipment Catalog',
-            accelerator: 'F8',
-            click(item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow){
-                switchToTab("craftingcatalog");
             }
         }));
     }

@@ -8,15 +8,11 @@ import { SpellCatalogDND5eTemplate, SpellCatalogDND5eViewModel } from "../dnd5e/
 import { SpellViewModel5e } from "../dnd5e/viewmodel";
 import { Spell as Spell5e } from "../dnd5e/spell";
 import { SpellCatalogPF2eTemplate, SpellCatalogPF2eViewModel } from "../pf2e/components/spell-catalog";
-import { FeatViewModel, GearViewModel, SpellViewModel2e } from "../pf2e/viewmodel";
+import { SpellViewModel2e } from "../pf2e/viewmodel";
 import { Spell as Spell2e } from "../pf2e/spell";
-import { Feat } from "../pf2e/feat";
-import { Gear } from "../pf2e/gear";
-import { FeatCatalogTemplate, FeatCatalogViewModel } from "../pf2e/components/feat-catalog";
-import { GearCatalogTemplate, GearCatalogViewModel } from "../pf2e/components/gear-catalog";
 
 export class ViewModel 
-implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
+implements SpellViewModel5e, SpellViewModel2e {
     name: KnockoutObservable<string>;
     gameType: KnockoutObservable<string>;
 
@@ -34,12 +30,6 @@ implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
 
     spellCatalog2e: KnockoutObservableArray<Spell2e>;
     spell2e: KnockoutObservable<Spell2e>;
-
-    featCatalog: KnockoutObservableArray<Feat>;
-    feat: KnockoutObservable<Feat>;
-
-    gearCatalog: KnockoutObservableArray<Gear>;
-    gear: KnockoutObservable<Gear>;
 
     constructor(pcs: Array<InitiativeCreature>, mobs: Array<InitiativeCreature>, tunes: Array<TuneCategory>){
         this.name = ko.observable("");
@@ -59,12 +49,6 @@ implements SpellViewModel5e, SpellViewModel2e, FeatViewModel, GearViewModel {
 
         this.spellCatalog2e = ko.observableArray([]);
         this.spell2e = ko.observable(new Spell2e());
-
-        this.featCatalog = ko.observableArray([]);
-        this.feat = ko.observable(new Feat);
-
-        this.gearCatalog = ko.observableArray([]);
-        this.gear = ko.observable(new Gear());
 
         this.name.subscribe(function(){document.title = viewModel.name() + " - Rolladex"});
     }
@@ -144,14 +128,6 @@ export function applyDataBinding(){
     ko.components.register("spell-catalog-pf2e", {
         viewModel: SpellCatalogPF2eViewModel,
         template: SpellCatalogPF2eTemplate
-    });
-    ko.components.register("feat-catalog", {
-        viewModel: FeatCatalogViewModel,
-        template: FeatCatalogTemplate
-    });
-    ko.components.register("gear-catalog", {
-        viewModel: GearCatalogViewModel,
-        template: GearCatalogTemplate
     });
     registerModalHandlers();
 

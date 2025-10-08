@@ -84,12 +84,6 @@ export const SpellCatalogPF2eTemplate: string = `
             </ul>
         </div>
         <div class="form-group">
-            <div class="filter-toggle" id="school-filter-toggle"><label for="school-filters">School    </label><span class="filter-toggle-icon">‣</span></div>
-            <ul id="school-filters" hidden>
-                <!--options autopopulated from spell catalog data-->
-            </ul>
-        </div>
-        <div class="form-group">
             <div class="filter-toggle" id="source-filter-toggle"><label for="source-filters">Source    </label><span class="filter-toggle-icon">‣</span></div>
             <ul id="source-filters" hidden>
                 <!--options autopopulated from spell catalog data-->
@@ -134,7 +128,7 @@ export const SpellCatalogPF2eTemplate: string = `
                     <span data-bind="text: traditionsFormatted, visible: traditions.length > 0"></span>
                 </div>
                 <div>
-                    <span data-bind="text: timeAndComponents"></span>
+                    <span data-bind="text: timeFormatted"></span>
                 </div>
                 <div>
                     <span data-bind="text: costFormatted, visible: cost.length > 0"></span>
@@ -152,7 +146,7 @@ export const SpellCatalogPF2eTemplate: string = `
                     <span data-bind="text: areaFormatted, visible: area.type.length > 0"></span>
                 </div>
                 <div>
-                    <span data-bind="text: saveFormatted, visible: savingThrow.value.length > 0"></span>
+                    <span data-bind="text: saveFormatted, visible: savingThrow.statistic.length > 0"></span>
                 </div>
                 <div>
                     <span data-bind="text: rangeFormatted, visible: range.length > 0"></span>

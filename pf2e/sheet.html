@@ -32,9 +32,7 @@
                 <button class="nav-link rpgui-button" id="bio-tab"><p>Bio</p></button>
                 <button class="nav-link rpgui-button" id="gear-tab"><p>Gear</p></button>
                 <button class="nav-link rpgui-button" id="spellbook-tab"><p>Spellbook</p></button>
-                <!-- <button class="nav-link rpgui-button" id="featcatalog-tab"><p>Feat Catalog</p></button> -->
                 <button class="nav-link rpgui-button" id="spellcatalog2e-tab"><p>Spell Catalog</p></button>
-                <!-- <button class="nav-link rpgui-button" id="craftingcatalog-tab"><p>Gear Catalog</p></button> -->
             </div>
             <div>
                 <button class="short-button modal-opener" data-bind="attr: { 'data-modal': 'dice-modal' }">⚄ Roll Dice</button>
@@ -730,17 +728,10 @@
                 </div>
             </div>
 
-            <div class="tab-pane" id="featcatalog" role="tabpanel" aria-labelledby="featcatalog-tab">
-                <feat-catalog params="catalog: featCatalog, feat: feat"></feat-catalog>
-            </div>
-
             <div class="tab-pane" id="spellcatalog2e" role="tabpanel" aria-labelledby="spellcatalog2e-tab">
                 <spell-catalog-pf2e params="catalog: spellCatalog2e, spell: spell2e, addFunc: function(l,n){$root.character().addSpell(l, n)}, disableFunc: function(n) { return character().hasSpell(n) }"></spell-catalog-pf2e>
             </div>  
 
-            <div class="tab-pane" id="craftingcatalog" role="tabpanel" aria-labelledby="craftingcatalog-tab">
-                <gear-catalog params="catalog: gearCatalog, gear: gear"></gear-catalog>
-            </div>
         </div>
     </body>
 </html>

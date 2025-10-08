@@ -14,6 +14,15 @@ def extract_from_system(obj, prop):
         
         del obj["system"][prop]
 
+    if prop == "save" and obj["system"]["defense"] is not None and prop in obj["system"]["defense"]:
+        obj[prop] = obj["system"]["defense"][prop]
+
+    if prop == "source" and obj["system"]["publication"] is not None and "title" in obj["system"]["publication"]:
+        obj[prop] = obj["system"]["publication"]["title"]
+
+    if prop == "traditions" and obj ["system"]["traits"]["traditions"] is not None:
+        obj[prop] = obj["system"]["traits"][prop]
+
 input_dir = "input"
 output_file = "output/output.json"
 spells = json.loads("[]")
@@ -24,14 +33,17 @@ for filename in os.listdir(input_dir):
     fd = open(f, 'r')
     spell = json.load(fd)
     
+    #spell["category"] = "ritual"
+    #spell["category"] = "focus"
+    spell["category"] = "spell"
     del_if_exists(spell,"_id")
     del_if_exists(spell,"img")
     del_if_exists(spell,"type")
+    del_if_exists(spell,"folder")
 
     extract_from_system(spell, "area")
     extract_from_system(spell, "category")
     extract_from_system(spell, "cost")
-    extract_from_system(spell, "components")
     extract_from_system(spell, "description")
     extract_from_system(spell, "duration")
     extract_from_system(spell, "level")
@@ -39,7 +51,6 @@ for filename in os.listdir(input_dir):
     extract_from_system(spell, "primarycheck")
     extract_from_system(spell, "range")
     extract_from_system(spell, "save")
-    extract_from_system(spell, "school")
     extract_from_system(spell, "secondarycasters")
     extract_from_system(spell, "secondarycheck")
     extract_from_system(spell, "source")

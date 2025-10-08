@@ -1,7 +1,5 @@
 import { ipcRenderer } from "electron";
 import { Counter, CharacterSpell, SpellLevel } from "./character";
-import { gearCatalogController } from "./equipment";
-import { featCatalogController } from "./feats";
 import { spellCatalogController } from "./spells";
 import { applyDataBinding, viewModel } from "./viewmodel";
 import { Game } from "../shared/game-type";
@@ -14,7 +12,7 @@ ipcRenderer.on(IPCMessage.SendSwitchToTab, (event, tabId: string) => {
 });
 
 ipcRenderer.on(IPCMessage.SendSwitchTab, (event, direction: boolean) => {
-    let tabs = ["stats", "feats", "bio", "gear", "spellbook", "formulas", "featcatalog", "spellcatalog", "craftingcatalog"];
+    let tabs = ["stats", "feats", "bio", "gear", "spellbook", "formulas", "spellcatalog"];
     let i = tabs.indexOf(currentTab);
     let tabId;
     if (direction){
@@ -48,9 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
     applyDataBinding();
 
     let dataLoadingPromises = [
-        spellCatalogController.loadData(viewModel),
-        featCatalogController.loadData(viewModel),
-        gearCatalogController.loadData(viewModel)
+        spellCatalogController.loadData(viewModel)
     ];
     Promise.all(dataLoadingPromises).then(() => {
         document.querySelectorAll('.nav-link').forEach(tab => {
