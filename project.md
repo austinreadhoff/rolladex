@@ -13,7 +13,6 @@
     - drag/drop attacks, spells
     - remaster ability scores
     - remaster-only filter for spells?
-    - Remove alignment
 
 ## 0.3.3
 - [X] Fix Bestow Curse description

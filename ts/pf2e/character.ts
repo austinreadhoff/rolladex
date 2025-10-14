@@ -13,9 +13,7 @@ export class Character {
     background: KnockoutObservable<string>;
     characterClass: KnockoutObservable<string>;
     size: KnockoutObservable<string>;
-    alignment: KnockoutObservable<string>;
     traits: KnockoutObservable<string>;
-    diety: KnockoutObservable<string>;
     level: KnockoutObservable<string>;
     heroPoints: KnockoutObservable<string>;
 
@@ -130,9 +128,7 @@ export class Character {
         this.background = ko.observable("");
         this.characterClass = ko.observable("");
         this.size = ko.observable("");
-        this.alignment = ko.observable("");
         this.traits = ko.observable("");
-        this.diety = ko.observable("");
         this.level = ko.observable("");
         this.heroPoints = ko.observable("");
         this.str = ko.observable("");
