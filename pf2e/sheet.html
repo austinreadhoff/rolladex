@@ -433,9 +433,7 @@
                                             <div class="col container">
                                                 <label class="row">HP</label>
                                                 <div class="row">
-                                                    <input data-bind="textInput: shieldCurrentHP" id="shield-current-hp" class=" col-5 print-hidden">
-                                                    <span class="col-1 print-hidden">/</span>
-                                                    <input data-bind="textInput: shieldMaxHP" id="shield-max-hp" class=" col-5">
+                                                    <fancy-bar params="currentValue: shieldCurrentHP, maxValue: shieldMaxHP, color: 'red'"></fancy-bar>
                                                 </div>
                                             </div>
                                         </div>

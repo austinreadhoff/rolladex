@@ -7,13 +7,13 @@
 - [X] Allow more spell note delimiters in 5e
 - [X] Actions in the Header
 - [X] UI Bug Fixes
-- [ ] Bring PF2e up to speed with 5e UI improvements
+- [ ] Bring PF2e up to speed with 5e UI improvements and Remaster
     - attack dialogs
     - dialogs for other weapons and lore skills?
     - drag/drop attacks, spells
-    - fancybar for sheild hp
     - remaster ability scores
     - remaster-only filter for spells?
+    - Remove alignment
 
 ## 0.3.3
 - [X] Fix Bestow Curse description
@@ -67,6 +67,7 @@
 - Replace parens in spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell, see 5e)
     - Remove link text from spells as well
 - Action icons 
+- Shield HP bar changes color when broken
 
 ### 5E
 - Show a count of how many spells are currently prepared
