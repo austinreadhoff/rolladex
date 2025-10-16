@@ -11,8 +11,8 @@
     - attack dialogs
     - dialogs for other weapons and lore skills?
     - drag/drop attacks, spells
-    - remaster ability scores
     - remaster-only filter for spells?
+    - check pdf after doing all these things
 
 ## 0.3.3
 - [X] Fix Bestow Curse description

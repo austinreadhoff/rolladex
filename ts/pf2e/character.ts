@@ -18,11 +18,17 @@ export class Character {
     heroPoints: KnockoutObservable<string>;
 
     str: KnockoutObservable<string>;
+    strPartialBoost: KnockoutObservable<boolean>;
     dex: KnockoutObservable<string>;
+    dexPartialBoost: KnockoutObservable<boolean>;
     con: KnockoutObservable<string>;
+    conPartialBoost: KnockoutObservable<boolean>;
     int: KnockoutObservable<string>;
+    intPartialBoost: KnockoutObservable<boolean>;
     wis: KnockoutObservable<string>;
+    wisPartialBoost: KnockoutObservable<boolean>;
     char: KnockoutObservable<string>;
+    charPartialBoost: KnockoutObservable<boolean>;
 
     perception: KnockoutObservable<string>;
     acrobatics: KnockoutObservable<string>;
@@ -132,11 +138,17 @@ export class Character {
         this.level = ko.observable("");
         this.heroPoints = ko.observable("");
         this.str = ko.observable("");
+        this.strPartialBoost = ko.observable(false);
         this.dex = ko.observable("");
+        this.dexPartialBoost = ko.observable(false);
         this.con = ko.observable("");
+        this.conPartialBoost = ko.observable(false);
         this.int = ko.observable("");
+        this.intPartialBoost = ko.observable(false);
         this.wis = ko.observable("");
+        this.wisPartialBoost = ko.observable(false);
         this.char = ko.observable("");
+        this.charPartialBoost = ko.observable(false);
         this.perception = ko.observable("U");
         this.acrobatics = ko.observable("U");
         this.arcana = ko.observable("U");
@@ -256,7 +268,7 @@ export class Character {
         if (!ability) return 0;
 
         let proficiency = this.calculateProficiency(proficiencyLevel);
-        let mod = Math.floor(ability / 2) - 5 + proficiency;
+        let mod = +ability + proficiency;
         if (!mod) return 0;
         return mod;
     }

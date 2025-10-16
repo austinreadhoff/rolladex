@@ -2,6 +2,10 @@
     width: 10em;
 }
 
+.partial-boost-label{
+    color: darkgray !important;
+}
+
 .skillbox-untrained{
     color: gray;
 }

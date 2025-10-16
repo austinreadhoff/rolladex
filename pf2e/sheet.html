@@ -99,33 +99,39 @@
                                     <div id="ability-scores" class="col-4 rpgui-container framed">
                                         <div class="ability-score-container form-group">
                                             <label>Strength</label>
-                                            <span data-bind="text: abilityMod(str())" id="str-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: str" id="str" class=" ability-input">
+                                            <input data-bind="textInput: str" id="str" class=" ability-mod">
+                                            <input data-bind="checked: strPartialBoost" id="str-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'str-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Dexterity</label>
-                                            <span data-bind="text: abilityMod(dex())" id="dex-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: dex" id="dex" class=" ability-input">
+                                            <input data-bind="textInput: dex" id="dex" class=" ability-mod">
+                                            <input data-bind="checked: dexPartialBoost" id="dex-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'dex-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Constitution</label>
-                                            <span data-bind="text: abilityMod(con())" id="con-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: con" id="con" class=" ability-input">
+                                            <input data-bind="textInput: con" id="con" class=" ability-mod">
+                                            <input data-bind="checked: conPartialBoost" id="con-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'con-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Intelligence</label>
-                                            <span data-bind="text: abilityMod(int())" id="int-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: int" id="int" class=" ability-input">
+                                            <input data-bind="textInput: int" id="int" class=" ability-mod">
+                                            <input data-bind="checked: intPartialBoost" id="int-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'int-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Wisdom</label>
-                                            <span data-bind="text: abilityMod(wis())" id="wis-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: wis" id="wis" class=" ability-input">
+                                            <input data-bind="textInput: wis" id="wis" class=" ability-mod">
+                                            <input data-bind="checked: wisPartialBoost" id="wis-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'wis-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                         <div class="ability-score-container form-group">
                                             <label>Charisma</label>
-                                            <span data-bind="text: abilityMod(char())" id="char-mod" class="ability-mod"></span>
-                                            <input data-bind="textInput: char" id="char" class=" ability-input">
+                                            <input data-bind="textInput: char" id="char" class=" ability-mod">
+                                            <input data-bind="checked: charPartialBoost" id="char-partial-boost" type="checkbox" class="rpgui-checkbox">
+                                            <label data-bind="attr: { for: 'char-partial-boost' }" class="partial-boost-label">Partial</label>
                                         </div>
                                     </div>
                                     <div id="skills-etc" class="rpgui-container framed">
