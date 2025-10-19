@@ -6,6 +6,7 @@ import { Game } from "../shared/game-type";
 import { IPCMessage } from "../shared/ipc-message";
 
 var currentTab = "stats";
+var draggedAttack = null;
 
 ipcRenderer.on(IPCMessage.SendSwitchToTab, (event, tabId: string) => {
     switchTab(tabId);

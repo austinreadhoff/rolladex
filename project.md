@@ -8,9 +8,8 @@
 - [X] Actions in the Header
 - [X] UI Bug Fixes
 - [ ] Bring PF2e up to speed with 5e UI improvements and Remaster
-    - attack dialogs
-    - dialogs for other weapons and lore skills?
-    - drag/drop attacks, spells
+    - attack dialogs (need ranged/propulsive/MAP)
+    - drag/drop spells
     - remaster-only filter for spells?
     - check pdf after doing all these things
 

@@ -439,7 +439,6 @@
                                 <div class="row">
                                     <div class="container block ">
                                         <label class="row full-width-label">Attacks&nbsp<button data-bind="click: addAttackRow" type="button" id="btn-add-attack" class="rpgui-button btn-small">+</button></label>
-                                        
                                         <div class="row">
                                             <label class="col-1 print-hidden"></label>
                                             <label class="col-4">Name</label>
@@ -447,15 +446,88 @@
                                             <label class="col-4">Damage/Type</label>
                                         </div>
                                         <div data-bind="foreach: attackStats" id="attack-stats">
-                                            <div class="attack-stat-row row">
-                                                <button data-bind="click: $parent.removeAttackRow" type="button" id="btn-remove-attack" class="rpgui-button btn-small">-</button>
-                                                <input data-bind="textInput: name" class=" col-4 attack-stat attack-stat-name">
-                                                <input data-bind="textInput: bonus" class=" col-2 attack-stat attack-stat-bonus">
-                                                <input data-bind="textInput: dmg" class=" col-4 attack-stat attack-stat-dmg">
+                                            <div data-bind="attr: { 'data-modal': 'attack-modal-'+$index() }
+                                                , event: { drop: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent'; $root.character().removeAttackRow(draggedAttack); $root.character().attackStats.splice($index(),0,draggedAttack) },
+                                                    dragstart: function(data, e) { draggedAttack = $data; e.target.style.opacity = .5; return true; },
+                                                    dragend: function(data, e) { draggedAttack = null; e.target.style.opacity = 1; },
+                                                    dragenter: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid #d27d2b' },
+                                                    dragleave: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent' },
+                                                    dragover: function(data, e) { }}" 
+                                                class="attack-stat-row row modal-opener"
+                                                draggable="true">
+                                                <input data-bind="value: name" class=" col-5 attack-stat" readonly>
+                                                <input data-bind="value: $parent.attackBonus(ability(), proficiency(), bonusAttk())" class=" col-2 attack-stat" readonly>
+                                                <input data-bind="value: $parent.attackDamage(bonusDmg(), dmgDice(), dmgType())" class=" col-5 attack-stat" readonly>
                                             </div>
-                                            <div class="attack-stat-row row">
-                                                <input data-bind="textInput: traits" class=" col-12 attack-stat attack-stat-traits">
-                                            </div>
+                                            <modal params="name: 'attack-modal-'+$index()">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="form-group col-6">
+                                                            <label>Name</label>
+                                                            <input data-bind="textInput: $parent.name">
+                                                        </div>
+                                                        <div class="form-group col-3">
+                                                            <label>Ability</label>
+                                                            <select data-bind="value: $parent.ability" class="rpgui-dropdown">
+                                                                <option value="STR">STR</option>
+                                                                <option value="DEX">DEX</option>
+                                                                <option value="CON">CON</option>
+                                                                <option value="INT">INT</option>
+                                                                <option value="WIS">WIS</option>
+                                                                <option value="CHAR">CHA</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-3">
+                                                            <label>Proficiency</label>
+                                                            <select data-bind="value: $parent.proficiency" class="rpgui-dropdown">
+                                                                <option value="Simple">Simple</option>
+                                                                <option value="Martial">Martial</option>
+                                                                <option value="Unarmed">Unarmed</option>
+                                                                <!-- ko foreach: $parentContext.$parent.otherWeapons -->
+                                                                <option data-bind="{ value: name, text: name }"></option>
+                                                                <!-- /ko -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col">
+                                                            <label>Damage Dice</label>
+                                                            <input data-bind="textInput: $parent.dmgDice">
+                                                        </div>
+                                                        <div class="form-group col">
+                                                            <label>Damage Type</label>
+                                                            <input data-bind="textInput: $parent.dmgType">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col">
+                                                            <label>Additional To-Hit</label>
+                                                            <input data-bind="textInput: $parent.bonusAttk">
+                                                        </div>
+                                                        <div class="form-group col">
+                                                            <label>Additional Damage</label>
+                                                            <input data-bind="textInput: $parent.bonusDmg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col">
+                                                            <label>Traits</label>
+                                                            <input data-bind="textInput: $parent.traits">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col textarea-col">
+                                                            <label>Notes</label>
+                                                            <textarea data-bind="textInput: $parent.notes" rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <button data-bind="click: function(data, event) { $parentContext.$parent.removeAttackRow($parent) }" class="rpgui-button">Delete Attack</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </modal>
                                         </div>
                                     </div>
                                 </div>

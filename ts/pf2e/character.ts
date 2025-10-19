@@ -361,9 +361,46 @@ export class Character {
 
     addAttackRow(){
         this.attackStats.push(new Attack())
+        setTimeout(() => {
+            document.getElementById("attack-modal-" + (this.attackStats().length-1).toString()).hidden = false
+        }, 10); //small period to create modal
     }
     removeAttackRow(row: Attack){
         viewModel.character().attackStats.remove(row);
+    }
+
+    attackBonus(ability: string, proficiencyType: string, bonus: string){
+        return ko.computed(() => {
+            let proficiency = "U";
+            switch(proficiencyType) { 
+                case "Simple": { 
+                    proficiency = this.weaponsSimple();
+                    break; 
+                } 
+                case "Martial": { 
+                    proficiency = this.weaponsMartial();
+                    break; 
+                } 
+                case "Unarmed": { 
+                    proficiency = this.weaponsUnarmed();
+                    break; 
+                }
+                default: { 
+                    let type = this.otherWeapons().find(w => w.name() === proficiencyType); 
+                    proficiency = type ? type.proficiency() : "U";
+                    break; 
+                } 
+            }
+            
+            let total: number = this.calculateModifier(this.abilityStringToNumber(ability), proficiency) + +(bonus.replace(/\D/g,''));
+            return total >= 0 ? "+" + total : total;
+        }, this);
+    }
+    attackDamage(bonus: string, dice: string, type: string){
+        return ko.computed(() => {
+            let total = +this.abilityStringToNumber("STR") + +(bonus.replace(/\D/g,''));
+            return dice + (total >= 0 ? "+" : "") + total + " " + type;
+        }, this);
     }
 
     addLoreSkill(){
@@ -391,7 +428,6 @@ export class Character {
     }
 
     //these have to be here, otherwise the fromJS model update would bork
-    //unsure why unsafe save needs to be triggered in these manually
     addSpell(spellLevel: number, name: string = ""){
         this.spellLevels()[spellLevel-1].spells.push(new CharacterSpell(name));
     }
@@ -410,15 +446,25 @@ export class Character {
 
 class Attack{
     name: KnockoutObservable<string>;
-    bonus: KnockoutObservable<string>;
-    dmg: KnockoutObservable<string>;
+    proficiency: KnockoutObservable<string>;
+    ability: KnockoutObservable<string>;
+    dmgDice: KnockoutObservable<string>;
+    dmgType: KnockoutObservable<string>;
+    bonusAttk: KnockoutObservable<string>;
+    bonusDmg: KnockoutObservable<string>;
     traits: KnockoutObservable<string>;
+    notes: KnockoutObservable<string>;
 
     constructor(){
         this.name = ko.observable("");
-        this.bonus = ko.observable("");
-        this.dmg = ko.observable("");
+        this.proficiency = ko.observable("");
+        this.ability = ko.observable("STR");
+        this.dmgDice = ko.observable("");
+        this.dmgType = ko.observable("");
+        this.bonusAttk = ko.observable("0");
+        this.bonusDmg = ko.observable("0");
         this.traits = ko.observable("");
+        this.notes = ko.observable("");
     }
 }
 
