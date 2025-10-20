@@ -457,7 +457,8 @@
                                                 draggable="true">
                                                 <input data-bind="value: name" class=" col-5 attack-stat" readonly>
                                                 <input data-bind="value: $parent.attackBonus(ability(), proficiency(), bonusAttk())" class=" col-2 attack-stat" readonly>
-                                                <input data-bind="value: $parent.attackDamage(bonusDmg(), dmgDice(), dmgType())" class=" col-5 attack-stat" readonly>
+                                                <input data-bind="value: $parent.attackDamage(bonusDmg(), ranged(), propulsive(), dmgDice(), dmgType())" class=" col-5 attack-stat" readonly>
+                                                <span data-bind="text: $parent.attackMAP(ability(), proficiency(), bonusAttk(), agile())" class="col map-text"></span>
                                             </div>
                                             <modal params="name: 'attack-modal-'+$index()">
                                                 <div class="container">
@@ -507,6 +508,16 @@
                                                         <div class="form-group col">
                                                             <label>Additional Damage</label>
                                                             <input data-bind="textInput: $parent.bonusDmg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col">
+                                                            <input data-bind="checked: $parent.agile, attr: { id: 'agile-'+$index() }" type="checkbox" class="rpgui-checkbox">
+                                                            <label data-bind="attr: { for: 'agile-'+$index() }">Agile</label>
+                                                            <input data-bind="checked: $parent.ranged, attr: { id: 'ranged-'+$index() }" type="checkbox" class="rpgui-checkbox">
+                                                            <label data-bind="attr: { for: 'ranged-'+$index() }">Ranged</label>
+                                                            <input data-bind="checked: $parent.propulsive, attr: { id: 'propulsive-'+$index() }" type="checkbox" class="rpgui-checkbox">
+                                                            <label data-bind="attr: { for: 'propulsive-'+$index() }">Propulsive</label>
                                                         </div>
                                                     </div>
                                                     <div class="row">

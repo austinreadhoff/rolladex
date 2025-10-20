@@ -344,7 +344,7 @@ export class Character {
                 break; 
             } 
         }
-        return ability;
+        return isNaN(ability) ? 0 : ability;
     }
 
     encumberanceLimit(){
@@ -396,10 +396,34 @@ export class Character {
             return total >= 0 ? "+" + total : total;
         }, this);
     }
-    attackDamage(bonus: string, dice: string, type: string){
+
+    attackMAP(ability: string, proficiencyType: string, bonus: string, agile: boolean) {
         return ko.computed(() => {
-            let total = +this.abilityStringToNumber("STR") + +(bonus.replace(/\D/g,''));
-            return dice + (total >= 0 ? "+" : "") + total + " " + type;
+            let base = +this.attackBonus(ability, proficiencyType, bonus)();
+            let map1 = base - (agile ? 4 : 5);
+            let map2 = base - (agile ? 8 : 10);
+            return "MAP: (" + (map1 >= 0 ? "+" : "") + map1 + "/" + (map2 >= 0 ? "+" : "") + map2 + ")";
+        }, this);
+    }
+
+    attackDamage(bonus: string, ranged: boolean, propulsive: boolean, dice: string, type: string){
+        return ko.computed(() => {
+            let dmgModifier = 0;
+            if (!ranged) {
+                dmgModifier = +this.abilityStringToNumber("STR");
+            }
+            else if (propulsive) {
+                let str = +this.abilityStringToNumber("STR");
+                if (str >= 0) {
+                    dmgModifier = Math.ceil(str / 2);
+                } else {
+                    dmgModifier = str;
+                }
+            }
+
+            dmgModifier += +(bonus.replace(/\D/g,''));
+
+            return dice + (dmgModifier >= 0 ? "+" : "") + dmgModifier + " " + type;
         }, this);
     }
 
@@ -452,6 +476,9 @@ class Attack{
     dmgType: KnockoutObservable<string>;
     bonusAttk: KnockoutObservable<string>;
     bonusDmg: KnockoutObservable<string>;
+    agile: KnockoutObservable<boolean>;
+    ranged: KnockoutObservable<boolean>;
+    propulsive: KnockoutObservable<boolean>;
     traits: KnockoutObservable<string>;
     notes: KnockoutObservable<string>;
 
@@ -463,6 +490,9 @@ class Attack{
         this.dmgType = ko.observable("");
         this.bonusAttk = ko.observable("0");
         this.bonusDmg = ko.observable("0");
+        this.agile = ko.observable(false);
+        this.ranged = ko.observable(false);
+        this.propulsive = ko.observable(false);
         this.traits = ko.observable("");
         this.notes = ko.observable("");
     }

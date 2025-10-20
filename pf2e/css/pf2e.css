@@ -22,6 +22,12 @@
     color: gold;
 }
 
+.map-text {
+    font-size: .75em !important;
+    color: darkgray !important;
+    margin-bottom: -10px;
+}
+
 #spell-dc, #spell-attack{
     font-size: 2em;
 }
