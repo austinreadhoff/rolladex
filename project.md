@@ -8,7 +8,6 @@
 - [X] Actions in the Header
 - [X] UI Bug Fixes
 - [ ] Bring PF2e up to speed with 5e UI improvements and Remaster
-    - drag/drop spells
     - remaster-only filter for spells?
     - check pdf after doing all these things
 

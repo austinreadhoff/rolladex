@@ -7,6 +7,7 @@ import { IPCMessage } from "../shared/ipc-message";
 
 var currentTab = "stats";
 var draggedAttack = null;
+var draggedSpell = null;
 
 ipcRenderer.on(IPCMessage.SendSwitchToTab, (event, tabId: string) => {
     switchTab(tabId);

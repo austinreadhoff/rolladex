@@ -782,7 +782,13 @@
                                 </div>
                                 <!-- /ko -->
                                 <!-- ko foreach: spells -->
-                                <div class="spell-row row">
+                                <div class="spell-row row" data-bind="event: { drop: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent'; $parentContext.$parent.removeSpell(draggedSpell, $parentContext.$index); $parentContext.$parent.spellLevels()[$parentContext.$index()].spells.splice($index(),0,draggedSpell) },
+                                    dragstart: function(data, e) { draggedSpell = $data; e.target.style.opacity = .5; return true; },
+                                    dragend: function(data, e) { draggedSpell = null; e.target.style.opacity = 1; },
+                                    dragenter: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid #d27d2b' },
+                                    dragleave: function(data, e) { e.target.closest('[draggable=true]').style.borderTop = '2px solid transparent' },
+                                    dragover: function(data, e) { }}"
+                                    draggable="true">
                                     <button data-bind="click: function(data, event) {$parentContext.$parent.removeSpell(data, $parentContext.$index)}" type="button" id="btn-remove-spell" class="rpgui-button btn-small">-</button>
                                     <div class="autocomplete col">
                                         <input data-bind="textInput: name, css: { prepared: prepared }, bindSpell: { level: $parent.level, name: name } " class="spell-name">
