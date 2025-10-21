@@ -54,7 +54,9 @@ export function setupFilterToggle(toggleEl: HTMLElement, filterUl: HTMLElement){
 //uniqueString: differentiates control and label IDs from others in the same sheet
 //filterCallback: the function that performs the filtering on the dataset, to be called when filters change
 //zeroCantrip: values of "0" should be replaced with the string "cantrip"
-export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, property: string, uniqueString: string, filterCallback: Function, zeroCantrip: boolean = false){
+//defaults: an array of filter values that should be checked by default
+export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, property: string, 
+    uniqueString: string, filterCallback: Function, zeroCantrip: boolean = false, defaults: string[] = []){
     var options: any[] = [];
 
     catalog.forEach(obj => {
@@ -82,7 +84,7 @@ export function populateFilterDropDown<T>(catalog: T[], filterEl: HTMLElement, p
         let inputID = `${uniqueString}-${property}-filter-${option.toString().replace(/[^a-zA-Z0-9]*/g, "")}`;
         el.classList.add("form-check");
         el.innerHTML = 
-        `<input class="rpgui-checkbox catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}">
+        `<input class="rpgui-checkbox catalog-filter ${property}-filter" type="checkbox" id="${inputID}" data-filterval="${option}" ${defaults.indexOf(option.toString().toLowerCase()) != -1 ? "checked" : ""}>
         <label class="form-check-label" for="${inputID}">${option == "0" && zeroCantrip ? "cantrip" : option.toString().toLowerCase()}</label>`
 
         filterEl.appendChild(el);

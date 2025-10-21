@@ -15,6 +15,9 @@ class SpellCatalogController implements CatalogController<Spell>{
             ];
     
             Promise.all(spellFilePromises).then((jsonCollections) => {
+                //hardcoded because I think these should be defaults, sue me
+                var defaultSources = ["pathfinder player core", "pathfinder player core 2"];
+
                 jsonCollections.forEach((c: any) => this.fullCatalog = this.fullCatalog.concat(c.map((j: any) => new Spell(j))));
                 this.fullCatalog = this.fullCatalog.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
     
@@ -57,7 +60,7 @@ class SpellCatalogController implements CatalogController<Spell>{
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#category-filters"), "category", "spells", () => { this.filterCatalog(viewModel); });
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#level-filters"), "level", "spells", () => { this.filterCatalog(viewModel); }, true);
                 populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#tradition-filters"), "traditions", "spells", () => { this.filterCatalog(viewModel); });
-                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(viewModel); });
+                populateFilterDropDown(this.fullCatalog, this.baseElement.querySelector("#source-filters"), "source", "spells", () => { this.filterCatalog(viewModel); }, false, defaultSources);
     
                 this.baseElement.querySelector("#btn-clear-filters").addEventListener('click', event => {
                     let nameEl: HTMLInputElement = this.baseElement.querySelector("#filter-name") as HTMLInputElement
@@ -69,9 +72,16 @@ class SpellCatalogController implements CatalogController<Spell>{
                     let cantripUnfiltered: HTMLInputElement = this.baseElement.querySelector("#cantrip-unfiltered") as HTMLInputElement
                     cantripUnfiltered.checked = true; 
     
-                    (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => el.checked = false);
+                    (this.baseElement.querySelectorAll(".catalog-filter") as NodeListOf<HTMLInputElement>).forEach(el => {
+                        el.checked = false 
+                        if (defaultSources.indexOf(el.getAttribute("data-filterval").toLowerCase()) != -1) {
+                            el.checked = true;
+                        }
+                    });
                     this.filterCatalog(viewModel);
                 });
+                //executes defaults
+                this.filterCatalog(viewModel);
     
                 resolve(null);
             });
