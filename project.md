@@ -1,5 +1,5 @@
-## 2025.?.?
-- [ ] Switch to CalVer
+## 2025.10.22
+- [X] Switch to CalVer
 - [X] Multiple Window Support
 - [X] Fancybar +/- Math
 - [X] Handle changing of character names in recents list
@@ -61,7 +61,6 @@
 - Replace parens in spell names, to allow more spell note delimiters (fix spells.ts and character.hasSpell, see 5e)
     - Remove link text from spells as well
 - Action icons 
-- Shield HP bar changes color when broken
 
 ### 5E
 - Show a count of how many spells are currently prepared

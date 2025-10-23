@@ -67,7 +67,7 @@ export function createWindow() {
 app.whenReady().then(() => {
 	app.setAboutPanelOptions({
 		applicationName: "RollaDex",
-		applicationVersion: "0.3.3",
+		applicationVersion: "2025.10.22",
 		iconPath: "./img/icon.png"	//Win/Linux only
 	});
 
