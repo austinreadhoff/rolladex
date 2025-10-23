@@ -8,13 +8,18 @@ import * as ko from "knockout";
 //     template: FancyBarTemplate
 // });
 
-// <fancy-bar params="currentValue: currentHP, maxValue: maxHP, color: 'red'"></fancy-bar>
+// <fancy-bar params="currentValue: currentHP, maxValue: maxHP, primaryColor: 'red'"></fancy-bar>
+// <fancy-bar params="currentValue: currentHP, maxValue: maxHP, primaryColor: 'red', secondaryColor: 'green', colorThreshold: threshold"></fancy-bar>
 // ---
 
 export class FancyBarViewModel {
     currentValue = ko.observable<string>();
     maxValue = ko.observable<string>();
-    color = ko.observable<string>(); //red, green, blue, or null (purple)
+     //red, green, blue, or null (purple)
+    color = ko.observable<string>();
+    primaryColor = ko.observable<string>();
+    secondaryColor = ko.observable<string>();   //Only compatible with numbers, not dice
+    colorThreshold = ko.observable<number>(0);  //actual number out of the maxValue, not a percentage
 
     //holds value while doing math
     private tempValue: string;
@@ -79,6 +84,13 @@ export class FancyBarViewModel {
             //Just numbers
             current = +this.currentValue();
             max = +this.maxValue();
+        }
+
+        if (this.colorThreshold != null && current <= this.colorThreshold()){
+            this.color(ko.unwrap(this.secondaryColor));
+        }
+        else {
+            this.color(ko.unwrap(this.primaryColor));
         }
 
         if (current <= 0 || max <= 0)
@@ -158,7 +170,14 @@ export class FancyBarViewModel {
     constructor(params: any){
         this.currentValue = params.currentValue;
         this.maxValue = params.maxValue;
-        this.color = params.color;
+        this.primaryColor = params.primaryColor;
+        this.secondaryColor = params.secondaryColor || null;
+        this.colorThreshold = params.colorThreshold || null;
+
+        this.color(params.primaryColor);
+        if (this.colorThreshold != null && +this.currentValue() <= +this.colorThreshold()){
+            this.color(params.secondaryColor);
+        }
 
         this.tempValue = "0";
     }

@@ -298,7 +298,7 @@
                                             <div class="col container">
                                                 <label class="row">Hit Points</label>
                                                 <div class="row">
-                                                    <fancy-bar params="currentValue: currentHP, maxValue: maxHP, color: 'red'"></fancy-bar>
+                                                    <fancy-bar params="currentValue: currentHP, maxValue: maxHP, primaryColor: 'red'"></fancy-bar>
                                                 </div>
                                             </div>
                                         </div>
@@ -429,7 +429,7 @@
                                             <div class="col container">
                                                 <label class="row">HP</label>
                                                 <div class="row">
-                                                    <fancy-bar params="currentValue: shieldCurrentHP, maxValue: shieldMaxHP, color: 'red'"></fancy-bar>
+                                                    <fancy-bar params="currentValue: shieldCurrentHP, maxValue: shieldMaxHP, primaryColor: 'green', secondaryColor: 'red', colorThreshold: shieldBT"></fancy-bar>
                                                 </div>
                                             </div>
                                         </div>
@@ -558,7 +558,7 @@
                                 <label data-bind="attr: { for: 'misc-counter-reset-'+$index() }">Reset Daily</label>
                                 <input data-bind="textInput: name" class=" misc-counter counter-name" placeholder="Custom Counter Name">
                                 <div>
-                                    <fancy-bar params="currentValue: current, maxValue: max, color: null"></fancy-bar>
+                                    <fancy-bar params="currentValue: current, maxValue: max, primaryColor: null"></fancy-bar>
                                 </div>
                             </div>
                         </div>
@@ -773,12 +773,12 @@
                             <div id="spells">
                                 <!--ko if: (level() < 11)-->
                                 <div class="spell-slot-container">
-                                    <fancy-bar params="currentValue: slotsRemaining, maxValue: slotsTotal, color: 'blue'"></fancy-bar>
+                                    <fancy-bar params="currentValue: slotsRemaining, maxValue: slotsTotal, primaryColor: 'blue'"></fancy-bar>
                                 </div>
                                 <!-- /ko -->
                                 <!--ko if: (level() == 13)-->
                                 <div class="spell-slot-container">
-                                    <fancy-bar params="currentValue: focusPointsRemaining, maxValue: focusPointsTotal, color: 'blue'"></fancy-bar>
+                                    <fancy-bar params="currentValue: focusPointsRemaining, maxValue: focusPointsTotal, primaryColor: 'blue'"></fancy-bar>
                                 </div>
                                 <!-- /ko -->
                                 <!-- ko foreach: spells -->

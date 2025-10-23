@@ -320,11 +320,11 @@
                                     </div>
                                     <label class="row">Hit Points</label>
                                     <div class="row">
-                                        <fancy-bar params="currentValue: currentHP, maxValue: maxHP, color: 'red'"></fancy-bar>
+                                        <fancy-bar params="currentValue: currentHP, maxValue: maxHP, primaryColor: 'red'"></fancy-bar>
                                     </div>
                                     <label class="row">Hit Dice</label>
                                     <div class="row">
-                                        <fancy-bar params="currentValue: currentHitDice, maxValue: maxHitDice, color: 'green'"></fancy-bar>
+                                        <fancy-bar params="currentValue: currentHitDice, maxValue: maxHitDice, primaryColor: 'green'"></fancy-bar>
                                     </div>
                                     <div class="row">
                                         <div class="col print-hidden">
@@ -503,7 +503,7 @@
                             <label data-bind="attr: { for: 'misc-long-'+$index() }">Long Rest</label>
                             <input data-bind="textInput: name" class=" misc-counter counter-name" placeholder="Custom Counter Name">
                             <div>
-                                <fancy-bar params="currentValue: current, maxValue: max, color: null"></fancy-bar>
+                                <fancy-bar params="currentValue: current, maxValue: max, primaryColor: null"></fancy-bar>
                             </div>
                         </div>
                     </div>
@@ -678,7 +678,7 @@
                         <div id="spells">
                             <!--ko if: level-->
                             <div class="spell-slot-container">
-                                <fancy-bar params="currentValue: slotsRemaining, maxValue: slotsTotal, color: 'blue'"></fancy-bar>
+                                <fancy-bar params="currentValue: slotsRemaining, maxValue: slotsTotal, primaryColor: 'blue'"></fancy-bar>
                             </div>
                             <!-- /ko -->
                             <!-- ko foreach: spells -->
